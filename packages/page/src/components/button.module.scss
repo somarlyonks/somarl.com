@@ -1,0 +1,107 @@
+$fabricWhite: rgb(237, 235, 233);
+$fabricBlack: rgb(50, 49, 48);
+$fabricDeepBlack: rgb(32, 31, 30);
+$fabricBlue: rgb(0, 120, 212);
+$fabricLightBlue: rgb(16, 110, 190);
+$fabricDeepBlue: rgb(0, 90, 158);
+$fabricGrey: rgb(138, 136, 134);
+$fabricLightGrey: rgb(161, 159, 157);
+$fabricLightWhite: rgb(237, 235, 233);
+$fabricDeepWhite: rgb(243, 242, 241);
+$fabricScarlet: rgb(164, 38, 44);
+
+.button {
+  position: relative;
+  height: 2rem;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 1rem;
+  background-color: #fff;
+  border: 1px solid $fabricGrey;
+  color: $fabricBlack;
+  border-radius: 0px;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: top;
+  min-width: 5rem;
+  outline: transparent;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  text-overflow: ellipsis;
+  appearance: button;
+  cursor: pointer;
+
+  &:not(:disabled) {
+    &:hover,
+    &:active {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    &:hover {
+      background-color: $fabricWhite;
+      color: $fabricDeepBlack;
+      &::after {
+        background: rgba(#fff, 0.1);
+      }
+    }
+    &:active {
+      background-color: $fabricLightWhite;
+      color: $fabricDeepBlack;
+      &::after {
+        background: rgba(#000, 0.05);
+      }
+    }
+  }
+
+  &--primary {
+    background-color: $fabricBlue;
+    border-color: $fabricBlue;
+    color: #fff;
+    &:not(:disabled) {
+      &:hover {
+        background-color: $fabricLightBlue;
+        border-color: $fabricLightBlue;
+        color: #fff;
+      }
+      &:active {
+        background-color: $fabricDeepBlue;
+        border-color: $fabricDeepBlue;
+        color: #fff;
+      }
+    }
+  }
+
+  &:disabled {
+    background-color: $fabricDeepWhite;
+    border-color: $fabricDeepWhite;
+    color: $fabricLightGrey;
+    cursor: not-allowed;
+  }
+
+  &--borderless {
+    border-color: transparent;
+  }
+
+  &--icon {
+    padding: 0;
+    font-size: 1.5rem;
+    min-width: 0;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__label {
+    margin: 0 0.25rem;
+    line-height: 1;
+    display: block;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}

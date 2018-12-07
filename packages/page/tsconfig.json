@@ -1,0 +1,34 @@
+{
+  "extends": "../tsconfig.common.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext", // prod: commonjs
+    "moduleResolution": "node",
+    "target": "es5",
+    "paths": {},
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "test"
+  ],
+  "references": [
+    {
+      "path": "../pipe"
+    }
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

@@ -1,0 +1,115 @@
+$TextColor: #121314;
+$LTGreen: #16a085;
+$PagePadding: 5vh 10vw;
+
+body {
+  font-family: DejaVu Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: calc(10px + 0.33vw);
+  -webkit-font-smoothing: antialiased;
+  padding: $PagePadding;
+  color: $TextColor;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 4.5em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 1.6em;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 28em;
+
+  svg {
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+a {
+  font-weight: 400;
+  text-decoration: none;
+  color: $TextColor;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 61.8%;
+    left: -0.1em;
+    right: -0.1em;
+    bottom: 0;
+    transition: top 200ms ease-in-out;
+  }
+  &::after,
+  &::selection {
+    background-color: rgba(#00a1f1, 0.5);
+  }
+  &:hover::after {
+    top: 0;
+  }
+  &[href*="learning-tribes"] {
+    &::after,
+    &::selection {
+      background-color: rgba($LTGreen, 0.5);
+    }
+  }
+}
+
+button {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Noto Sans, Droid Sans, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+}
+
+span {
+  q + span {
+    &::before {
+      content: " - ";
+    }
+    & + cite {
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}
+
+footer {
+  padding: $PagePadding;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 1.6em;
+  ul {
+    list-style-type: none;
+    display: flex;
+    li {
+      margin-left: 20px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  p,
+  a {
+    font-weight: 300;
+  }
+
+  footer {
+    position: relative;
+  }
+
+  .m-hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  //
+}

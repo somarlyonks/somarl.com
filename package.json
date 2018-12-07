@@ -1,0 +1,84 @@
+{
+  "name": "somarl.com",
+  "homepage": "https://somarl.com",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "convert": "lerna link convert",
+    "-": "------------------------------------------------test--------------------------------",
+    "test": "cd packages/page && npm run test",
+    "ci": "cd packages/page && npm run ci",
+    "--": "------------------------------------------------------------dev--------------------",
+    "page": "cd packages/page && npm start",
+    "pipe": "concurrently 'npm run build-pipe -- -- -w' 'npm run graphql-types -- -- -w'",
+    "server": "cd packages/server && npm start",
+    "---": "---------------------------------------------------------------------build--------",
+    "build-server": "cd packages/server && npm run build",
+    "graphql-types": "cd packages/server && npm run graphql-types",
+    "build-pipe": "cd packages/pipe && npm run build",
+    "build-page": "cd packages/page && npm run build",
+    "build": "npm-run-all graphql-types build-pipe build-server build-page",
+    "----": "-----------------------------------------------------------------------lint------",
+    "lint-page": "cd packages/page && npm run lint",
+    "lint-pipe": "cd packages/pipe && npm run lint",
+    "lint-server": "cd packages/server && npm run lint",
+    "lint": "npm-run-all lint-page lint-pipe lint-server",
+    "-----": "--------------------------------------------------------workflow----------------",
+    "commitlint": "commitlint",
+    "husky": "node node_modules/husky/bin/install.js",
+    "------": "---------------------------------------------------------------other-----------",
+    "frpc": "cd scripts/frp && sh frpc.sh && concurrently './frpc -c frpc.ini' 'tail -f frpc.log'",
+    "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.8",
+    "@somarlyonks/commitlint": "1.0.0",
+    "@somarlyonks/tslint": "1.0.1",
+    "@types/dotenv": "6.1.1",
+    "@types/fs-extra": "9.0.12",
+    "@types/graphql": "14.2.3",
+    "@types/jest": "26.0.24",
+    "@types/jsonwebtoken": "8.5.4",
+    "@types/node-fetch": "2.5.12",
+    "chalk": "4.1.1",
+    "concurrently": "6.2.0",
+    "dotenv": "10.0.0",
+    "dotenv-expand": "5.1.0",
+    "folans.d.ts": "2.0.0",
+    "fs-extra": "10.0.0",
+    "husky": "5.2.0",
+    "if-env": "1.0.4",
+    "jest": "27.0.6",
+    "lerna": "4.0.0",
+    "nodemon": "2.0.12",
+    "npm-run-all": "4.1.5",
+    "raf": "3.4.1",
+    "resolve": "1.20.0",
+    "ts-jest": "27.0.4",
+    "ts-loader": "9.2.4",
+    "ts-node": "10.1.0",
+    "typescript": "4.3.2"
+  },
+  "engines": {
+    "node": ">=12.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@somarlyonks/commitlint"
+    ]
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "Firefox ESR"
+  ]
+}
