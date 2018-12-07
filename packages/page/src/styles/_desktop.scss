@@ -1,0 +1,16 @@
+@import "variables";
+
+@media (min-width: 1420px) {
+  aside {
+    display: block;
+    position: relative;
+    float: right;
+    shape-outside: circle();
+    shape-margin: 1em;
+    width: 60vh;
+    height: 60vh;
+    img {
+      border-radius: 100%;
+    }
+  }
+}

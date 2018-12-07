@@ -1,0 +1,122 @@
+@import "variables";
+
+body {
+  font-family: DejaVu Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: calc(10px + 0.33vw);
+  -webkit-font-smoothing: antialiased;
+  padding: $PagePadding;
+  color: $TextColor;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 4.5em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 1.6em;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 28em;
+
+  a {
+    font-weight: 400;
+  }
+
+  svg {
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $TextColor;
+  position: relative;
+  white-space: nowrap;
+  text-decoration-color: rgba(#00a1f1, 0.5);
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 61.8%;
+    left: -0.1em;
+    right: -0.1em;
+    bottom: 0;
+    transition: top 200ms ease-in-out;
+  }
+  &::after,
+  &::selection {
+    background-color: rgba(#00a1f1, 0.5);
+  }
+  &:hover::after {
+    top: 0;
+  }
+  &[href*="learning-tribes"] {
+    text-decoration-color: rgba($LTGreen, 0.5);
+    &::after,
+    &::selection {
+      background-color: rgba($LTGreen, 0.5);
+    }
+  }
+}
+
+button {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Noto Sans, Droid Sans, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+}
+
+span {
+  q + span {
+    &::before {
+      content: " - ";
+    }
+    & + cite {
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}
+
+ul {
+  font-size: 1.6em;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+sub {
+  font-weight: 300;
+}
+
+footer {
+  padding: $PagePadding;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    li {
+      margin-left: 20px;
+    }
+  }
+}
+
+aside {
+  display: none;
+}
+
+@import "mobile";
+@import "desktop";

@@ -1,0 +1,14 @@
+{
+  "env": {
+    "TS_NODE_FILES": true,
+    "SOMARL_ENV": "dev",
+    "SERVER_PORT_DEV": 3001
+  },
+  "watch": [
+    "src/**/*"
+  ],
+  "execMap": {
+    "ts": "ts-node"
+  },
+  "ext": "ts"
+}

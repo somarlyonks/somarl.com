@@ -1,0 +1,34 @@
+.flex {
+  display: flex;
+  height: 100%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  &--full {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &--verticle {
+    flex-direction: column;
+  }
+  &--grow {
+    flex: 1;
+  }
+  &--shrink {
+    flex: 0;
+  }
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  .flex-container {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+  }
+}
