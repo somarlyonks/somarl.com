@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8-stretch-browsers
+    steps:
+      - checkout
+      - run:
+          name: Env Running
+          command: echo Circle CI says 'Hello'.
+      - run:
+          name: Date
+          command: date
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn
+      - save_cache:
+          name: Cache Yarn Package
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Tsc build
+          command: npm run build
+      - run:
+          name: Jest test
+          command: npm run ci
+  # test:
+  #   docker:
+  #     - image: circleci/node:8-stretch-browsers
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Test
+  #         command: npm run ci
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      # - test:
+      #     requires:
+      #       - build

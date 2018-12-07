@@ -1,0 +1,52 @@
+{
+  "extends": ["tslint:recommended", "tslint-react"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  },
+  "rules": {
+    // "completed-docs": true,
+    "align": true,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "curly": false,
+    "forin": false,
+    "interface-name": false,
+    "jsx-no-multiline-js": false,
+    "max-classes-per-file": false,
+    "max-line-length": [true, {"limit": 120, "ignore-pattern": "^.*<"}],
+    "member-access": [true, "check-constructor", "check-parameter-property"],
+    "member-ordering": false,
+    "newline-before-return": false,
+    "no-any": false,
+    "no-bitwise": false,
+    "no-console": [true, "log"],
+    "no-consecutive-blank-lines": [true, 2],
+    "no-default-export": false,
+    "no-empty": false,
+    "no-empty-interface": false,
+    "no-null-keyword": false,
+    "no-invalid-this": true,
+    "no-irregular-whitespace": true,
+    "no-this-assignment": true,
+    "no-unused-expression": false,
+    "no-magic-numbers": [true, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 50, 100, 256],
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+    "prefer-conditional-expression": [true, "check-else-if"],
+    "prefer-const": [true, {"destructuring": "all"}],
+    "prefer-function-over-method": [true, "allow-public"],
+    // "prefer-readonly": true,
+    "prefer-switch": true,
+    // "promise-function-async": true,
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": [true, "never"],
+    "space-before-function-paren": [true, "always"],
+    "trailing-comma": false,
+    "type-literal-delimiter": false,
+    "typedef": false, // [true, "call-signature", "arrow-call-signature", "parameter", "arrow-parameter"],
+    "variable-name": [true, "ban-keywards", "check-format", "allow-leading-underscore", "allow-pascal-case"]
+  }
+}

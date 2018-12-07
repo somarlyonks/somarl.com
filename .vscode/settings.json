@@ -1,0 +1,7 @@
+{
+  "python.pythonPath": "/home/sy/.pyenv/versions/3.6.0/bin/python",
+  "editor.tabSize": 2,
+  "[python]": {
+    "editor.tabSize": 4
+  }
+}
