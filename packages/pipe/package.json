@@ -1,0 +1,11 @@
+{
+  "name": "@somarl.com/pipe",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "build/Adapter.js",
+  "typings": "build/Adapter.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "pipe": "npm run build && cd ../.. && npm run bootstrap"
+  }
+}

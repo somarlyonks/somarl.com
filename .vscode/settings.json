@@ -1,0 +1,52 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/tsconfig.tsbuildinfo": true,
+    "**/*.log": true,
+    "packages/page/build/dist": true,
+    "packages/page/src/css": true,
+    "packages/page/src/story-css": true,
+    "packages/pipe/build": true,
+    "packages/server/build": true,
+    "scripts/frp/frpc": true,
+    "scripts/frp/frps": true
+  },
+  "search.exclude": {
+    "packages/page/build": true,
+    "packages/page/src/story-css": true
+  },
+  "files.associations": {
+    "tslint.json": "jsonc"
+  },
+  "vsicons.presets.nestjs": true,
+  "vsicons.associations.files": [
+    { "icon": "nest_adapter_ts", "extensions": ["adapter.ts"], "filename": true },
+    { "icon": "nest_controller_ts", "extensions": ["controller.ts"], "filename": true },
+    { "icon": "nest_decorator_ts", "extensions": ["decorator.ts", "decorators.ts"], "filename": true },
+    { "icon": "nest_filter_ts", "extensions": ["filter.ts"], "filename": true },
+    { "icon": "nest_gateway_ts", "extensions": ["gateway.ts"], "filename": true },
+    { "icon": "nest_guard_ts", "extensions": ["guard.ts", "guards.ts"], "filename": true },
+    { "icon": "nest_interceptor_ts", "extensions": ["interceptor.ts"], "filename": true },
+    { "icon": "nest_middleware_ts", "extensions": ["middleware.ts"], "filename": true },
+    { "icon": "nest_module_ts", "extensions": ["module.ts"], "filename": true },
+    { "icon": "nest_pipe_ts", "extensions": ["pipe.ts"], "filename": true },
+    { "icon": "nest_service_ts", "extensions": ["service.ts"], "filename": true },
+    { "icon": "testts", "extensions": ["specs.ts", "spec.ts"], "filename": true },
+    { "icon": "graphql", "extensions": ["schema.gql"], "filename": true}
+  ],
+  "vsicons.associations.folders": [
+    {
+      "icon": "middleware",
+      "extensions": ["middlewares"],
+      "filename": true
+    },
+    {
+      "icon": "story",
+      "extensions": [".storybook"],
+      "filename": true
+    }
+  ],
+}

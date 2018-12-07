@@ -1,0 +1,26 @@
+{
+  "name": "@somarl.com/page",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tslint --fix -p tsconfig.json",
+    "test": "echo 0",
+    "ci": "echo 0"
+  },
+  "dependencies": {
+    "@somarlyonks/bem": "^1.0.1",
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "next-transpile-modules": "^8.0.0",
+    "raw-loader": "^4.0.2",
+    "sass": "^1.32.8"
+  }
+}
