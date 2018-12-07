@@ -1,0 +1,101 @@
+somarl.com:
+  Page:
+    [x] eject CRA
+      [ ] flee react-dev-utils
+    [x] React/Preact/Elm?  preact wins
+    [x] page frame
+    [ ] keybindings
+    [x] font manage
+    [ ] font colors manage @low
+    [x] dynamic background
+    [ ] code splitting @longterm
+    [x] context
+    [x] api frame
+      X extract service from api
+    [ ] admin auth @low
+    [x] footer
+    [ ] favicon
+    [x] image uploader
+    Context:
+      [x] refactor preact-context to redux
+      [x] self implemented redux
+        [x] store factory
+        [x] reducer composer
+        [x] action binder
+        X connector
+        [x] hooks
+        [x] middleware compatibility
+      X self implemented saga
+      [x] redux async
+      [ ] apollo middleware
+      X immutable @low
+    Refactor Plugin System:
+      Terminal:
+        [x] basic UI
+        [x] make sure the timings of callbacks are proper
+        [ ] sysh
+        [ ] parser
+        [ ] runner
+        [ ] emulate router
+        [ ] command inheritence
+      Plugins:
+        Weather:
+          [x] styles
+          [x] animations
+          [x] Api
+        [ ] blog
+        [ ] RSS @low
+        X SSH
+      [ ] left and right interactive hooks
+    PWA:
+      [ ] service worker
+      [ ] local history  # maybe implement with LS/redux middleware
+      [ ] SSR @low
+
+  Server:
+    [x] server frame - nestjs
+    [x] GraphQL
+      [x] JSON scalar
+      [x] Date scalar
+      [x] Adapter type transformer
+        X scalar type inferor @low
+      [ ] temporary internal rpc
+    [ ] exception system @high
+    [ ] basic doctype system @high
+    [x] mongo frame
+      [x] server module
+      X interface module
+    [x] migrate to ArangoDB
+      [x] server module
+      [x] data interface
+    [ ] migrate to Foxx
+      [ ] build abstract logic upon node and edge thru GraphQL
+    [ ] test frame
+      [ ] frame test
+      [ ] business test
+    [ ] logger (might be covered by ArangoDB)
+      [ ] server log
+      [ ] request log
+    [ ] GRpc @longterm
+      [ ] rpc guard
+
+  Dev:
+    https:
+      [ ] page
+      [ ] server
+    Proxy:
+      [x] page dev server
+      [x] server api requests doesn't need this anymore with the help of dotenv
+      [x] frp api dev server
+    Test: @longterm
+      X global jest settings
+    Monorepo settings:
+      [x] greenkeeper enabled
+      [x] fix yarn workspaces not symlinked
+      [ ] Part of Api Schema from metaData
+    Monorepo workflow:
+      [x] pipe build
+      [x] GraphQL auto sync
+
+  Deploy:
+    [x] https
