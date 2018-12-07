@@ -1,0 +1,13 @@
+page: packages/page/src/**/*
+
+pipe: packages/pipe/src/**/*
+
+server: packages/server/src/**/*
+
+chore:
+  - "!packages/**/src/**/*"
+  - "./**/*"
+
+docs:
+  - "docs/*"
+  - "docs/**/*"

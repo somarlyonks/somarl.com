@@ -1,0 +1,27 @@
+@media (max-width: 767px) {
+  p,
+  a {
+    font-weight: 300;
+  }
+  a {
+    white-space: normal;
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.6ex;
+    -webkit-text-decoration-skip: none;
+    text-decoration-skip-ink: none;
+    text-underline-offset: -0.6ex;
+    &::after {
+      content: none !important;
+    }
+  }
+
+  footer {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .m-hidden {
+    display: none;
+  }
+}
