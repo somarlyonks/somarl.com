@@ -1,0 +1,13 @@
+page: packages/page/src/**/*
+
+blog: packages/blog/src/**/*
+
+moment: packages/server/src/**/*
+
+chore:
+  - "!packages/**/src/**/*"
+  - "./**/*"
+
+docs:
+  - "docs/*"
+  - "docs/**/*"

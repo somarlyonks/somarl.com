@@ -1,0 +1,35 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.tabSize": 4,
+  "[json]": {
+    "editor.tabSize": 2
+  },
+  "[scss]": {
+    "editor.tabSize": 2
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/tsconfig.tsbuildinfo": true,
+    "**/*.log": true,
+    "*.husky": true,
+    "packages/page/build/dist": true,
+    "packages/page/src/css": true,
+    "packages/page/src/story-css": true,
+    "packages/pipe/build": true,
+    "packages/server/build": true,
+    "scripts/frp/frpc": true,
+    "scripts/frp/frps": true
+  },
+  "search.exclude": {
+    "packages/page/build": true,
+    "packages/page/src/story-css": true
+  },
+  "files.associations": {
+    "tslint.json": "jsonc"
+  },
+}

@@ -1,0 +1,59 @@
+{
+  "name": "somarl.com",
+  "homepage": "https://somarl.com",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "convert": "lerna link convert",
+    "-": "------------------------------------------------test--------------------------------",
+    "test": "cd packages/www && npm run test",
+    "ci": "cd packages/www && npm run ci",
+    "--": "------------------------------------------------------------dev--------------------",
+    "www": "cd packages/www && npm run dev",
+    "blog": "cd packages/blog && npm run dev",
+    "moment": "cd packages/moment && npm run dev",
+    "---": "---------------------------------------------------------------------build--------",
+    "build-www": "cd packages/www && npm run build",
+    "build": "npm-run-all build-www",
+    "----": "-----------------------------------------------------------------------lint------",
+    "lint-www": "cd packages/www && npm run lint",
+    "lint": "npm-run-all lint-www",
+    "-----": "--------------------------------------------------------workflow----------------",
+    "commitlint": "commitlint",
+    "husky": "husky install",
+    "------": "---------------------------------------------------------------other-----------",
+    "frpc": "cd scripts/frp && sh frpc.sh && concurrently './frpc -c frpc.ini' 'tail -f frpc.log'",
+    "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
+  },
+  "devDependencies": {
+    "@somarlyonks/commitlint": "2.0.0",
+    "@somarlyonks/tslint": "1.0.1",
+    "@types/react": "17.0.15",
+    "concurrently": "6.2.0",
+    "folans.d.ts": "2.0.0",
+    "husky": "^7.0.1",
+    "lerna": "4.0.0",
+    "next-transpile-modules": "8.0.0",
+    "npm-run-all": "4.1.5",
+    "raw-loader": "4.0.2",
+    "sass": "1.37.5",
+    "typescript": "4.3.2"
+  },
+  "engines": {
+    "node": ">=12.8.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@somarlyonks/commitlint"
+    ]
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "Firefox ESR"
+  ]
+}
