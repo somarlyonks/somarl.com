@@ -1,9 +1,12 @@
 import * as React from 'react'
 import Terminal from '../terminal/terminal'
+import Sysh from '../../helpers/sysh'
 
 
 interface IPanelLeftStates {
   inputted: boolean
+  inputText: string
+  output: string
 }
 
 
@@ -12,30 +15,50 @@ const partialLog = (prefix: string) => (v: string) => console.info(prefix, v)
 export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   public readonly state: IPanelLeftStates = {
     inputted: false,
+    inputText: '',
+    output: 'Input things like: blogs --page=2',
   }
 
   private readonly handleInputting = () => {
     this.setState({ inputted: false })
   }
 
-  private readonly handleInputted = (v: string) => {
-    partialLog('emit')(v)
-    this.setState({ inputted: true })
+  private readonly handleInputChange = (input: string) => {
+    const output = this.parseInput(input)
+    this.setState({ output })
   }
+
+  private readonly handleInputted = (input: string) => {
+    this.setState({ inputted: true })
+    const output = this.execCommand(input)
+    this.setState({ output })
+  }
+
+  private readonly parseInput = (input: string) => {
+    partialLog('change')(input)
+    return Sysh.parse(input)
+  }
+
+  private readonly execCommand = (input: string) => {
+    partialLog('emit')(input)
+    return Sysh.exec(input)
+  }
+
 
   public render () {
     return (
       <div className="col-md">
-        <div
-          className="terminal-hang"
-          style={{display: this.state.inputted ? 'none' : 'block'}}
-        />
+        <div className={'terminal-hang' + (this.state.inputted ? ' terminal-hang_hidden' : '')}/>
+
         <Terminal
           onFocus={this.handleInputting}
-          onChange={partialLog('change')}
+          onChange={this.handleInputChange}
           onEmit={this.handleInputted}
         />
-        <div className="terminal-out" />
+
+        <div className={this.state.inputted ? 'terminal-out' : 'terminal-hint'}>
+          <span>{this.state.output}</span>
+        </div>
       </div>
     )
   }
