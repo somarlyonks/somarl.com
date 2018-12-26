@@ -1,12 +1,10 @@
-@import '../../helpers/variables';
+@import '../helpers/variables';
 
 @keyframes blink {
   50% { color: rgba($inputColor, 0) }
 }
 
 .terminal-input {
-  top: 3rem;
-  left: 3rem;
   display: inline-block;
   input {
     border: 0;

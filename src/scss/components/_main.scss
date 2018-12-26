@@ -1,5 +1,6 @@
-@import './main/terminal';
 @import '../helpers/variables';
+@import 'terminal';
+@import 'panel';
 
 body {
   background-color: rgba($mainColor, 0.3);
