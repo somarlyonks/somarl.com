@@ -2,6 +2,7 @@ import * as React from 'react'
 
 
 export interface ITerminalInputProps {
+  readonly onFocus?: () => void
   readonly onChange?: (value: ITerminalInputStates['text']) => void
   readonly onEmit?: (value: ITerminalInputStates['text']) => void
 }
@@ -38,7 +39,13 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     fakeContrastText: '',
   }
 
-  private readonly onFocus = () => this.setState({ supportDisplay: true })
+  private readonly onFocus = () => {
+    if (this.props.onFocus) {
+      this.props.onFocus()
+    }
+
+    this.setState({ supportDisplay: true })
+  }
 
   private readonly onBlur = () => this.setState({ supportDisplay: false })
 
@@ -77,10 +84,14 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
 
   // TODO: shortcut key bindings
   private readonly onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const maybeDirtyText = this.jumpTo(event)
+    this.jumpTo(event)
+    const target = event.target as HTMLInputElement
 
-    if (event.key === 'Enter' && this.props.onEmit) {
-      this.props.onEmit(maybeDirtyText || this.state.text)
+    if (event.key === 'Enter') {
+      target.blur()
+      if (this.props.onEmit) {
+        this.props.onEmit(target.value)
+      }
     }
   }
 

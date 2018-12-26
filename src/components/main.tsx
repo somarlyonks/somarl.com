@@ -1,14 +1,17 @@
 import * as React from 'react'
-import Terminal from './terminal/terminal'
+import PanelLeft from './panel/left'
+import PanelRight from './panel/right'
 
-
-const partialLog = (prefix: string) => (v: string) => console.info(prefix, v)
 
 export default function Main () {
   return (
     <main>
-      main
-      <Terminal onChange={partialLog('change')} onEmit={partialLog('emit')} />
+      <div className="container">
+        <div className="row">
+          <PanelLeft />
+          <PanelRight />
+        </div>
+      </div>
     </main>
   )
 }
