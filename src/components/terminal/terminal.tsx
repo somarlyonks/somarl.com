@@ -3,6 +3,7 @@ import * as React from 'react'
 
 export interface ITerminalInputProps {
   readonly onChange?: (value: ITerminalInputStates['text']) => void
+  readonly onEmit?: (value: ITerminalInputStates['text']) => void
 }
 
 interface ITerminalInputStates {
@@ -41,6 +42,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
 
   private readonly onBlur = () => this.setState({ supportDisplay: false })
 
+  /** @setState */
   private readonly jumpTo = (
     event: React.ChangeEvent<HTMLInputElement> |
            React.KeyboardEvent<HTMLInputElement> |
@@ -53,10 +55,32 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     const caretText = prefix + '█'
     const fakeContrastText = prefix + (text[position!] || ' ')
 
+    let isFireOnChangeNeeded = true
+    if (this.props.onChange) {
+      isFireOnChangeNeeded = text !== this.state.text
+    }
+
+    // FIXME: the timing of callbacks and the setState
+
     this.setState({ text, caretText, fakeContrastText })
 
-    if (this.props.onChange) {
-      this.props.onChange(text)
+    return isFireOnChangeNeeded ? text : ''
+  }
+
+  private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const maybeDirtyText = this.jumpTo(event)
+
+    if (maybeDirtyText && this.props.onChange) {
+      this.props.onChange(maybeDirtyText)
+    }
+  }
+
+  // TODO: shortcut key bindings
+  private readonly onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const maybeDirtyText = this.jumpTo(event)
+
+    if (event.key === 'Enter' && this.props.onEmit) {
+      this.props.onEmit(maybeDirtyText || this.state.text)
     }
   }
 
@@ -68,8 +92,8 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
           className="terminal-input__input"
           onFocus={this.onFocus}
           onBlur={this.onBlur}
-          onChange={this.jumpTo}
-          onKeyUp={this.jumpTo}
+          onChange={this.onChange}
+          onKeyUp={this.onKeyUp}
           onMouseUp={this.jumpTo}
         />
         <SupportInput
