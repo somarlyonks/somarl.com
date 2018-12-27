@@ -61,11 +61,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     const text = target.value
     const caretText = prefix + '█'
     const fakeContrastText = prefix + (text[position!] || ' ')
-
-    let isFireOnChangeNeeded = true
-    if (this.props.onChange) {
-      isFireOnChangeNeeded = text !== this.state.text
-    }
+    const isFireOnChangeNeeded = this.props.onChange ? text !== this.state.text : true
 
     // FIXME: the timing of callbacks and the setState
 
@@ -95,6 +91,10 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     }
   }
 
+  public componentDidMount () {
+    // this.onFocus() // autoFocus
+  }
+
   public render () {
     return (
       <div className="terminal-input">
@@ -106,6 +106,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
           onChange={this.onChange}
           onKeyUp={this.onKeyUp}
           onMouseUp={this.jumpTo}
+          autoFocus={true}
         />
         <SupportInput
           className="terminal-input__support"
