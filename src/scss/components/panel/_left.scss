@@ -1,0 +1,10 @@
+.terminal-hang {
+  width: 100%;
+  height: 200px;
+  transition: height, 0.8s;
+  transform: translateZ(0);
+}
+
+.terminal-hang_hidden {
+  height: 20px;
+}
