@@ -1,13 +1,24 @@
-html {
-  font-size: 16px;
+* {
+  box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
+html {
+  font-size: 16px;
 }
 
 body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
