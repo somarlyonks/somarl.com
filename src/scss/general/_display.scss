@@ -9,3 +9,13 @@
 .text-right {
   text-align: right;
 }
+
+.flex-verticle {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}

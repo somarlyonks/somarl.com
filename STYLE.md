@@ -213,6 +213,23 @@ Outter -> Inner: margin -> border -> padding
 
 Back -> Front: background-color -> color
 
+### Unit
+
+0 is always preferred than `0px`/`0rem`/`0em`/`0vh`.
+
+When it's about `font-size`, use `rem/em`, otherwise use `px`. In common, `rem/em` is preferred.
+
+Example:
+
+```scss
+.terminal-out {
+  margin: 50px 0 100px;
+  padding: 2rem;
+}
+```
+
+Specify the `margin` as `50px 0 100px` becasue if I want to get responsibilities, I may have to respecify the margin, but I probably keep the padding as `2rem` as the font size will shrink.
+
 ## Git
 
 ### commit log

@@ -1,0 +1,14 @@
+@import '../../helpers/variables';
+
+.panel-right {
+  height: calc(100vh - 150px);
+  margin-top: 50px;
+  padding: 2rem;
+  overflow-y: scroll;
+  color: white;
+  background-color: $sectionBackgroundColor;
+}
+
+.panel-right::-webkit-scrollbar {
+  width: 0;
+}

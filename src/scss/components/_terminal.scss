@@ -7,26 +7,34 @@
 .terminal-input {
   display: inline-block;
   position: relative;
+  transition: box-shadow 1s;
+  box-shadow: 0 1px 1px 0 rgba($shadowColor, 0.08), 0 1px 3px 1px rgba($shadowColor, 0.16);
+  transition: box-shadow 135ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:focus-within {
+    box-shadow: 0 1px 3px 1px rgba($shadowColor, 0.2), 0 2px 8px 4px rgba($shadowColor, 0.1);
+  }
   input {
+    width: 100%;
+    line-height: 3rem;
     border: 0;
     outline: 0;
     border-left: 0.4rem solid rgba($mainColor, 1);
     outline-offset: 0;
     padding: 0 1rem;
     font-size: 1.5rem;
-    line-height: 3rem;
     caret-color: transparent;
     font-family: 'DejaVu Sans Mono', monospace, 'Courier New', Courier;
   }
 }
 
 .terminal-input__input {
-  background-color: rgba(white, 0.3);
+  background-color: rgba(white, 0.5);
   color: rgba($inputColor, 0.8);
   z-index: 9;
+  transition: background-color, 0.8s ease-out;
 }
 .terminal-input__input:focus {
-  background-color: rgba(white, 0.5);
+  background-color: rgba(white, 0.8);
 }
 
 .terminal-input__support {
