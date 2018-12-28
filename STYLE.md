@@ -212,3 +212,56 @@ Take `_terminal.scss` as an example for how to reuse css rules within component 
 Outter -> Inner: margin -> border -> padding
 
 Back -> Front: background-color -> color
+
+## Git
+
+### commit log
+
+`[title](subject): [info]`
+
+titles: chore/feat/fix/refactor/perf/style
+
+subject: pkg/page/component/...
+
+Specially, revert commits should be logged like: `revert [title](subject): [info]` and specify the reverted commit in details.
+
+### Pull requests
+
+No commits directly committed at master branch.
+
+Pull requests should be compressed to one word description except there is only one commit to merge, like:
+
+```git
+feat(page): add a simulated terminal input component
+refact(component): improve terminal component callback props
+chore(pkg): reorganize scss structures
+fix(component): fix terminal position
+feat(page): reorganize main structure
+feat(pkg): update tslint and add coding style guide
+feat(sysh): introduce the sysh terminal parser and interaction logic
+feat(component): terminal auto focus
+feat(page): add fake background image for deving
+feat(pkg): makeup reset css
+```
+
+merged as
+
+```git
+Merge pull request #1 from somarlyonks/dev
+
+feat
+```
+
+but
+
+```git
+feat(pkg): add CircleCI
+```
+
+merged as
+
+```git
+Merge pull request #3 from somarlyonks/dev
+
+feat(pkg): add CircleCI
+```
