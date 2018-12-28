@@ -35,7 +35,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
   public readonly state: ITerminalInputStates = {
     text: '',
     supportDisplay: false,
-    caretText: '',
+    caretText: '█',
     fakeContrastText: '',
   }
 
