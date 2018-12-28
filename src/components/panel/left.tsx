@@ -20,6 +20,7 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   }
 
   private readonly handleInputting = () => {
+    console.info('eqwewqeqw') // TODELETE
     this.setState({ inputted: false })
   }
 
@@ -47,7 +48,7 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
 
   public render () {
     return (
-      <div className="col-md">
+      <section className="col-md flex-verticle panel-left">
         <div className={'terminal-hang' + (this.state.inputted ? ' terminal-hang_hidden' : '')}/>
 
         <Terminal
@@ -56,10 +57,10 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
           onEmit={this.handleInputted}
         />
 
-        <div className={this.state.inputted ? 'terminal-out' : 'terminal-hint'}>
+        <aside className={'flex-grow terminal-out ' + (this.state.inputted ? '' : 'terminal-hint')}>
           <span>{this.state.output}</span>
-        </div>
-      </div>
+        </aside>
+      </section>
     )
   }
 }
