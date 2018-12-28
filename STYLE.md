@@ -213,6 +213,10 @@ Outter -> Inner: margin -> border -> padding
 
 Back -> Front: background-color -> color
 
+### 0
+
+0 is always preferred than `0px`/`0rem`/`0em`/`0vh`.
+
 ## Git
 
 ### commit log

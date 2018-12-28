@@ -91,8 +91,13 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     }
   }
 
+  /**
+   * Mannully set the initial state supportDisplay to true because of the autofocus
+   * But it's not a good idea to call the callback
+   */
   public componentDidMount () {
     // this.onFocus() // autoFocus
+    this.setState({supportDisplay: true})
   }
 
   public render () {
