@@ -55,8 +55,10 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
            React.KeyboardEvent<HTMLInputElement> |
            React.MouseEvent<HTMLInputElement>
   ) => {
+    if (!event.target) return ''
+
     const target = event.target as HTMLInputElement
-    const position = target!.selectionStart
+    const position = target.selectionStart
     const prefix = Array(position).fill(' ' as any).join('')
     const text = target.value
     const caretText = prefix + '█'
