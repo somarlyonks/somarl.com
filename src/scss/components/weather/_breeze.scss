@@ -1,0 +1,45 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.breeze-container {
+  @include absoluteTL(50%, 50%);
+  width: 200px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 200%;
+  color: #fff;
+  background: #00BBFF;
+  border-radius: 5px;
+}
+.breeze-container:after {
+  @include absoluteCTL(58%, 50%);
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 70px;
+  background: #fff;
+}
+
+.breeze {
+  @include absoluteTL(30%, 50%);
+  transform: translate(-50%, -50%) rotate(1deg);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-bottom: 60px solid #fff;
+  animation: wind 12s infinite linear;
+  transform-origin: 50.5% 62px;
+}
+.breeze:before {
+  @include absoluteCTL(75px, -59px);
+  border-right: 60px solid #fff;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(-30deg);
+}
+.breeze:after {
+  @include absoluteCTL(75px, -1px);
+  border-top: 5px solid transparent;
+  border-left: 60px solid #fff;
+  border-bottom:5px solid transparent;
+  transform: rotate(30deg);
+}

@@ -1,0 +1,50 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.thunder-container {
+  @include absoluteTL(50%, 50%);
+  width: 200px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 200%;
+  color: #fff;
+  background: #444;
+  border-radius: 5px;
+}
+.thunder {
+  @include absoluteTL(40%, 30%);
+  color: #333;
+  height: 50px;
+  width: 50px;
+  background: #222;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow:
+    #222 65px -15px 0 -5px,
+    #222 25px -25px,
+    #222 30px 10px,
+    #222 60px 15px 0 -10px,
+    #222 85px 5px 0 -5px;
+  animation: cloud 5s ease-in-out infinite;
+}
+.thunder:before {
+  @include absoluteCTL(60px, 60px);
+  border-left: 0px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 38px solid yellow;
+  box-shadow: yellow -7px -32px;
+  transform: rotate(30deg);
+  transform-origin: center -50px;
+  animation: thunder 2s steps(1, end) infinite;;
+}
+.thunder:after {
+  @include absoluteCTL(120px, 64px);
+  height: 15px;
+  width: 120px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  animation: cloudShadow 5s ease-in-out infinite;
+}

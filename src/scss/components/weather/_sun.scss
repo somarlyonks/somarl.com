@@ -1,0 +1,40 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.sun {
+  @include absoluteTL(50%, 50%);
+  width: 200px;
+  height:260px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 200%;
+  color: #fff;
+  background: #0BF;
+  border-radius: 5px;
+}
+
+.sun:before {
+  @include absoluteCTL(50%, 50%);
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255, 238, 68, 1);
+  box-shadow: 0 0 0 15px rgba(255, 255, 0, 0.2), 0 0 15px #fff;
+  z-index: -10;
+}
+
+.sun:after {
+  @include absoluteCTL(50%, 50%);
+  height: 160px;
+  width: 160px;
+  transform: translate(-50%, -50%) rotate(30deg);
+  z-index: -100;
+  background-image:
+    -webkit-linear-gradient(top,rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%),
+    -webkit-linear-gradient(left,rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+  background-size: 20px 100%, 100% 20px;
+  background-repeat: no-repeat;
+  background-position: center center, center center;
+  animation: sun 10s linear infinite;
+}

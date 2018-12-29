@@ -1,0 +1,47 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.cloud {
+  @include absoluteTL(50%, 50%);
+  width: 200px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 200%;
+  color: #fff;
+  background: #2EB5E5;
+  border-radius: 5px;
+}
+
+.cloud:before {
+  @include absoluteCTL(45%, 30%);
+  text-indent: 23px;
+  font-size: 22px;
+  line-height: 40px;
+  color: #333;
+  height: 50px;
+  width: 50px;
+  background: #FFFFFF;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow:
+    #FFFFFF 65px -15px 0 -5px,
+    #FFFFFF 25px -25px,
+    #FFFFFF 30px 10px,
+    #FFFFFF 60px 15px 0 -10px,
+    #FFFFFF 85px 5px 0 -5px,
+    #C8C8C8 35px -35px,
+    #C8C8C8 66px -27px 0 -5px,
+    #C8C8C8 91px -10px 0 -8px;
+  animation: cloud 5s ease-in-out infinite;
+}
+
+.cloud:after {
+  @include absoluteCTL(80%, 50%);
+  height: 15px;
+  width: 120px;
+  background: rgba(#000, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: cloudShadow 5s ease-in-out infinite;
+}

@@ -1,0 +1,25 @@
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  // @-ms-keyframes #{$name} {
+  //   @content;
+  // }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin absoluteTL($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+@mixin absoluteCTL($top, $left) {
+  content: "";
+  @include absoluteTL($top, $left);
+}
