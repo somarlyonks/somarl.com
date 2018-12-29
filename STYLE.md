@@ -230,6 +230,16 @@ Example:
 
 Specify the `margin` as `50px 0 100px` becasue if I want to get responsibilities, I may have to respecify the margin, but I probably keep the padding as `2rem` as the font size will shrink.
 
+### space
+
+One space after every ',' and `:`
+
+### number
+
+`0.1` is preferred to `.1`
+
+`#ccc` is preferred to `#CCC` and `#cccccc`. `#CcC` is not accepted.
+
 ## Git
 
 ### commit log

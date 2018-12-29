@@ -19,3 +19,9 @@
 .flex-grow {
   flex-grow: 1;
 }
+
+// works like adding <br /> after inline elements
+.return::after {
+  content: "\A";
+  white-space: pre;
+}

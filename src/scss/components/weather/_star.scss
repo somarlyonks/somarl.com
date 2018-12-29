@@ -1,0 +1,46 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.star-container {
+  @include absoluteTL(50%, 50%);
+  width: 200px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 200%;
+  color: #fff;
+  background: #222233;
+  border-radius: 5px;
+}
+.star {
+  @include absoluteTL(30%, 40%);
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  box-shadow:
+    #fff -26px 77px 0 -1px,
+    rgba(#fff, 0.1) -36px 59px 0 -1px,
+    rgba(#fff, 0.1) -28px 89px 0 -1px,
+    #fff -35px 20px 0 -1px,
+    #fff 14px 100px,
+    rgba(#fff, 0.1) 41px 60px,
+    #fff 34px 39px,
+    rgba(#fff, 0.1) 14px 45px 0 -1px,
+    #fff 64px 12px 0 -1px,
+    rgba(#fff, 0.1) 32px 96px 0 -1px,
+    #fff 64px 71px,
+    rgba(#fff, 0.1) 60px 18px 0 -1px,
+    #fff 34px 9px,
+    rgba(#fff, 0.1) -26px 55px 0 -1px;
+  animation: glow 5s ease-in-out infinite;
+}
+.star:before{
+  @include absoluteCTL(20%, 50%);
+  width: 100px;
+  height: 100px;
+  box-shadow: #fff -25px 0;
+  transform: rotate(-5deg);
+  border-radius: 50%;
+  animation: star 5s ease-in-out infinite;
+}

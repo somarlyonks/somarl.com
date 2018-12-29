@@ -1,0 +1,45 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.rain-container {
+  @include absoluteTL(50%, 50%);
+  width: 200px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 200%;
+  color: #fff;
+  background: #E6E6E6;
+  border-radius: 5px;
+}
+
+.rain {
+  @include absoluteTL(30%, 50%);
+  width: 3px;
+  height: 6px;
+  background: #ccc;
+  border-radius: 50%;
+  animation: rainDrop 0.7s infinite linear;
+}
+
+.rain:before {
+  @include absoluteTL(30px, -40px);
+  color: #333;
+  height: 50px;
+  width: 50px;
+  background: #CCC;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: #CCC 65px -15px 0 -5px, #CCC 25px -25px, #CCC 30px 10px, #CCC 60px 15px 0 -10px, #CCC 85px 5px 0 -5px;
+  animation: cloud 5s ease-in-out infinite;
+}
+
+.rain:after {
+  @include absoluteTL(120px, 50%);
+  height: 15px;
+  width: 120px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: cloudShadow 5s ease-in-out infinite;
+}

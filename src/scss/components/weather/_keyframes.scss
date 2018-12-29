@@ -1,0 +1,173 @@
+@import '../../helpers/mixins';
+
+@mixin rotate ($name, $init, $end) {
+  @include keyframes(#{$name}) {
+    0% {
+      transform:
+        translate(-50%, -50%)
+        rotate(#{$init}deg);
+    }
+    100% {
+      transform:
+        translate(-50%, -50%)
+        rotate(#{$end}deg);
+    }
+  }
+}
+
+@mixin rain($name, $color, $alpha) {
+  @include keyframes(#{$name}) {
+    0% {
+      box-shadow:
+        rgba($color, 0) -10px 30px,
+        rgba($color, 0) 40px 40px,
+        rgba($color, $alpha) -50px 75px,
+        rgba($color, $alpha) 55px 50px,
+        rgba($color, $alpha) -18px 100px,
+        rgba($color, $alpha) 12px 95px,
+        rgba($color, $alpha) -31px 45px,
+        rgba($color, $alpha) 30px 35px;
+    }
+    25% {
+      box-shadow:
+        rgba($color, $alpha) -10px 45px,
+        rgba($color, $alpha) 40px 60px,
+        rgba($color, $alpha) -50px 90px,
+        rgba($color, $alpha) 55px 65px,
+        rgba($color, 0) -18px 120px,
+        rgba($color, 0) 12px 120px,
+        rgba($color, $alpha) -31px 70px,
+        rgba($color, $alpha) 30px 60px;
+    }
+    26% {
+      box-shadow:
+        rgba($color, $alpha) -10px 45px,
+        rgba($color, $alpha) 40px 60px,
+        rgba($color, $alpha) -50px 90px,
+        rgba($color, $alpha) 55px 65px,
+        rgba($color, 0) -18px 40px,
+        rgba($color, 0) 12px 20px,
+        rgba($color, $alpha) -31px 70px,
+        rgba($color, $alpha) 30px 60px;
+    }
+    50% {
+      box-shadow:
+        rgba($color, $alpha) -10px 70px,
+        rgba($color, $alpha) 40px 80px,
+        rgba($color, 0) -50px 100px,
+        rgba($color, $alpha) 55px 80px,
+        rgba($color, $alpha) -18px 60px,
+        rgba($color, $alpha) 12px 45px,
+        rgba($color, $alpha) -31px 95px,
+        rgba($color, $alpha) 30px 85px;
+    }
+    51% {
+      box-shadow:
+        rgba($color, $alpha) -10px 70px,
+        rgba($color, $alpha) 40px 80px,
+        rgba($color, 0) -50px 45px,
+        rgba($color, $alpha) 55px 80px,
+        rgba($color, $alpha) -18px 60px,
+        rgba($color, $alpha) 12px 45px,
+        rgba($color, $alpha) -31px 95px,
+        rgba($color, $alpha) 30px 85px;
+    }
+    75% {
+      box-shadow:
+        rgba($color, $alpha) -10px 95px,
+        rgba($color, $alpha) 40px 100px,
+        rgba($color, $alpha) -50px 60px,
+        rgba($color, 0) 55px 95px,
+        rgba($color, $alpha) -18px 80px,
+        rgba($color, $alpha) 12px 70px,
+        rgba($color, 0) -31px 120px,
+        rgba($color, 0) 30px 110px;
+    }
+    76% {
+      box-shadow:
+        rgba($color, $alpha) -10px 95px,
+        rgba($color, $alpha) 40px 100px,
+        rgba($color, $alpha) -50px 60px,
+        rgba($color, 0) 55px 35px,
+        rgba($color, $alpha) -18px 80px,
+        rgba($color, $alpha) 12px 70px,
+        rgba($color, 0) -31px 25px,
+        rgba($color, 0) 30px 15px;
+    }
+    100% {
+      box-shadow:
+        rgba($color, 0) -10px 120px,
+        rgba($color, 0) 40px 120px,
+        rgba($color, $alpha) -50px 75px,
+        rgba($color, $alpha) 55px 50px,
+        rgba($color, $alpha) -18px 100px,
+        rgba($color, $alpha) 12px 95px,
+        rgba($color, $alpha) -31px 45px,
+        rgba($color, $alpha) 30px 35px;
+    }
+  }
+}
+
+@include rotate(sun, 30, 390);
+
+@include keyframes(cloud) {
+  50% {
+    transform: translate(-50%, -70%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@include keyframes(cloudShadow) {
+  50%{
+    transform: translate(-50%, -50%) scale(0.8);
+    background:rgba(0,0,0, 0.2);
+  }
+  100%{
+    transform: translate(-50%, -50%) scale(1);
+    background:rgba(0,0,0, 0.5);
+  }
+}
+
+@include rain(rainDrop, #000, 0.3);
+
+@include rotate(wind, 0, 360);
+
+@include keyframes(rainbow) {
+  50% { transform: translate(-50%, -55%) rotate(30deg); }
+  100% { transform: translate(-50%, -50%) rotate(45deg); }
+}
+
+@include keyframes(star) {
+  50% { transform: rotate(10deg); }
+}
+
+@include keyframes(glow) {
+  50%{
+    box-shadow:
+      rgba(#fff, 0.1) -26px 77px 0 -1px,
+      #fff -36px 59px 0 -1px,
+      #fff -28px 89px 0 -1px,
+      rgba(#fff, 0.1) -35px 20px 0 -1px,
+      rgba(#fff, 0.1) 14px 100px,
+      #fff 41px 60px,
+      rgba(#fff, 0.1) 34px 39px,
+      #fff 14px 45px 0 -1px,
+      rgba(#fff, 0.1) 64px 12px 0 -1px,
+      #fff 32px 96px 0 -1px,
+      rgba(#fff, 0.1) 64px 71px,
+      #fff 60px 18px 0 -1px,
+      rgba(#fff, 0.1) 34px 9px,
+      #fff -26px 55px 0 -1px;
+  }
+}
+
+@include keyframes(thunder) {
+  0% { transform: rotate(30deg); opacity:1; }
+  5% { transform: rotate(-34deg); opacity:1; }
+  10% { transform: rotate(0deg); opacity:1; }
+  15% { transform: rotate(-34deg); opacity:0; }
+}
+
+@include rain(snowFall, #fff, 0.6);

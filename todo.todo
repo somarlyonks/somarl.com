@@ -1,0 +1,36 @@
+somarl.com:
+  Page:
+    frontend:
+      [x] page frame
+      [ ] terminal
+        compeleted except shortcuts
+      [ ] font manage
+      [ ] font colors manage
+      [ ] dynamic background
+        testing with a fake one currently
+    [ ] api frame
+    [ ] server frame
+      GraphQL
+      [ ] GRpc
+    [ ] admin auth
+    PWA:
+      [ ] service worker
+      [ ] local history
+
+  Terminal:
+    [x] basic UI
+    [ ] make sure the timings of callbacks are proper
+    [ ] shortcuts
+    [ ] sysh
+    [ ] parser
+    [ ] runner
+
+  Functions:
+    [ ] blog
+    [ ] RSS
+    [ ] weather
+      [x] styles
+      [ ] icons
+      [ ] animations
+      [ ] Api
+    [ ] SSH @low
