@@ -5,6 +5,7 @@ somarl.com:
       [ ] terminal
         compeleted except shortcuts
       [ ] font manage
+      [ ] font colors manage
       [ ] dynamic background
         testing with a fake one currently
     [ ] api frame

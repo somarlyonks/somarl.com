@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  background-repeat: no-repeat;
 }
 
 html {
@@ -10,10 +11,14 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
 }
 
 a {
   text-decoration: none;
+  color: #202124; // TODO: font colors manage
 }
 
 ul {
