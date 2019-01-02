@@ -7,6 +7,11 @@
   overflow-y: scroll;
   color: white;
   background-color: $sectionBackgroundColor;
+  transition: height;
+}
+
+.panel-right_hidden {
+  height: 0;
 }
 
 .panel-right::-webkit-scrollbar {

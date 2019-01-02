@@ -1,9 +1,22 @@
 @import 'breeze';
 @import 'cloud';
 @import 'cloud2';
-@import 'rainbow';
 @import 'rain';
 @import 'snow';
 @import 'star';
 @import 'sun';
 @import 'thunder';
+
+$SIZE: 200px;
+
+.weather-container {
+  @include absoluteTL(50%, 50%);
+  width: $SIZE;
+  height: $SIZE;
+  font-size: $SIZE;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  background-color: rgba(#0bf, 0.8);
+  border-radius: 2.5%;
+}
