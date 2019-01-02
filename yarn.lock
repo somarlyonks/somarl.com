@@ -2754,6 +2754,10 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
+folans.d.ts@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/folans.d.ts/-/folans.d.ts-1.1.0.tgz#429828e02a607ba714cc03f53765dffeebd5a8d5"
+
 follow-redirects@^1.0.0:
   version "1.5.10"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
