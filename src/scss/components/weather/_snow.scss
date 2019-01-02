@@ -1,17 +1,6 @@
 @import 'keyframes';
 @import '../../helpers/mixins';
 
-.snow-container {
-  @include absoluteTL(50%, 50%);
-  width: 200px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 200%;
-  color: #fff;
-  background: #607D8B;
-  border-radius: 5px;
-}
 .snow {
   @include absoluteTL(30%, 50%);
   width: 4px;
@@ -21,28 +10,17 @@
   border-radius: 50%;
   animation: snowFall 2s infinite linear;
 }
+
 .snow:before {
-  @include absoluteCTL(30px, -40px);
+  @include absoluteCTL(0.15em, -0.2em);
   color: #333;
-  height: 50px;
-  width: 50px;
+  height: 0.25em;
+  width: 0.25em;
   background: #eee;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  box-shadow:
-    #eee 65px -15px 0 -5px,
-    #eee 25px -25px,
-    #eee 30px 10px,
-    #eee 60px 15px 0 -10px,
-    #eee 85px 5px 0 -5px;
+  @include cloudBoxShadow(#eee);
   animation: cloud 5s ease-in-out infinite;
 }
-.snow:after {
-  @include absoluteCTL(120px, 50%);
-  height: 15px;
-  width: 120px;
-  background: rgba(0, 0, 0, .5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: cloudShadow 5s ease-in-out infinite;
-}
+
+// .snow:after

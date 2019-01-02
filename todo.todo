@@ -30,7 +30,10 @@ somarl.com:
     [ ] RSS
     [ ] weather
       [x] styles
+      [ ] page level mood
       [ ] icons
       [ ] animations
+        [ ] small animation fix: rain/snow/star
       [ ] Api
+        [ ] display the message "Powered by Dark Sky" links to https://darksky.net/poweredby/
     [ ] SSH @low

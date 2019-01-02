@@ -120,11 +120,11 @@
 }
 
 @include keyframes(cloudShadow) {
-  50%{
+  50% {
     transform: translate(-50%, -50%) scale(0.8);
     background:rgba(0,0,0, 0.2);
   }
-  100%{
+  100% {
     transform: translate(-50%, -50%) scale(1);
     background:rgba(0,0,0, 0.5);
   }
@@ -144,7 +144,7 @@
 }
 
 @include keyframes(glow) {
-  50%{
+  50% {
     box-shadow:
       rgba(#fff, 0.1) -26px 77px 0 -1px,
       #fff -36px 59px 0 -1px,

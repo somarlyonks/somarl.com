@@ -1,19 +1,8 @@
 @import 'keyframes';
 @import '../../helpers/mixins';
 
-.star-container {
-  @include absoluteTL(50%, 50%);
-  width: 200px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 200%;
-  color: #fff;
-  background: #222233;
-  border-radius: 5px;
-}
 .star {
-  @include absoluteTL(30%, 40%);
+  @include absoluteTL(25%, 40%);
   transform: translate(-50%, -50%);
   height: 4px;
   width: 4px;
@@ -36,10 +25,10 @@
   animation: glow 5s ease-in-out infinite;
 }
 .star:before{
-  @include absoluteCTL(20%, 50%);
-  width: 100px;
-  height: 100px;
-  box-shadow: #fff -25px 0;
+  @include absoluteCTL(15%, 50%);
+  width: 0.5em;
+  height: 0.5em;
+  box-shadow: #fff -0.125em 0;
   transform: rotate(-5deg);
   border-radius: 50%;
   animation: star 5s ease-in-out infinite;
