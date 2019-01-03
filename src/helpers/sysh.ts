@@ -15,6 +15,7 @@ export type StdOut = string
 export default class SyshParser {
   /** real time parse for hints/history search */
   public static syshWelcome = 'Input things like: blogs --page=2'
+
   public static parse (command: string) {
     if (command.startsWith('bl')) {
       return 'blog -P 2'

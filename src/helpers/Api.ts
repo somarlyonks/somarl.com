@@ -2,9 +2,13 @@
  * @file seperated api callers
  */
 
-import { fetchPublicJson } from './fetch'
+import { fetchPublicJson, fetchServerJson } from './fetch'
+
 
 type PublicApi<R> = () => Promise<R>
+
+type ServerApi<R> = () => Promise<R>
+
 
 export const getIpGeo: PublicApi<{
   asn: S                   // "AS4812"
@@ -25,7 +29,7 @@ export const getIpGeo: PublicApi<{
   region_code: S           // "SH"
   timezone: S              // "Asia/Shanghai"
   utc_offset: S            // "+0800"
-}> = async () => fetchPublicJson(`https://ipapi.co/json/`).then(r => r.json())
+}> = async () => fetchPublicJson(`https://ipapi.co/json/`)
 
 
 /**
@@ -33,11 +37,12 @@ export const getIpGeo: PublicApi<{
  */
 export const getIp: PublicApi<{
   ip: S // "1.1.1.1"
-}> = async () => fetchPublicJson('https://api.ipify.org/?format=json').then(r => r.json())
+}> = async () => fetchPublicJson('https://api.ipify.org/?format=json')
 
-const getWeather = async () => {
-  //
-}
+
+export const getWeather: ServerApi<
+  any // TODO: response schema
+> = async () => fetchServerJson('weather')
 
 
 const Api = {

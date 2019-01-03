@@ -1,5 +1,6 @@
 import Koa from 'koa'
 import Bodyparser from 'koa-bodyparser'
+import cors from 'koa-cors'
 import logger from 'koa-logger'
 import chalk from 'chalk'
 import { connectMongo } from './mongo'
@@ -12,6 +13,7 @@ const ppap = new Koa()
 
 ppap.use(logger())
   .use(Bodyparser())
+  .use(cors({ origin: 'http://localhost:3000'})) // TODO: nginx
   .use(router.routes()).use(router.allowedMethods())
   .use(openRouter.routes()).use(openRouter.allowedMethods())
 

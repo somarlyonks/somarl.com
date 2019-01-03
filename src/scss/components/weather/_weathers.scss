@@ -8,6 +8,7 @@
 @import 'thunder';
 
 $SIZE: 200px;
+$SMALL_SIZE: 50px;
 
 .weather-container {
   @include absoluteTL(50%, 50%);
@@ -19,4 +20,14 @@ $SIZE: 200px;
   color: #fff;
   background-color: rgba(#0bf, 0.8);
   border-radius: 2.5%;
+}
+
+.weather-container_small {
+  position: fixed;
+  top: $SMALL_SIZE / 2;
+  left: $SMALL_SIZE / 2;
+  width: $SMALL_SIZE;
+  height: $SMALL_SIZE;
+  font-size: $SMALL_SIZE;
+  border-radius: 0;
 }
