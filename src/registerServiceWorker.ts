@@ -94,7 +94,7 @@ function checkValidServiceWorker (swUrl: string) {
         registerValidSW(swUrl)
       }
     })
-    .catch(() => console.log('No internet connection found. Qotes is running offline.'))
+    .catch(() => console.log('No internet connection found. somarl.com is running offline.'))
 }
 
 export function unregister () {

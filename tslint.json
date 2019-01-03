@@ -7,10 +7,12 @@
     ]
   },
   "rules": {
+    // tslint:disable-line: callable-types
     // "completed-docs": true,
     "align": true,
     "arrow-parens": [true, "ban-single-arg-parens"],
     "ban-comma-operator": true,
+    "callable-types": false,
     "curly": false,
     "forin": false,
     "interface-name": false,

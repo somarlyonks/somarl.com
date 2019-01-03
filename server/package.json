@@ -1,0 +1,38 @@
+{
+  "name": "api.somarl.com",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "if-env NODE_ENV=production ?? npm run prod || npm run dev",
+    "prod": "nodemon ./src/server.ts",
+    "dev": "nodemon ./src/server.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.4.0",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.5.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "mongodb": "^3.1.10"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.11",
+    "@types/jsonwebtoken": "^8.3.0",
+    "@types/koa": "^2.0.48",
+    "@types/koa-bodyparser": "^4.2.1",
+    "@types/koa-jwt": "^3.3.0",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.0.36",
+    "@types/mongodb": "^3.1.18",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
+  }
+}
