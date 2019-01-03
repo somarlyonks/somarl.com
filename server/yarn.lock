@@ -98,6 +98,12 @@
   version "3.2.2"
   resolved "https://registry.npmjs.org/@types/koa-compose/-/koa-compose-3.2.2.tgz#dc106e000bbf92a3ac900f756df47344887ee847"
 
+"@types/koa-cors@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.npmjs.org/@types/koa-cors/-/koa-cors-0.0.0.tgz#7a0ef45acfed1ef6c046d5896e3974261d8a9d37"
+  dependencies:
+    "@types/koa" "*"
+
 "@types/koa-jwt@^3.3.0":
   version "3.3.0"
   resolved "https://registry.npmjs.org/@types/koa-jwt/-/koa-jwt-3.3.0.tgz#b30fe8a96bbe1aec44cd6da24d91f2963e62e3bf"
@@ -136,6 +142,12 @@
   resolved "https://registry.npmjs.org/@types/mongodb/-/mongodb-3.1.18.tgz#24e847c15155226895ec9c79660ec0907005deff"
   dependencies:
     "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/node-fetch@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.npmjs.org/@types/node-fetch/-/node-fetch-2.1.4.tgz#093d1beae11541aef25999d70aa09286fd025b1a"
+  dependencies:
     "@types/node" "*"
 
 "@types/node@*":
@@ -2418,6 +2430,10 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
+koa-cors@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.npmjs.org/koa-cors/-/koa-cors-0.0.16.tgz#98107993a7909e34c042986c5ec6156d77f3432e"
+
 koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
@@ -2800,6 +2816,10 @@ needle@^2.2.1:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+node-fetch@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
 
 node-int64@^0.4.0:
   version "0.4.0"

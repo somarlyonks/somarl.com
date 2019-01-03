@@ -4,7 +4,7 @@
  */
 
 // tslint:disable: max-line-length
-const KOA_PORT_DEV = 3000
+const KOA_PORT_DEV = 3001
 const KOA_PORT_PROD = 8081
 const SERVER_CNAME = 'api'
 const SERVER_HOST = 'dev.local'

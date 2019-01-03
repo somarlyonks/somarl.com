@@ -1,6 +1,22 @@
 import Router from 'koa-router'
 import { jwtIssue } from '../helpers/auth'
+import registerWeatherRouter from '../api/weather'
 
+
+function registerAuthRoutes (router: Router) {
+  router.post('/auth', async ctx => {
+    const { username, password } = ctx.request.body as any // TODO: assert
+
+    if (username === 'Sy' && password === 'pwd') {
+      ctx.body = {
+        token: jwtIssue({ user: 'Sy' })
+      }
+    } else {
+      ctx.status = HTTPStatusCodes.UNAUTHORIZED
+      ctx.body = { error: 'Invalid login' }
+    }
+  })
+}
 
 export default function registerOpenRoutes (router: Router) {
   router.get('/', async ctx => {
@@ -17,16 +33,7 @@ export default function registerOpenRoutes (router: Router) {
     }
   })
 
-  router.post('/auth', async ctx => {
-    const { username, password } = ctx.request.body as any // TODO: assert
+  registerAuthRoutes(router)
 
-    if (username === 'Sy' && password === 'pwd') {
-      ctx.body = {
-        token: jwtIssue({ user: 'Sy' })
-      }
-    } else {
-      ctx.status = HTTPStatusCodes.UNAUTHORIZED
-      ctx.body = { error: 'Invalid login' }
-    }
-  })
+  registerWeatherRouter(router)
 }
