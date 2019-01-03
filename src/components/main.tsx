@@ -1,17 +1,13 @@
 import * as React from 'react'
 import PanelLeft from './panel/left'
 import PanelRight from './panel/right'
-import WeatherAnimation from './weather/animation'
+import WeatherWidget from './weather/widget'
 
 
 export default function Main () {
   return (
     <main>
-      <WeatherAnimation
-        type="sun"
-        size="small"
-        backgroundColor="rgba(#000, 0.4)"
-      />
+      <WeatherWidget />
 
       <div className="container">
         <div className="row">
