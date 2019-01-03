@@ -1,7 +1,7 @@
 import * as React from 'react'
 import WeatherAnimation, { WeatherTypes } from './animation'
-import { getWeather } from 'src/helpers/Api'
-import { weatherTypeMap } from 'src/helpers/Adapter'
+import { getWeather } from '../../helpers/Api'
+import { weatherTypeMap } from '../../helpers/Adapter'
 
 
 export interface IWeatherWidgetProps {
@@ -26,7 +26,7 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
       console.info('dddddd', resp) // TODELETE
       const weatherType = weatherTypeMap[resp.icon] || weatherTypeMap.fallback
       this.setState({ type: weatherType })
-    })
+    }).catch(console.warn)
   }
 
   public render () {
