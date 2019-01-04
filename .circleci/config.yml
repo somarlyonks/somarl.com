@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-page:
     docker:
       - image: circleci/node:8-stretch-browsers
     steps:
@@ -14,13 +14,13 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ checksum "page/yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn
+          command: cd page && yarn
       - save_cache:
           name: Cache Yarn Package
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          key: yarn-packages-{{ checksum "page/yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
@@ -42,7 +42,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - build-page
       # - test:
       #     requires:
       #       - build

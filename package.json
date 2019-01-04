@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "page": "cd page && npm start",
-    "test": "react-scripts-ts test --env=jsdom",
-    "ci": "react-scripts-ts test --ci --coverage --env=jsdom",
+    "build": "cd page && npm run build",
+    "test": "cd page && react-scripts-ts test --env=jsdom",
+    "ci": "cd page && npm run ci",
     "ci-jest": "jest --env=jsdom",
     "server": "cd server && npm start"
   },
