@@ -43,5 +43,7 @@ somarl.com:
     [ ] SSH @low
   Dev:
     [ ] nginx dev proxy
+      [x] page api requests doesn't need this anymore with the help of dotenv
+      [ ] page server
     [ ] Test @longterm
       [ ] global jest settings
