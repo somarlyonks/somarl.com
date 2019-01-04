@@ -1,4 +1,4 @@
-const API_SERVER = 'http://127.0.0.1:3001' // 'https://api.somarl.com' // TODO: nginx server
+const API_SERVER = process.env.REACT_APP_API_SERVER
 
 export async function fetchServerJson (endpoint: string, body?: S) {
   const api = API_SERVER + '/' + endpoint

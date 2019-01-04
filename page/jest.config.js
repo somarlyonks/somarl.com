@@ -1,30 +1,51 @@
 module.exports = {
-  'testEnvironment': 'jsdom',
-  'testURL': 'http://localhost',
-  'roots': [
-    '<rootDir>/src/test'
+  'collectCoverageFrom': [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!**/*.d.ts'
   ],
+  // 'roots': [
+  //   '<rootDir>/src/test'
+  // ],
+  'setupFiles': [
+    '<rootDir>/config/polyfills.js'
+  ],
+  // 'testMatch': [
+  //   '<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)',
+  //   '<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)'
+  // ],
+  'testRegex': '(/src/test/.*|(\\.|/)(test|spec))\\.tsx?$',
+  'testEnvironment': 'jsdom', // node
+  'testURL': 'http://localhost',
   'transform': {
     // @see https://jestjs.io/docs/en/webpack
-    // "\\.(css|less)$": "identity-obj-proxy",
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
+    '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/config/jest/fileTransform.js'
   },
-  'testRegex': '(/src/test/.*|(\\.|/)(test|spec))\\.tsx?$',
+  'transformIgnorePatterns': [
+    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$'
+  ],
+  'moduleNameMapper': {
+    '^react-native$': 'react-native-web',
+    '^src/(.*)': '<rootDir>/src/$1'
+  },
   'moduleFileExtensions': [
+    'web.ts',
     'ts',
+    'web.tsx',
     'tsx',
+    'web.js',
     'js',
-    'node'
+    'web.jsx',
+    'jsx',
+    'json',
+    'node',
+    'mjs'
   ],
   'globals': {
     'ts-jest': {
-      'tsConfig': './tsconfig.test.json'
+      'tsConfigFile': './tsconfig.test.json'
     }
   },
-  'moduleNameMapper': {
-    '^src/(.*)': '<rootDir>/src/$1'
-  },
-  'collectCoverageFrom': [
-    'src/App.tsx',
-  ]
 }
