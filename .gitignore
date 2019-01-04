@@ -55,9 +55,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# sass
-src/**/*.css
-
 # react env
 .env*.local
 
