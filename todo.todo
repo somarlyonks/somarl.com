@@ -44,3 +44,4 @@ somarl.com:
   Dev:
     [ ] nginx dev proxy
     [ ] Test @longterm
+      [ ] global jest settings

@@ -20,7 +20,6 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   }
 
   private readonly handleInputting = () => {
-    console.info('eqwewqeqw') // TODELETE
     this.setState({ inputted: false })
   }
 

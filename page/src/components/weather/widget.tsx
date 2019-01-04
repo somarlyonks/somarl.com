@@ -12,6 +12,7 @@ export interface IWeatherWidgetState {
   type: WeatherTypes
 }
 
+
 export default class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeatherWidgetState> {
   public static defaultProps: IWeatherWidgetProps = {
     backgroundColor: 'rgba(#000, 0.4)',
