@@ -3,6 +3,10 @@
   background-repeat: no-repeat;
 }
 
+*::after, *::before {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
 }
