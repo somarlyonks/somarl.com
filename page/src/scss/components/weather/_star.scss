@@ -1,5 +1,6 @@
 @import 'keyframes';
 @import '../../helpers/mixins';
+@import '../../helpers/variables';
 
 .star {
   @include absoluteTL(25%, 40%);
@@ -24,12 +25,12 @@
     rgba(#fff, 0.1) -26px 55px 0 -1px;
   animation: glow 5s ease-in-out infinite;
 }
-.star:before{
+.star:before {
   @include absoluteCTL(15%, 50%);
   width: 0.5em;
   height: 0.5em;
-  box-shadow: #fff -0.125em 0;
+  box-shadow: $moonyellow -0.125em 0;
   transform: rotate(-5deg);
   border-radius: 50%;
-  animation: star 5s ease-in-out infinite;
+  animation: moon 5s ease-in-out infinite;
 }
