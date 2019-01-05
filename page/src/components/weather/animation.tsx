@@ -5,6 +5,8 @@ import rgba from '../../helpers/rgba'
 export type WeatherTypes = 'breeze' |
   'cloud' |
   'cloud2' |
+  'fog' |
+  'night' |
   'rain' |
   'snow' |
   'star' |

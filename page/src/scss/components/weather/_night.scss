@@ -1,0 +1,25 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+@import '../../helpers/variables';
+
+.night::before {
+  @include absoluteCTL(65%, 30%);
+  transform: translate(-50%, -50%);
+  height: 25%;
+  width: 25%;
+  border-radius: 50%;
+  @include cloudBoxShadow(#eee);
+  background-color: #eee;
+  z-index: 2;
+}
+
+.night::after {
+  @include absoluteCTL(20%, 15%);
+  width: 0.5em;
+  height: 0.5em;
+  box-shadow: $moonyellow 0.125em 0;
+  transform: rotate(-5deg);
+  border-radius: 50%;
+  animation: moon 5s ease-in-out infinite;
+  z-index: 1;
+}
