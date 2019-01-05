@@ -33,8 +33,8 @@ somarl.com:
       [ ] page level mood
       [ ] icons
       [ ] animations
-         [ ] fog
-         [ ] night
+         [x] fog
+         [x] night
          [ ] api response schema
          X  small animation fix: rain/snow/star @delayed it looks fine
       [ ] Api

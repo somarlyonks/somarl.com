@@ -139,7 +139,7 @@
   100% { transform: translate(-50%, -50%) rotate(45deg); }
 }
 
-@include keyframes(star) {
+@include keyframes(moon) {
   50% { transform: rotate(10deg); }
 }
 

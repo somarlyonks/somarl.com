@@ -13,7 +13,7 @@ const completeHex = (s: S) => {
  * fixes campatibilities for shortcut rgba colors like rgba(#fff, 0.2) to rgba(255, 255, 255, 0.2)
  */
 export default function rgba (input: string): string {
-  if (!input.startsWith('rgba')) return input
+  if (!input.startsWith('rgba(#')) return input
 
   const groups = input.replace('rgba(', '').replace(')', '').split(',').map((color: S) => color.trim())
   if (groups.length !== 2) return input

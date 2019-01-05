@@ -1,0 +1,35 @@
+@import 'keyframes';
+@import '../../helpers/mixins';
+
+.fog {
+  @include absoluteTL(50%, 30%);
+  height: 25%;
+  width: 25%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow:
+    #fff 0 0 0.04em,
+    #fff 0.325em -0.075em 0.02em -0.025em,
+    #fff 0.125em -0.125em 0.02em,
+    #fff 0.15em 0.05em 0.02em 0.005em,
+    #fff 0.3em 0.075em 0.02em -0.05em,
+    #fff 0.425em 0.025em 0.02em -0.025em;
+  background-color: #fff;
+  animation: cloud 5s ease-in-out infinite;
+}
+
+.fog::after {
+  @include absoluteCTL(55%, 30%);
+  height: 25%;
+  width: 25%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow:
+    #fff 0.325em -0.075em 0.4em 0.1em,
+    #fff 0.125em -0.125em 0.4em 0.1em,
+    #fff 0.15em 0.05em 0.4em 0.1em,
+    #fff 0.3em 0.075em 0.4em 0.1em,
+    #fff 0.425em 0.025em 0.4em 0.1em;
+  background-color: #fff;
+  animation: cloud 5s ease-in-out infinite;
+}
