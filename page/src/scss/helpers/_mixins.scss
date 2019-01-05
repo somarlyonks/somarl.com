@@ -28,7 +28,7 @@
   box-shadow:
     #{$color} 0.325em -0.075em 0 -0.025em,
     #{$color} 0.125em -0.125em,
-    #{$color} 0.15em 0.05em,
+    #{$color} 0.15em 0.05em 0 0.005em,
     #{$color} 0.3em 0.075em 0 -0.05em,
     #{$color} 0.425em 0.025em 0 -0.025em;
 }
