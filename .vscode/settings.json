@@ -3,5 +3,8 @@
   "editor.tabSize": 2,
   "[python]": {
     "editor.tabSize": 4
+  },
+  "files.exclude": {
+    "**/node_modules": true
   }
 }
