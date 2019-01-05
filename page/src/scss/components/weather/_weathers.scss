@@ -26,10 +26,32 @@ $SMALL_SIZE: 50px;
 
 .weather-container_small {
   position: fixed;
-  top: $SMALL_SIZE / 2;
-  left: $SMALL_SIZE / 2;
+  top: 0;
+  left: 0;
+  transform: none;
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
   font-size: $SMALL_SIZE;
   border-radius: 0;
+  transition:
+    width 0.8s,
+    height 0.8s;
+}
+
+.weather-widget {
+  width: $SMALL_SIZE;
+  height: $SMALL_SIZE;
+  transition:
+    width 0.8s,
+    height 0.8s;
+}
+
+.weather-widget_toggled {
+  width: $SIZE * 2;
+  height: $SIZE;
+  .weather-container_small {
+    width: $SIZE;
+    height: $SIZE;
+    font-size: $SIZE;
+  }
 }
