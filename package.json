@@ -3,11 +3,18 @@
   "homepage": "https://somarl.com",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "page": "cd page && npm start",
-    "build": "cd page && npm run build",
-    "test": "cd page && npm run test",
-    "ci": "cd page && npm run ci",
-    "server": "cd server && npm start"
+    "bootstrap": "lerna bootstrap",
+    "page": "cd packages/page && npm start",
+    "build": "cd packages/page && npm run build",
+    "test": "cd packages/page && npm run test",
+    "ci": "cd packages/page && npm run ci",
+    "server": "cd packages/server && npm start"
+  },
+  "devDependencies": {
+    "lerna": "^3.8.5"
   }
 }
