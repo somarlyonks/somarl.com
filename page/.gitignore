@@ -1,2 +1,4 @@
 # sass
 src/**/*.css
+
+build/*
