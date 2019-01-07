@@ -3,6 +3,8 @@
  *       it should not import other libs or local files.
  */
 
+import './helpers/env'
+
 // tslint:disable: max-line-length
 const KOA_PORT_DEV = 3001
 const KOA_PORT_PROD = 8081
