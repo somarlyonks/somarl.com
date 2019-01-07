@@ -1,6 +1,5 @@
 {
-  "name": "www.somarl.com",
-  "homepage": "https://somarl.com",
+  "name": "@somarl.com/page",
   "version": "0.1.0",
   "private": true,
   "scripts": {

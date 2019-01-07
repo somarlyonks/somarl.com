@@ -14,13 +14,12 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "page/yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: cd page && yarn
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install --frozen-lockfile
+      - run: yarn bootstrap
       - save_cache:
           name: Cache Yarn Package
-          key: yarn-packages-{{ checksum "page/yarn.lock" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
