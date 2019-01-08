@@ -46,4 +46,6 @@ somarl.com:
       [x] page api requests doesn't need this anymore with the help of dotenv
       [ ] page server
     [ ] Test @longterm
-      [ ] global jest settings
+      X global jest settings
+    [x] monorepo settings
+      [x] greenkeeper enabled
