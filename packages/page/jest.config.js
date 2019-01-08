@@ -19,7 +19,7 @@ module.exports = {
   transform: {
     // @see https://jestjs.io/docs/en/webpack
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(js|jsx|mjs)$': '../../node_modules/babel-jest',
     '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
     '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/config/jest/fileTransform.js'
   },
