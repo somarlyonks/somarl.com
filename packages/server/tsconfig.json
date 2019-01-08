@@ -1,27 +1,10 @@
 {
+  "extends": "../tsconfig.common.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2017",
     "outDir": "./build",
-    "sourceMap": true,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
     "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "alwaysStrict": true,
-    "strict": true,
-    "strictFunctionTypes": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "experimentalDecorators": false,
-    "emitDecoratorMetadata": false,
-    "esModuleInterop": true,
     "typeRoots": [
       "src/@types/*"
     ],

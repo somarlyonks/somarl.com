@@ -7,12 +7,16 @@
     "packages/*"
   ],
   "scripts": {
-    "convert": "lerna link convert",
     "bootstrap": "lerna bootstrap",
-    "page": "cd packages/page && npm start",
-    "build": "cd packages/page && npm run build",
+    "convert": "lerna link convert",
+    "build-page": "cd packages/page && npm run build",
+    "build-pipe": "cd packages/pipe && npm run build",
+    "build-server": "cd packages/server && npm run build",
+    "build": "npm-run-all build-pipe build-page",
     "test": "cd packages/page && npm run test",
     "ci": "cd packages/page && npm run ci",
+    "page": "cd packages/page && npm start",
+    "pipe": "npm-run-all build-pipe bootstrap",
     "server": "cd packages/server && npm start"
   },
   "devDependencies": {
@@ -45,7 +49,7 @@
     "fs-extra": "^7.0.1",
     "html-webpack-plugin": "^4.0.0-beta.5",
     "jest": "^23.6.0",
-    "lerna": "^3.8.5",
+    "lerna": "^3.9.0",
     "node-sass-chokidar": "^1.3.4",
     "nodemon": "^1.18.9",
     "npm-run-all": "^4.1.5",

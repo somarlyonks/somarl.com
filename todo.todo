@@ -39,7 +39,7 @@ somarl.com:
          X  small animation fix: rain/snow/star @delayed it looks fine
       [ ] Api
         [ ] display the message "Powered by Dark Sky" links to https://darksky.net/poweredby/
-        [ ] add dotenv
+        [x] add dotenv
     [ ] SSH @low
   Dev:
     [ ] nginx dev proxy
@@ -47,5 +47,6 @@ somarl.com:
       [ ] page server
     [ ] Test @longterm
       X global jest settings
-    [x] monorepo settings
+    [ ] monorepo settings
       [x] greenkeeper enabled
+      [ ] fix yarn workspaces not symlinked
