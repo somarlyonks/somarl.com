@@ -170,17 +170,18 @@ Confront to both tsx file specs and scss naming specs.
 Example:
 
 ```bash
-src
-  |__ components
-  |    |__ main.tsx
-  |    |__ panel
-  |         |__ left.tsx
-  |__ scss
-       |__ components
-            |__ _main.scss
-            |__ _panel.scss
-            |__ panel
-                  |__ _left.scss
+.
+└── src
+     ├── components
+     │    ├── main.tsx
+     │    └── panel
+     │         └── left.tsx
+     └── scss
+          └── components
+               ├── _main.scss
+               ├── _panel.scss
+               └── panel
+                    └── _left.scss
 ```
 
 in `src/scss/components/_main.scss`
@@ -239,6 +240,10 @@ One space after every ',' and `:`
 `0.1` is preferred to `.1`
 
 `#ccc` is preferred to `#CCC` and `#cccccc`. `#CcC` is not accepted.
+
+## Pipe
+
+All other packages can import from `pipe` but `pipe` are not supposed to have any dependencies. Interfaces shared both backend and frontend are recommanded to be defined in `pipe`.
 
 ## Git
 

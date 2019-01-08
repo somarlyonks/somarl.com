@@ -60,3 +60,4 @@ yarn-error.log*
 
 # build
 /build
+/packages/**/build

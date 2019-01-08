@@ -1,17 +1,9 @@
 import * as React from 'react'
+import { WeatherTypes} from '../../helpers/Adapter'
 import rgba from '../../helpers/rgba'
 
 
-export type WeatherTypes = 'breeze' |
-  'cloud' |
-  'cloud2' |
-  'fog' |
-  'night' |
-  'rain' |
-  'snow' |
-  'star' |
-  'sun' |
-  'thunder'
+export type WeatherTypes = WeatherTypes
 
 export type WeatherSizes = 'small' | 'normal'
 

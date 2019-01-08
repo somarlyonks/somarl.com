@@ -10,15 +10,19 @@
     "build-css": "node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css --watch --recursive",
     "test": "node scripts/test.js",
-    "ci": "node scripts/test.js --ci --coverage",
-    "deploy": "gh-pages -d build"
+    "ci": "node scripts/test.js --ci --coverage"
   },
   "dependencies": {
+    "@somarl.com/pipe": "0.1.0",
     "bootstrap": "^4.1.1",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
     "react": "16.6.3",
     "react-dom": "16.6.3",
     "whatwg-fetch": "2.0.3"
+  },
+  "devDependencies": {
+    "node-sass-chokidar": "^1.3.4",
+    "npm-run-all": "^4.1.5"
   }
 }
