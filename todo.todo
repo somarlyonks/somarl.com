@@ -49,4 +49,4 @@ somarl.com:
       X global jest settings
     [ ] monorepo settings
       [x] greenkeeper enabled
-      [ ] fix yarn workspaces not symlinked
+      [x] fix yarn workspaces not symlinked

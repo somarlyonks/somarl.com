@@ -73,10 +73,5 @@
     "webpack": "^4.28.3",
     "webpack-dev-server": "^3.1.14",
     "webpack-manifest-plugin": "^2.0.4"
-  },
-  "dependencies": {
-    "@somarl.com/page": "file:packages/page",
-    "@somarl.com/pipe": "file:packages/pipe",
-    "@somarl.com/server": "file:packages/server"
   }
 }
