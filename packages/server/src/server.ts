@@ -13,7 +13,11 @@ const ppap = new Koa()
 
 ppap.use(logger())
   .use(Bodyparser())
-  .use(cors({ origin: 'http://localhost:3000'})) // TODO: nginx
+  /**
+   * about proxy
+   * @see https://github.com/koajs/koa/issues/198#issuecomment-33208283
+   */
+  .use(cors({ origin: 'http://localhost:3000'}))
   .use(router.routes()).use(router.allowedMethods())
   .use(openRouter.routes()).use(openRouter.allowedMethods())
 

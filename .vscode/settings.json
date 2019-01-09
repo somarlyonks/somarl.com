@@ -6,6 +6,12 @@
   },
   "files.exclude": {
     "**/node_modules": true,
-    "**/coverage": true
+    "**/coverage": true,
+    "packages/page/build/dist": true,
+    "packages/pipe/build": true,
+    "packages/server/build": true
+  },
+  "search.exclude": {
+    "packages/page/build": true
   }
 }

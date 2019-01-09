@@ -2,12 +2,13 @@
  * @file seperated api callers
  */
 
-import { fetchPublicJson, fetchServerJson } from './fetch'
+import { fetchPublicJson, fetchServerJson, ApiResponse } from './fetch'
+import { IWeatherResponse } from './Adapter'
 
 
-type PublicApi<R> = () => Promise<R>
+type PublicApi<R> = F0<Promise<R>>
 
-type ServerApi<R> = () => Promise<R>
+// type ServerApi<R> = F<Promise<R>>
 
 
 export const getIpGeo: PublicApi<{
@@ -40,9 +41,13 @@ export const getIp: PublicApi<{
 }> = async () => fetchPublicJson('https://api.ipify.org/?format=json')
 
 
-export const getWeather: ServerApi<
-  any // TODO: response schema
-> = async () => fetchServerJson('weather')
+/**
+ * wrapped DarkSky forcast Api
+ */
+export const getWeather: F1<
+  L<S>,
+  Promise<ApiResponse<IWeatherResponse>>
+> = async (excludes = ['flags']) => fetchServerJson(`weather/?exclude=${excludes.join(',')}`)
 
 
 const Api = {

@@ -13,8 +13,13 @@ export default function registerWeatherRoutes (router: Router) {
   router.get('/weather', async ctx => {
     const ipGeo = await fetchPublicJson(`https://ipapi.co/json/`).then(r => r.json())
     const { latitude, longitude } = ipGeo
+
     const darkSkyApi = `https://api.darksky.net/forecast/${SETTINGS.DARKSKY_SECRETKEY}/${latitude},${longitude}`
-    const queries = `units=si`
+
+    const exclude = ctx.request.query.exclude || 'flags'
+    const units = 'si'
+
+    const queries = `units=${units}&exclude=${exclude}`
 
     ctx.body = await fetchPublicJson(`${darkSkyApi}?${queries}`).then(r => r.json())
   })
