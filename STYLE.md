@@ -245,6 +245,8 @@ One space after every ',' and `:`
 
 All other packages can import from `pipe` but `pipe` are not supposed to have any dependencies. Interfaces shared both backend and frontend are recommanded to be defined in `pipe`.
 
+There are not many files in this repo are capatilized, one of them is `Adapter.ts`.
+
 ## Git
 
 ### commit log

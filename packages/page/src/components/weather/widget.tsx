@@ -1,7 +1,7 @@
 import * as React from 'react'
 import WeatherAnimation, { WeatherTypes } from './animation'
 import { getWeather } from '../../helpers/Api'
-import { weatherTypeMap } from '../../helpers/Adapter'
+import { weatherTypeMap, HTTPStatusCodes } from '../../helpers/Adapter'
 import rgba from '../../helpers/rgba'
 
 
@@ -14,6 +14,7 @@ export interface IWeatherWidgetState {
   toggled: boolean,
 }
 
+const getCurrentWeather = () => getWeather(['flags', 'daily', 'hourly'])
 
 export default class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeatherWidgetState> {
   public static defaultProps: IWeatherWidgetProps = {
@@ -26,9 +27,12 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
   }
 
   public componentDidMount () {
-    getWeather().then(resp => {
-      console.info('dddddd', resp) // TODELETE
-      const weatherType = weatherTypeMap[resp.icon] || weatherTypeMap.fallback
+    getCurrentWeather().then(resp => {
+      // console.info('RRRR', resp) // TODELETE
+      if (resp.status !== HTTPStatusCodes.OK) return
+
+      const { currently } = resp.body
+      const weatherType = weatherTypeMap[currently!.icon] || weatherTypeMap.fallback
       this.setState({ type: weatherType })
     }).catch(console.warn)
   }

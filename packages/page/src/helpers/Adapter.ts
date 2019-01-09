@@ -1,1 +1,4 @@
-export { WeatherTypes, weatherTypeMap } from '@somarl.com/pipe'
+export {
+  HTTPStatusCodes,
+  WeatherTypes, weatherTypeMap, IWeatherResponse,
+} from '@somarl.com/pipe'
