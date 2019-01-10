@@ -7,15 +7,28 @@ export interface IApiResponseSuccess <T = any> {
   body: T
 }
 
+/**
+ * ommit the body to force status checkings
+ */
 export interface IApiResponseFail {
   status: Exclude<HTTPStatusCodes, HTTPStatusCodes.OK>
 }
 
 export type ApiResponse <T = any> = IApiResponseFail | IApiResponseSuccess<T>
 
+/**
+ * type guard here, since then it's free to just check like
+ * @example
+ *   if (resp.status === HTTPStatusCodes.OK) {
+ *     console.info(resp.body) // ok
+ *   } else {
+ *     console.info(resp.body) // tsc warning!
+ *   }
+ */
 function isResponseOK (result: ApiResponse): result is IApiResponseSuccess {
   return result.status === HTTPStatusCodes.OK
 }
+
 
 /**
  * fetch cors are supposed to send preflighted OPTIONS request
@@ -48,6 +61,7 @@ export async function fetchServerJson (endpoint: string, body?: S): Promise<ApiR
 
   return result
 }
+
 
 export async function fetchPublicJson (api: S, body?: S) {
   const init: RequestInit = {
