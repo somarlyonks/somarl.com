@@ -1,3 +1,4 @@
+@import 'keyframes';
 @import 'breeze';
 @import 'cloud';
 @import 'cloud2';
@@ -8,7 +9,7 @@
 @import 'star';
 @import 'sun';
 @import 'thunder';
-@import 'keyframes';
+@import 'widget';
 
 
 $SIZE: 200px;
@@ -41,6 +42,7 @@ $SMALL_SIZE: 50px;
 }
 
 .weather-widget {
+  color: #fff;
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
   transition:

@@ -374,4 +374,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
+  performance: {
+    maxEntrypointSize: Number.MAX_SAFE_INTEGER, // FIXME: @sy code splitting
+  }
 }

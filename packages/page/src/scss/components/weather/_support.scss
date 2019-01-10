@@ -1,0 +1,30 @@
+@import '../../helpers/variables';
+@import '../../helpers/mixins';
+
+.support_darksky {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  color: #fff;
+  font-size: 10px;
+
+  .support__icon_darksky {
+    position: absolute;
+    top: -2px;
+    left: -16px;
+  }
+}
+
+.support_darksky:hover .support__icon_darksky {
+  svg {
+    fill: #0aa9f7;
+  }
+}
+
+.support__icon_darksky {
+  svg {
+    fill: #fff;
+    width: 1.25em;
+    transition: fill 0.8s;
+  }
+}

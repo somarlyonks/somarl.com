@@ -1,0 +1,38 @@
+.weather-widget__info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  width: 50%;
+}
+
+// .weather-widget__info-main {
+// }
+
+.weather-widget__info-main_temperature {
+  font-size: 5em;
+  text-align: center;
+}
+
+.weather-widget__info-main_summary {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.weather-widget__info-detail {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.weather-widget__info-detail_icon {
+  padding: 0 2px;
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.weather-widget__info-detail_block {
+  width: 33.3%;
+  font-size: 0.875em;
+}
