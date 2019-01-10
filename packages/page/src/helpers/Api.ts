@@ -42,12 +42,10 @@ export const getIp: PublicApi<{
 
 
 /**
- * wrapped DarkSky forcast Api
+ * wrapped DarkSky forecast Api
  */
-export const getWeather: F1<
-  L<S>,
-  Promise<ApiResponse<IWeatherResponse>>
-> = async (excludes = ['flags']) => fetchServerJson(`weather/?exclude=${excludes.join(',')}`)
+export const getWeather = async (excludes = ['flags']) =>
+  fetchServerJson(`weather/?exclude=${excludes.join(',')}`) as Promise<ApiResponse<IWeatherResponse>>
 
 
 const Api = {
