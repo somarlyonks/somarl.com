@@ -2,15 +2,15 @@
 
 .rain {
   @include absoluteTL(30%, 50%);
-  width: 2px;
-  height: 6px;
+  width: 4px;
+  height: 8px;
   background: #ccc;
   border-radius: 50%;
   animation: rainDrop 0.7s infinite linear;
 }
 
 .rain:before {
-  @include absoluteCTL(0.15em, -0.2em);
+  @include absoluteCTL(0.1em, -0.2em);
   height: 0.25em;
   width: 0.25em;
   background: #ccc;
