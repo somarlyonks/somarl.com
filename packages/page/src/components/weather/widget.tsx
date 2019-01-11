@@ -82,8 +82,7 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
 
   public componentDidMount () {
     const getCurrentWeather = () => getWeather(['flags', 'daily', 'hourly'])
-
-    getCurrentWeather().then(resp => {
+    const updateWeather = () => getCurrentWeather().then(resp => {
       // console.info('RRRR', resp)
       if (resp.status !== HTTPStatusCodes.OK) return
 
@@ -106,6 +105,9 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
 
       this.setState({ weatherType, weatherInfo })
     }).catch(console.warn)
+
+    updateWeather()
+    setInterval(updateWeather, 1000 * 60 * 5) // update every 5 minutes
   }
 
   public readonly toggle = (event: React.MouseEvent<HTMLElement>) => {
