@@ -45,6 +45,7 @@ $SMALL_SIZE: 50px;
   color: #fff;
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
+  z-index: 999;
   transition:
     width 0.8s,
     height 0.8s;

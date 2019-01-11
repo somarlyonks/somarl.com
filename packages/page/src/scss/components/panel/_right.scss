@@ -3,17 +3,19 @@
 .panel-right {
   height: calc(100vh - 150px);
   margin-top: 50px;
-  padding: 2rem;
-  overflow-y: scroll;
+  overflow: hidden;
   color: white;
-  background-color: $sectionBackgroundColor;
   transition: height;
+}
+
+.panel-right__content {
+  padding: 1rem;
 }
 
 .panel-right_hidden {
   height: 0;
 }
 
-.panel-right::-webkit-scrollbar {
+.panel-right__content::-webkit-scrollbar {
   width: 0;
 }

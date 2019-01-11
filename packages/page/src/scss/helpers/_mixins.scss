@@ -32,3 +32,12 @@
     #{$color} 0.3em 0.075em 0 -0.05em,
     #{$color} 0.425em 0.025em 0 -0.025em;
 }
+
+@mixin absoluteContentFull {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
