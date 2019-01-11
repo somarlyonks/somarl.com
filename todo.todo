@@ -4,10 +4,11 @@ somarl.com:
       [x] page frame
       [ ] terminal
         compeleted except shortcuts
-      [ ] font manage
+      [x] font manage
       [ ] font colors manage
       [ ] dynamic background
         testing with a fake one currently
+      [ ] code splitting
     [ ] api frame
     [ ] server frame
       GraphQL

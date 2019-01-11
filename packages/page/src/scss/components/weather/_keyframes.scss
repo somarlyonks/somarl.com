@@ -130,7 +130,7 @@
   }
 }
 
-@include rain(rainDrop, #000, 0.3);
+@include rain(rainDrop, deepskyblue, 0.3);
 
 @include rotate(wind, 0, 360);
 

@@ -4,7 +4,7 @@ import * as React from 'react'
 export default function Footer () {
   return (
     <footer>
-      footer
+      © 2019 Sy. All rights reserved.
     </footer>
   )
 }
