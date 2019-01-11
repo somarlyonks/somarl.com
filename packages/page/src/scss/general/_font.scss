@@ -1,10 +1,22 @@
 .font-sans {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Metropolis', Arial, Helvetica, sans-serif;
 }
+
+// .font-serif {
+//   //
+// }
 
 .font-mono {
   font-family: monospace, sans-serif;
 }
+
+.font-read {
+  font-family: 'DejaVu Sans Book', Arial, Helvetica, sans-serif;
+}
+
+// .font-read-serif {
+//   //
+// }
 
 .rem-half {
   font-size: 0.5rem;
@@ -16,4 +28,19 @@
 
 .rem-4 {
   font-size: 4rem;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('../fonts/metropolis-regular-webfont.woff2') format('woff2'),
+       url('../fonts/metropolis-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DejaVu Sans Book';
+  src: url('../fonts/DejaVuSans-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
