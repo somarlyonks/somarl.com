@@ -2,9 +2,9 @@
   font-family: 'Metropolis', Arial, Helvetica, sans-serif;
 }
 
-// .font-serif {
-//   //
-// }
+.font-serif {
+  font-family: 'EB Garamond', 'Times New Roman', Times, serif
+}
 
 .font-mono {
   font-family: monospace, sans-serif;
@@ -41,6 +41,14 @@
 @font-face {
   font-family: 'DejaVu Sans Book';
   src: url('../fonts/DejaVuSans-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('../fonts/ebgaramond.woff2') format('woff2'),
+       url('../fonts/ebgaramond.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
