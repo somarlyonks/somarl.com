@@ -15,7 +15,7 @@
     "callable-types": false,
     "curly": false,
     "forin": false,
-    "interface-name": false,
+    "interface-name": true,
     "jsx-no-multiline-js": false,
     "max-classes-per-file": false,
     "max-line-length": [true, {"limit": 120, "ignore-pattern": "^.*<"}],

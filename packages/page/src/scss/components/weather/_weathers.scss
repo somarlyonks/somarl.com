@@ -43,6 +43,7 @@ $SMALL_SIZE: 50px;
 
 .weather-widget {
   color: #fff;
+  background-color: rgba(#000, 0.5);
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
   z-index: 999;
@@ -52,6 +53,7 @@ $SMALL_SIZE: 50px;
 }
 
 .weather-widget_toggled {
+  background-color: rgba(#000, 0.6);
   width: $SIZE * 2;
   height: $SIZE;
   .weather-container_small {

@@ -64,7 +64,7 @@ const WeatherInfomations: React.SFC<IWeatherInfomationsProps> = ({display, weath
 
 export default class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeatherWidgetState> {
   public static defaultProps: IWeatherWidgetProps = {
-    backgroundColor: 'rgba(#000, 0.4)',
+    backgroundColor: '',
   }
 
   public readonly state: IWeatherWidgetState = {
@@ -117,12 +117,15 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
   public render () {
     const { backgroundColor } = this.props
 
+    const style: React.CSSProperties = {}
+    if (backgroundColor) {
+      style.backgroundColor = rgba(backgroundColor)
+    }
+
     return (
       <div
         className={`absolute tl-0 weather-widget ${this.state.toggled ? 'weather-widget_toggled' : ''}`}
-        style={{
-          backgroundColor: rgba(backgroundColor!),
-        }}
+        style={style}
         onMouseEnter={this.toggle}
         onMouseLeave={this.toggle}
       >
