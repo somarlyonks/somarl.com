@@ -69,13 +69,13 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
 
     this.setState({ text, caretText, fakeContrastText })
 
-    return isFireOnChangeNeeded ? text : ''
+    return isFireOnChangeNeeded ? text : false
   }
 
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const maybeDirtyText = this.jumpTo(event)
 
-    if (maybeDirtyText && this.props.onChange) {
+    if (maybeDirtyText !== false && this.props.onChange) {
       this.props.onChange(maybeDirtyText)
     }
   }
