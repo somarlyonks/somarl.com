@@ -11,7 +11,11 @@ Some of the code in this repo come from:
 - @chokcoco: [Weather animaions](http://chokcoco.github.io/magicCss/html/index.html)
 - @Dark Sky: [Dark Sky API](https://darksky.net/dev)
 - @fontawesome: [Font Awesome](https://fontawesome.com/icons)
+
+Some of the design paradigm come from:
+
 - @Google: [Material Design](https://material.io/design/#)
+- @Microsoft: [Fluent Design](https://docs.microsoft.com/en-us/windows/uwp/design/style/)
 
 Fonts LICENSES:
 

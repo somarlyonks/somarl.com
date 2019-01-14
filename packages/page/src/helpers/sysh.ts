@@ -7,23 +7,41 @@
  *         Then parses stdout when responsed reveived.
  */
 
+import PluginManager from '../plugins/plugin'
+
 type StdIn = string
 
 export type StdOut = string
 
+const pluginManager = new PluginManager()
 
 export default class SyshParser {
-  /** real time parse for hints/history search */
-  public static syshWelcome = 'Input things like: blogs --page=2'
+  private static configs = {
+    hintLines: 5,
+  }
 
-  public static parse (command: string) {
-    if (command.startsWith('bl')) {
-      return 'blog -P 2'
-    }
-    return this.syshWelcome
+  public static syshWelcome = 'Input things like: plugin list'
+
+  /** real time parse for hints/history search */
+  public static parse (command: string): StdOut {
+    const segments = command.split(' ').map(seg => seg.trim())
+    if (!segments[0]) return this.syshWelcome
+
+    const pluginNames = Object.keys(pluginManager.pluginsMap)
+      .filter(pluginName => pluginName.startsWith(segments[0]))
+      .slice(0, this.configs.hintLines)
+
+    if (!pluginNames.length) return this.syshWelcome
+    // if (pluginNames.length === 1)
+    return pluginNames.join('\n')
   }
 
   public static exec (command: string, stdIn?: StdIn): StdOut {
-    return command
+    const segments = command.split(' ').map(seg => seg.trim())
+    const pluginName = segments[0]
+    const Plugin = pluginManager.pluginsMap[pluginName]
+    if (!Plugin) return ''
+    const plugin = new Plugin()
+    return plugin.exec(segments[1], segments.slice(2).join(' '))
   }
 }

@@ -1,22 +1,24 @@
 somarl.com:
   Page:
-    frontend:
-      [x] page frame
-      [ ] terminal
-        compeleted except shortcuts
-      [x] font manage
-      [ ] font colors manage
-      [ ] dynamic background
-        testing with a fake one currently
-      [ ] code splitting
-    [ ] api frame
-    [ ] server frame
-      GraphQL
-      [ ] GRpc
+    [x] page frame
+    [ ] terminal
+      compeleted except shortcuts
+    [x] font manage
+    [ ] font colors manage
+    [ ] dynamic background
+      testing with a fake one currently
+    [ ] code splitting
+    [ ] context
+    [x] api frame
     [ ] admin auth
     PWA:
       [ ] service worker
       [ ] local history
+
+  Server:
+    [ ] server frame
+    [ ] GraphQL
+    X  GRpc
 
   Terminal:
     [x] basic UI
@@ -26,10 +28,10 @@ somarl.com:
     [ ] parser
     [ ] runner
 
-  Functions:
+  Plugins:
     [ ] blog
     [ ] RSS
-    [ ] weather
+    Weather:
       [x] styles
       [ ] page level mood
       [ ] icons
@@ -42,6 +44,7 @@ somarl.com:
         [ ] display the message "Powered by Dark Sky" links to https://darksky.net/poweredby/
         [x] add dotenv
     [ ] SSH @low
+
   Dev:
     [ ] nginx dev proxy
       [x] page api requests doesn't need this anymore with the help of dotenv
