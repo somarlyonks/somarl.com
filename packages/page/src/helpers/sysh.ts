@@ -8,9 +8,17 @@
  */
 
 import pluginManager from '../plugins/draft'
+import BlogPlugin from '../plugins/blog'
+import WeatherPlugin from '../plugins/weather'
+import RSSPlugin from '../plugins/rss'
+import PluginPlugin from 'src/plugins/plugin'
 
 
-// TODO: register plugins here
+pluginManager.register('plugin', new PluginPlugin(pluginManager))
+pluginManager.alias('plugin', 'spm')
+pluginManager.register('blog', new BlogPlugin())
+pluginManager.register('rss', new RSSPlugin())
+pluginManager.register('weather', new WeatherPlugin())
 
 
 type StdIn = string

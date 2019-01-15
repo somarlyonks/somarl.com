@@ -9,16 +9,21 @@
 import { PluginManager, Plugin, PluginAction, PluginActionOption } from './draft'
 
 
+/**
+ * the proxy plugin of pluginManager
+ */
 export default class PluginPlugin extends Plugin {
-  public constructor (pluginManager?: PluginManager) {
-    super('plugin', 'The basic plugin manager', pluginManager)
+  public constructor (
+    public manager: PluginManager
+  ) {
+    super('plugin', 'The basic plugin manager')
     this.register(new PluginActionShow(this))
   }
 }
 
 
 class PluginActionShow extends PluginAction {
-  public constructor (plugin: Plugin) {
+  public constructor (plugin: PluginPlugin) {
     super(
       plugin,
       'show',
@@ -32,7 +37,7 @@ class PluginActionShow extends PluginAction {
     let ret = ''
     for (const option of options) {
       if (option.name === '--name') {
-        const plugin = this.plugin.manager.getPlugin(option.value)
+        const plugin = (this.plugin as PluginPlugin).manager.getPlugin(option.value)
         ret = plugin ? plugin.toString() : ''
       }
     }

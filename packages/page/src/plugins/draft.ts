@@ -55,8 +55,7 @@ export default pluginManager
 export class Plugin extends AliasAbastract<PluginAction> {
   public constructor (
     public name: S,
-    public description: S,
-    public manager: PluginManager = pluginManager
+    public description: S
   ) {
     super()
     // this.register('help', '', undefined, '-h')
