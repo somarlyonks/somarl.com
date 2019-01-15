@@ -6,51 +6,42 @@
  *   plugin show --name plugin
  */
 
-import Constructor from '../helpers/constructor'
-import { Plugin, PluginAction, PluginActionOption } from './draft'
+import { PluginManager, Plugin, PluginAction, PluginActionOption } from './draft'
 
 
-export default class PluginManager extends Plugin {
-  public pluginsMap: { [key: string]: Constructor<Plugin> } = {}
-
-  public constructor () {
+/**
+ * the proxy plugin of pluginManager
+ */
+export default class PluginPlugin extends Plugin {
+  public constructor (
+    public manager: PluginManager
+  ) {
     super('plugin', 'The basic plugin manager')
-    // register plugins
-    this.registerPlugin('plugin', PluginManager)
-    // register actions
-    this.register(new PluginShow())
-  }
-
-  public registerPlugin (name: S, impl: A) {
-    this.pluginsMap[name] = impl
-  }
-
-  public help () {
-    return 'The basic plugin manager'
-  }
-
-  public show (options: L<PluginActionOption>) {
-    let ret = ''
-    for (const option of options) {
-      if (option.name === '--name') {
-        const plugin = this.pluginsMap[option.value]
-        ret = plugin ? plugin.toString() : ''
-      }
-    }
-
-    console.info(ret) // TODELETE
-
-    return ret
+    this.register(new PluginActionShow(this))
   }
 }
 
 
-class PluginShow extends PluginAction {
-  public constructor () {
+class PluginActionShow extends PluginAction {
+  public constructor (plugin: PluginPlugin) {
     super(
+      plugin,
       'show',
       'show the source code of a plugin(compiled)'
     )
-    this.register('--name', 'the name of plugin', 'plugin', '-n')
+    this.register('--name', 'the name of plugin', 'plugin')
+    this.alias('--name', '-n')
+  }
+
+  public exec (options: L<PluginActionOption>) {
+    let ret = ''
+    for (const option of options) {
+      if (option.name === '--name') {
+        const plugin = (this.plugin as PluginPlugin).manager.getPlugin(option.value)
+        ret = plugin ? plugin.toString() : ''
+      }
+    }
+
+    return ret
   }
 }

@@ -2,61 +2,96 @@
  * @file draft and specs for plugins
  */
 
-export class Plugin {
-  private actions: L<PluginAction> = []
+class AliasAbastract <T> {
+  public sourceMap: { [key: string]: T } = {}
+  public aliasMap: { [key: string]: S } = {}
 
+  public constructor () {}
+
+  public alias (sourceName: S, aliasName: S) {
+    this.aliasMap[aliasName] = sourceName
+  }
+
+  public getSource (name: S) {
+    if (this.sourceMap[name]) return this.sourceMap[name]
+
+    const aliased = this.aliasMap[name]
+    if (this.sourceMap[aliased]) return this.sourceMap[aliased]
+
+    this.onError('Source not found')
+    return undefined
+  }
+
+  public onError (message: S = 'Not specified') {
+    throw Error(message)
+  }
+}
+
+
+export class PluginManager extends AliasAbastract<Plugin> {
+  public constructor () {
+    super()
+  }
+
+  public register (name: S, plugin: Plugin) {
+    this.sourceMap[name] = plugin
+  }
+
+  public getPlugin (name: S) {
+    return this.getSource(name)
+  }
+
+  public onError (message: S = 'not specified') {
+    throw new Error(`[Plugin Error]: pluginManager, ${message}.`)
+  }
+}
+
+
+const pluginManager = new PluginManager()
+
+export default pluginManager
+
+
+export class Plugin extends AliasAbastract<PluginAction> {
   public constructor (
     public name: S,
     public description: S
   ) {
-    this.register('help', '', undefined, '-h')
-  }
-
-  public register (plugin: PluginAction): void
-  public register (name: S, description?: S, options?: L<PluginAction>, alias?: S): void
-  public register (
-    nameOrPlugin: S | PluginAction,
-    description?: S,
-    options?: L<PluginActionOption>,
-    alias?: S
-  ) {
-    if (typeof nameOrPlugin === 'string') {
-      this.actions.push(new PluginAction(nameOrPlugin, description, options, alias))
-    } else {
-      this.actions.push(nameOrPlugin)
-    }
-  }
-
-  public exec (actionName: S, options?: S) {
-    const action = this.actions.find(act => act.name === actionName || act.alias === actionName)
-    this.assert(action, `action ${actionName} not registered`)
-
-    return this[actionName](this.parseOptions(action!, options))
+    super()
+    // this.register('help', '', undefined, '-h')
   }
 
   /**
-   * the implemention of plugins should specify the way to parse options
+   * register an action by action or constructor
+   * registering an registered action will be rejected
+   * but registering an new action with the same name of an alias will just override
+   * the alias when searching the action by that name
+   *
+   * @todo add hooks like onRegister
    */
-  public parseOptions (action: PluginAction, optionIn?: S): L<PluginActionOption> | void {
-    if (optionIn === undefined) return optionIn
+  public register (action: PluginAction): void
+  public register (name: S, description?: S, options?: L<PluginActionOption>): void
+  public register (
+    nameOrAction: S | PluginAction,
+    description?: S,
+    options?: L<PluginActionOption>
+  ) {
+    const action = typeof nameOrAction === 'string'
+      ? new PluginAction(this, nameOrAction, description, options)
+      : nameOrAction
 
-    const segments = optionIn.trim().split(' ')
-    this.assert(segments.length % 2 === 0, 'options error')
+    this.sourceMap[action.name] = action
+  }
 
-    const groups: L<PluginActionOption> = []
-    for (let i = 0; i < segments.length; ) {
-      const option = new PluginActionOption(segments[i++])
-      option.value = segments[i++]
-      groups.push(option)
-    }
+  public getAction (name: S) {
+    return this.getSource(name)
+  }
 
-    const options = [...action.options]
-    options.forEach(option => {
-      const found = groups.find(group => group.name === option.name || group.name === option.alias)
-      option.value = found ? found.value : option.defaultValue
-    })
+  public exec (actionName: S, options?: S) {
+    const action = this.getAction(actionName)
+    if (!action) return this.onError(`action ${actionName} not found`)
 
-    return options
+    return action.exec(action.parse(options))
   }
 
   public assert (maybe: A, message?: S) {
@@ -65,34 +100,65 @@ export class Plugin {
 
   public onError (message: S = 'not specified') {
     throw new Error(`[Plugin Error]: ${this.name}, ${message}.`)
-  }
-
-  public help () {
-    this.onError('help not implmented')
+    return '' // keep this
   }
 }
 
 
-export class PluginAction {
+export class PluginAction extends AliasAbastract<PluginActionOption> {
   public constructor (
+    public plugin: Plugin,
     public name: S,
     public description: S = 'plugin action',
-    public options: L<PluginActionOption> = [],
-    public alias?: S
-  ) {}
+    options: L<PluginActionOption> = []
+  ) {
+    super()
+    options.forEach(option => this.register(option))
+  }
 
-  public register (name: S, description: S, defaultValue: A, alias?: S) {
-    this.options.push(new PluginActionOption(name, description, defaultValue, alias))
+  public register (option: PluginActionOption): void
+  public register (name: S, description: S, defaultValue: A): void
+  public register (nameOrOption: S | PluginActionOption, description?: S, defaultValue?: A) {
+    const option = typeof nameOrOption === 'string'
+      ? new PluginActionOption(nameOrOption, description, defaultValue)
+      : nameOrOption
+    this.sourceMap[option.name] = option
+  }
+
+  public exec (options?: L<PluginActionOption>): S {
+    this.plugin.onError(`action ${this.name} not implemented`)
+    return ''
+  }
+
+  // TODO: more flexible option params
+  public parse (optionIn: S = '') {
+    const segments = optionIn.trim().split(' ').filter(seg => seg !== '')
+    this.plugin.assert(segments.length % 2 === 0, `action ${this.name} options error`)
+
+    const groups: L<PluginActionOption> = []
+    for (let i = 0; i < segments.length; ) {
+      const option = new PluginActionOption(segments[i++])
+      option.value = segments[i++]
+      groups.push(option)
+    }
+
+    const options = Object.values(this.sourceMap)
+    options.forEach(option => {
+      const found = groups.find(group => group.name === option.name || this.aliasMap[group.name] === option.name)
+      option.value = found ? found.value : option.defaultValue
+    })
+
+    return options
   }
 }
 
 
 export class PluginActionOption <T = A> {
   public value?: T
+
   public constructor (
     public name: S,
     public description?: S,
-    public defaultValue?: T,
-    public alias ?: S
+    public defaultValue?: T
   ) {}
 }

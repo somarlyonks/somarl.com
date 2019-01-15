@@ -10,8 +10,6 @@ interface IPanelLeftStates {
 }
 
 
-const partialLog = (prefix: string) => (v: string) => console.info(prefix, v)
-
 export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   public readonly state: IPanelLeftStates = {
     inputted: false,
@@ -35,12 +33,10 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   }
 
   private readonly parseInput = (input: string) => {
-    partialLog('change')(input)
     return Sysh.parse(input)
   }
 
   private readonly execCommand = (input: string) => {
-    partialLog('emit')(input)
     return Sysh.exec(input)
   }
 
