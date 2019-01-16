@@ -53,7 +53,7 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
         />
 
         <aside className={'flex-grow terminal-out ' + (this.state.inputted ? '' : 'terminal-hint')}>
-          <span>{this.state.output}</span>
+          <span className="terminal-out__content pre-wrap font-mono">{this.state.output}</span>
         </aside>
       </section>
     )

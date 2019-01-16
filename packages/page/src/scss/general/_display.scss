@@ -29,3 +29,12 @@
   content: "\A";
   white-space: pre;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
