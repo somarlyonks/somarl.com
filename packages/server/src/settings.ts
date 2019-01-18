@@ -13,6 +13,7 @@ const SERVER_HOST = 'dev.local'
 const SERVER_PROTOCOL = 'http' // TODO: SSL and http/2
 const JWT_SECRET_DEV = 'TBLq4!4.2m'
 const MONGO_PORT_DEFAULT = 27017
+const BINKS_DIR = '/home/sy/Dropbox/bing/persistent'
 
 
 class S {
@@ -34,6 +35,7 @@ class S {
   }
 
   public static DARKSKY_SECRETKEY = process.env.DARKSKY_SECRETKEY || ''
+  public static BINKS_DIR = process.env.BINKS_DIR || BINKS_DIR
 }
 
 

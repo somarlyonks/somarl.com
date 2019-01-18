@@ -1,5 +1,6 @@
 import Router from 'koa-router'
 import { jwtIssue } from '../helpers/auth'
+import registerBingRouter from '../api/binks'
 import registerWeatherRouter from '../api/weather'
 
 
@@ -35,5 +36,6 @@ export default function registerOpenRoutes (router: Router) {
 
   registerAuthRoutes(router)
 
+  registerBingRouter(router)
   registerWeatherRouter(router)
 }
