@@ -5,8 +5,7 @@
 
 body {
   // TODO: dynamic background
-  // background: url('../bg.jpg') no-repeat center center fixed;
-  background-image: url('../bg.jpg');
+  background-image: url($REACT_APP_API_SERVER);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

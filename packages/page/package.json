@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start-js": "node scripts/start.js",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "NODE_ENV=development npm-run-all -p watch-css start-js",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build-css build-js",
-    "build-css": "node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css",
+    "build-css": "node scripts/build-css.js",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css --watch --recursive",
     "test": "node scripts/test.js",
     "ci": "node scripts/test.js --ci --coverage"
