@@ -1,5 +1,4 @@
 # sass
 src/**/*.css
-src/**/_env.scss
 
 build/*
