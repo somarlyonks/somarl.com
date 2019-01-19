@@ -161,6 +161,10 @@ export default class ComponentA extends React.Component<IComponentAProps, {}> {
 }
 ```
 
+### log level
+
+Every error could be handled should be a warning. Log as error if you are not sure about the cause and don't know how to prevent it. Other things are all infomations.
+
 ## SCSS
 
 ### filename

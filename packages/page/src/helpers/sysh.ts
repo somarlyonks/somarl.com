@@ -19,6 +19,7 @@ pluginManager.alias('plugin', 'spm')
 pluginManager.register('blog', new BlogPlugin())
 pluginManager.register('rss', new RSSPlugin())
 pluginManager.register('weather', new WeatherPlugin())
+window.SPM = pluginManager
 
 
 type StdIn = string
@@ -38,20 +39,31 @@ export default class SyshParser {
     const segments = command.split(' ').map(seg => seg.trim())
     if (!segments[0]) return this.syshWelcome
 
-    const pluginNames = Object.keys(pluginManager.sourceMap)
+    const pluginNames = pluginManager.getPluginNames()
       .filter(pluginName => pluginName.startsWith(segments[0]))
       .slice(0, this.configs.hintLines)
 
+    // no optional plugins found
     if (!pluginNames.length) return this.syshWelcome
-    // if (pluginNames.length === 1)
+    // only one plugin matches, print the help info
+    if (pluginNames.length === 1) {
+      const help = this.exec(`${pluginNames[0]} help`)
+      return help.startsWith('[Plugin Error]') ? this.syshWelcome : help
+    }
+    // list the optional plugins
     return pluginNames.join('\n')
   }
 
   public static exec (command: string, stdIn?: StdIn): StdOut {
     const segments = command.split(' ').map(seg => seg.trim())
     const pluginName = segments[0]
-    const plugin = pluginManager.getPlugin(pluginName)
-    if (!plugin) return ''
-    return plugin.exec(segments[1], segments.slice(2).join(' '))
+
+    try {
+      const plugin = pluginManager.getPlugin(pluginName)
+      return plugin!.exec(segments[1], segments.slice(2).join(' '))
+    } catch (err) {
+      console.warn(err.message)
+      return err.message
+    }
   }
 }

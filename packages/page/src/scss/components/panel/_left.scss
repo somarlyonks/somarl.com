@@ -24,6 +24,15 @@
   overflow: hidden;
 }
 
+.terminal-out__content {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.terminal-out__content::-webkit-scrollbar {
+  width: 0
+}
+
 .terminal-hint {
   margin-bottom: 200px;
 }

@@ -6,7 +6,7 @@
   overflow: hidden;
   color: white;
   transition: height;
-  background-image: url('../bg.jpg');
+  background-image: url($REACT_APP_API_SERVER + "/binks");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

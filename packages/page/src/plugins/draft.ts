@@ -6,7 +6,11 @@ class AliasAbastract <T> {
   public sourceMap: { [key: string]: T } = {}
   public aliasMap: { [key: string]: S } = {}
 
-  public constructor () {}
+  public constructor (
+    public sourceType: S
+  ) {}
+
+  // public register (name: S, source: T) {}
 
   public alias (sourceName: S, aliasName: S) {
     this.aliasMap[aliasName] = sourceName
@@ -18,7 +22,7 @@ class AliasAbastract <T> {
     const aliased = this.aliasMap[name]
     if (this.sourceMap[aliased]) return this.sourceMap[aliased]
 
-    this.onError('Source not found')
+    this.onError(`${this.sourceType} "${name}" not found`)
     return undefined
   }
 
@@ -30,7 +34,7 @@ class AliasAbastract <T> {
 
 export class PluginManager extends AliasAbastract<Plugin> {
   public constructor () {
-    super()
+    super('plugin')
   }
 
   public register (name: S, plugin: Plugin) {
@@ -39,6 +43,10 @@ export class PluginManager extends AliasAbastract<Plugin> {
 
   public getPlugin (name: S) {
     return this.getSource(name)
+  }
+
+  public getPluginNames () {
+    return Object.keys(this.sourceMap)
   }
 
   public onError (message: S = 'not specified') {
@@ -57,7 +65,7 @@ export class Plugin extends AliasAbastract<PluginAction> {
     public name: S,
     public description: S
   ) {
-    super()
+    super('action')
     // this.register('help', '', undefined, '-h')
   }
 
@@ -99,8 +107,14 @@ export class Plugin extends AliasAbastract<PluginAction> {
   }
 
   public onError (message: S = 'not specified') {
-    throw new Error(`[Plugin Error]: ${this.name}, ${message}.`)
+    throw new Error(`[Plugin Error]: ${this.name} - ${message}.`)
     return '' // keep this
+  }
+
+  public getActionsDescriptions () {
+    return Object.values(this.sourceMap)
+      .map(plugin => `  ${plugin.name}    ${plugin.description}`)
+      .join('\n') || 'None'
   }
 }
 
@@ -112,13 +126,13 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
     public description: S = 'plugin action',
     options: L<PluginActionOption> = []
   ) {
-    super()
+    super('option')
     options.forEach(option => this.register(option))
   }
 
   public register (option: PluginActionOption): void
-  public register (name: S, description: S, defaultValue: A): void
-  public register (nameOrOption: S | PluginActionOption, description?: S, defaultValue?: A) {
+  public register (name: S, description: S, defaultValue?: S): void
+  public register (nameOrOption: S | PluginActionOption, description?: S, defaultValue: S = '') {
     const option = typeof nameOrOption === 'string'
       ? new PluginActionOption(nameOrOption, description, defaultValue)
       : nameOrOption
@@ -149,6 +163,18 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
     })
 
     return options
+  }
+
+  public getOptions () {
+    return Object.values(this.sourceMap)
+  }
+
+  public getActionOptionsDescriptions () {
+    // TODO: standardlize spaces
+    // TODO: alias detecting
+    return this.getOptions()
+      .map(option => `  ${option.name}    ${option.description}`)
+      .join('\n') || 'None'
   }
 }
 

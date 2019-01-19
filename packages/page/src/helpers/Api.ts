@@ -48,6 +48,8 @@ export const getWeather = async (excludes = ['flags']) =>
   fetchServerJson(`weather/?exclude=${excludes.join(',')}`) as Promise<ApiResponse<IWeatherResponse>>
 
 
+export const getBinks = () => `process.env.REACT_APP_API_SERVER/binks`
+
 const Api = {
   public: {
     getIpGeo,
@@ -55,6 +57,7 @@ const Api = {
   },
   server: {
     getWeather,
+    getBinks,
   },
 }
 
