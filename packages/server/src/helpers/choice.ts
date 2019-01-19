@@ -12,7 +12,7 @@ export default function choice (
   return function impl <T> (
     options: L<T>,
     /**
-     * like the callback function in Array.prototype.filter
+     * Predicate like the callback function in Array.prototype.filter
      */
     accept: (option: T) => boolean = (option: T) => true,
     count: N = 0

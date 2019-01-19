@@ -13,17 +13,16 @@ const readFile = promisify(fs.readFile)
 /**
  * @helper https://darksky.net/dev/docs
  * @TODO
- *     save ipGeo to server, read geoInfo from server is preferred
- *       consider that there will be not many users except me
+ *     The singled binks srv directory instead of the passive synced
+ *     Dropbox working directory.
+ *     Read meta info from COPYRIGHTS.json
  */
 export default function registerBingRoutes (router: Router) {
   router.get('/binks', async ctx => {
     const binksDir = path.resolve(SETTINGS.BINKS_DIR)
 
-    const randomFile = choice(5)
-
     const imgs = await readdir(binksDir)
-    const img = await readFile(path.resolve(binksDir, randomFile(imgs)))
+    const img = await readFile(path.resolve(binksDir, choice(5)(imgs)))
 
     ctx.type = 'image/jpg'
     ctx.body = img
