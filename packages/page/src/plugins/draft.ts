@@ -2,6 +2,8 @@
  * @file draft and specs for plugins
  */
 
+import { revertObject, format } from '../helpers/transformers'
+
 class AliasAbastract <T> {
   public sourceMap: { [key: string]: T } = {}
   public aliasMap: { [key: string]: S } = {}
@@ -9,8 +11,6 @@ class AliasAbastract <T> {
   public constructor (
     public sourceType: S
   ) {}
-
-  // public register (name: S, source: T) {}
 
   public alias (sourceName: S, aliasName: S) {
     this.aliasMap[aliasName] = sourceName
@@ -112,8 +112,9 @@ export class Plugin extends AliasAbastract<PluginAction> {
   }
 
   public getActionsDescriptions () {
+    const segmentWidth = 12
     return Object.values(this.sourceMap)
-      .map(plugin => `  ${plugin.name}    ${plugin.description}`)
+      .map(plugin => `  ${format(plugin.name, segmentWidth)}${plugin.description}`)
       .join('\n') || 'None'
   }
 }
@@ -146,7 +147,7 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
 
   // TODO: more flexible option params
   public parse (optionIn: S = '') {
-    const segments = optionIn.trim().split(' ').filter(seg => seg !== '')
+    const segments = optionIn.trim().split(' ').filter(Boolean)
     this.plugin.assert(segments.length % 2 === 0, `action ${this.name} options error`)
 
     const groups: L<PluginActionOption> = []
@@ -156,7 +157,7 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
       groups.push(option)
     }
 
-    const options = Object.values(this.sourceMap)
+    const options = this.getOptions()
     options.forEach(option => {
       const found = groups.find(group => group.name === option.name || this.aliasMap[group.name] === option.name)
       option.value = found ? found.value : option.defaultValue
@@ -170,11 +171,17 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
   }
 
   public getActionOptionsDescriptions () {
-    // TODO: standardlize spaces
-    // TODO: alias detecting
-    return this.getOptions()
-      .map(option => `  ${option.name}    ${option.description}`)
-      .join('\n') || 'None'
+    const options = this.getOptions()
+    const reflectAlias = revertObject(this.aliasMap)
+    let ret = ''
+    options.forEach(option => {
+      const segmentWidth = 12
+      ret += `  ${format(option.name, segmentWidth)}${option.description}\n`
+      ret += (reflectAlias[option.name] || []).map(alias => `  ${alias}\n`).join('')
+      ret += '\n'
+    })
+
+    return ret
   }
 }
 
