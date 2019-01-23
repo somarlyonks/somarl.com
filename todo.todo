@@ -8,7 +8,7 @@ somarl.com:
     [ ] dynamic background
       testing with a fake one currently
     [ ] code splitting
-    [ ] context
+    [x] context
     [x] api frame
     [ ] admin auth
     PWA:
@@ -41,7 +41,7 @@ somarl.com:
          [x] api response schema
          X small animation fix: rain/snow/star @delayed it looks fine
       [ ] Api
-        [ ] display the message "Powered by Dark Sky" links to https://darksky.net/poweredby/
+        [x] display the message "Powered by Dark Sky" links to https://darksky.net/poweredby/
         [x] add dotenv
     [ ] SSH @low
 

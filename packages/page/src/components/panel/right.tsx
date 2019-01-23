@@ -5,7 +5,7 @@ import * as React from 'react'
 export default class PanelRight extends React.Component<{}, {}> {
   public render () {
     return (
-      <section className="col-md panel-right font-read fluent-arcylic">
+      <section className="col-md panel-right font-read fluent-arcylic panel-right_hidden">
         <article className="panel-right__content">
           <h1>Lorem Ipsum</h1>
           <h4>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</h4>

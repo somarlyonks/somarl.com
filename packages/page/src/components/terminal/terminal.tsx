@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Context, { IContext } from '../../context'
 
 
 export interface ITerminalInputProps {
@@ -39,15 +40,20 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     fakeContrastText: '',
   }
 
-  private readonly onFocus = () => {
+  private readonly onFocus = (contextSetter: IContext['setTerminalState']) => (event: React.FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus()
     }
 
     this.setState({ supportDisplay: true })
+    contextSetter('focus')
   }
 
-  private readonly onBlur = () => this.setState({ supportDisplay: false })
+
+  private readonly onBlur = (contextSetter: IContext['setTerminalState']) => (event: React.FocusEvent<HTMLInputElement>) => {
+    this.setState({ supportDisplay: false })
+    contextSetter('blur')
+  }
 
   /** @setState */
   private readonly jumpTo = (
@@ -65,7 +71,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     const fakeContrastText = prefix + (text[position!] || ' ')
     const isFireOnChangeNeeded = this.props.onChange ? text !== this.state.text : true
 
-    // FIXME: the timing of callbacks and the setState
+    // TESTME: the timing of callbacks and the setState
 
     this.setState({ text, caretText, fakeContrastText })
 
@@ -81,12 +87,13 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
   }
 
   // TODO: shortcut key bindings
-  private readonly onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  private readonly onKeyUp = (contextSetter: IContext['setTerminalState']) => (event: React.KeyboardEvent<HTMLInputElement>) => {
     this.jumpTo(event)
     const target = event.target as HTMLInputElement
 
     if (event.key === 'Enter') {
       target.blur()
+      contextSetter('output')
       if (this.props.onEmit) {
         this.props.onEmit(target.value)
       }
@@ -99,33 +106,37 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
    */
   public componentDidMount () {
     // this.onFocus() // autoFocus
-    this.setState({supportDisplay: true})
+    // this.setState({supportDisplay: true})
   }
 
   public render () {
     return (
-      <div className="terminal-input">
-        <input
-          type="text"
-          className="terminal-input__input"
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onChange={this.onChange}
-          onKeyUp={this.onKeyUp}
-          onMouseUp={this.jumpTo}
-          autoFocus={true}
-        />
-        <SupportInput
-          className="terminal-input__support"
-          supportText={this.state.caretText}
-          display={this.state.supportDisplay}
-        />
-        <SupportInput
-          className="terminal-input__support terminal-input__support_contrast"
-          supportText={this.state.fakeContrastText}
-          display={this.state.supportDisplay}
-        />
-      </div>
+      <Context.Consumer>
+        {({setTerminalState}) => (
+          <div className="terminal-input">
+            <input
+              type="text"
+              className="terminal-input__input"
+              onFocus={this.onFocus(setTerminalState)}
+              onBlur={this.onBlur(setTerminalState)}
+              onChange={this.onChange}
+              onKeyUp={this.onKeyUp(setTerminalState)}
+              onMouseUp={this.jumpTo}
+              // autoFocus={true}
+            />
+            <SupportInput
+              className="terminal-input__support"
+              supportText={this.state.caretText}
+              display={this.state.supportDisplay}
+            />
+            <SupportInput
+              className="terminal-input__support terminal-input__support_contrast"
+              supportText={this.state.fakeContrastText}
+              display={this.state.supportDisplay}
+            />
+          </div>
+        )}
+      </Context.Consumer>
     )
   }
 }
