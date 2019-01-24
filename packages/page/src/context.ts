@@ -1,7 +1,13 @@
 import * as React from 'react'
 
 
-export type GTermianlState = 'focus' | 'blur' | 'output'
+export type GTermianlState =
+  // show terminal output when focus
+  'focus' |
+  // hide terminal output when blur
+  'blur' |
+  // show output article panel when output
+  'output'
 
 export interface IContext {
   terminalState: GTermianlState

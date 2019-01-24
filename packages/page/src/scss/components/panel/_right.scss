@@ -5,7 +5,7 @@
   margin-top: 50px;
   overflow: hidden;
   color: white;
-  transition: height;
+  transition: height $terminalTransitionTime ease-out;
   background-image: url($REACT_APP_API_SERVER + "/binks");
   background-repeat: no-repeat;
   background-attachment: fixed;
