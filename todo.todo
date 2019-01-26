@@ -6,7 +6,7 @@ somarl.com:
     [x] font manage
     [ ] font colors manage
     [ ] dynamic background
-      testing with a fake one currently
+      [x] binks apis
     [ ] code splitting
     [x] context
     [x] api frame

@@ -39,10 +39,10 @@ export async function fetchServerJson (endpoint: string, body?: S): Promise<ApiR
   const init: RequestInit = {
     method: 'GET',
     mode: 'cors',
-    // headers: {
-    //   'Content-Type': 'application/json',
-    //   'Accept': 'application/json',
-    // },
+    headers: {
+      // 'Content-Type': 'application/json',
+      Accept: 'application/json, image/*',
+    },
   }
   if (body) {
     init.body = body
