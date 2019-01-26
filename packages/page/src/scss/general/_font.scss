@@ -1,17 +1,21 @@
 .font-sans {
   font-family: 'Metropolis', 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-display: swap;
 }
 
 .font-serif {
-  font-family: 'EB Garamond', Georgia, 'Times New Roman', Times, serif
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', Times, serif;
+  font-display: swap;
 }
 
 .font-mono {
   font-family: 'CamingoCode', monospace, sans-serif;
+  font-display: block;
 }
 
 .font-read {
   font-family: 'DejaVu Sans Book', Arial, Helvetica, sans-serif;
+  font-display: swap;
 }
 
 .rem-half {
