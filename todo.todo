@@ -11,6 +11,7 @@ somarl.com:
     [x] context
     [x] api frame
     [ ] admin auth
+    [ ] footer
     PWA:
       [ ] service worker
       [ ] local history

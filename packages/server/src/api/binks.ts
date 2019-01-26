@@ -5,21 +5,22 @@ import Router from 'koa-router'
 import { SETTINGS } from '../settings'
 import getDayOfYear from '../helpers/getday'
 import sortdir from '../helpers/sortdir'
+import { IBinksRecord } from '../helpers/Adapter'
 
 
 const readFile = promisify(fs.readFile)
 
 const binksDir = path.resolve(SETTINGS.BINKS_DIR)
 // tslint:disable-next-line:no-var-requires
-const meta: [{copyright: string, image: string}] = require(path.join(binksDir, '..', 'buffer/COPYRIGHTS.json'))
+const meta: IBinksRecord[] = require(path.join(binksDir, '..', 'buffer/COPYRIGHTS.json'))
 
 
 /**
- * @desciption respond different images everyday
+ * @desciption response different images everyday
  * @todo move sortdir to daily task
  */
 export default function registerBingRoutes (router: Router) {
-  router.get('/binks', async ctx => {
+  router.get('/binks.jpg', async ctx => {
     const imgs = await sortdir(binksDir)
     const img = await readFile(path.join(binksDir, imgs[getDayOfYear() % imgs.length]))
 
@@ -27,7 +28,7 @@ export default function registerBingRoutes (router: Router) {
     ctx.body = img
   })
 
-  router.get('/binksinfo', async ctx => {
+  router.get('/binks', async ctx => {
     const imgs = await sortdir(binksDir)
     const img = imgs[getDayOfYear() % imgs.length].split('.')[0]
 
