@@ -20,12 +20,10 @@ const publicPath = '/'
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
 const publicUrl = ''
-// Get environment variables to inject into our app.
+
 const env = getClientEnvironment(publicUrl)
 
-// This is the development configuration.
-// It is focused on developer experience and fast rebuilds.
-// The production configuration is different and lives in a separate file.
+// This is the development configuration focused on developer experience and fast rebuilds.
 module.exports = {
   mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
@@ -35,7 +33,6 @@ module.exports = {
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
   entry: [
-    // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Include an alternative client for WebpackDevServer. A client's job is to
     // connect to WebpackDevServer by a socket and get notified about changes.
@@ -48,11 +45,10 @@ module.exports = {
     // require.resolve('webpack-dev-server/client') + '?/',
     // require.resolve('webpack/hot/dev-server'),
     require.resolve('react-dev-utils/webpackHotDevClient'),
-    // Finally, this is your app's code:
-    paths.appIndexJs,
     // We include the app code last so that if there is a runtime error during
     // initialization, it doesn't blow up the WebpackDevServer client, and
     // changing JS code would still trigger a refresh.
+    paths.appIndexJs,
   ],
   output: {
     // Add /* filename */ comments to generated require()s in the output.
@@ -97,8 +93,6 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-
-      // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
     },
@@ -251,9 +245,6 @@ module.exports = {
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebookincubator/create-react-app/issues/186
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-    // Moment.js is an extremely popular library that bundles large locale files
-    // by default due to how Webpack interprets its code. This is a practical
-    // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
@@ -274,9 +265,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
-  // Turn off performance hints during development because we don't do any
-  // splitting or minification in interest of speed. These warnings become
-  // cumbersome.
+  // Turn off performance hints during development because of speed.
   performance: {
     hints: false,
   },

@@ -3,7 +3,7 @@
  */
 
 import { fetchPublicJson, fetchServerJson, ApiResponse } from './fetch'
-import { IWeatherResponse } from './Adapter'
+import { IWeatherResponse, IBinksRecord } from './Adapter'
 
 
 type PublicApi<R> = F0<Promise<R>>
@@ -48,7 +48,7 @@ export const getWeather = async (excludes = ['flags']) =>
   fetchServerJson(`weather/?exclude=${excludes.join(',')}`) as Promise<ApiResponse<IWeatherResponse>>
 
 
-export const getBinks = () => `process.env.REACT_APP_API_SERVER/binks`
+export const getBinks = async () => fetchServerJson('binks') as Promise<ApiResponse<IBinksRecord>>
 
 const Api = {
   public: {
@@ -60,5 +60,7 @@ const Api = {
     getBinks,
   },
 }
+
+window.Api = Api
 
 export default Api

@@ -2,7 +2,7 @@
 @import '../../helpers/variables';
 
 .sun:before {
-  @include absoluteCTL(50%, 50%);
+  @include absoluteCTL(48%, 50%);
   width: 40%;
   height: 40%;
   transform: translate(-50%, -50%);
@@ -15,7 +15,7 @@
 }
 
 .sun:after {
-  @include absoluteCTL(50%, 50%);
+  @include absoluteCTL(48%, 50%);
   height: 80%;
   width: 80%;
   transform: translate(-50%, -50%) rotate(30deg);

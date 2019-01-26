@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Terminal from '../terminal/terminal'
 import Sysh from '../../helpers/sysh'
+import Context from '../../context'
 
 
 interface IPanelLeftStates {
-  inputted: boolean
   inputText: string
   output: string
 }
@@ -12,13 +12,8 @@ interface IPanelLeftStates {
 
 export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   public readonly state: IPanelLeftStates = {
-    inputted: false,
     inputText: '',
     output: 'Input things like: blogs --page=2',
-  }
-
-  private readonly handleInputting = () => {
-    this.setState({ inputted: false })
   }
 
   private readonly handleInputChange = (input: string) => {
@@ -27,7 +22,6 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   }
 
   private readonly handleInputted = (input: string) => {
-    this.setState({ inputted: true })
     const output = this.execCommand(input)
     this.setState({ output })
   }
@@ -43,19 +37,22 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
 
   public render () {
     return (
-      <section className="col-md flex-verticle panel-left">
-        <div className={'terminal-hang' + (this.state.inputted ? ' terminal-hang_hidden' : '')}/>
+      <Context.Consumer>
+        {({ terminalState }) => (
+          <section className={`col-md flex-verticle panel-left panel-left_${terminalState}`}>
+            <div className="terminal-hang" />
 
-        <Terminal
-          onFocus={this.handleInputting}
-          onChange={this.handleInputChange}
-          onEmit={this.handleInputted}
-        />
+            <Terminal
+              onChange={this.handleInputChange}
+              onEmit={this.handleInputted}
+            />
 
-        <aside className={'flex-grow terminal-out ' + (this.state.inputted ? '' : 'terminal-hint')}>
-          <span className="terminal-out__content pre-wrap font-mono">{this.state.output}</span>
-        </aside>
-      </section>
+            <aside className="flex-grow terminal-out">
+              <div className="terminal-out__content pre-wrap font-mono">{this.state.output}</div>
+            </aside>
+          </section>
+        )}
+      </Context.Consumer>
     )
   }
 }

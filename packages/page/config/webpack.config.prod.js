@@ -50,9 +50,7 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
   { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {}
 
-// This is the production configuration.
-// It compiles slowly and is focused on producing a fast and minimal bundle.
-// The development configuration is different and lives in a separate file.
+// This is the production configuration focused on producing a fast and minimal bundle.
 module.exports = {
   mode: 'production',
   // Don't attempt to continue if there are any errors.
@@ -106,8 +104,6 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-
-      // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
     },
@@ -172,11 +168,7 @@ module.exports = {
               },
             ],
           },
-          // The notation here is somewhat confusing.
-          // "postcss" loader applies autoprefixer to our CSS.
-          // "css" loader resolves paths in CSS and adds assets as dependencies.
-          // "style" loader normally turns CSS into JS modules injecting <style>,
-          // but unlike in development configuration, we do something different.
+          // Unlike in development configuration, we do something different.
           // `ExtractTextPlugin` first applies the "postcss" and "css" loaders
           // (second argument), then grabs the result CSS and puts it into a
           // separate file in our build process. This way we actually ship

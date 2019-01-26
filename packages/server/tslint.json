@@ -1,5 +1,5 @@
 {
-  "extends": "../../tslint.commmon.json",
+  "extends": "../../tslint.json",
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
@@ -7,6 +7,6 @@
     ]
   },
   "rules": {
-    "no-console": false,
+    "no-console": false
   }
 }

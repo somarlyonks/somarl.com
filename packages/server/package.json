@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@somarl.com/pipe": "0.1.0",
     "chalk": "^2.4.1",
     "dotenv": "^6.2.0",
     "if-env": "^1.0.4",
