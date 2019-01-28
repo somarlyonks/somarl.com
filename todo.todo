@@ -12,6 +12,7 @@ somarl.com:
     [ ] admin auth
     [x] footer
     [ ] favicon
+    [ ] left and right interactive hooks
     PWA:
       [ ] service worker
       [ ] local history

@@ -29,7 +29,7 @@ class PluginActionHelp extends PluginAction {
     this.alias('--plugin', '-p')
   }
 
-  public exec (options: L<PluginActionOption>) {
+  public async exec (options: L<PluginActionOption>) {
     const config = {}
     options.forEach(option => {
       config[option.name] = option.value

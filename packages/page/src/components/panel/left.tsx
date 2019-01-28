@@ -17,13 +17,17 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   }
 
   private readonly handleInputChange = (input: string) => {
-    const output = this.parseInput(input)
-    this.setState({ output })
+    this.setState({output: '...'})
+    this.parseInput(input).then(
+      output => this.setState({ output })
+    )
   }
 
   private readonly handleInputted = (input: string) => {
-    const output = this.execCommand(input)
-    this.setState({ output })
+    this.setState({output: 'processing...'})
+    this.execCommand(input).then(
+      output => this.setState({ output })
+    )
   }
 
   private readonly parseInput = (input: string) => {
