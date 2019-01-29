@@ -13,7 +13,7 @@ class PluginActionTest extends PluginAction {
     this.alias('--param', '-p')
   }
 
-  public exec (options: PluginActionOption[]) {
+  public async exec (options: PluginActionOption[]) {
     let ret = ''
     for (const option of options) {
       if (option.name === '--param') {
@@ -25,7 +25,7 @@ class PluginActionTest extends PluginAction {
 }
 
 
-it('exec plugin commands properly', () => {
+it('exec plugin commands properly', async () => {
   pluginManager.register('plugin', new PluginPlugin(pluginManager))
 
   const spm = pluginManager.getPlugin('plugin')
@@ -33,6 +33,6 @@ it('exec plugin commands properly', () => {
 
   spm.register(new PluginActionTest(spm))
 
-  expect(spm.exec('test')).toBe('default')
-  expect(spm.exec('test', '--param success')).toBe('success')
+  expect(await spm.exec('test')).toBe('default')
+  expect(await spm.exec('test', '--param success')).toBe('success')
 })
