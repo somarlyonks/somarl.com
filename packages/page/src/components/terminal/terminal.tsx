@@ -71,8 +71,6 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     const fakeContrastText = prefix + (text[position!] || ' ')
     const isFireOnChangeNeeded = this.props.onChange ? text !== this.state.text : true
 
-    // TESTME: the timing of callbacks and the setState
-
     this.setState({ text, caretText, fakeContrastText })
 
     return isFireOnChangeNeeded ? text : false
@@ -112,10 +110,11 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
   public render () {
     return (
       <Context.Consumer>
-        {({setTerminalState}) => (
+        {({setTerminalState, mainColor}) => (
           <div className="terminal-input">
             <input
               type="text"
+              style={{borderLeftColor: mainColor}}
               className="terminal-input__input"
               onFocus={this.onFocus(setTerminalState)}
               onBlur={this.onBlur(setTerminalState)}

@@ -1,7 +1,61 @@
+@import '../helpers/variables';
+@import '../helpers/mixins';
+
+
 footer {
   color: #fff;
   position: fixed;
-  right: 0.5rem;
-  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
   font-size: 0.8rem;
+  height: 1rem;
+  background-color: $sectionBackgroundColor;
+  display: flex;
+  justify-content: space-between;
+  transition: height 0.5s;
+}
+
+.footer__image-info_simple {
+  .footer__image-info-connect, .footer__image-info-copyright {
+    opacity: 0;
+  }
+}
+
+.footer__image-info-name {
+  font-style: italic;
+}
+
+.footer__widget {
+  left: 0;
+  bottom: 1rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: $sectionBackgroundColor;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.footer__widget::after {
+  @include absoluteCTL(50%, 50%); // sqrt(2)/8 ≈ 0.177
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  width: 0.5rem;
+  height: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.footer__widget:hover {
+  opacity: 1;
+}
+
+.footer_toggled {
+  height: 0;
+  .footer__widget {
+    bottom: 0;
+  }
+  .footer__widget::after {
+    transform: translate(-50%, -32.5%) rotate(225deg);
+  }
 }

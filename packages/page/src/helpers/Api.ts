@@ -2,11 +2,13 @@
  * @file seperated api callers
  */
 
-import { fetchPublicJson, fetchServerJson, ApiResponse } from './fetch'
+import { fetchPublicJson, fetchServerJson, ApiResponse, joinApiUrl } from './fetch'
 import { IWeatherResponse, IBinksRecord } from './Adapter'
+import ColorThief from './colorthief'
+import { getBlogs } from '../plugins/blog'
 
 
-type PublicApi<R> = F0<Promise<R>>
+export type PublicApi<R> = F0<Promise<R>>
 
 // type ServerApi<R> = F<Promise<R>>
 
@@ -50,10 +52,15 @@ export const getWeather = async (excludes = ['flags']) =>
 
 export const getBinks = async () => fetchServerJson('binks') as Promise<ApiResponse<IBinksRecord>>
 
+
+export const getBinksColor = async () => await new ColorThief().getColorFromUrl(joinApiUrl('binks.jpg'))
+
+
 const Api = {
   public: {
     getIpGeo,
     getIp,
+    getBlogs,
   },
   server: {
     getWeather,

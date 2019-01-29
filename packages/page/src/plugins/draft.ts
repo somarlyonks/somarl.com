@@ -140,7 +140,7 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
     this.sourceMap[option.name] = option
   }
 
-  public exec (options?: L<PluginActionOption>): S {
+  public async exec (options?: L<PluginActionOption>): Promise<S> {
     this.plugin.onError(`action ${this.name} not implemented`)
     return ''
   }

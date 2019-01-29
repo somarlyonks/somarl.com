@@ -5,14 +5,14 @@ somarl.com:
       compeleted except shortcuts
     [x] font manage
     [ ] font colors manage
-    [ ] dynamic background
-      [x] binks apis
-      [ ] global main color and subcolor
+    [x] dynamic background
     [ ] code splitting
     [x] context
     [x] api frame
     [ ] admin auth
-    [ ] footer
+    [x] footer
+    [ ] favicon
+    [ ] left and right interactive hooks
     PWA:
       [ ] service worker
       [ ] local history
@@ -37,14 +37,8 @@ somarl.com:
       [x] styles
       [ ] page level mood
       [ ] icons
-      [ ] animations
-         [x] fog
-         [x] night
-         [x] api response schema
-         X small animation fix: rain/snow/star @delayed it looks fine
-      [ ] Api
-        [x] display the message "Powered by Dark Sky" links to https://darksky.net/poweredby/
-        [x] add dotenv
+      [x] animations
+      [x] Api
     [ ] SSH @low
 
   Dev:

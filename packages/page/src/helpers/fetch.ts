@@ -1,6 +1,11 @@
 import { HTTPStatusCodes } from './Adapter'
 
-const API_SERVER = process.env.REACT_APP_API_SERVER
+
+export const API_SERVER = process.env.REACT_APP_API_SERVER
+
+export const joinApiUrl = (endpoint: S) => endpoint.startsWith('/')
+  ? `${API_SERVER}${endpoint}`
+  : `${API_SERVER}/${endpoint}`
 
 export interface IApiResponseSuccess <T = any> {
   status: HTTPStatusCodes.OK

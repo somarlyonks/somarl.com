@@ -17,6 +17,7 @@ import PluginPlugin from 'src/plugins/plugin'
 pluginManager.register('plugin', new PluginPlugin(pluginManager))
 pluginManager.alias('plugin', 'spm')
 pluginManager.register('blog', new BlogPlugin())
+pluginManager.alias('blog', 'blogs')
 pluginManager.register('rss', new RSSPlugin())
 pluginManager.register('weather', new WeatherPlugin())
 window.SPM = pluginManager
@@ -35,7 +36,7 @@ export default class SyshParser {
   public static syshWelcome = 'Input things like: plugin list'
 
   /** real time parse for hints/history search */
-  public static parse (command: string): StdOut {
+  public static async parse (command: string): Promise<StdOut> {
     const segments = command.split(' ').map(seg => seg.trim())
     if (!segments[0]) return this.syshWelcome
 
@@ -47,20 +48,20 @@ export default class SyshParser {
     if (!pluginNames.length) return this.syshWelcome
     // only one plugin matches, print the help info
     if (pluginNames.length === 1) {
-      const help = this.exec(`${pluginNames[0]} help`)
+      const help = await this.exec(`${pluginNames[0]} help`)
       return help.startsWith('[Plugin Error]') ? this.syshWelcome : help
     }
     // list the optional plugins
     return pluginNames.join('\n')
   }
 
-  public static exec (command: string, stdIn?: StdIn): StdOut {
+  public static async exec (command: string, stdIn?: StdIn): Promise<StdOut> {
     const segments = command.split(' ').map(seg => seg.trim())
     const pluginName = segments[0]
 
     try {
       const plugin = pluginManager.getPlugin(pluginName)
-      return plugin!.exec(segments[1], segments.slice(2).join(' '))
+      return await plugin!.exec(segments[1], segments.slice(2).join(' '))
     } catch (err) {
       console.warn(err.message)
       return err.message
