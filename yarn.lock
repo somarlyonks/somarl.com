@@ -1338,9 +1338,9 @@
   version "3.2.2"
   resolved "https://registry.npmjs.org/@types/koa-compose/-/koa-compose-3.2.2.tgz#dc106e000bbf92a3ac900f756df47344887ee847"
 
-"@types/koa-cors@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.npmjs.org/@types/koa-cors/-/koa-cors-0.0.0.tgz#7a0ef45acfed1ef6c046d5896e3974261d8a9d37"
+"@types/koa-convert@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/@types/koa-convert/-/koa-convert-1.2.1.tgz#28c459eb9cfd5d2fb470ce1f0f8546f620fc4133"
   dependencies:
     "@types/koa" "*"
 
@@ -1353,6 +1353,12 @@
 "@types/koa-router@^7.0.36":
   version "7.0.37"
   resolved "https://registry.npmjs.org/@types/koa-router/-/koa-router-7.0.37.tgz#7bff5fad42d500251b39055cc9ee31e8d2351a42"
+  dependencies:
+    "@types/koa" "*"
+
+"@types/koa2-cors@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/@types/koa2-cors/-/koa2-cors-2.0.1.tgz#76a635cadc9c10e9d29a209fa2db28529dfc765a"
   dependencies:
     "@types/koa" "*"
 
@@ -5487,6 +5493,103 @@ kind-of@^6.0.0, kind-of@^6.0.2:
 kleur@^2.0.1:
   version "2.0.2"
   resolved "https://registry.npmjs.org/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
+
+koa-bodyparser@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/koa-bodyparser/-/koa-bodyparser-4.2.1.tgz#4d7dacb5e6db1106649b595d9e5ccb158b6f3b29"
+  dependencies:
+    co-body "^6.0.0"
+    copy-to "^2.0.1"
+
+koa-compose@^3.0.0:
+  version "3.2.1"
+  resolved "https://registry.npmjs.org/koa-compose/-/koa-compose-3.2.1.tgz#a85ccb40b7d986d8e5a345b3a1ace8eabcf54de7"
+  dependencies:
+    any-promise "^1.1.0"
+
+koa-compose@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/koa-compose/-/koa-compose-4.1.0.tgz#507306b9371901db41121c812e923d0d67d3e877"
+
+koa-convert@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/koa-convert/-/koa-convert-1.2.0.tgz#da40875df49de0539098d1700b50820cebcd21d0"
+  dependencies:
+    co "^4.6.0"
+    koa-compose "^3.0.0"
+
+koa-cors@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.npmjs.org/koa-cors/-/koa-cors-0.0.16.tgz#98107993a7909e34c042986c5ec6156d77f3432e"
+
+koa-is-json@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
+
+koa-jwt@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.npmjs.org/koa-jwt/-/koa-jwt-3.5.1.tgz#0b20e45c3a0f93c9a8df42f1057b3ae004e0f849"
+  dependencies:
+    jsonwebtoken "8.3.0"
+    koa-unless "1.0.7"
+    p-any "1.1.0"
+
+koa-logger@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/koa-logger/-/koa-logger-3.2.0.tgz#8aef64d8b848fb6253a9b31aa708d0e05141f0e6"
+  dependencies:
+    bytes "^2.5.0"
+    chalk "^1.1.3"
+    humanize-number "0.0.2"
+    passthrough-counter "^1.0.0"
+
+koa-router@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.npmjs.org/koa-router/-/koa-router-7.4.0.tgz#aee1f7adc02d5cb31d7d67465c9eacc825e8c5e0"
+  dependencies:
+    debug "^3.1.0"
+    http-errors "^1.3.1"
+    koa-compose "^3.0.0"
+    methods "^1.0.1"
+    path-to-regexp "^1.1.1"
+    urijs "^1.19.0"
+
+koa-unless@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/koa-unless/-/koa-unless-1.0.7.tgz#b9df375e2b4da3043918d48622520c2c0b79f032"
+
+koa2-cors@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/koa2-cors/-/koa2-cors-2.0.6.tgz#9ad23df3a0b9bb84530b46f5944f3fb576086554"
+
+koa@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/koa/-/koa-2.6.2.tgz#57ba4d049b0a99cae0d594e6144e2931949a7ce1"
+  dependencies:
+    accepts "^1.3.5"
+    cache-content-type "^1.0.0"
+    content-disposition "~0.5.2"
+    content-type "^1.0.4"
+    cookies "~0.7.1"
+    debug "~3.1.0"
+    delegates "^1.0.0"
+    depd "^1.1.2"
+    destroy "^1.0.4"
+    error-inject "^1.0.0"
+    escape-html "^1.0.3"
+    fresh "~0.5.2"
+    http-assert "^1.3.0"
+    http-errors "^1.6.3"
+    is-generator-function "^1.0.7"
+    koa-compose "^4.1.0"
+    koa-convert "^1.2.0"
+    koa-is-json "^1.0.0"
+    on-finished "^2.3.0"
+    only "~0.0.2"
+    parseurl "^1.3.2"
+    statuses "^1.5.0"
+    type-is "^1.6.16"
+    vary "^1.1.2"
 
 latest-version@^3.0.0:
   version "3.1.0"

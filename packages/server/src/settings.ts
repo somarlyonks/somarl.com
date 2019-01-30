@@ -26,13 +26,22 @@ class S {
   public static MONGO_HOST = process.env.MONGO_HOST || `localhost`
   public static MONGO_URI = `mongodb://${S.MONGO_HOST}:${S.MONGO_PORT}`
   public static MONGO_OPTIONS = {
-    useNewUrlParser: true
+    useNewUrlParser: true,
   }
 
   public static JWT_SECRET = process.env.JWT_SECRET || JWT_SECRET_DEV
   public static JWT_OPTIONS = {
-    secret: S.JWT_SECRET
+    secret: S.JWT_SECRET,
   }
+
+  public static ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://192.168.1.119:3000',
+    'http://www.somarl.com',
+    'https://www.somarl.com',
+    'http://somarl.com',
+    'https://somarl.com',
+  ]
 
   public static DARKSKY_SECRETKEY = process.env.DARKSKY_SECRETKEY || ''
   public static BINKS_DIR = process.env.BINKS_DIR || BINKS_DIR

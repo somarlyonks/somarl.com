@@ -2,5 +2,5 @@ import { config } from 'dotenv'
 
 
 config({
-  path: '.env.local'
+  path: '.env.local',
 })
