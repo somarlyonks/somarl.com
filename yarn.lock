@@ -1396,11 +1396,11 @@
   version "1.2.3"
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
 
-"@types/react-dom@16.0.10":
-  version "16.0.10"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.0.10.tgz#0c8980a639fa1d92a8547c8b6d0cf47af96c8966"
+"@types/react-dom@16.8.0":
+  version "16.8.0"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.0.tgz#c565f43f9d2ec911f9e0b8f3b74e25e67879aa3f"
+  integrity sha512-Jp4ufcEEjVJEB0OHq2MCZcE1u3KYUKO6WnSuiU/tZeYeiZxUoQavfa/TZeiIT+1XoN6l0lQVNM30VINZFDeolQ==
   dependencies:
-    "@types/node" "*"
     "@types/react" "*"
 
 "@types/react@*":
