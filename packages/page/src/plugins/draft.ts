@@ -33,12 +33,15 @@ class AliasAbastract <T> {
 
 
 export class PluginManager extends AliasAbastract<Plugin> {
+  public reciver?: (content: S) => void
+
   public constructor () {
     super('plugin')
   }
 
   public register (name: S, plugin: Plugin) {
     this.sourceMap[name] = plugin
+    plugin.manager = this
   }
 
   public getPlugin (name: S) {
@@ -52,6 +55,10 @@ export class PluginManager extends AliasAbastract<Plugin> {
   public onError (message: S = 'not specified') {
     throw new Error(`[Plugin Error]: pluginManager, ${message}.`)
   }
+
+  public emit (content: S) {
+    if (this.reciver) this.reciver(content)
+  }
 }
 
 
@@ -61,6 +68,8 @@ export default pluginManager
 
 
 export class Plugin extends AliasAbastract<PluginAction> {
+  public manager!: PluginManager
+
   public constructor (
     public name: S,
     public description: S
@@ -100,6 +109,10 @@ export class Plugin extends AliasAbastract<PluginAction> {
     if (!action) return this.onError(`action ${actionName} not found`)
 
     return action.exec(action.parse(options))
+  }
+
+  public emit (content: S ) {
+    this.manager.emit(content)
   }
 
   public assert (maybe: A, message?: S) {
@@ -143,6 +156,10 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
   public async exec (options?: L<PluginActionOption>): Promise<S> {
     this.plugin.onError(`action ${this.name} not implemented`)
     return ''
+  }
+
+  public emit (content: S) {
+    this.plugin.emit(content)
   }
 
   // TODO: more flexible option params

@@ -10,11 +10,17 @@ class App extends React.Component<{}, IContext> {
   public state: IContext = {
     mainColor: 'lightcoral',
     terminalState: 'blur',
+    richOutput: '',
     setTerminalState: this.setTerminalState.bind(this),
+    setRichOutput: this.setRichOutput.bind(this),
   }
 
   public setTerminalState (state: GTermianlState) {
     this.setState({ terminalState: state })
+  }
+
+  public setRichOutput (output: S) {
+    this.setState({ richOutput: output })
   }
 
   public async componentDidMount () {

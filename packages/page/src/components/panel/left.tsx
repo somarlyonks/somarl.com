@@ -39,23 +39,26 @@ export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
   }
 
 
-  public render () {
+  public render () { // FIXME: @sy prevent keep register recivers
     return (
       <Context.Consumer>
-        {({ terminalState }) => (
-          <section className={`col-md flex-verticle panel-left panel-left_${terminalState}`}>
-            <div className="terminal-hang" />
+        {({ terminalState, setRichOutput }) => {
+          Sysh.register(setRichOutput)
+          return (
+            <section className={`col-md flex-verticle panel-left panel-left_${terminalState}`}>
+              <div className="terminal-hang" />
 
-            <Terminal
-              onChange={this.handleInputChange}
-              onEmit={this.handleInputted}
-            />
+              <Terminal
+                onChange={this.handleInputChange}
+                onEmit={this.handleInputted}
+              />
 
-            <aside className="flex-grow terminal-out">
-              <div className="terminal-out__content pre-wrap font-mono">{this.state.output}</div>
-            </aside>
-          </section>
-        )}
+              <aside className="flex-grow terminal-out">
+                <div className="terminal-out__content pre-wrap font-mono">{this.state.output}</div>
+              </aside>
+            </section>
+          )
+        }}
       </Context.Consumer>
     )
   }

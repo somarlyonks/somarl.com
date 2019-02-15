@@ -1,8 +1,8 @@
 import Koa from 'koa'
-import Bodyparser from 'koa-bodyparser'
-import cors from 'koa-cors'
+import bodyparser from 'koa-bodyparser'
 import logger from 'koa-logger'
 import chalk from 'chalk'
+import cors from './cors'
 import { connectMongo } from './mongo'
 import { router, openRouter } from './router'
 import { SETTINGS } from './settings'
@@ -12,12 +12,8 @@ const ppap = new Koa()
 
 
 ppap.use(logger())
-  .use(Bodyparser())
-  /**
-   * about proxy
-   * @see https://github.com/koajs/koa/issues/198#issuecomment-33208283
-   */
-  .use(cors({ origin: 'http://localhost:3000'}))
+  .use(bodyparser())
+  .use(cors())
   .use(router.routes()).use(router.allowedMethods())
   .use(openRouter.routes()).use(openRouter.allowedMethods())
 

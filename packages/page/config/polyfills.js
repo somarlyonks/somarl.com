@@ -8,15 +8,19 @@ if (typeof Promise === 'undefined') {
   window.Promise = require('promise/lib/es6-extensions.js')
 }
 
-// fetch() polyfill for making API calls.
 require('whatwg-fetch')
 
-// Object.assign() is commonly used with React.
-// It will use the native implementation if it's present and isn't buggy.
 Object.assign = require('object-assign')
 
 // In tests, polyfill requestAnimationFrame since jsdom doesn't provide it yet.
-// We don't polyfill it in the browser--this is user's responsibility.
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global)
 }
+
+// custom polyfill
+// last element of the array
+Reflect.defineProperty(Array.prototype, -1, {
+  get: function () {
+    return this.length ? this[this.length - 1] : undefined
+  }
+})

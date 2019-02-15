@@ -63,6 +63,7 @@ const WeatherInfomations: React.SFC<IWeatherInfomationsProps> = ({display, weath
 )
 
 export default class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeatherWidgetState> {
+  public timer?: A
   public static defaultProps: IWeatherWidgetProps = {
     backgroundColor: '',
   }
@@ -107,7 +108,11 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
     }).catch(console.warn)
 
     updateWeather()
-    setInterval(updateWeather, 1000 * 60 * 5) // update every 5 minutes
+    this.timer = setInterval(updateWeather, 1000 * 60 * 5) // update every 5 minutes
+  }
+
+  public componentWillUnmount () {
+    if (this.timer) clearInterval(this.timer)
   }
 
   public readonly toggle = (event: React.MouseEvent<HTMLElement>) => {
