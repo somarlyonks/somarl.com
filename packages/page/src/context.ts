@@ -12,14 +12,18 @@ export type GTermianlState =
 export interface IContext {
   mainColor: S
   terminalState: GTermianlState
+  richOutput: S
   setTerminalState: (state: GTermianlState) => void
+  setRichOutput: (output: S) => void
 }
 
 
 const Context = React.createContext<IContext>({
   mainColor: 'lightcoral',
   terminalState: 'blur',
+  richOutput: '',
   setTerminalState: (state: GTermianlState) => {},
+  setRichOutput: (output: S) => {},
 })
 
 

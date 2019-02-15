@@ -14,13 +14,13 @@ import RSSPlugin from '../plugins/rss'
 import PluginPlugin from 'src/plugins/plugin'
 
 
-pluginManager.register('plugin', new PluginPlugin(pluginManager))
+window.SPM = pluginManager
+pluginManager.register('plugin', new PluginPlugin())
 pluginManager.alias('plugin', 'spm')
 pluginManager.register('blog', new BlogPlugin())
 pluginManager.alias('blog', 'blogs')
 pluginManager.register('rss', new RSSPlugin())
 pluginManager.register('weather', new WeatherPlugin())
-window.SPM = pluginManager
 
 
 type StdIn = string
@@ -32,8 +32,9 @@ export default class SyshParser {
   private static configs = {
     hintLines: 5,
   }
+  public static reciver = (output: StdOut) => {}
 
-  public static syshWelcome = 'Input things like: plugin list'
+  public static syshWelcome = 'Input things like: plugin'
 
   /** real time parse for hints/history search */
   public static async parse (command: string): Promise<StdOut> {
@@ -66,5 +67,10 @@ export default class SyshParser {
       console.warn(err.message)
       return err.message
     }
+  }
+
+  public static register (reciver: (output: StdOut) => void) {
+    console.info('registerrrrrr') // TODELETE
+    pluginManager.reciver = reciver
   }
 }

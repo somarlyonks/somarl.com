@@ -26,7 +26,7 @@ class PluginActionTest extends PluginAction {
 
 
 it('exec plugin commands properly', async () => {
-  pluginManager.register('plugin', new PluginPlugin(pluginManager))
+  pluginManager.register('plugin', new PluginPlugin())
 
   const spm = pluginManager.getPlugin('plugin')
   if (!spm) throw Error('failed to register the plugin')

@@ -6,16 +6,14 @@
  *   plugin show --name plugin
  */
 
-import { PluginManager, Plugin, PluginAction, PluginActionOption } from './draft'
+import { Plugin, PluginAction, PluginActionOption } from './draft'
 
 
 /**
  * the proxy plugin of pluginManager
  */
 export default class PluginPlugin extends Plugin {
-  public constructor (
-    public manager: PluginManager
-  ) {
+  public constructor () {
     super('plugin', 'The basic plugin manager')
     this.register(new PluginActionHelp(this))
   }
@@ -35,7 +33,7 @@ class PluginActionHelp extends PluginAction {
       config[option.name] = option.value
     })
     if (config['--plugin']) {
-      const plugin = (this.plugin as PluginPlugin).manager.getPlugin(config['--plugin'])
+      const plugin = this.plugin.manager.getPlugin(config['--plugin'])
       if (plugin) {
         return plugin.exec('help')
       } else {
@@ -46,7 +44,7 @@ class PluginActionHelp extends PluginAction {
   <plugin> <action> [option value]
 
 Available plugins:
-  ${(this.plugin as PluginPlugin).manager.getPluginNames().join(', ')}
+  ${this.plugin.manager.getPluginNames().join(', ')}
 
 All plugins are supposed to have a help action, get help for a specific plugin like:
   <plugin> help
