@@ -5,16 +5,12 @@ import { SETTINGS } from './settings'
 
 function checkOriginAgainstWhitelist (ctx: koa.Context) {
   const requestOrigin = (ctx.accept as any).headers.origin
-  console.log('rrr', requestOrigin)
-  if (!SETTINGS.ALLOWED_ORIGINS.includes(requestOrigin)) {
-    return false
-  }
-  return requestOrigin
+  return SETTINGS.ALLOWED_ORIGINS.includes(requestOrigin) && requestOrigin
 }
 
 
-export default function () {
-  return cors({
+export default function (options: cors.Options = {}) {
+  return cors(Object.assign({}, {
     origin: checkOriginAgainstWhitelist,
-  })
+  }, options))
 }

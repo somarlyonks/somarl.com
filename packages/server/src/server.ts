@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import Bodyparser from 'koa-bodyparser'
+import bodyparser from 'koa-bodyparser'
 import logger from 'koa-logger'
 import chalk from 'chalk'
 import cors from './cors'
@@ -12,7 +12,7 @@ const ppap = new Koa()
 
 
 ppap.use(logger())
-  .use(Bodyparser())
+  .use(bodyparser())
   .use(cors())
   .use(router.routes()).use(router.allowedMethods())
   .use(openRouter.routes()).use(openRouter.allowedMethods())

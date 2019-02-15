@@ -8,7 +8,7 @@ export const connectMongo = async (app: koa) =>
   mongo.connect(SETTINGS.MONGO_URI, SETTINGS.MONGO_OPTIONS)
     .then(connection => {
       console.log(chalk.blue(`[mongo] Connected: ${
-        (status => (status ? chalk.green : chalk.red)(status.toString()))(connection.isConnected())
+        (status => chalk[status ? 'green' : 'red'](status.toString()))(connection.isConnected())
         }`))
       app.context.mongo = connection
 
