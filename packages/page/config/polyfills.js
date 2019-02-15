@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'test') {
 // custom polyfill
 // last element of the array
 Reflect.defineProperty(Array.prototype, -1, {
-  get () {
+  get: function () {
     return this.length ? this[this.length - 1] : undefined
   }
 })
