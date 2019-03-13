@@ -42,7 +42,7 @@
     "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
     "dotenv": "^6.2.0",
-    "dotenv-expand": "^4.2.0",
+    "dotenv-expand": "^5.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^3.0.1",
     "folans.d.ts": "^1.1.0",
