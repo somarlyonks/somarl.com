@@ -70,7 +70,7 @@ export default class SyshParser {
   }
 
   public static register (reciver: (output: StdOut) => void) {
-    console.info('registerrrrrr') // TODELETE
+    // console.info('registerrrrrr') // TODELETE
     pluginManager.reciver = reciver
   }
 }
