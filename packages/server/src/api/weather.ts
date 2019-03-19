@@ -3,6 +3,10 @@ import { fetchPublicJson } from '../helpers/fetch'
 import { SETTINGS } from '../settings'
 
 
+async function getIpGeo (ctx?: any): Promise<{latitude: N, longitude: N}> {
+  return await fetchPublicJson(`https://ipapi.co/json/`).then(r => r.json())
+}
+
 /**
  * @helper https://darksky.net/dev/docs
  * @TODO
@@ -11,7 +15,7 @@ import { SETTINGS } from '../settings'
  */
 export default function registerWeatherRoutes (router: Router) {
   router.get('/weather', async ctx => {
-    const ipGeo = await fetchPublicJson(`https://ipapi.co/json/`).then(r => r.json())
+    const ipGeo = await getIpGeo()
     const { latitude, longitude } = ipGeo
 
     const darkSkyApi = `https://api.darksky.net/forecast/${SETTINGS.DARKSKY_SECRETKEY}/${latitude},${longitude}`

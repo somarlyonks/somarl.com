@@ -14,10 +14,10 @@ export default function choice (
     /**
      * Predicate like the callback function in Array.prototype.filter
      */
-    accept: (option: T) => boolean = (option: T) => true,
+    accept: (option: T) => boolean = (_: T) => true,
     count: N = 0
   ): T | never {
-    if (count++ > limit) throw Error("Might be swallowed...")
+    if (count++ > limit) throw Error('Might be swallowed...')
 
     const n = Math.random() * options.length | 0
     const option = options[n]

@@ -10,7 +10,7 @@ function registerAuthRoutes (router: Router) {
 
     if (username === 'Sy' && password === 'pwd') {
       ctx.body = {
-        token: jwtIssue({ user: 'Sy' })
+        token: jwtIssue({ user: 'Sy' }),
       }
     } else {
       ctx.status = HTTPStatusCodes.UNAUTHORIZED
@@ -23,14 +23,14 @@ export default function registerOpenRoutes (router: Router) {
   router.get('/', async ctx => {
     const name = ctx.request.query.name || '..., stranger?'
     ctx.body = {
-      message: `Hello from somarl.com to ${name}!`
+      message: `Hello from somarl.com to ${name}!`,
     }
   })
 
   router.post('/', async ctx => {
     const name = (ctx.request.body as { name?: string }).name || '..., stranger?'
     ctx.body = {
-      message: `Hello from somarl.com to ${name}!`
+      message: `Hello from somarl.com to ${name}!`,
     }
   })
 
