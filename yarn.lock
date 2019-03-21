@@ -1467,9 +1467,9 @@
   version "1.2.3"
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
 
-"@types/react-dom@16.8.2":
-  version "16.8.2"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.8.2.tgz#9bd7d33f908b243ff0692846ef36c81d4941ad12"
+"@types/react-dom@16.8.3":
+  version "16.8.3"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.8.3.tgz#6131b7b6158bc7ed1925a3374b88b7c00481f0cb"
   dependencies:
     "@types/react" "*"
 
