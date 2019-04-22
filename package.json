@@ -37,7 +37,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.5",
-    "babel-preset-react-app": "^7.0.0",
+    "babel-preset-react-app": "^8.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
