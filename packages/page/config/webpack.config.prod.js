@@ -229,7 +229,6 @@ module.exports = {
         ecma: 8,
         compress: {
           // ecma: 5,
-          warnings: false,
           // Disabled because of an issue with Uglify breaking seemingly valid code:
           // https://github.com/facebook/create-react-app/issues/2376
           // Pending further investigation:
