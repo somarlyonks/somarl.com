@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import Terminal from '../terminal/terminal'
 import Sysh from '../../helpers/sysh'
 import Context from '../../context'
@@ -10,7 +10,7 @@ interface IPanelLeftStates {
 }
 
 
-export default class PanelLeft extends React.Component<{}, IPanelLeftStates> {
+export default class PanelLeft extends Component<{}, IPanelLeftStates> {
   public readonly state: IPanelLeftStates = {
     inputText: '',
     output: 'Input things like: blogs --page=2',

@@ -2,7 +2,7 @@
 
 ## HELPER
 
-See [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
+Though migrated to preact, [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) still provides solutions for building issues.
 
 ## References
 

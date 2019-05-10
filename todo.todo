@@ -1,18 +1,34 @@
 somarl.com:
   Page:
+    [x] eject CRA
+    [x] React/Preact/Elm?  preact wins
     [x] page frame
-    [ ] terminal
-      compeleted except shortcuts
+    [ ] keybindings
     [x] font manage
-    [ ] font colors manage
+    [ ] font colors manage @low
     [x] dynamic background
-    [ ] code splitting
+    [ ] code splitting @longterm
     [x] context
     [x] api frame
-    [ ] admin auth
+    [ ] admin auth @low
     [x] footer
     [ ] favicon
-    [ ] left and right interactive hooks
+    Refactor Plugin System:
+      Terminal:
+        [x] basic UI
+        [x] make sure the timings of callbacks are proper
+        [ ] sysh
+        [ ] parser
+        [ ] runner
+      Plugins:
+        Weather:
+          [x] styles
+          [x] animations
+          [x] Api
+        [ ] blog
+        [ ] RSS @low
+        [ ] SSH @low
+      [ ] left and right interactive hooks
     PWA:
       [ ] service worker
       [ ] local history
@@ -22,31 +38,12 @@ somarl.com:
     [ ] GraphQL
     X  GRpc
 
-  Terminal:
-    [x] basic UI
-    [ ] make sure the timings of callbacks are proper
-    [ ] shortcuts
-    [ ] sysh
-    [ ] parser
-    [ ] runner
-
-  Plugins:
-    [ ] blog
-    [ ] RSS
-    Weather:
-      [x] styles
-      [ ] page level mood
-      [ ] icons
-      [x] animations
-      [x] Api
-    [ ] SSH @low
-
   Dev:
-    [ ] nginx dev proxy
+    nginx dev proxy: @low
       [x] page api requests doesn't need this anymore with the help of dotenv
       [ ] page server
-    [ ] Test @longterm
+    Test: @longterm
       X global jest settings
-    [ ] monorepo settings
+    Monorepo settings:
       [x] greenkeeper enabled
       [x] fix yarn workspaces not symlinked

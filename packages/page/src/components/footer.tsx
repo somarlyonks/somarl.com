@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import { getBinks } from '../helpers/Api'
 import { HTTPStatusCodes } from '../helpers/Adapter'
 
@@ -9,7 +9,7 @@ export interface IFooterState {
   binksCopyright: S
 }
 
-export default class Footer extends React.Component<{}, IFooterState> {
+export default class Footer extends Component<{}, IFooterState> {
   public readonly state: IFooterState = {
     toggled: true,
     binksName: '',
@@ -24,12 +24,12 @@ export default class Footer extends React.Component<{}, IFooterState> {
         binksCopyright: resp.body.copyright,
       })
     }
-    this.setState({toggled: localStorage.getItem('footerToggled') === 'true'})
+    this.setState({toggled: localStorage.getItem('footerToggled') === 'false'})
   }
 
   public readonly toggle = () => {
     localStorage.setItem('footerToggled', `${!this.state.toggled}`)
-    this.setState(prev => ({toggled: !prev.toggled}))
+    this.setState((prev: any) => ({toggled: !prev.toggled}))
   }
 
   public render () {
@@ -37,7 +37,7 @@ export default class Footer extends React.Component<{}, IFooterState> {
       <footer className={`footer_toggle${this.state.toggled ? 'd' : ''}`}>
         <div className="absolute footer__widget" onClick={this.toggle} />
         <span className={`footer__image-info footer__image-info_${this.state.binksCopyright ? 'adequate' : 'simple'}`}>
-          <span className="footer__image-info-name">"{this.state.binksName}"</span>
+          <span className="footer__image-info-name">"{this.state.binksName || 'Failed to load image'}"</span>
           <span className="footer__image-info-connect">&nbsp;-&nbsp;</span>
           <span className="footer__image-info-copyright">{this.state.binksCopyright}</span>
         </span>

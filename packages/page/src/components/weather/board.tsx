@@ -1,8 +1,8 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import WeatherAnimation from './animation'
 
 
-export default class WeatherWidget extends React.Component<{}, {}> {
+export default class WeatherWidget extends Component<{}, {}> {
   public render () {
     return (
       <WeatherAnimation
