@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import { WeatherTypes} from '../../helpers/Adapter'
 import rgba from '../../helpers/rgba'
 
@@ -14,7 +14,7 @@ export interface IWeatherAnimationProps {
 }
 
 
-export default class WeatherAnimation extends React.Component<IWeatherAnimationProps, {}> {
+export default class WeatherAnimation extends Component<IWeatherAnimationProps, {}> {
   public static defaultProps: IWeatherAnimationProps = {
     type: 'sun',
     size: 'normal',

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import {Context, createContext} from 'preact-context'
 
 
 export type GTermianlState =
@@ -18,7 +18,7 @@ export interface IContext {
 }
 
 
-const Context = React.createContext<IContext>({
+const context: Context<IContext> = createContext<IContext>({
   mainColor: 'lightcoral',
   terminalState: 'blur',
   richOutput: '',
@@ -27,4 +27,4 @@ const Context = React.createContext<IContext>({
 })
 
 
-export default Context
+export default context

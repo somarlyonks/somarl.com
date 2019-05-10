@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h } from 'preact'
 import PanelLeft from './panel/left'
 import PanelRight from './panel/right'
 import WeatherWidget from './weather/widget'

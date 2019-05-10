@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import WeatherAnimation, { WeatherTypes } from './animation'
 import IconRainDrops from '../icons/raindrops'
 import IconWind from '../icons/wind'
@@ -34,7 +34,7 @@ interface IWeatherInfomationsProps {
 }
 
 
-const WeatherInfomations: React.SFC<IWeatherInfomationsProps> = ({display, weatherInfo}) => (
+const WeatherInfomations = ({display, weatherInfo}: IWeatherInfomationsProps) => (
   <div
     style={{display: display ? 'block' : 'none'}}
   >
@@ -62,7 +62,7 @@ const WeatherInfomations: React.SFC<IWeatherInfomationsProps> = ({display, weath
   </div>
 )
 
-export default class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeatherWidgetState> {
+export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeatherWidgetState> {
   public timer?: A
   public static defaultProps: IWeatherWidgetProps = {
     backgroundColor: '',
@@ -115,14 +115,14 @@ export default class WeatherWidget extends React.Component<IWeatherWidgetProps, 
     if (this.timer) clearInterval(this.timer)
   }
 
-  public readonly toggle = (event: React.MouseEvent<HTMLElement>) => {
-    this.setState(prevState => ({ toggled: !prevState.toggled }))
+  public readonly toggle = (event: any) => {
+    this.setState((prevState: any) => ({ toggled: !prevState.toggled }))
   }
 
   public render () {
     const { backgroundColor } = this.props
 
-    const style: React.CSSProperties = {}
+    const style: any = {}
     if (backgroundColor) {
       style.backgroundColor = rgba(backgroundColor)
     }

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import Footer from './components/footer'
 import Header from './components/header'
 import Main from './components/main'
@@ -6,7 +6,7 @@ import Context, { IContext, GTermianlState } from './context'
 import { getBinksColor } from './helpers/Api'
 
 
-class App extends React.Component<{}, IContext> {
+class App extends Component<{}, IContext> {
   public state: IContext = {
     mainColor: 'lightcoral',
     terminalState: 'blur',

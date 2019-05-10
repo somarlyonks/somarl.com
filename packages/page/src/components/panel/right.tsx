@@ -1,9 +1,9 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import Context from '../../context'
 // import WeatherBoard from '../weather/board'
 
 
-export default class PanelRight extends React.Component<{}, {}> {
+export default class PanelRight extends Component<{}, {}> {
   public render () {
     // return (
     //   <Context.Consumer>

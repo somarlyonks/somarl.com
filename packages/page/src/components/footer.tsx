@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import { getBinks } from '../helpers/Api'
 import { HTTPStatusCodes } from '../helpers/Adapter'
 
@@ -9,7 +9,7 @@ export interface IFooterState {
   binksCopyright: S
 }
 
-export default class Footer extends React.Component<{}, IFooterState> {
+export default class Footer extends Component<{}, IFooterState> {
   public readonly state: IFooterState = {
     toggled: true,
     binksName: '',
@@ -29,7 +29,7 @@ export default class Footer extends React.Component<{}, IFooterState> {
 
   public readonly toggle = () => {
     localStorage.setItem('footerToggled', `${!this.state.toggled}`)
-    this.setState(prev => ({toggled: !prev.toggled}))
+    this.setState((prev: any) => ({toggled: !prev.toggled}))
   }
 
   public render () {

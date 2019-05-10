@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { h, Component } from 'preact'
 import Context, { IContext } from '../../context'
 
 
@@ -22,7 +22,7 @@ interface ISupportInputProps {
 }
 
 
-const SupportInput: React.SFC<ISupportInputProps> = ({className, supportText, display}) => (
+const SupportInput = ({className, supportText, display}: ISupportInputProps) => (
   <input
     type="text"
     className={className}
@@ -32,7 +32,7 @@ const SupportInput: React.SFC<ISupportInputProps> = ({className, supportText, di
   />
 )
 
-export default class TerminalInput extends React.Component<ITerminalInputProps, ITerminalInputStates> {
+export default class TerminalInput extends Component<ITerminalInputProps, ITerminalInputStates> {
   public readonly state: ITerminalInputStates = {
     text: '',
     supportDisplay: false,
@@ -40,7 +40,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     fakeContrastText: '',
   }
 
-  private readonly onFocus = (contextSetter: IContext['setTerminalState']) => (event: React.FocusEvent<HTMLInputElement>) => {
+  private readonly onFocus = (contextSetter: IContext['setTerminalState']) => (event: any) => {
     if (this.props.onFocus) {
       this.props.onFocus()
     }
@@ -50,16 +50,14 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
   }
 
 
-  private readonly onBlur = (contextSetter: IContext['setTerminalState']) => (event: React.FocusEvent<HTMLInputElement>) => {
+  private readonly onBlur = (contextSetter: IContext['setTerminalState']) => (event: any) => {
     this.setState({ supportDisplay: false })
     contextSetter('blur')
   }
 
   /** @setState */
   private readonly jumpTo = (
-    event: React.ChangeEvent<HTMLInputElement> |
-           React.KeyboardEvent<HTMLInputElement> |
-           React.MouseEvent<HTMLInputElement>
+    event: any
   ) => {
     if (!event.target) return ''
 
@@ -76,7 +74,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
     return isFireOnChangeNeeded ? text : false
   }
 
-  private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly onChange = (event: any) => {
     const maybeDirtyText = this.jumpTo(event)
 
     if (maybeDirtyText !== false && this.props.onChange) {
@@ -85,7 +83,7 @@ export default class TerminalInput extends React.Component<ITerminalInputProps, 
   }
 
   // TODO: shortcut key bindings
-  private readonly onKeyUp = (contextSetter: IContext['setTerminalState']) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+  private readonly onKeyUp = (contextSetter: IContext['setTerminalState']) => (event: any) => {
     this.jumpTo(event)
     const target = event.target as HTMLInputElement
 

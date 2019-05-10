@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react",
+    "jsxFactory": "h",
     "forceConsistentCasingInFileNames": true,
     "lib": ["es6", "dom"],
     "module": "esnext", // prod: commonjs
