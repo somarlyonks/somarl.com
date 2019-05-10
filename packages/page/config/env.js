@@ -18,16 +18,13 @@ if (!NODE_ENV) {
 var dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
   `${paths.dotenv}.${NODE_ENV}`,
-  // Don't include `.env.local` for `test` environment
-  // since normally you expect tests to produce the same
-  // results for everyone
   NODE_ENV !== 'test' && `${paths.dotenv}.local`,
   paths.dotenv,
 ].filter(Boolean)
 
-// Load environment variables from .env* files. Suppress warnings using silent
-// if this file is missing. dotenv will never modify any environment variables
-// that have already been set.  Variable expansion is supported in .env files.
+// Load environment variables from .env* files.
+// Suppress warnings using silent if this file is missing.
+// dotenv will never modify any environment variables that have already been set.
 // https://github.com/motdotla/dotenv
 // https://github.com/motdotla/dotenv-expand
 dotenvFiles.forEach(dotenvFile => {
@@ -48,7 +45,6 @@ dotenvFiles.forEach(dotenvFile => {
 // Note that unlike in Node, only *relative* paths from `NODE_PATH` are honored.
 // Otherwise, we risk importing Node.js core modules into an app instead of Webpack shims.
 // https://github.com/facebookincubator/create-react-app/issues/1023#issuecomment-265344421
-// We also resolve them to make sure all tools using them work consistently.
 const appDirectory = fs.realpathSync(process.cwd())
 process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .split(path.delimiter)
@@ -70,7 +66,6 @@ function getClientEnvironment (publicUrl) {
       },
       {
         // Useful for determining whether we’re running in production mode.
-        // Most importantly, it switches React into the correct mode.
         NODE_ENV: process.env.NODE_ENV || 'development',
         // Useful for resolving the correct path to static assets in `public`.
         // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
