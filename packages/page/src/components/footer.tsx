@@ -24,7 +24,7 @@ export default class Footer extends React.Component<{}, IFooterState> {
         binksCopyright: resp.body.copyright,
       })
     }
-    this.setState({toggled: localStorage.getItem('footerToggled') === 'true'})
+    this.setState({toggled: localStorage.getItem('footerToggled') === 'false'})
   }
 
   public readonly toggle = () => {
@@ -37,7 +37,7 @@ export default class Footer extends React.Component<{}, IFooterState> {
       <footer className={`footer_toggle${this.state.toggled ? 'd' : ''}`}>
         <div className="absolute footer__widget" onClick={this.toggle} />
         <span className={`footer__image-info footer__image-info_${this.state.binksCopyright ? 'adequate' : 'simple'}`}>
-          <span className="footer__image-info-name">"{this.state.binksName}"</span>
+          <span className="footer__image-info-name">"{this.state.binksName || 'Failed to load image'}"</span>
           <span className="footer__image-info-connect">&nbsp;-&nbsp;</span>
           <span className="footer__image-info-copyright">{this.state.binksCopyright}</span>
         </span>
