@@ -24,12 +24,12 @@ export default class Footer extends Component<{}, IFooterState> {
         binksCopyright: resp.body.copyright,
       })
     }
-    this.setState({toggled: localStorage.getItem('footerToggled') === 'false'})
+    this.setState({toggled: localStorage.getItem('footerToggled') === 'true'})
   }
 
   public readonly toggle = () => {
     localStorage.setItem('footerToggled', `${!this.state.toggled}`)
-    this.setState((prev: any) => ({toggled: !prev.toggled}))
+    this.setState((prev: IFooterState) => ({toggled: !prev.toggled}))
   }
 
   public render () {
