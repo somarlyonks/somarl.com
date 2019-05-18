@@ -14,6 +14,10 @@ somarl.com:
     [x] footer
     [ ] favicon
     Refactor Plugin System:
+      Context:
+        [ ] refactor preact-context to redux
+        [ ] self implemented redux
+        [ ] self implemented saga
       Terminal:
         [x] basic UI
         [x] make sure the timings of callbacks are proper
