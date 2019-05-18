@@ -48,7 +48,7 @@ export class PluginManager extends AliasAbastract<Plugin> {
     return this.getSource(name)
   }
 
-  public getPluginNames () {
+  public getPluginNames () { // TODO: @sy aliases
     return Object.keys(this.sourceMap)
   }
 

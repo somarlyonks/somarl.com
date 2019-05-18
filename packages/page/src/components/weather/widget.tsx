@@ -115,14 +115,14 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
     if (this.timer) clearInterval(this.timer)
   }
 
-  public readonly toggle = (event: any) => {
-    this.setState((prevState: any) => ({ toggled: !prevState.toggled }))
+  public readonly toggle: JSX.MouseEventHandler = event => {
+    this.setState((prevState: IWeatherWidgetState) => ({ toggled: !prevState.toggled }))
   }
 
   public render () {
     const { backgroundColor } = this.props
 
-    const style: any = {}
+    const style: any = {} // TODO: @sy style types
     if (backgroundColor) {
       style.backgroundColor = rgba(backgroundColor)
     }

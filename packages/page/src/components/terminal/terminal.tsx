@@ -40,7 +40,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     fakeContrastText: '',
   }
 
-  private readonly onFocus = (contextSetter: IContext['setTerminalState']) => (event: any) => {
+  private readonly onFocus: (c: IContext['setTerminalState']) => JSX.FocusEventHandler = contextSetter => event => {
     if (this.props.onFocus) {
       this.props.onFocus()
     }
@@ -50,15 +50,13 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
   }
 
 
-  private readonly onBlur = (contextSetter: IContext['setTerminalState']) => (event: any) => {
+  private readonly onBlur: (c: IContext['setTerminalState']) => JSX.FocusEventHandler = contextSetter => event => {
     this.setState({ supportDisplay: false })
     contextSetter('blur')
   }
 
   /** @setState */
-  private readonly jumpTo = (
-    event: any
-  ) => {
+  private readonly jumpTo = (event: Event) => {
     if (!event.target) return ''
 
     const target = event.target as HTMLInputElement
@@ -74,7 +72,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     return isFireOnChangeNeeded ? text : false
   }
 
-  private readonly onChange = (event: any) => {
+  private readonly onChange: JSX.EventHandler<Event> = event => {
     const maybeDirtyText = this.jumpTo(event)
 
     if (maybeDirtyText !== false && this.props.onChange) {
@@ -82,8 +80,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     }
   }
 
-  // TODO: shortcut key bindings
-  private readonly onKeyUp = (contextSetter: IContext['setTerminalState']) => (event: any) => {
+  private readonly onKeyUp: (c: IContext['setTerminalState']) => JSX.KeyboardEventHandler = contextSetter => event => {
     this.jumpTo(event)
     const target = event.target as HTMLInputElement
 
@@ -116,10 +113,9 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
               className="terminal-input__input"
               onFocus={this.onFocus(setTerminalState)}
               onBlur={this.onBlur(setTerminalState)}
-              onChange={this.onChange}
+              onInput={this.onChange}
               onKeyUp={this.onKeyUp(setTerminalState)}
               onMouseUp={this.jumpTo}
-              // autoFocus={true}
             />
             <SupportInput
               className="terminal-input__support"
