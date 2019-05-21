@@ -4,8 +4,10 @@ export interface IAction {
 
 export type IListener = F0<void>
 
+export type IDispatcher <TAction extends IAction = IAction> = (action: TAction) => TAction
+
 export interface IStore<TState, TAction extends IAction> {
-  dispatch <T extends TAction> (action: T): T
+  dispatch: IDispatcher<TAction>
   subscribe (listener: IListener): F0<void>
   getState (): TState | undefined
   replaceReducer (nextReducer: IReducer<TState, TAction>): void
@@ -18,7 +20,7 @@ export interface  IStoreFactoryAttach <TState> {
 
 export type IReducer <TState, TAction extends IAction> = F2<TState, TAction, TState>
 
-type IStoreFactory = <
+export type IStoreFactory = <
   TState,
   TAction extends IAction
 > (

@@ -1,5 +1,6 @@
 export {
   HTTPStatusCodes,
   WeatherTypes, weatherTypeMap, IWeatherResponse,
-  IBinksRecord
+  IBinksRecord,
+  named
 } from '@somarl.com/pipe'

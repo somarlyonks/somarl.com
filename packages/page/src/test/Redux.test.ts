@@ -1,5 +1,5 @@
 import store, { ActionTypes } from '../redux/store'
-import createStore, { IAction } from '../redux/framework'
+import redux, { IAction } from '../redux/framework'
 
 
 it('inited the store properly', () => {
@@ -26,7 +26,7 @@ interface ITestState {
   testCall: number
 }
 
-const testStore = createStore<ITestState, IImplAction>((state, action) => {
+const testStore = redux.createStore<ITestState, IImplAction>((state, action) => {
   if (action.type === 'CHANGE') {
     if (state.status === 'success') return {...state, status: 'error'}
     return {...state, status: 'success'}

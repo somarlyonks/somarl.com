@@ -1,4 +1,4 @@
-import createStore, { IAction } from '../framework'
+import redux, { IAction } from '../framework'
 
 
 export enum ActionTypes {
@@ -11,7 +11,7 @@ interface IImplAction <T = A> extends IAction {
   payload: T
 }
 
-const store = createStore<N, IImplAction<N>>((state, action) => {
+const store = redux.createStore<N, IImplAction<N>>((state, action) => {
   if (action.type === ActionTypes.INCRMENT) return state + action.payload
   if (action.type === ActionTypes.DECREMENT) return state - action.payload
   return state
