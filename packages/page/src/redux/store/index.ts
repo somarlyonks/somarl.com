@@ -1,8 +1,8 @@
-import redux, { IAction } from '../framework'
+import redux, { IAction, IReducers } from '../framework'
 
 
 export enum ActionTypes {
-  INCRMENT = 0,
+  INCRMENT  = 0,
   DECREMENT = 1,
 }
 
@@ -11,10 +11,25 @@ interface IImplAction <T = A> extends IAction {
   payload: T
 }
 
-const store = redux.createStore<N, IImplAction<N>>((state, action) => {
-  if (action.type === ActionTypes.INCRMENT) return state + action.payload
-  if (action.type === ActionTypes.DECREMENT) return state - action.payload
-  return state
-}, { preloadedState: 0 })
+export interface IImplState {
+  global: N
+}
+
+const preloadedState: IImplState = {
+  global: 0,
+}
+
+const reducers: IReducers<IImplState, IImplAction> = {
+  global (state, action) {
+    if (action.type === ActionTypes.INCRMENT) return state + action.payload
+    if (action.type === ActionTypes.DECREMENT) return state - action.payload
+    return state
+  },
+}
+
+const store = redux.createStore<IImplState, IImplAction>(
+  redux.combineReducers(reducers),
+  { preloadedState }
+)
 
 export default store

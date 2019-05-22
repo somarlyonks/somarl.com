@@ -1,4 +1,4 @@
-import { named } from './Adapter'
+import { named } from './named'
 
 
 /**

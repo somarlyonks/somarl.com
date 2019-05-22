@@ -3,7 +3,7 @@ import redux, { IAction } from '../redux/framework'
 
 
 it('inited the store properly', () => {
-  expect(store.getState()).toBe(0)
+  expect(store.getState()!.global).toBe(0)
 })
 
 it('changeStates properly', () => {
@@ -12,7 +12,7 @@ it('changeStates properly', () => {
     payload: 1,
   })
 
-  expect(store.getState()).toBe(1)
+  expect(store.getState()!.global).toBe(1)
 })
 
 //

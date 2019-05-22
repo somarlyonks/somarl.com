@@ -1,24 +1,12 @@
-import { compose } from '../../helpers/compose'
-import { IStoreFactory, IEnhancer, IDispatcher, IAction, IStore, IReducer, IStoreFactoryAttach } from './shared'
+import { compose } from '../../helpers/Adapter'
+import { IStoreFactory, IEnhancer, IAction, IStore, IMiddleware, IMiddlewareAPI } from './shared'
 
 
-interface IMiddlewareAPI <TState, TAction extends IAction> {
-  dispatch: IDispatcher<TAction>
-  getState (): TState | undefined
-}
-
-export interface IMiddleware <TState, TAction extends IAction > {
-  (api: IMiddlewareAPI<TState, TAction>): (next: IDispatcher<TAction>) => IDispatcher<TAction>
-}
-
-
+// TODO: improve its type after test with real middlewares
 export function applyMiddleware <TState, TAction extends IAction> (
   ...middlewares: L<IMiddleware<TState, TAction>>
 ): IEnhancer {
-  return (createStore: IStoreFactory) => ((
-    reducer: IReducer<TState, TAction>,
-    attach: IStoreFactoryAttach<TState> = {}
-  ) => {
+  return (createStore: IStoreFactory) => ((reducer: A, attach: A = {}) => {
     const store = createStore(reducer, attach) as IStore<TState, TAction>
 
     let dispatch: F = () => {
