@@ -1,5 +1,5 @@
 export interface IAction {
-  type: S | N
+  type: S
 }
 
 export type IListener = F0<void>
@@ -23,6 +23,22 @@ export type IReducer <TState, TAction extends IAction> = F2<TState, TAction, TSt
 export type IReducers <TState, TAction extends IAction> = {
   [K in keyof TState]: IReducer<TState[K], TAction>
 }
+
+export type IActions <TState> = {
+  [K in keyof TState]: IAction
+}
+
+export type IBoundActions <TState, TActions extends IActions<TState>> = {
+  [K in keyof TActions]: IActionsFactory<TActions[K]>
+}
+
+export type IActionsFactory <TAction extends IAction> = {
+  [K in TAction['type']]: IActionFactory<TAction>
+}
+
+export type IActionFactory <TAction extends IAction> = (
+  payload: TAction extends {payload: A} ? TAction['payload'] : A
+) => TAction
 
 export type IStoreFactory = <
   TState,

@@ -1,4 +1,4 @@
-import store, { ActionTypes } from '../redux/store'
+import store, { ActionTypes, actions } from '../redux/store'
 import redux, { IAction } from '../redux/framework'
 
 
@@ -8,11 +8,17 @@ it('inited the store properly', () => {
 
 it('changeStates properly', () => {
   store.dispatch({
-    type: ActionTypes.INCRMENT,
+    type: ActionTypes.global.INCREMENT,
     payload: 1,
   })
 
   expect(store.getState()!.global).toBe(1)
+})
+
+it('dispatch bound actions porperly', () => {
+  expect(store.getState()!.local).toBe(0)
+  store.dispatch(actions.local.ADD(1))
+  expect(store.getState()!.local).toBe(1)
 })
 
 //

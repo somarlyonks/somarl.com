@@ -27,7 +27,9 @@ Implemented in src/redux/framework, a little bit different from the official red
 - It doesn't have to check every reducer to combine and ask them to behave in specific ways.
 - It uses static type check instead of "typeof" at runtime to test the arguments.
 - It supports native stricter type checking in constrained actions.
-- You have to define the type of the action before creating store, which makes sense.
+- You have to define the type of the state and action before creating store.
+- Actions are bound under the corresponding-domain state.
+- It's definitely typed, including ways to obtain strictly typed bound actions/payloads.
 
 In short, you should specify all the things before the programme runs instead of mix things up and try it and pray at runtime.
 

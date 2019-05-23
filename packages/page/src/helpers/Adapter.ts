@@ -3,5 +3,6 @@ export {
   WeatherTypes, weatherTypeMap, IWeatherResponse,
   IBinksRecord,
   named,
-  compose
+  compose,
+  randomString,
 } from '@somarl.com/pipe'
