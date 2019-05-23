@@ -1,15 +1,7 @@
 import { IReducer, IAction, IStoreFactoryAttach, IStore, IListener } from './shared'
 
+import { ActionTypes } from './action'
 
-// tslint:disable-next-line: no-magic-numbers
-const randomString = () => Math.random().toString(36).substring(7).split('').join('.')
-
-// inner actions
-const ActionTypes = {
-  INIT: `@@redux/INIT${randomString()}`,
-  REPLACE: `@@redux/REPLACE${randomString()}`,
-  PROBE_UNKNOWN_ACTION: () => `@@redux/PROBE_UNKNOWN_ACTION${randomString()}`,
-}
 
 export function createStore<TState, TAction extends IAction> (
   reducer: IReducer<TState, TAction>,
@@ -77,7 +69,7 @@ export function createStore<TState, TAction extends IAction> (
     const listeners = (currentListeners = nextListeners)
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < listeners.length; i++) {
-      listeners[ i ]()
+      listeners[i]()
     }
 
     return action

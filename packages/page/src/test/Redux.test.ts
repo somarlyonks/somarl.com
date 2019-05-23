@@ -1,18 +1,24 @@
-import store, { ActionTypes } from '../redux/store'
-import createStore, { IAction } from '../redux/framework'
+import store, { ActionTypes, actions } from '../redux/store'
+import redux, { IAction } from '../redux/framework'
 
 
 it('inited the store properly', () => {
-  expect(store.getState()).toBe(0)
+  expect(store.getState()!.global).toBe(0)
 })
 
 it('changeStates properly', () => {
   store.dispatch({
-    type: ActionTypes.INCRMENT,
+    type: ActionTypes.global.INCREMENT,
     payload: 1,
   })
 
-  expect(store.getState()).toBe(1)
+  expect(store.getState()!.global).toBe(1)
+})
+
+it('dispatch bound actions porperly', () => {
+  expect(store.getState()!.local).toBe(0)
+  store.dispatch(actions.local.ADD(1))
+  expect(store.getState()!.local).toBe(1)
 })
 
 //
@@ -26,7 +32,7 @@ interface ITestState {
   testCall: number
 }
 
-const testStore = createStore<ITestState, IImplAction>((state, action) => {
+const testStore = redux.createStore<ITestState, IImplAction>((state, action) => {
   if (action.type === 'CHANGE') {
     if (state.status === 'success') return {...state, status: 'error'}
     return {...state, status: 'success'}

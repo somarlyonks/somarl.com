@@ -24,9 +24,14 @@ Data control with self implemented redux.js and redux-saga.
 Implemented in src/redux/framework, a little bit different from the official redux.js API.
 
 - It doesn't have to support "observable" since I don't use Cycle.js or RxJS.
+- It doesn't have to check every reducer to combine and ask them to behave in specific ways.
 - It uses static type check instead of "typeof" at runtime to test the arguments.
 - It supports native stricter type checking in constrained actions.
-- You have to edit the definition of the action before creating store, which makes sense.
+- You have to define the type of the state and action before creating store.
+- Actions are bound under the corresponding-domain state.
+- It's definitely typed, including ways to obtain strictly typed bound actions/payloads.
+
+In short, you should specify all the things before the programme runs instead of mix things up and try it and pray at runtime.
 
 Bussiness code in src/redux/impl. Redux-saga locates at src/redux/middleware/saga.ts.
 
@@ -50,3 +55,9 @@ Fonts LICENSES:
 - DejaVu Sans: [DejaVu Fonts License v1.00](https://www.fontsquirrel.com/license/dejavu-sans)
 - EB Garamond: [SIL Open Font License v1.10](https://www.fontsquirrel.com/license/eb-garamond)
 - Metropolis: [SIL Open Font License v1.10](https://www.fontsquirrel.com/license/metropolis)
+
+## Tests
+
+DOM tests only runs to check whether it renders without breaking workflows.
+
+To run a specific test, go to the test file and chagne one of the `it` to `it.only` and `npm t` then change the file in watch mode and remove the `.only` to run all tests in the file and press key `w` to exit and run all test files with key `a`.
