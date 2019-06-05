@@ -16,9 +16,13 @@ it('changeStates properly', () => {
 })
 
 it('dispatch bound actions porperly', () => {
-  expect(store.getState()!.local).toBe(0)
-  store.dispatch(actions.local.ADD(1))
-  expect(store.getState()!.local).toBe(1)
+  const stateBefore = store.getState()!
+  expect(stateBefore.local).toBe(0)
+  expect(stateBefore.global).toBe(1)
+  store.dispatch(actions.local.INCREMENT(1))
+  const stateAfter = store.getState()!
+  expect(stateAfter.local).toBe(1)
+  expect(stateAfter.global).toBe(1)
 })
 
 //
