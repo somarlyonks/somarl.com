@@ -5,7 +5,7 @@ export type ILocalState = N
 
 
 export type ILocalAction = {
-  type: 'ADD'
+  type: 'INCREMENT'
   payload: N
 } | {
   type: 'MINUS'
@@ -13,7 +13,7 @@ export type ILocalAction = {
 }
 
 const actionTypes = [
-  'ADD',
+  'INCREMENT',
   'MINUS',
 ] as const
 
@@ -21,7 +21,7 @@ const ActionTypes = registerActions(actionTypes, 'local')
 
 
 function reducer (state: ILocalState, action: ILocalAction) {
-  if (action.type === ActionTypes.ADD) return state + action.payload
+  if (action.type === ActionTypes.INCREMENT) return state + action.payload
   if (action.type === ActionTypes.MINUS) return state - action.payload
   return state
 }
