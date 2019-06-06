@@ -7457,13 +7457,9 @@ postcss@^7.0.0, postcss@^7.0.14, postcss@^7.0.5, postcss@^7.0.6:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact-context@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.npmjs.org/preact-context/-/preact-context-1.1.3.tgz#26d06db0f39d8d9c890df5ada9a99a943586ec68"
-
-preact@^8.4.2:
-  version "8.4.2"
-  resolved "https://registry.npmjs.org/preact/-/preact-8.4.2.tgz#1263b974a17d1ea80b66590e41ef786ced5d6a23"
+preact@^10.0.0-beta.2:
+  version "10.0.0-beta.2"
+  resolved "https://registry.npmjs.org/preact/-/preact-10.0.0-beta.2.tgz#659b6520eb41d5a3d178a61b3311e6ae79d8cf56"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -9278,9 +9274,9 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
 
-url-loader@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/url-loader/-/url-loader-1.1.2.tgz#b971d191b83af693c5e3fea4064be9e1f2d7f8d8"
+url-loader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/url-loader/-/url-loader-2.0.0.tgz#600ef36f463e21bd673ad70156d850619d9cd092"
   dependencies:
     loader-utils "^1.1.0"
     mime "^2.0.3"

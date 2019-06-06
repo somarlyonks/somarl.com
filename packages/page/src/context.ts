@@ -1,4 +1,4 @@
-import {Context, createContext} from 'preact-context'
+import {Context, createContext} from 'preact'
 
 
 export type GTermianlState =
