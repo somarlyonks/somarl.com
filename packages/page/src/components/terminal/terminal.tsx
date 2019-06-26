@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component, JSX } from 'preact'
 import Context, { IContext } from '../../context'
 
 

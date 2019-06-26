@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component, JSX } from 'preact'
 import WeatherAnimation, { WeatherTypes } from './animation'
 import IconRainDrops from '../icons/raindrops'
 import IconWind from '../icons/wind'
