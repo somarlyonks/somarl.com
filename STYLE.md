@@ -274,19 +274,13 @@ export {
 
 ### commit log
 
-`[title](subject): [info]`
-
-titles: chore/feat/fix/refactor/perf/style
-
-subject: pkg/page/component/...
-
-Specially, revert commits should be logged like: `revert [title](subject): [info]` and specify the reverted commit in details.
+Covered by commitlint and husky hooks. Just try.
 
 ### Pull requests
 
 No commits directly committed at master branch.
 
-Pull requests should be compressed to one word description except there is only one commit to merge, like:
+Pull requests should be compressed to one word description or an explicit subject, like:
 
 ```git
 feat(page): add a simulated terminal input component
@@ -309,16 +303,10 @@ Merge pull request #1 from somarlyonks/dev
 feat
 ```
 
-but
+or
 
 ```git
-feat(pkg): add CircleCI
-```
+Merge pull request #1 from somarlyonks/dev
 
-merged as
-
-```git
-Merge pull request #3 from somarlyonks/dev
-
-feat(pkg): add CircleCI
+feat(page): add terminal
 ```

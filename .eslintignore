@@ -2,3 +2,4 @@ build/*
 dist/*
 packages/**/build/*
 **/*.json
+commitlint.config.js
