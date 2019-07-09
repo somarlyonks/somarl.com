@@ -13,5 +13,8 @@
   },
   "search.exclude": {
     "packages/page/build": true
+  },
+  "files.associations": {
+    "tslint.json": "jsonc"
   }
 }

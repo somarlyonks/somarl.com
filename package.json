@@ -22,7 +22,7 @@
     "server": "cd packages/server && npm start"
   },
   "devDependencies": {
-    "@babel/core": "7.4.3",
+    "@babel/core": "7.5.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@commitlint/config-lerna-scopes": "^8.0.0",
@@ -75,13 +75,13 @@
     "typescript": "^3.5.2",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^2.0.1",
-    "webpack": "^4.29.6",
+    "webpack": "^4.35.3",
     "webpack-dev-server": "^3.2.1",
     "webpack-manifest-plugin": "^2.0.4"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn test",
+      "pre-push": "yarn ci",
       "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
     }
   }
