@@ -5,6 +5,8 @@ import Main from './components/main'
 import Context, { IContext, GTermianlState } from './context'
 import { getBinksColor } from './helpers/Api'
 
+import Consumer from './components/consumer'
+
 
 class App extends Component<{}, IContext> {
   public state: IContext = {
@@ -31,6 +33,7 @@ class App extends Component<{}, IContext> {
   public render () {
     return (
       <Context.Provider value={this.state}>
+        <div style={{position: 'absolute', right: 0}}><Consumer /></div>
         <Header />
         <Main />
         <Footer />

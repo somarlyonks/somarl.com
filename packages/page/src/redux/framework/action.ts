@@ -22,7 +22,6 @@ function clusterActions <TAction extends IAction> (actionCluster: {
 export function bindActions <TState, TActions extends IActions<TState>> (
   actionClusters: {
     [K in keyof TState]: {
-      // @ts-ignore NOTE: Unable to judge K in IActions
       [K2 in TActions[K]['type']]: K2
     }
   }
