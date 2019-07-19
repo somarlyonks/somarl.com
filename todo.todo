@@ -20,9 +20,11 @@ somarl.com:
           [x] store factory
           [x] reducer composer
           [x] action binder
-          [ ] connector
+          X connector
+          [x] hooks
           [ ] ? middleware compatibility
         [ ] self implemented saga
+        [ ] immutable @low
       Terminal:
         [x] basic UI
         [x] make sure the timings of callbacks are proper

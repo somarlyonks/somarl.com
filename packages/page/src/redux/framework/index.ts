@@ -1,5 +1,7 @@
 export {
   IStore,
+  IListener,
+  IDispatcher,
   IMiddleware,
   IReducer, IReducers,
   IAction, IActions, IBoundActions,
