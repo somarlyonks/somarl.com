@@ -1,5 +1,8 @@
-export interface IAction {
-  type: S
+/** @ref [FSA](https://github.com/redux-utilities/flux-standard-action) */
+export interface IAction<TType extends S = S, TPayload = A> {
+  type: TType
+  payload: TPayload | P<TPayload>
+  errMsg?: S
 }
 
 export type IListener = F0<void>
@@ -32,12 +35,13 @@ export type IBoundActions <TState, TActions extends IActions<TState>> = {
   [K in keyof TActions]: IActionsFactory<TActions[K]>
 }
 
+/** Is it possible to infer the specific type in discriminated unions ? */
 export type IActionsFactory <TAction extends IAction> = {
   [K in TAction['type']]: IActionFactory<TAction>
 }
 
 export type IActionFactory <TAction extends IAction> = (
-  payload: TAction extends {payload: A} ? TAction['payload'] : A
+  payload: TAction['payload']
 ) => TAction
 
 export type IStoreFactory = <
@@ -55,6 +59,6 @@ export interface IMiddlewareAPI <TState, TAction extends IAction> {
   getState (): TState | undefined
 }
 
-export interface IMiddleware <TState, TAction extends IAction > {
+export interface IMiddleware <TState, TAction extends IAction> {
   (api: IMiddlewareAPI<TState, TAction>): (next: IDispatcher<TAction>) => IDispatcher<TAction>
 }

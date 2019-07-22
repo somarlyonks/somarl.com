@@ -1,20 +1,23 @@
 import { h, JSX } from 'preact'
 import { useCallback } from 'preact/hooks'
-import { IStore } from '../redux/framework'
-import { createContext } from '../redux/middleware'
-import store, { actions, IImplState, IImplAction } from '../redux/store'
+import store, { IImplState, StoreContext, useMappedState, ActionTypes } from '../redux/store'
+import { action } from 'src/redux/store/helpers'
 
-const { StoreContext, useMappedState } = createContext<IImplState, IImplAction, IStore<IImplState, IImplAction>>(store)
 
-; (window as any).store = StoreContext
-const ADec: JSX.MouseEventHandler = event => store.dispatch(actions.global.DECREMENT(1))
-const AInc: JSX.MouseEventHandler = event => {
-  store.dispatch(actions.global.INCREMENT(1))
-  console.info(store.getState()!.global)
-}
+/** TODO: move this to test */
+const API = async (x: S) => x
+const API2 = async (x: N) => x
+const incN = action(ActionTypes.global.INCREMENT, API2)
 
 const Consumer = () => {
   const { global } = useMappedState(useCallback((state: IImplState) => state, []))
+
+  const ADec: JSX.MouseEventHandler = event => store.dispatch({
+    type: ActionTypes.global.DECREMENT,
+    payload: API('1'),
+  })
+  const AInc: JSX.MouseEventHandler = event => store.dispatch(incN(1))
+
   return (
     <StoreContext.Provider value={store}>
       <button onClick={ADec}>-</button>

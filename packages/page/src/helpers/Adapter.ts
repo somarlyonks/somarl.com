@@ -5,4 +5,5 @@ export {
   named,
   compose,
   randomString,
+  isPromise,
 } from '@somarl.com/pipe'

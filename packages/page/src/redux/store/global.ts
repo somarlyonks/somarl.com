@@ -5,6 +5,7 @@
  */
 
 import { registerActions } from './helpers'
+import { IAction } from '../framework'
 
 
 export type IGlobalState = N
@@ -17,13 +18,8 @@ export type IGlobalState = N
  *   const action = {type: ActionTypes.INCREMENT, payload: 1} // good
  *   const action = {type: ActionTypes.INCREMENT, payload: '1'} // type error
  */
-export type IGlobalAction = {
-  type: 'INCREMENT'
-  payload: N
-} | {
-  type: 'DECREMENT'
-  payload: S
-}
+export type IGlobalAction = IAction<'INCREMENT', N>
+                          | IAction<'DECREMENT', S>
 
 /**
  * @description Types in typescript are not datas as dependent type langs like Idris,
@@ -37,7 +33,7 @@ const actionTypes = [
 const ActionTypes = registerActions(actionTypes, 'global')
 
 
-function reducer (state: IGlobalState, action: IGlobalAction) {
+function reducer (state: IGlobalState, action: Resolved<IGlobalAction>) {
   if (action.type === ActionTypes.INCREMENT) return state + action.payload
   if (action.type === ActionTypes.DECREMENT) return state - parseInt(action.payload, 10)
   return state

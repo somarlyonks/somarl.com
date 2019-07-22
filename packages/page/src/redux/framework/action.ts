@@ -13,7 +13,7 @@ function clusterActions <TAction extends IAction> (actionCluster: {
 }) {
   const actions = {} as IActionsFactory<TAction>
   for (const key in actionCluster) {
-    actions[key] = (payload?: A) => ({ type: actionCluster[key], payload })
+    actions[key] = (payload: TAction['payload']) => ({ type: actionCluster[key], payload })
   }
 
   return actions

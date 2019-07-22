@@ -16,14 +16,15 @@ somarl.com:
     Refactor Plugin System:
       Context:
         [ ] refactor preact-context to redux
-        [ ] self implemented redux
+        [x] self implemented redux
           [x] store factory
           [x] reducer composer
           [x] action binder
           X connector
           [x] hooks
-          [ ] ? middleware compatibility
-        [ ] self implemented saga
+          [x] middleware compatibility
+        X self implemented saga
+        [x] redux async
         [ ] immutable @low
       Terminal:
         [x] basic UI

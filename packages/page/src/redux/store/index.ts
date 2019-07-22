@@ -1,7 +1,9 @@
-import redux, { IReducers, IActions, IBoundActions } from '../framework'
+import redux, { IStore, IReducers, IActions, IBoundActions } from '../framework'
+import { createContext, promiseMiddleware } from '../middleware'
 
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sLocal, { ILocalState, ILocalAction } from './local'
+import { applyMiddleware } from '../framework/middleware'
 
 
 export interface IImplState {
@@ -14,7 +16,8 @@ export interface IImplActions extends IActions<IImplState> {
   local: ILocalAction
 }
 
-export type IImplAction = IGlobalAction | ILocalAction
+export type IImplAction = IGlobalAction
+                        | ILocalAction
 
 export const ActionTypes = {
   global: sGlobal.ActionTypes,
@@ -35,7 +38,10 @@ export const actions: IBoundActions<IImplState, IImplActions> = redux.bindAction
 
 const store = redux.createStore<IImplState, IImplAction>(
   redux.combineReducers(reducers),
-  { preloadedState }
+  { preloadedState, enhancer: applyMiddleware(promiseMiddleware) }
 )
 
 export default store
+
+export const { StoreContext, useMappedState } = createContext<IImplState, IImplAction, IStore<IImplState, IImplAction>>(store)
+; (window as any).StoreContext = StoreContext

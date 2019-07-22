@@ -1,16 +1,12 @@
 import { registerActions } from './helpers'
+import { IAction } from '../framework'
 
 
 export type ILocalState = N
 
 
-export type ILocalAction = {
-  type: 'INCREMENT'
-  payload: N
-} | {
-  type: 'MINUS'
-  payload: N
-}
+export type ILocalAction = IAction<'INCREMENT', N>
+                         | IAction<'MINUS',     N>
 
 const actionTypes = [
   'INCREMENT',
@@ -20,7 +16,7 @@ const actionTypes = [
 const ActionTypes = registerActions(actionTypes, 'local')
 
 
-function reducer (state: ILocalState, action: ILocalAction) {
+function reducer (state: ILocalState, action: Resolved<ILocalAction>) {
   if (action.type === ActionTypes.INCREMENT) return state + action.payload
   if (action.type === ActionTypes.MINUS) return state - action.payload
   return state

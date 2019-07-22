@@ -55,10 +55,10 @@ it('subscribe events properly', () => {
     const state = testStore.getState()
     if (state && state.status !== currentStatus) {
       currentStatus = state.status
-      testStore.dispatch({type: 'TEST'})
+      testStore.dispatch({type: 'TEST', payload: undefined})
     }
   })
-  testStore.dispatch({type: 'CHANGE'})
+  testStore.dispatch({type: 'CHANGE', payload: undefined})
   expect(currentStatus).toBe('error')
   expect(testStore.getState()!.testCall).toBe(1)
 })

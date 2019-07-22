@@ -22,17 +22,17 @@
 const toString = (a: A): S => Reflect.apply(Object.prototype.toString, a, [])
 
 
-export function isString (x: any): x is string {
+export function isString (x: A): x is string {
   return toString(x) === '[object String]'
 }
 
 
-export function isFunction<T extends F<any>> (fn: any): fn is T {
+export function isFunction<T extends F<A>> (fn: A): fn is T {
   return !!fn && toString(fn) === '[object Function]'
 }
 
 
-export function isArray (array: any): array is any[] {
+export function isArray (array: A): array is L<A> {
   return Array.isArray(array)
 }
 
@@ -54,17 +54,21 @@ export function isArray (array: any): array is any[] {
  *            !!(0 === fasle) === fasle
  *            !!(1 === true) === fasle
  */
-export function isNumber (n: any): n is number {
+export function isNumber (n: A): n is N {
   return toString(n) === '[object Number]'
 }
 
 
-export function isBoolean (b: any): b is boolean {
+export function isBoolean (b: A): b is boolean {
   return b === true || b === false || toString(b) === '[object Boolean]'
 }
 
 
-export function isObject (o: any): o is object {
+export function isObject (o: A): o is O {
   const t = typeof o
   return t === 'function' || t === 'object' && !!o
+}
+
+export function isPromise (obj: A): obj is P<A> {
+  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function'
 }
