@@ -35,6 +35,8 @@ export function registerActions <T extends ReadonlyArray<S>> (actionsTypes: T, n
  *   const ActionTypes = registerActions(actionTypes)
  */
 export function action <T extends S, TP, TPayload = A>
+  (type: T, payloadFactory: F0<TPayload>): F0<IAction<T, Resolved<TPayload>>>
+export function action <T extends S, TP, TPayload = A>
   (type: T, payloadFactory: F1<TP, TPayload>): F1<TP, IAction<T, Resolved<TPayload>>>
 export function action <T extends S, TP, TP2, TPayload = A>
   (type: T, payloadFactory: F2<TP, TP2, TPayload>): F2<TP, TP2, IAction<T, Resolved<TPayload>>>
@@ -55,3 +57,5 @@ export function action <T extends S, TPayload = A>
     return _action
   }
 }
+
+// TODO:  setter helper
