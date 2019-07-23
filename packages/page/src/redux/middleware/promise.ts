@@ -1,15 +1,12 @@
 import { isPromise } from '../../helpers/Adapter'
-import { IDispatcher } from '../framework'
+import { IDispatcher, IAction, IMiddlewareAPI } from '../framework'
 
 
-export function promiseMiddleware ({ dispatch }: {dispatch: IDispatcher}) {
-  return (next: F) => (action: A) => {
+export function promiseMiddleware <TState, TAction extends IAction> ({ dispatch }: IMiddlewareAPI<TState, TAction>) {
+  return (next: IDispatcher<TAction>) => (action: TAction) => {
     if (!isPromise(action.payload)) return next(action)
     return action.payload
-      .then((result: A) => dispatch({ ...action, payload: result }))
-      .catch((error: A) => {
-        dispatch({ ...action, payload: error, error: true })
-        return Promise.reject(error)
-      })
+      .then((payload: TAction['payload']) => dispatch({ ...action, payload }))
+      .catch((error: Error) => dispatch({ ...action, payload: error, errMsg: error.message }))
   }
 }

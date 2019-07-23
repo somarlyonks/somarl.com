@@ -8,10 +8,8 @@ export type ILocalState = N
 export type ILocalAction = IAction<'INCREMENT', N>
                          | IAction<'MINUS',     N>
 
-const actionTypes = [
-  'INCREMENT',
-  'MINUS',
-] as const
+const actionTypes = [ 'INCREMENT'
+                    , 'MINUS' ] as const
 
 const ActionTypes = registerActions(actionTypes, 'local')
 

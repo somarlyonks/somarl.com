@@ -7,7 +7,7 @@ export interface IAction<TType extends S = S, TPayload = A> {
 
 export type IListener = F0<void>
 
-export type IDispatcher <TAction extends IAction = IAction> = (action: TAction) => TAction
+export type IDispatcher <TAction extends IAction = IAction> = F1<TAction, TAction>
 
 export interface IStore <TState, TAction extends IAction> {
   dispatch: IDispatcher<TAction>

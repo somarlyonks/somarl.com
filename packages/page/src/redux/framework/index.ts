@@ -2,7 +2,7 @@ export {
   IStore,
   IListener,
   IDispatcher,
-  IMiddleware,
+  IMiddleware, IMiddlewareAPI,
   IReducer, IReducers,
   IAction, IActions, IBoundActions,
 } from './shared'

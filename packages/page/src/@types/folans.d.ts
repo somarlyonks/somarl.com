@@ -10,7 +10,7 @@ type C<T extends ReadonlyArray<unknown>> = T extends ReadonlyArray<infer Consts>
 type P<T = A> = Promise<T>
 
 /** returned type of a function */
-type R<T> = T extends F<infer RR> ? RR : A
+type R<T> = T extends F<infer RR> ? RR : never
 
 type Resolved<TSource> = TSource extends P<infer RSource>
   ? RSource

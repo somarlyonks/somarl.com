@@ -4,9 +4,11 @@ import store, { IImplState, StoreContext, useMappedState, ActionTypes } from '..
 import { action } from 'src/redux/store/helpers'
 
 
-/** TODO: move this to test */
 const API = async (x: S) => x
-const API2 = async (x: N) => x
+const API2 = async (x: N) => {
+  if (Math.random() > (1 / 2)) throw Error('Testing Error handling')
+  return x
+}
 const incN = action(ActionTypes.global.INCREMENT, API2)
 
 const Consumer = () => {
@@ -20,8 +22,9 @@ const Consumer = () => {
 
   return (
     <StoreContext.Provider value={store}>
+      <p>{Array.from(global.errMsgs)}</p>
       <button onClick={ADec}>-</button>
-      <span>{global}</span>
+      <span>{global.testCount}</span>
       <button onClick={AInc}>+</button>
     </StoreContext.Provider>
   )

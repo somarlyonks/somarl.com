@@ -3,7 +3,7 @@ import redux, { IAction } from '../redux/framework'
 
 
 it('inited the store properly', () => {
-  expect(store.getState()!.global).toBe(0)
+  expect(store.getState()!.global.testCount).toBe(0)
 })
 
 it('changeStates properly', () => {
@@ -12,17 +12,17 @@ it('changeStates properly', () => {
     payload: 1,
   })
 
-  expect(store.getState()!.global).toBe(1)
+  expect(store.getState()!.global.testCount).toBe(1)
 })
 
 it('dispatch bound actions porperly', () => {
   const stateBefore = store.getState()!
   expect(stateBefore.local).toBe(0)
-  expect(stateBefore.global).toBe(1)
+  expect(stateBefore.global.testCount).toBe(1)
   store.dispatch(actions.local.INCREMENT(1))
   const stateAfter = store.getState()!
   expect(stateAfter.local).toBe(1)
-  expect(stateAfter.global).toBe(1)
+  expect(stateAfter.global.testCount).toBe(1)
 })
 
 //
