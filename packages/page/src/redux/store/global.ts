@@ -8,9 +8,17 @@ import redux, { IAction, IReducers } from '../framework'
 import { registerActions } from './helpers'
 
 
+export type GTermianlState = 'focus'  // show terminal output when focus
+                           | 'blur'   // hide terminal output when blur
+                           | 'output' // show output article panel when output
+
+
 export interface IGlobalState {
   testCount: N
-  errMsgs: Set<S>
+  errMsgs: L<S>
+  themeColor: S
+  terminalState: GTermianlState
+  richOutput: S
 }
 
 /**
@@ -24,6 +32,9 @@ export interface IGlobalState {
 export type IGlobalAction = IAction<'INCREMENT', N>
                           | IAction<'DECREMENT', S>
                           | IAction<'RESOLVE_ERROR', S>
+                          | IAction<'SET_THEMECOLOR', S>
+                          | IAction<'SET_TERMINALSTATE', GTermianlState>
+                          | IAction<'SET_RICHOUTPUT', S>
 
 /**
  * @description Types in typescript are not datas as dependent type langs like Idris,
@@ -31,24 +42,42 @@ export type IGlobalAction = IAction<'INCREMENT', N>
  */
 const actionTypes = [ 'INCREMENT'
                     , 'DECREMENT'
-                    , 'RESOLVE_ERROR' ] as const
+                    , 'RESOLVE_ERROR'
+                    , 'SET_THEMECOLOR'
+                    , 'SET_TERMINALSTATE'
+                    , 'SET_RICHOUTPUT' ] as const
 
 const ActionTypes = registerActions(actionTypes, 'global')
 
 /** @description The real reducers only have to deal with the resolved actions. */
 const reducers: IReducers<IGlobalState, Resolved<IGlobalAction>> = {
-  errMsgs (state: Set<S>, action: IAction) {
+  errMsgs (state: L<S>, action: IAction) {
     if (action.errMsg) {
-      if (action.type !== ActionTypes.RESOLVE_ERROR) return state.add(action.errMsg)
-      state.delete(action.errMsg)
+      if (action.type !== ActionTypes.RESOLVE_ERROR) return state.concat(action.errMsg)
+      return state.filter(s => s !== action.errMsg)
     }
     return state
   },
 
-  testCount (state: N, action: Resolved<IGlobalAction>): N {
+  testCount (state: N, action: Resolved<IGlobalAction>) {
     if (action.type === ActionTypes.INCREMENT) return state + action.payload
     if (action.type === ActionTypes.DECREMENT) return state - parseInt(action.payload, 10)
 
+    return state
+  },
+
+  themeColor (state: S, action: IAction) {
+    if (action.type === ActionTypes.SET_THEMECOLOR) return action.payload
+    return state
+  },
+
+  terminalState (state: GTermianlState, action: IAction) {
+    if (action.type === ActionTypes.SET_TERMINALSTATE) return action.payload
+    return state
+  },
+
+  richOutput (state: S, action: IAction) {
+    if (action.type === ActionTypes.SET_RICHOUTPUT) return action.payload
     return state
   },
 }

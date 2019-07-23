@@ -1,7 +1,10 @@
 import { h, Component } from 'preact'
+import { useCallback } from 'preact/hooks'
+
+import store, { IImplState, useMappedState, ActionTypes } from '../../redux/store'
+
 import Terminal from '../terminal/terminal'
 import Sysh from '../../helpers/sysh'
-import Context from '../../context'
 
 
 interface IPanelLeftStates {
@@ -38,28 +41,29 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
     return Sysh.exec(input)
   }
 
+  public componentDidMount () {
+    Sysh.register(output => store.dispatch({
+      type: ActionTypes.global.SET_RICHOUTPUT,
+      payload: output,
+    }))
+  }
 
-  public render () { // FIXME: @sy prevent keep register recivers
+
+  public render () {
+    const { global } = useMappedState(useCallback((state: IImplState) => state, []))
     return (
-      <Context.Consumer>
-        {({ terminalState, setRichOutput }) => {
-          Sysh.register(setRichOutput)
-          return (
-            <section className={`col-md flex-verticle panel-left panel-left_${terminalState}`}>
-              <div className="terminal-hang" />
+      <section className={`col-md flex-verticle panel-left panel-left_${global.terminalState}`}>
+        <div className="terminal-hang" />
 
-              <Terminal
-                onChange={this.handleInputChange}
-                onEmit={this.handleInputted}
-              />
+        <Terminal
+          onChange={this.handleInputChange}
+          onEmit={this.handleInputted}
+        />
 
-              <aside className="flex-grow terminal-out">
-                <div className="terminal-out__content pre-wrap font-mono">{this.state.output}</div>
-              </aside>
-            </section>
-          )
-        }}
-      </Context.Consumer>
+        <aside className="flex-grow terminal-out">
+          <div className="terminal-out__content pre-wrap font-mono">{this.state.output}</div>
+        </aside>
+      </section>
     )
   }
 }

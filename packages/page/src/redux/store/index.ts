@@ -1,5 +1,8 @@
 import redux, { IStore, IReducers, IActions, IBoundActions, IMiddleware } from '../framework'
-import { createContext, promiseMiddleware, errorMiddleware } from '../middleware'
+import {
+  createContext,
+  promiseMiddleware, errorMiddleware, loggerMiddleware
+} from '../middleware'
 
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sLocal, { ILocalState, ILocalAction } from './local'
@@ -27,7 +30,10 @@ export const ActionTypes = {
 const preloadedState: IImplState = {
   global: {
     testCount: 0,
-    errMsgs: new Set(),
+    errMsgs: [],
+    themeColor: 'lightCoral',
+    terminalState: 'blur',
+    richOutput: '',
   },
   local: 0,
 }
@@ -44,7 +50,8 @@ const store = redux.createStore<IImplState, IImplAction>(
     preloadedState,
     enhancer: applyMiddleware(
       promiseMiddleware as IMiddleware<IImplState, IImplAction>,
-      errorMiddleware
+      errorMiddleware,
+      loggerMiddleware
     ),
   }
 )

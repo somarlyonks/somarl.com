@@ -1,7 +1,7 @@
 import { h, JSX } from 'preact'
 import { useCallback } from 'preact/hooks'
 import store, { IImplState, StoreContext, useMappedState, ActionTypes } from '../redux/store'
-import { action } from 'src/redux/store/helpers'
+import { action } from '../redux/store/helpers'
 
 
 const API = async (x: S) => x
@@ -22,7 +22,7 @@ const Consumer = () => {
 
   return (
     <StoreContext.Provider value={store}>
-      <p>{Array.from(global.errMsgs)}</p>
+      <p>{global.errMsgs}</p>
       <button onClick={ADec}>-</button>
       <span>{global.testCount}</span>
       <button onClick={AInc}>+</button>
