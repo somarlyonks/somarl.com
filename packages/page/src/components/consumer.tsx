@@ -1,24 +1,30 @@
 import { h, JSX } from 'preact'
 import { useCallback } from 'preact/hooks'
-import { IStore } from '../redux/framework'
-import { createContext } from '../redux/middleware'
-import store, { actions, IImplState, IImplAction } from '../redux/store'
+import store, { IImplState, StoreContext, useMappedState, ActionTypes } from '../redux/store'
+import { action } from '../redux/store/helpers'
 
-const { StoreContext, useMappedState } = createContext<IImplState, IImplAction, IStore<IImplState, IImplAction>>(store)
 
-; (window as any).store = StoreContext
-const ADec: JSX.MouseEventHandler = event => store.dispatch(actions.global.DECREMENT(1))
-const AInc: JSX.MouseEventHandler = event => {
-  store.dispatch(actions.global.INCREMENT(1))
-  console.info(store.getState()!.global)
+const API = async (x: S) => x
+const API2 = async (x: N) => {
+  if (Math.random() > (1 / 2)) throw Error('Testing Error handling')
+  return x
 }
+const incN = action(ActionTypes.global.INCREMENT, API2)
 
 const Consumer = () => {
   const { global } = useMappedState(useCallback((state: IImplState) => state, []))
+
+  const ADec: JSX.MouseEventHandler = event => store.dispatch({
+    type: ActionTypes.global.DECREMENT,
+    payload: API('1'),
+  })
+  const AInc: JSX.MouseEventHandler = event => store.dispatch(incN(1))
+
   return (
     <StoreContext.Provider value={store}>
+      <p>{global.errMsgs}</p>
       <button onClick={ADec}>-</button>
-      <span>{global}</span>
+      <span>{global.testCount}</span>
       <button onClick={AInc}>+</button>
     </StoreContext.Provider>
   )

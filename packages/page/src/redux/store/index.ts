@@ -1,7 +1,12 @@
-import redux, { IReducers, IActions, IBoundActions } from '../framework'
+import redux, { IStore, IReducers, IActions, IBoundActions, IMiddleware } from '../framework'
+import {
+  createContext,
+  promiseMiddleware, errorMiddleware, loggerMiddleware
+} from '../middleware'
 
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sLocal, { ILocalState, ILocalAction } from './local'
+import { applyMiddleware } from '../framework/middleware'
 
 
 export interface IImplState {
@@ -14,7 +19,8 @@ export interface IImplActions extends IActions<IImplState> {
   local: ILocalAction
 }
 
-export type IImplAction = IGlobalAction | ILocalAction
+export type IImplAction = IGlobalAction
+                        | ILocalAction
 
 export const ActionTypes = {
   global: sGlobal.ActionTypes,
@@ -22,7 +28,13 @@ export const ActionTypes = {
 }
 
 const preloadedState: IImplState = {
-  global: 0,
+  global: {
+    testCount: 0,
+    errMsgs: [],
+    themeColor: 'lightCoral',
+    terminalState: 'blur',
+    richOutput: '',
+  },
   local: 0,
 }
 
@@ -34,8 +46,17 @@ const reducers = {
 export const actions: IBoundActions<IImplState, IImplActions> = redux.bindActions(ActionTypes)
 
 const store = redux.createStore<IImplState, IImplAction>(
-  redux.combineReducers(reducers),
-  { preloadedState }
+  redux.combineReducers(reducers), {
+    preloadedState,
+    enhancer: applyMiddleware(
+      promiseMiddleware as IMiddleware<IImplState, IImplAction>,
+      errorMiddleware,
+      loggerMiddleware
+    ),
+  }
 )
 
 export default store
+
+export const { StoreContext, useMappedState } = createContext<IImplState, IImplAction, IStore<IImplState, IImplAction>>(store)
+; (window as any).store = store

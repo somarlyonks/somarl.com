@@ -44,7 +44,7 @@ export default class Hoverable extends React.Component<IComponentAProps, {}> {}
 
 Two blanklines after imports.
 
-Public libs imported first followed by helpers/utils and then other local components.
+Public libs imported first, followed by helpers/utils and then other local components.
 
 Every `.tsx` file is supposed to have a default exported component whose interface of props is also supposed to be exported.
 

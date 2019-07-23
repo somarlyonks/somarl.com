@@ -2,42 +2,31 @@ import { h, Component } from 'preact'
 import Footer from './components/footer'
 import Header from './components/header'
 import Main from './components/main'
-import Context, { IContext, GTermianlState } from './context'
 import { getBinksColor } from './helpers/Api'
+
+import store, { StoreContext, ActionTypes } from './redux/store'
+import { action } from './redux/store/helpers'
 
 import Consumer from './components/consumer'
 
 
-class App extends Component<{}, IContext> {
-  public state: IContext = {
-    mainColor: 'lightcoral',
-    terminalState: 'blur',
-    richOutput: '',
-    setTerminalState: this.setTerminalState.bind(this),
-    setRichOutput: this.setRichOutput.bind(this),
-  }
-
-  public setTerminalState (state: GTermianlState) {
-    this.setState({ terminalState: state })
-  }
-
-  public setRichOutput (output: S) {
-    this.setState({ richOutput: output })
-  }
-
+class App extends Component {
   public async componentDidMount () {
-    const color = await getBinksColor()
-    this.setState({ mainColor: `rgb(${color.join(', ')})`})
+    const setColor = action(
+      ActionTypes.global.SET_THEMECOLOR,
+      async (color: R<typeof getBinksColor>) => `rgb(${(await color).join(', ')})`
+    )
+    store.dispatch(setColor(getBinksColor()))
   }
 
   public render () {
     return (
-      <Context.Provider value={this.state}>
+      <StoreContext.Provider value={store}>
         <div style={{position: 'absolute', right: 0}}><Consumer /></div>
         <Header />
         <Main />
         <Footer />
-      </Context.Provider>
+      </StoreContext.Provider>
     )
   }
 }

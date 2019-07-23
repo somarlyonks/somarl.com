@@ -1,5 +1,8 @@
 import { h, Component, JSX } from 'preact'
-import Context, { IContext } from '../../context'
+import { useCallback } from 'preact/hooks'
+
+import store, { IImplState, useMappedState, ActionTypes } from '../../redux/store'
+import { GTermianlState } from '../../redux/store/global'
 
 
 export interface ITerminalInputProps {
@@ -32,6 +35,11 @@ const SupportInput = ({className, supportText, display}: ISupportInputProps) => 
   />
 )
 
+const setTerminalState = (payload: GTermianlState) => store.dispatch({
+  type: ActionTypes.global.SET_TERMINALSTATE,
+  payload,
+})
+
 export default class TerminalInput extends Component<ITerminalInputProps, ITerminalInputStates> {
   public readonly state: ITerminalInputStates = {
     text: '',
@@ -40,19 +48,19 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     fakeContrastText: '',
   }
 
-  private readonly onFocus: (c: IContext['setTerminalState']) => JSX.FocusEventHandler = contextSetter => event => {
+  private readonly onFocus: JSX.FocusEventHandler = event => {
     if (this.props.onFocus) {
       this.props.onFocus()
     }
 
     this.setState({ supportDisplay: true })
-    contextSetter('focus')
+    setTerminalState('focus')
   }
 
 
-  private readonly onBlur: (c: IContext['setTerminalState']) => JSX.FocusEventHandler = contextSetter => event => {
+  private readonly onBlur: JSX.FocusEventHandler = event => {
     this.setState({ supportDisplay: false })
-    contextSetter('blur')
+    setTerminalState('blur')
   }
 
   /** @setState */
@@ -80,13 +88,13 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     }
   }
 
-  private readonly onKeyUp: (c: IContext['setTerminalState']) => JSX.KeyboardEventHandler = contextSetter => event => {
+  private readonly onKeyUp: JSX.KeyboardEventHandler = event => {
     this.jumpTo(event)
     const target = event.target as HTMLInputElement
 
     if (event.key === 'Enter') {
       target.blur()
-      contextSetter('output')
+      setTerminalState('output')
       if (this.props.onEmit) {
         this.props.onEmit(target.value)
       }
@@ -103,33 +111,31 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
   }
 
   public render () {
+    const { global } = useMappedState(useCallback((state: IImplState) => state, []))
+
     return (
-      <Context.Consumer>
-        {({setTerminalState, mainColor}) => (
-          <div className="terminal-input">
-            <input
-              type="text"
-              style={{borderLeftColor: mainColor}}
-              className="terminal-input__input"
-              onFocus={this.onFocus(setTerminalState)}
-              onBlur={this.onBlur(setTerminalState)}
-              onInput={this.onChange}
-              onKeyUp={this.onKeyUp(setTerminalState)}
-              onMouseUp={this.jumpTo}
-            />
-            <SupportInput
-              className="terminal-input__support"
-              supportText={this.state.caretText}
-              display={this.state.supportDisplay}
-            />
-            <SupportInput
-              className="terminal-input__support terminal-input__support_contrast"
-              supportText={this.state.fakeContrastText}
-              display={this.state.supportDisplay}
-            />
-          </div>
-        )}
-      </Context.Consumer>
+      <div className="terminal-input">
+        <input
+          type="text"
+          style={{borderLeftColor: global.themeColor}}
+          className="terminal-input__input"
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          onInput={this.onChange}
+          onKeyUp={this.onKeyUp}
+          onMouseUp={this.jumpTo}
+        />
+        <SupportInput
+          className="terminal-input__support"
+          supportText={this.state.caretText}
+          display={this.state.supportDisplay}
+        />
+        <SupportInput
+          className="terminal-input__support terminal-input__support_contrast"
+          supportText={this.state.fakeContrastText}
+          display={this.state.supportDisplay}
+        />
+      </div>
     )
   }
 }

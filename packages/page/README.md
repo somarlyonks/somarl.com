@@ -6,22 +6,19 @@ Though migrated to preact, [Create React App](https://github.com/facebookincubat
 
 ## Redux
 
-Data control with self implemented redux.js and redux-saga.
+Data control with a self implemented dialect of redux.js, you may take it as just another implemention of Flux but looks like Redux.
 
 ```bash
 .
 └── src
      ├── redux
      │    ├── framework
-     │    │    └── index.ts
      │    ├── middleware
-     │    │    └── saga.ts
      │    └── store
-     │         └── index.ts
      └...
 ```
 
-Implemented in src/redux/framework, a little bit different from the official redux.js API.
+Implemented in src/redux/framework, differenciate from the official redux.js API:
 
 - It doesn't have to support "observable" since I don't use Cycle.js or RxJS.
 - It doesn't have to check every reducer to combine and ask them to behave in specific ways.
@@ -29,11 +26,8 @@ Implemented in src/redux/framework, a little bit different from the official red
 - It supports native stricter type checking in constrained actions.
 - You have to define the type of the state and action before creating store.
 - Actions are bound under the corresponding-domain state.
-- It's definitely typed, including ways to obtain strictly typed bound actions/payloads.
-
-In short, you should specify all the things before the programme runs instead of mix things up and try it and pray at runtime.
-
-Bussiness code in src/redux/impl. Redux-saga locates at src/redux/middleware/saga.ts.
+- Payloads wrapped in Promise are acceptable natively but still restrict to [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action).
+- Namespaced actions are preferred.
 
 ## References
 
