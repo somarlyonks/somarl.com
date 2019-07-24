@@ -1,10 +1,13 @@
 {
   "extends": "../tsconfig.common.json",
   "compilerOptions": {
+    "lib": ["es2016", "esnext.asynciterable"],
     "module": "commonjs",
     "target": "es2017",
     "outDir": "./build",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "typeRoots": [
       "src/@types/*"
     ],
