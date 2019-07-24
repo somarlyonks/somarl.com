@@ -2,7 +2,15 @@
 
 Serves as a basic server and provides with some proxied public Apis.
 
-It so tiny, so no need to introduce the problems of git submodules. The whole project is still mostly a react project.
+## framework
+
+The server is mostly based on ['NestJS'](https://nestjs.com/) with GraphQL to MongoDB. It also provides some proxies to public Apis.
+
+## GraphQL with ts
+
+How to make sure there's only one single truth source?
+
+You should define api in sub-directories of `packages/server/src` just like the `recipe`. When server bootstraps it generates `packages/server/src/graphql/schema.gql` which will then genenrate typings to `packages/pipe/src/graphql.ts` which will be exported from `Adapters.ts`.
 
 ## Api
 

@@ -46,8 +46,8 @@ somarl.com:
       [ ] local history
 
   Server:
-    [ ] server frame
-    [ ] GraphQL
+    [x] server frame
+    [x] GraphQL
     X  GRpc
 
   Dev:
@@ -59,3 +59,6 @@ somarl.com:
     Monorepo settings:
       [x] greenkeeper enabled
       [x] fix yarn workspaces not symlinked
+    Monorepo workflow:
+      [x] pipe build
+      [ ] GraphQL auto sync

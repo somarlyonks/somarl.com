@@ -21,8 +21,10 @@ declare type N = number
 
 declare type S = string
 
-declare type L<T = any> = T[]
+declare type L<T = A> = T[]
 
 declare type O = {}
 
 declare type A = any
+
+declare type P<T = A> = Promise<T>

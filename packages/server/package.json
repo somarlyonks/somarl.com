@@ -5,13 +5,22 @@
     "start": "if-env NODE_ENV=production ?? npm run prod || npm run dev",
     "prod": "nodemon ./src/server.ts",
     "dev": "nodemon ./src/server.ts",
+    "graphql-types": "ts-node ./src/graphql/generate-typings.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@nestjs/common": "^6.5.3",
+    "@nestjs/core": "^6.5.3",
+    "@nestjs/graphql": "^6.4.2",
+    "@nestjs/platform-express": "^6.5.3",
     "@somarl.com/pipe": "0.1.0",
+    "apollo-server": "^2.7.0",
+    "apollo-server-express": "^2.7.0",
     "chalk": "^2.4.1",
     "dotenv": "^6.2.0",
+    "graphql": "^14.4.2",
+    "graphql-tools": "^4.0.5",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.6.2",
@@ -23,9 +32,13 @@
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.6",
     "mongodb": "^3.1.10",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.3.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "ts-node": "^8.0.3",
+    "type-graphql": "^0.17.4"
   }
 }

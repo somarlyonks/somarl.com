@@ -1,3 +1,4 @@
 export {
-  IBinksRecord
+  IBinksRecord,
+  randomString,
 } from '@somarl.com/pipe'

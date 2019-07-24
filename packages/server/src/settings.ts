@@ -6,8 +6,8 @@
 import './helpers/env'
 
 // tslint:disable: max-line-length
-const KOA_PORT_DEV = 3001
-const KOA_PORT_PROD = 8081
+const SERVER_PORT_DEV = 3001
+const SERVER_PORT_PROD = 8081
 const SERVER_CNAME = 'api'
 const SERVER_HOST = 'dev.local'
 const SERVER_PROTOCOL = 'http' // TODO: SSL and http/2
@@ -16,11 +16,11 @@ const MONGO_PORT_DEFAULT = 27017
 const BINKS_DIR = '/home/sy/Dropbox/bing/persistent'
 
 
-class S {
+export default class S {
   public static ENV = process.env.SOMARL_ENV || 'dev'
-  public static KOA_PORT = process.env.KOA_PORT || S.ENV === 'prod' ? KOA_PORT_PROD : process.env.KOA_PORT_DEV || KOA_PORT_DEV
-  public static SERVER_KOA_URI = `${SERVER_PROTOCOL}://${SERVER_CNAME}.${SERVER_HOST}`
-  public static SERVER_KOA_URL = S.SERVER_KOA_URI
+  public static SERVER_PORT = process.env.SERVER_PORT || S.ENV === 'prod' ? SERVER_PORT_PROD : process.env.SERVER_PORT_DEV || SERVER_PORT_DEV
+  public static SERVER_URI = `${SERVER_PROTOCOL}://${SERVER_CNAME}.${SERVER_HOST}`
+  public static SERVER_URL = S.SERVER_URI
 
   public static MONGO_PORT = process.env.MONGO_PORT || MONGO_PORT_DEFAULT
   public static MONGO_HOST = process.env.MONGO_HOST || `localhost`
