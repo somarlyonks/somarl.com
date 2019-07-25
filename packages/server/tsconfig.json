@@ -7,7 +7,6 @@
     "outDir": "./build",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "typeRoots": [
       "src/@types/*"
     ],

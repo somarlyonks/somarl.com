@@ -9,7 +9,7 @@
     "downlevelIteration": true,
     "emitDecoratorMetadata": false,
     "esModuleInterop": true,
-    "experimentalDecorators": false,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
