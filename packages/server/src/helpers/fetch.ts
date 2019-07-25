@@ -13,5 +13,7 @@ export async function fetchPublicJson (api: string, body?: string) {
     init.body = body
   }
 
-  return fetch(api, init)
+  const r = await fetch(api, init)
+
+  return r.json()
 }

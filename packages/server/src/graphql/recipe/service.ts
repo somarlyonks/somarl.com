@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { NewRecipeInput } from './dto/input'
 import { RecipesArgs } from './dto/args'
 import { Recipe } from './models/recipe'
-import { randomString } from '../helpers/Adapter'
+import { randomString } from '../../helpers/Adapter'
 
 
 @Injectable()

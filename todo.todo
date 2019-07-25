@@ -48,6 +48,10 @@ somarl.com:
   Server:
     [x] server frame
     [x] GraphQL
+    [ ] test frame
+    [ ] logger
+      [ ] server log
+      [ ] request log
     X  GRpc
 
   Dev:

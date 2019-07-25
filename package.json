@@ -9,17 +9,27 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "convert": "lerna link convert",
-    "commitlint": "commitlint",
-    "husky": "node node_modules/husky/bin/install.js",
+
+    "test": "cd packages/page && npm run test",
+    "ci": "cd packages/page && npm run ci",
+    "graphql-types": "cd packages/server && npm run graphql-types",
+
+    "page": "cd packages/page && npm start",
+    "pipe": "npm-run-all build-pipe bootstrap",
+    "server": "cd packages/server && npm start",
+
     "build-page": "cd packages/page && npm run build",
     "build-pipe": "cd packages/pipe && npm run build",
     "build-server": "cd packages/server && npm run build",
     "build": "npm-run-all build-pipe build-page",
-    "test": "cd packages/page && npm run test",
-    "ci": "cd packages/page && npm run ci",
-    "page": "cd packages/page && npm start",
-    "pipe": "npm-run-all build-pipe bootstrap",
-    "server": "cd packages/server && npm start"
+
+    "lint-page": "cd packages/page && npm run lint",
+    "lint-pipe": "cd packages/pipe && npm run lint",
+    "lint-server": "cd packages/server && npm run lint",
+    "lint": "npm-run-all lint-page lint-pipe lint-server",
+
+    "commitlint": "commitlint",
+    "husky": "node node_modules/husky/bin/install.js"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
@@ -29,12 +39,6 @@
     "@types/dotenv": "^6.1.0",
     "@types/jest": "^24.0.0",
     "@types/jsonwebtoken": "^8.3.0",
-    "@types/koa": "^2.0.48",
-    "@types/koa-bodyparser": "^4.2.1",
-    "@types/koa-convert": "^1.2.1",
-    "@types/koa-logger": "^3.1.1",
-    "@types/koa-router": "^7.0.36",
-    "@types/koa2-cors": "^2.0.1",
     "@types/mongodb": "^3.1.18",
     "@types/node-fetch": "^2.1.4",
     "autoprefixer": "^9.4.4",
@@ -82,7 +86,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn ci",
       "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
     }
   }

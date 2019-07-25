@@ -2,7 +2,7 @@
   "env": {
     "TS_NODE_FILES": true,
     "SOMARL_ENV": "dev",
-    "KOA_PORT_DEV": 3001
+    "SERVER_PORT_DEV": 3001
   },
   "watch": [
     "src/**/*"
