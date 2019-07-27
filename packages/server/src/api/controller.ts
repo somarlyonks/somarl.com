@@ -5,7 +5,9 @@ import { BinksService, PublicApiService } from './service'
 import { HTTPStatusCodes } from '../helpers/Adapter'
 
 
-@Controller()
+const API_ENDPOINT = '/'
+
+@Controller(API_ENDPOINT)
 export class BinksController {
   public constructor (private readonly binksService: BinksService) {}
 
@@ -21,7 +23,7 @@ export class BinksController {
   }
 }
 
-@Controller()
+@Controller(API_ENDPOINT)
 export class PublicApiControler {
   public constructor (private readonly publicApiService: PublicApiService) {}
 

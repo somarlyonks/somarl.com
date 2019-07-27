@@ -48,6 +48,9 @@ somarl.com:
   Server:
     [x] server frame
     [x] GraphQL
+    [ ] mongo frame
+      [x] mongo server module
+      [ ] mongo interface module
     [ ] test frame
     [ ] logger
       [ ] server log

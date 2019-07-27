@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { DateScalar } from '../shared/scalars/date'
+import { DateScalar } from '../shared/scalars'
 import { RecipesResolver } from './resolver'
 import { RecipesService } from './service'
 
