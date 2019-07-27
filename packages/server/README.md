@@ -10,6 +10,8 @@ The server is mostly based on ['NestJS'](https://nestjs.com/) with GraphQL to Mo
 ├── settings.ts
 └── src
      ├── mongo
+     │    ├── module.ts
+     │    ├── decorators.ts
      ├── app
      │    ├── middlewares
      │    ├── controller.ts
@@ -21,6 +23,7 @@ The server is mostly based on ['NestJS'](https://nestjs.com/) with GraphQL to Mo
      │    └── service.ts
      ├── graphql
      │    ├── generate-typings.ts
+     │    ├── module.ts
      │    ├── schema.gql
      │    ├── shared
      │    ├── recipe
