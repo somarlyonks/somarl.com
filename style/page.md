@@ -1,8 +1,4 @@
-# Coding style guide
-
-First, confront to the linters. `eslintrc` and `tslint.json` can't be edit except trying to make them stricter or more specific.
-
-Second, learn from existing files. Sometimes consistency is more important than rules.
+# Page 
 
 ## TSX
 
@@ -121,50 +117,6 @@ const ComponentC = () => ()
 // one line EOF
 ```
 
-### comma/semicolon
-
-No semicolon except `for` statements.
-
-No comma in interface/type/enum.
-
-Rules about trailing comma see `tslint.json`.
-
-Example:
-
-```ts
-interface IA {
-  a: string // no comma
-  b: string
-}
-
-const o = {
-  a,
-  b,
-  c: d,
-  e, // keep the trailing comma
-} // no semicolon
-```
-
-### jsDoc
-
-Only add informations can't be inferred from typescript intellies(e.g. setState). Compressing one line comments into a single line is accepted.
-
-Example:
-
-```tsx
-export default class ComponentA extends React.Component<IComponentAProps, {}> {
-  /** @setState */
-  private readonly afterProcess (v: string) {
-    // operations
-    this.setState({isClean: false})
-  }
-}
-```
-
-### log level
-
-Every error could be handled should be a warning. Log as error if you are not sure about the cause and don't know how to prevent it. Other things are all infomations.
-
 ## SCSS
 
 ### filename
@@ -244,69 +196,3 @@ One space after every ',' and `:`
 `0.1` is preferred to `.1`
 
 `#ccc` is preferred to `#CCC` and `#cccccc`. `#CcC` is not accepted.
-
-## Pipe
-
-All other packages can import from `pipe` but `pipe` are not supposed to have any dependencies. Interfaces shared both backend and frontend are recommanded to be defined in `pipe`.
-
-There are not many files in this repo are capatilized, one of them is `Adapter.ts`, which is deliberate for searching.
-
-The `packages/pipe/src/Adapter.ts` are supposed to port the src of pipe, so the common signature in it is
-
-```ts
-export * from './fileA'
-export * from './fileB'
-export * from './fileC'
-
-```
-
-In other packages' `Adapter.ts`, port things on need and arrange them carefully
-
-```ts
-export {
-  IA, TypeA,
-  IC,
-} from '@somarl.com/pipe'
-
-```
-
-## Git
-
-### commit log
-
-Covered by commitlint and husky hooks. Just try.
-
-### Pull requests
-
-No commits directly committed at master branch.
-
-Pull requests should be compressed to one word description or an explicit subject, like:
-
-```git
-feat(page): add a simulated terminal input component
-refact(component): improve terminal component callback props
-chore(pkg): reorganize scss structures
-fix(component): fix terminal position
-feat(page): reorganize main structure
-feat(pkg): update tslint and add coding style guide
-feat(sysh): introduce the sysh terminal parser and interaction logic
-feat(component): terminal auto focus
-feat(page): add fake background image for deving
-feat(pkg): makeup reset css
-```
-
-merged as
-
-```git
-Merge pull request #1 from somarlyonks/dev
-
-feat
-```
-
-or
-
-```git
-Merge pull request #1 from somarlyonks/dev
-
-feat(page): add terminal
-```

@@ -3,17 +3,17 @@ import { Field, ID, ObjectType } from 'type-graphql'
 @ObjectType()
 export class Recipe {
   @Field(type => ID)
-  public id!: string
+  public id!: S
 
   @Field()
-  public title!: string
+  public title!: S
 
   @Field({ nullable: true })
-  public description?: string
+  public description?: S
 
   @Field()
   public creationDate!: Date
 
   @Field(type => [String])
-  public ingredients!: string[]
+  public ingredients!: L<S>
 }

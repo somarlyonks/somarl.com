@@ -4,7 +4,7 @@ import { PubSub } from 'apollo-server-express'
 
 import { NewRecipeInput } from './dto/input'
 import { RecipesArgs } from './dto/args'
-import { Recipe } from './models/recipe'
+import { Recipe } from './model'
 import { RecipesService } from './service'
 
 
@@ -17,9 +17,8 @@ export class RecipesResolver {
   @Query(returns => Recipe)
   public async recipe (@Args('id') id: string): Promise<Recipe> {
     const recipe = await this.recipesService.findOneById(id)
-    if (!recipe) {
-      throw new NotFoundException(id)
-    }
+    if (!recipe) throw new NotFoundException(id)
+
     return recipe
   }
 

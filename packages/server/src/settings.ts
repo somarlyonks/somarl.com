@@ -13,6 +13,7 @@ const SERVER_HOST = 'dev.local'
 const SERVER_PROTOCOL = 'http' // TODO: SSL and http/2
 const JWT_SECRET_DEV = 'TBLq4!4.2m'
 const MONGO_PORT_DEFAULT = 27017
+const MONGO_DB_DEFAULT = 'test'
 const BINKS_DIR = '/home/sy/Dropbox/bing/persistent'
 
 
@@ -23,6 +24,7 @@ export default class S {
   public static SERVER_URL = S.SERVER_URI
 
   public static MONGO_PORT = process.env.MONGO_PORT || MONGO_PORT_DEFAULT
+  public static MONGO_DB = process.env.MONGO_DB || MONGO_DB_DEFAULT
   public static MONGO_HOST = process.env.MONGO_HOST || `localhost`
   public static MONGO_URI = `mongodb://${S.MONGO_HOST}:${S.MONGO_PORT}`
   public static MONGO_OPTIONS = {
@@ -41,6 +43,7 @@ export default class S {
     'https://www.somarl.com',
     'http://somarl.com',
     'https://somarl.com',
+    'http://192.168.1.119:3001',
   ]
 
   public static DARKSKY_SECRETKEY = process.env.DARKSKY_SECRETKEY || ''

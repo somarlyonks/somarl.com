@@ -58,7 +58,6 @@ export class PublicApiService {
     const units = 'si'
     const queries = `units=${units}&exclude=${exclude}`
 
-    // const exclude = ctx.request.query.exclude || 'flags'
     return fetchPublicJson(`${darkSkyApi}?${queries}`)
   }
 }

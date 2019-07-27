@@ -1,24 +1,19 @@
 import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common'
-import { GraphQLModule } from '@nestjs/graphql'
 
 import { SETTINGS } from '../settings'
 import AppController from './controller'
 import AppService from './service'
 import { CorsMiddleware, LoggerMiddleware } from './middlewares'
-import ApiModule from '../api/module'
-import RecipeModule from '../graphql/recipe/module'
+import ApiModule from '../api'
+import MongoModule from '../mongo'
+import GraphQLModule from '../graphql'
 
 
 @Module({
   imports: [
     ApiModule,
-    RecipeModule,
-    GraphQLModule.forRoot({
-      debug: true,
-      playground: true,
-      installSubscriptionHandlers: true,
-      autoSchemaFile: 'src/graphql/schema.gql',
-    }),
+    MongoModule.forRoot(SETTINGS.MONGO_URI, SETTINGS.MONGO_DB),
+    GraphQLModule,
   ],
   controllers: [
     AppController,

@@ -15,7 +15,7 @@
     "graphql-types": "cd packages/server && npm run graphql-types",
 
     "page": "cd packages/page && npm start",
-    "pipe": "npm-run-all build-pipe bootstrap",
+    "pipe": "npm-run-all graphql-types build-pipe bootstrap",
     "server": "cd packages/server && npm start",
 
     "build-page": "cd packages/page && npm run build",
