@@ -8,6 +8,7 @@
   },
   "rules": {
     "no-console": false,
-    "no-null-keyword": false
+    "no-null-keyword": false,
+    "prefer-function-over-method": false
   }
 }

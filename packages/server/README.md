@@ -10,8 +10,10 @@ The server is mostly based on ['NestJS'](https://nestjs.com/) with GraphQL to Mo
 ├── settings.ts
 └── src
      ├── mongo
+     │    ├── entity.ts
+     │    ├── repo.ts
      │    ├── module.ts
-     │    ├── decorators.ts
+     │    └── decorators.ts
      ├── app
      │    ├── middlewares
      │    ├── controller.ts
@@ -28,9 +30,9 @@ The server is mostly based on ['NestJS'](https://nestjs.com/) with GraphQL to Mo
      │    ├── shared
      │    ├── recipe
      │    │    ├── dto
-     │    │    ├── model.ts
+     │    │    ├── models.ts
+     │    │    ├── repos.ts
      │    │    ├── module.ts
-     │    │    ├── repo.ts
      │    │    ├── resolver.ts
      │    │    └── service.ts
      │    └── ...
@@ -40,6 +42,13 @@ The server is mostly based on ['NestJS'](https://nestjs.com/) with GraphQL to Mo
      │    └── services
      └...
 ```
+
+The business code template:
+
+- `module -> service -> repo -> model/entity`.
+- Services are supposed to have no access to database but with the help of repo.
+- Repos are supposed to have no awareness to business circumstances but capable of specific manipulations to the databas.
+- Model are first defined datamodel. Entity is the data travelling around the business codes.
 
 ## GraphQL/MongoDB with ts
 

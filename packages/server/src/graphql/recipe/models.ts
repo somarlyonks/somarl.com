@@ -5,14 +5,14 @@ export class Recipe {
   @Field(type => ID)
   public id!: S
 
-  @Field()
+  @Field(type => String)
   public title!: S
 
   @Field({ nullable: true })
   public description?: S
 
   @Field()
-  public creationDate!: Date
+  public created!: Date
 
   @Field(type => [String])
   public ingredients!: L<S>

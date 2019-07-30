@@ -1,6 +1,6 @@
 // tslint:disable: no-magic-numbers
 
-import { IsOptional, Length, MaxLength } from 'class-validator'
+import { IsOptional, MaxLength } from 'class-validator'
 import { Field, InputType } from 'type-graphql'
 
 
@@ -8,13 +8,13 @@ import { Field, InputType } from 'type-graphql'
 export class NewRecipeInput {
   @Field()
   @MaxLength(30)
-  public title!: string
+  public title!: S
 
   @Field({ nullable: true })
   @IsOptional()
-  @Length(30, 255)
-  public description?: string
+  @MaxLength(255)
+  public description?: S
 
   @Field(type => [String])
-  public ingredients!: string[]
+  public ingredients!: L<S>
 }
