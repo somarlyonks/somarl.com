@@ -13,19 +13,20 @@ somarl.com:
     [ ] admin auth @low
     [x] footer
     [ ] favicon
+    Context:
+      [ ] refactor preact-context to redux
+      [x] self implemented redux
+        [x] store factory
+        [x] reducer composer
+        [x] action binder
+        X connector
+        [x] hooks
+        [x] middleware compatibility
+      X self implemented saga
+      [x] redux async
+      [ ] apollo middleware
+      [ ] immutable @low
     Refactor Plugin System:
-      Context:
-        [ ] refactor preact-context to redux
-        [x] self implemented redux
-          [x] store factory
-          [x] reducer composer
-          [x] action binder
-          X connector
-          [x] hooks
-          [x] middleware compatibility
-        X self implemented saga
-        [x] redux async
-        [ ] immutable @low
       Terminal:
         [x] basic UI
         [x] make sure the timings of callbacks are proper
@@ -46,12 +47,14 @@ somarl.com:
       [ ] local history
 
   Server:
-    [x] server frame
+    [x] server frame - nestjs
     [x] GraphQL
     [ ] mongo frame
       [x] mongo server module
-      [ ] mongo interface module
+      [ ] mongo interface module - WIP
     [ ] test frame
+      [ ] frame test
+      [ ] business test
     [ ] logger
       [ ] server log
       [ ] request log

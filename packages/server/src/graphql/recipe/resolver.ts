@@ -4,7 +4,7 @@ import { PubSub } from 'apollo-server-express'
 
 import { NewRecipeInput } from './dto/input'
 import { RecipesArgs } from './dto/args'
-import { Recipe } from './model'
+import { Recipe } from './models'
 import { RecipesService } from './service'
 
 
@@ -16,10 +16,10 @@ export class RecipesResolver {
 
   @Query(returns => Recipe)
   public async recipe (@Args('id') id: string): Promise<Recipe> {
-    const recipe = await this.recipesService.findOneById(id)
-    if (!recipe) throw new NotFoundException(id)
+    const recipe = this.recipesService.findOneById(id)
+    if (!await recipe) throw new NotFoundException(id)
 
-    return recipe
+    return recipe as Promise<Recipe>
   }
 
   @Query(returns => [Recipe])
@@ -31,8 +31,8 @@ export class RecipesResolver {
   public async addRecipe (
     @Args('newRecipeData') newRecipeData: NewRecipeInput
   ): Promise<Recipe> {
-    const recipe = await this.recipesService.create(newRecipeData)
-    pubSub.publish('recipeAdded', { recipeAdded: recipe })
+    const recipe = this.recipesService.create(newRecipeData)
+    pubSub.publish('recipeAdded', { recipeAdded: await recipe })
     return recipe
   }
 

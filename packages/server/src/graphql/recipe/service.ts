@@ -1,33 +1,32 @@
+import { ObjectID } from 'mongodb'
 import { Injectable } from '@nestjs/common'
 
 import { NewRecipeInput } from './dto/input'
 import { RecipesArgs } from './dto/args'
-import { Recipe } from './model'
+import { Recipe } from './models'
+import { RecipeRepo } from './repos'
 import { randomString } from '../../helpers/Adapter'
-import { InjectDb } from '../../mongo'
-import { Db } from 'mongodb'
 
 
 @Injectable()
 export class RecipesService {
   public constructor (
-    @InjectDb() private readonly db: Db
+    public readonly recipeRepo: RecipeRepo
   ) {}
 
-  public async create (data: NewRecipeInput): Promise<Recipe> {
-    return {} as any
+  public async create (data: NewRecipeInput) {
+    return this.recipeRepo.create(data)
   }
 
-  public async findOneById (id: string): Promise<Recipe> {
-    return {} as any
+  public async findOneById (id: S) {
+    return this.recipeRepo.findOne({ _id: new ObjectID(id) })
   }
 
   public async findAll (recipesArgs: RecipesArgs): Promise<Recipe[]> {
-    console.log('xxxx', this.db) // TODELETE
     const all = Array(100).fill(0).map(() => ({
       id: randomString(),
       title: 'test',
-      creationDate: new Date(),
+      created: new Date(),
       ingredients: ['test'],
     }))
 

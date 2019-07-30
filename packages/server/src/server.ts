@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core'
-import { Logger } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
 import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express'
 
 import AppModule from './app'
@@ -15,6 +15,7 @@ async function bootstrap () {
       logger: new LoggerService(),
     }
   )
+  app.useGlobalPipes(new ValidationPipe())
 
   await app.listen(SETTINGS.SERVER_PORT)
   Logger.log(`🚀  http://127.0.0.1:${SETTINGS.SERVER_PORT}`)

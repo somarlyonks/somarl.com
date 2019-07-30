@@ -26,7 +26,7 @@ type Recipe {
   id: ID!
   title: String!
   description: String
-  creationDate: Date!
+  created: Date!
   ingredients: [String!]!
 }
 
