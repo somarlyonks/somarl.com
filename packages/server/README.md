@@ -1,4 +1,4 @@
-# somarl.som minimal server
+# Server
 
 ## framework
 
@@ -47,8 +47,15 @@ The business code template:
 
 - `module -> service -> repo -> model/entity`.
 - Services are supposed to have no access to database but with the help of repo.
-- Repos are supposed to have no awareness to business circumstances but capable of specific manipulations to the databas.
+- Repos are supposed to have no awareness to business circumstances but capable of specific manipulations to the database.
 - Model are first defined datamodel. Entity is the data travelling around the business codes.
+
+So the development procedure is like:
+
+- Define the model / dto / resolver (things shared and importabled)
+- Define the specs (interfaces)
+- Implement the specs (injectables)
+- Test the specs and implementations
 
 ## GraphQL/MongoDB with ts
 
@@ -59,7 +66,3 @@ You may wonder where is the `mongoose`? There is no such a thing here. The lib i
 Finally, the framework relies much much on the [TypeGraphQL](https://github.com/19majkel94/type-graphql) and a handcrafted mongo interface.
 
 You should define api in sub-directories of `packages/server/src` just like the `recipe`. When server bootstraps it generates `packages/server/src/graphql/schema.gql` which will then genenrate typings to `packages/pipe/src/graphql.ts` which will be exported from `Adapters.ts`.
-
-## Api
-
-### blacksky

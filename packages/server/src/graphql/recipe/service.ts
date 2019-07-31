@@ -1,15 +1,14 @@
 import { ObjectID } from 'mongodb'
 import { Injectable } from '@nestjs/common'
 
-import { NewRecipeInput } from './dto/input'
-import { RecipesArgs } from './dto/args'
+import { NewRecipeInput, RecipesArgs } from './dto'
 import { Recipe } from './models'
+import { IRecipeService } from './specs'
 import { RecipeRepo } from './repos'
-import { randomString } from '../../helpers/Adapter'
 
 
 @Injectable()
-export class RecipesService {
+export default class RecipeService implements IRecipeService {
   public constructor (
     public readonly recipeRepo: RecipeRepo
   ) {}
@@ -23,17 +22,16 @@ export class RecipesService {
   }
 
   public async findAll (recipesArgs: RecipesArgs): Promise<Recipe[]> {
-    const all = Array(100).fill(0).map(() => ({
-      id: randomString(),
-      title: 'test',
-      created: new Date(),
-      ingredients: ['test'],
-    }))
-
-    return all.slice(recipesArgs.skip, recipesArgs.take)
+    return this.recipeRepo.find(
+      {},
+      {
+        limit: recipesArgs.take,
+        skip: recipesArgs.skip,
+      }
+    )
   }
 
-  public async remove (id: string): Promise<boolean> {
-    return true
+  public async removeById (id: S): Promise<boolean> {
+    return this.recipeRepo.delete({ _id: new ObjectID(id) })
   }
 }

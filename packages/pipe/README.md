@@ -26,4 +26,6 @@ see `STYLE.md`
 
 ## Usage
 
+**Important**: This package should be compiled first to support the server and page.
+
 To make the changes in `pipe` lintable, you have to run `npm run pipe`(at rootDir or pipe) after editing files in `packages/pipe`
