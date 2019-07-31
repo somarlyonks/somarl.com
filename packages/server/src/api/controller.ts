@@ -31,4 +31,9 @@ export class PublicApiControler {
   public async darkSky (@Query() query: A) {
     return this.publicApiService.getDarkSky(query.exclude || 'flags')
   }
+
+  @Get('short_url')
+  public async shortUrl (@Query() url: S) {
+    return this.publicApiService.sinaShortUrl(url)
+  }
 }

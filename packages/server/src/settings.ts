@@ -15,6 +15,7 @@ const JWT_SECRET_DEV = 'TBLq4!4.2m'
 const MONGO_PORT_DEFAULT = 27017
 const MONGO_DB_DEFAULT = 'test'
 const BINKS_DIR = '/home/sy/Dropbox/bing/persistent'
+const SINA_APP_KEY = 1524513978 // this doesn't have to be a secret
 
 
 export default class S {
@@ -48,6 +49,8 @@ export default class S {
 
   public static DARKSKY_SECRETKEY = process.env.DARKSKY_SECRETKEY || ''
   public static BINKS_DIR = process.env.BINKS_DIR || BINKS_DIR
+
+  public static SINA_APP_KEY = SINA_APP_KEY
 }
 
 
