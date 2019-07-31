@@ -49,6 +49,7 @@ somarl.com:
   Server:
     [x] server frame - nestjs
     [x] GraphQL
+    [ ] exception system
     [ ] mongo frame
       [x] mongo server module
       [ ] mongo interface module - WIP

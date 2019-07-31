@@ -60,4 +60,11 @@ export class PublicApiService {
 
     return fetchPublicJson(`${darkSkyApi}?${queries}`)
   }
+
+  public async sinaShortUrl (url: S) {
+    const sinaShortUrlApi = 'https://api.weibo.com/2/short_url/shorten.json'
+    const queries = `source=${SETTINGS.SINA_APP_KEY}&url_long=${url}`
+
+    return fetchPublicJson(`${sinaShortUrlApi}?${queries}`)
+  }
 }

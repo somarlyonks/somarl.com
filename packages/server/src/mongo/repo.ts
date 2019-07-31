@@ -2,11 +2,15 @@ import * as mongo from 'mongodb'
 import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
 import { InjectDb } from './decorators'
 import Entity, { IEntity } from './entity'
+import { IRepo } from './specs'
 
 
+// FIXME: @sy they should not raise nest exceptions
+
+/** @description Adapted query object */
 class Q <TModel> {
 
-  protected readonly collection: mongo.Collection<TModel>
+  protected readonly collection: mongo.Collection<TModel & { _id: mongo.ObjectID }>
   protected filterQuery: mongo.FilterQuery<TModel>
   protected filterOptions: mongo.FindOneOptions
 
@@ -41,7 +45,7 @@ class Q <TModel> {
     return this
   }
 
-  // public async $exclude (query?: mongo.FilterQuery<TModel>): P<IEntity<TModel> | undefined> {
+  // public async exclude (query?: mongo.FilterQuery<TModel>): P<IEntity<TModel> | undefined> {
   //   //
   // }
 
@@ -49,10 +53,11 @@ class Q <TModel> {
     return (await this.find(query, { limit: 1 }))[0]
   }
 
+  /** return the exect queried object or raise */
   public async get (query?: mongo.FilterQuery<TModel>) {
     const candidates = await this.find(query, {limit: 2})
     if (!candidates.length) throw new NotFoundException(query)
-    if (candidates.length > 1) throw new Error('Too many')
+    if (candidates.length > 1) throw new InternalServerErrorException('Too many candidates.')
     return candidates[0]
   }
 
@@ -61,19 +66,29 @@ class Q <TModel> {
   }
 
   public async create (data: ModelData<TModel>) {
-    return this.collection.insertOne(data as A)
+    const r = await this.collection.insertOne({
+      created: new Date(),
+      ...data,
+    } as A)
+    if (r.result.ok !== 1) throw new InternalServerErrorException('Failed to create data.')
+    return r
   }
 
-  // protected async $update (data: ModelData<TModel>) {
+  // protected async update (data: ModelData<TModel>) {
   //   //
   // }
+
+  public async delete (query: mongo.FilterQuery<TModel>) {
+    this.filter(query)
+    return this.collection.deleteMany(this.filterQuery)
+  }
 
 }
 
 
 abstract class AbsRepo <TModel> {
 
-  protected readonly collection: mongo.Collection<TModel>
+  protected readonly collection: mongo.Collection<TModel & { _id: mongo.ObjectID }>
 
   public constructor (
     @Inject('RESOURCE_NAME') protected readonly resourceName: S,
@@ -96,24 +111,42 @@ abstract class AbsRepo <TModel> {
       created: new Date(),
     }
     try {
-      const r = await this.Q.create(_data)
-      if (r.result.ok !== 1) throw new Error('Failed to create data.')
+      const r = await this.Q.create(data)
       return Entity(r.insertedId, _data) as unknown as P<IEntity<TModel>>
     } catch (error) {
       throw new InternalServerErrorException(error)
     }
   }
 
+  /** return void if not found */
   protected async $findOne (query: mongo.FilterQuery<TModel>): P<IEntity<TModel> | undefined> {
     const r = await this.collection.findOne(query)
     if (!r) return
-    return Entity((r as A)._id, r)
+    return Entity(r._id, r)
+  }
+
+  protected async $find (query: mongo.FilterQuery<TModel>, options: mongo.FindOneOptions): P<L<IEntity<TModel>>> {
+    const r = await this.Q.find(query, options)
+    return r.map(t => Entity(t._id, t))
+  }
+
+  /** raise if failed to delete */
+  protected async $deletOne (query: mongo.FilterQuery<TModel>) {
+    const r = await this.collection.deleteOne(query)
+    if (r.result.ok !== 1) throw new InternalServerErrorException('Failed to delete data.')
+    return r
+  }
+
+  protected async $deleteMany (query: mongo.FilterQuery<TModel>) {
+    const r = await this.collection.deleteMany(query)
+    if (r.result.ok !== 1) throw new InternalServerErrorException('Failed to delete data.')
+    return r
   }
 
 }
 
 
-export default abstract class Repo <TModel> extends AbsRepo<TModel> {
+export default abstract class Repo <TModel> extends AbsRepo<TModel> implements IRepo<TModel> {
 
   protected async preCreate (data: ModelData<TModel>): P<ModelData<TModel>> {
     return data
@@ -128,9 +161,21 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> {
   }
 
   public async findOne (query: mongo.FilterQuery<TModel>) {
-    const entity = await this.$findOne(query)
-    if (entity) return entity.dehydrate()
-    return
+    return this.$findOne(query).then(t => t && t.dehydrate())
+  }
+
+  public async find (query: mongo.FilterQuery<TModel>, options: mongo.FindOneOptions) {
+    const ts = await this.$find(query, options)
+    return ts.map(t => t.dehydrate())
+  }
+
+  public async delete (query: mongo.FilterQuery<TModel>) {
+    try {
+      this.$deleteMany(query)
+      return true
+    } catch (error) {
+      return false
+    }
   }
 
 }

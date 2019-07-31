@@ -1,6 +1,6 @@
 import fetch, {RequestInit} from 'node-fetch'
 
-export async function fetchPublicJson (api: string, body?: string) {
+export async function fetchPublicJson (api: S, body?: S) {
   const init: RequestInit = {
     method: 'GET',
     // mode: 'cors',

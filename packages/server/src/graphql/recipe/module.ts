@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common'
+
 import { DateScalar } from '../shared/scalars'
-import { RecipesResolver } from './resolver'
-import { RecipesService } from './service'
+import RecipeResolver from './resolver'
+import RecipeService from './service'
 import { RecipeRepo } from './repos'
 
 
@@ -13,8 +14,8 @@ const RESOURCE_NAME = 'recipe'
       provide: 'RESOURCE_NAME',
       useValue: RESOURCE_NAME,
     },
-    RecipesResolver,
-    RecipesService,
+    RecipeResolver,
+    RecipeService,
     RecipeRepo,
     DateScalar,
   ],
