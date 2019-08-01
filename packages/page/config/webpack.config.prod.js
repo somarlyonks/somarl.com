@@ -21,7 +21,6 @@ const publicPath = paths.servedPath
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './'
-// Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
@@ -30,8 +29,6 @@ const publicUrl = publicPath.slice(0, -1)
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl)
 
-// Assert this just to be safe.
-// Development builds of React are slow and not intended for production.
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.')
 }
@@ -43,7 +40,6 @@ const cssFilename = 'static/css/[name].[md5:contenthash:hex:20].css'
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
-// However, our output is structured with css, js and media folders.
 // To have this structure working with relative paths, we have to use custom options.
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
@@ -55,10 +51,7 @@ module.exports = {
   mode: 'production',
   // Don't attempt to continue if there are any errors.
   bail: true,
-  // We generate sourcemaps in production. This is slow but gives good results.
-  // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
-  // In production, we only want to load the polyfills and the app code.
   entry: [require.resolve('./polyfills'), paths.appIndexJs],
   output: {
     path: paths.appBuild,
@@ -165,8 +158,6 @@ module.exports = {
                     {
                       loader: require.resolve('postcss-loader'),
                       options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
                         plugins: () => [
                           require('postcss-flexbugs-fixes'),
@@ -223,25 +214,20 @@ module.exports = {
     }),
     // It is absolutely essential that NODE_ENV was set to production here for speed.
     new webpack.DefinePlugin(env.stringified),
-    // Minify the code.
     new UglifyJsPlugin({
       uglifyOptions: {
         ecma: 8,
         compress: {
           // ecma: 5,
-          // Disabled because of an issue with Uglify breaking seemingly valid code:
           // https://github.com/facebook/create-react-app/issues/2376
-          // Pending further investigation:
           // https://github.com/mishoo/UglifyJS2/issues/2011
           comparisons: false,
-          // Don't inline functions with arguments, to avoid name collisions:
           // https://github.com/mishoo/UglifyJS2/issues/2842
           inline: 1,
         },
         output: {
           // ecma: 5,
           comments: false,
-          // Turned on because emoji and regex is not minified properly using default
           // https://github.com/facebook/create-react-app/issues/2488
           ascii_only: true,
         },
@@ -261,28 +247,16 @@ module.exports = {
       fileName: 'asset-manifest.json',
     }),
     // Generate a service worker script that will precache, and keep up to date,
-    // the HTML & assets that are part of the Webpack build.
     new SWPrecacheWebpackPlugin({
-      // By default, a cache-busting query parameter is appended to requests
-      // used to populate the caches, to ensure the responses are fresh.
-      // If a URL is already hashed by Webpack, then there is no concern
-      // about it being stale, and the cache-busting can be skipped.
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'service-worker.js',
       logger (message) {
-        if (message.indexOf('Total precache size is') === 0) {
-          // This message occurs for every build and is a bit too noisy.
-          return
-        }
-        if (message.indexOf('Skipping static resource') === 0) {
-          // This message obscures real errors so we ignore it.
-          // https://github.com/facebookincubator/create-react-app/issues/2612
-          return
-        }
+        if (message.indexOf('Total precache size is') === 0) return
+        // https://github.com/facebookincubator/create-react-app/issues/2612
+        if (message.indexOf('Skipping static resource') === 0) return
         console.log(message)
       },
       minify: true,
-      // For unknown URLs, fallback to the index page
       navigateFallback: publicUrl + '/index.html',
       // Ignores URLs starting from /__ (useful for Firebase):
       // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
@@ -291,8 +265,6 @@ module.exports = {
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
     }),
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
-    // You can remove this if you don't use Moment.js:
-    // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // Perform type checking and linting in a separate process to speed up compilation
     new ForkTsCheckerWebpackPlugin({
       async: false,
