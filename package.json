@@ -71,7 +71,7 @@
     "react-dev-utils": "^9.0.1",
     "resolve": "^1.9.0",
     "source-map-loader": "^0.2.4",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-jest": "^24.0.0",
     "ts-loader": "^5.3.3",
