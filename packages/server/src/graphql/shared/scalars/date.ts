@@ -18,7 +18,6 @@ export class DateScalar implements CustomScalar<number, Date> {
     if (ast.kind === Kind.INT) {
       return new Date(ast.value)
     }
-    // tslint:disable-next-line: no-null-keyword
     return new Date(0)
   }
 }
