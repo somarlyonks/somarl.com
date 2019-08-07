@@ -1,3 +1,5 @@
+// tslint:disable: no-magic-numbers
+
 /*
  * Color Thief v2.0
  * by Lokesh Dhakar - http://www.lokeshdhakar.com
@@ -8,16 +10,12 @@
  * Released under the MIT license
  * https://raw.githubusercontent.com/lokesh/color-thief/master/LICENSE
  *
- */
-
-/**
  * Modified by Sy <somarl@live.com>
  *   Tranlate into TS with class
  *   Fix some trival edge circumstances with the help of typecheck
  *   Change the xhr/callback to fetch/Promise
  *   Add image cross origin
  */
-// tslint:disable: no-magic-numbers
 
 class CanvasImage {
   public canvas: HTMLCanvasElement
@@ -76,9 +74,9 @@ export default class ColorThief {
     return this.getPalette(sourceImage, 5, quality)[ 0 ]
   }
 
-  /*
-  * bigger param quality means the function faster with worse quality
-  */
+  /**
+   * bigger param quality means the function faster with worse quality
+   */
   public getPalette (sourceImage: HTMLImageElement, colorCount = 10, quality = 10) {
     if (colorCount < 2 || colorCount > 256) {
       colorCount = 10
@@ -211,7 +209,7 @@ class PQueue<T = A> {
  * Basic Javascript port of the MMCQ (modified median cut quantization)
  * algorithm from the Leptonica library (http://www.leptonica.com/).
  *
- * @author Nick Rabinowitz
+ * author Nick Rabinowitz
  * @example
  *   // array of pixels as [R,G,B] arrays
  *   var myPixels = [[190,197,190], [202,204,200], [207,214,210], [211,214,211], [205,207,207]

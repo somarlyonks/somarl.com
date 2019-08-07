@@ -1952,6 +1952,12 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/fs-extra@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.npmjs.org/@types/fs-extra/-/fs-extra-8.0.0.tgz#d3e2c313ca29f95059f198dd60d1f774642d4b25"
+  dependencies:
+    "@types/node" "*"
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.npmjs.org/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -2027,6 +2033,12 @@
 "@types/node-fetch@^2.1.4":
   version "2.3.3"
   resolved "https://registry.npmjs.org/@types/node-fetch/-/node-fetch-2.3.3.tgz#eb9c2a0ce8e9424ebe0c0cbe6f1e8ea7576c1310"
+  dependencies:
+    "@types/node" "*"
+
+"@types/node-sass@^4.11.0":
+  version "4.11.0"
+  resolved "https://registry.npmjs.org/@types/node-sass/-/node-sass-4.11.0.tgz#b0372075546e83f39df52bd37359eab00165a04d"
   dependencies:
     "@types/node" "*"
 
@@ -9195,6 +9207,13 @@ schema-utils@^1.0.0:
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
+schema-utils@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-2.0.1.tgz#1eec2e059556af841b7f3a83b61af13d7a3f9196"
+  dependencies:
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
+
 scss-tokenizer@^0.2.3:
   version "0.2.3"
   resolved "https://registry.npmjs.org/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"
@@ -9783,12 +9802,12 @@ strong-log-transformer@^2.0.0:
     minimist "^1.2.0"
     through "^2.3.4"
 
-style-loader@^0.23.1:
-  version "0.23.1"
-  resolved "https://registry.npmjs.org/style-loader/-/style-loader-0.23.1.tgz#cb9154606f3e771ab6c4ab637026a1049174d925"
+style-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/style-loader/-/style-loader-1.0.0.tgz#1d5296f9165e8e2c85d24eee0b7caf9ec8ca1f82"
   dependencies:
-    loader-utils "^1.1.0"
-    schema-utils "^1.0.0"
+    loader-utils "^1.2.3"
+    schema-utils "^2.0.1"
 
 subscriptions-transport-ws@^0.9.11:
   version "0.9.16"
@@ -10259,9 +10278,9 @@ typescript@^3.0.1:
   version "3.5.3"
   resolved "https://registry.npmjs.org/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
 
-typescript@^3.6.0-dev.20190723:
-  version "3.6.0-dev.20190723"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-3.6.0-dev.20190723.tgz#eef6f788a5a136b896c8da2b46647313d43cd257"
+typescript@^3.6.0-dev.20190806:
+  version "3.6.0-dev.20190806"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-3.6.0-dev.20190806.tgz#0cdb6cd16105e0bfe8e5b0df0144eeadc1c8e4d0"
 
 uglify-es@^3.3.9:
   version "3.3.9"
