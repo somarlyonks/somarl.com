@@ -17,8 +17,8 @@
     "bootstrap": "^4.1.1",
     "object-assign": "4.1.1",
     "preact": "^10.0.0-rc.0",
-    "promise": "8.0.1",
-    "whatwg-fetch": "2.0.3"
+    "promise": "8.0.3",
+    "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.3.0",
