@@ -12,8 +12,9 @@ const SERVER_CNAME = 'api'
 const SERVER_HOST = 'dev.local'
 const SERVER_PROTOCOL = 'http' // TODO: SSL and http/2
 const JWT_SECRET_DEV = 'TBLq4!4.2m'
-const MONGO_PORT_DEFAULT = 27017
-const MONGO_DB_DEFAULT = 'test'
+const ARANGO_PORT_DEFAULT = 8529
+const ARANGO_VERSION = '30407'
+const DB_DEFAULT = 'test'
 const BINKS_DIR = '/home/sy/Dropbox/bing/persistent'
 const SINA_APP_KEY = 1524513978 // this doesn't have to be a secret
 
@@ -24,13 +25,14 @@ export default class S {
   public static SERVER_URI = `${SERVER_PROTOCOL}://${SERVER_CNAME}.${SERVER_HOST}`
   public static SERVER_URL = S.SERVER_URI
 
-  public static MONGO_PORT = process.env.MONGO_PORT || MONGO_PORT_DEFAULT
-  public static MONGO_DB = process.env.MONGO_DB || MONGO_DB_DEFAULT
-  public static MONGO_HOST = process.env.MONGO_HOST || `localhost`
-  public static MONGO_URI = `mongodb://${S.MONGO_HOST}:${S.MONGO_PORT}`
-  public static MONGO_OPTIONS = {
-    useNewUrlParser: true,
-  }
+  public static DB = process.env.DB || DB_DEFAULT
+  public static DB_HOST = process.env.DB_HOST || `localhost`
+
+  public static ARANGO_VERSION = parseInt(process.env.ARANGO_VERSION || ARANGO_VERSION, 10)
+  public static ARANGO_PORT = process.env.ARANGO_PORT || ARANGO_PORT_DEFAULT
+  public static ARANGO_URI = `http://${S.DB_HOST}:${S.ARANGO_PORT}`
+  public static ARANGO_USERNAME = process.env.ARANGO_USERNAME
+  public static ARANGO_PASSWORD = process.env.ARANGO_PASSWORD
 
   public static JWT_SECRET = process.env.JWT_SECRET || JWT_SECRET_DEV
   public static JWT_OPTIONS = {

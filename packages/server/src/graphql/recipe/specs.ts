@@ -1,4 +1,4 @@
-import { IRepo } from '../../mongo'
+import { IRepo } from '../../arango'
 import { Recipe } from './models'
 import { NewRecipeInput } from './dto/input'
 import { RecipesArgs } from './dto/args'

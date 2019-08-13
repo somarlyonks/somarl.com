@@ -574,12 +574,3 @@ const MMCQ = (() => {
 
   return { quantize }
 })()
-
-/**
- * @test
- */
-// var c = new ColorThief()
-// c.getColorsFromUrl('http://127.0.0.1:3001/binks.jpg', 10).then(console.log)
-// c.getColorsFromUrl('http://127.0.0.1:3001/binks.jpg', 5).then(console.log)
-// c.getColorFromUrl('http://127.0.0.1:3001/binks.jpg').then(console.log)
-// c.getColorAsync('http://127.0.0.1:3001/binks.jpg').then(console.log)

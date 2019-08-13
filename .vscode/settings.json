@@ -30,6 +30,7 @@
     { "icon": "nest_module_ts", "extensions": ["module.ts"], "filename": true },
     { "icon": "nest_pipe_ts", "extensions": ["pipe.ts"], "filename": true },
     { "icon": "nest_service_ts", "extensions": ["service.ts"], "filename": true },
-    { "icon": "testts", "extensions": ["specs.ts", "spec.ts"], "filename": true }
+    { "icon": "testts", "extensions": ["specs.ts", "spec.ts"], "filename": true },
+    { "icon": "graphql", "extensions": ["schema.gql"], "filename": true}
   ]
 }

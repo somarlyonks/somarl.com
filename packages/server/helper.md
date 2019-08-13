@@ -1,25 +1,17 @@
 # Helper
 
-## mongoDB
+## ArangoDB
 
-v4.0.2 community
+### dev setup
 
-### default file locations
+[@ref](https://www.arangodb.com/docs/stable/cookbook/administration-authentication.html)
 
-- config: `/etc/mongod.conf`
-- log: `/var/log/mongodb/mongod.log`
-- data: `/var/lib/mongodb`
+```bash
+arangosh --server.endpoint tcp://127.0.0.1:8529 --server.database "_system"
+require("org/arangodb/users").save("sy", "sy");
+require("org/arangodb/users").grantDatabase("sy", "*", "rw");
+```
 
-### troubleshoot
+### create collection
 
-- Failed to start mongod.service: Unit mongod.service not found.
-
-  run `sudo systemctl enable mongod`
-
-- mongodb shutting down with code:62
-
-  upgrade existing data files @[ref](https://docs.mongodb.com/manual/release-notes/3.6/#upgrade-procedures)
-
-- warning about `/sys/kernel/mm/transparent_hugepage/defrag`
-
-  disable THP @[ref](https://docs.mongodb.com/manual/tutorial/transparent-huge-pages/)
+`npm run create-collection -- -c collectionname`

@@ -50,9 +50,12 @@ somarl.com:
     [x] server frame - nestjs
     [x] GraphQL
     [ ] exception system
-    [ ] mongo frame
-      [x] mongo server module
-      [ ] mongo interface module - WIP
+    [x] mongo frame
+      [x] server module
+      X interface module
+    [ ] migrate to ArangoDB
+      [x] server module
+      [ ] data interface
     [ ] test frame
       [ ] frame test
       [ ] business test
@@ -72,4 +75,4 @@ somarl.com:
       [x] fix yarn workspaces not symlinked
     Monorepo workflow:
       [x] pipe build
-      [ ] GraphQL auto sync
+      [x] GraphQL auto sync

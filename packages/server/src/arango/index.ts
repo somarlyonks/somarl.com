@@ -1,5 +1,4 @@
-export * from './shared'
 export * from './decorators'
 export * from './specs'
-export { default as Repo } from './repo'
 export { default } from './module'
+export { default as Repo } from './repo'
