@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { Repo } from '../../mongo'
+import { Repo } from '../../arango'
 import { Recipe } from './models'
 import { IRecipeRepo } from './specs'
 

@@ -5,14 +5,20 @@ import AppController from './controller'
 import AppService from './service'
 import { CorsMiddleware, LoggerMiddleware } from './middlewares'
 import ApiModule from '../api'
-import MongoModule from '../mongo'
+import ArangoModule from '../arango'
 import GraphQLModule from '../graphql'
 
 
 @Module({
   imports: [
     ApiModule,
-    MongoModule.forRoot(SETTINGS.MONGO_URI, SETTINGS.MONGO_DB),
+    ArangoModule.forRoot({
+      url: SETTINGS.ARANGO_URI,
+      dbName: SETTINGS.DB,
+      arangoVersion: SETTINGS.ARANGO_VERSION,
+      username: SETTINGS.ARANGO_USERNAME,
+      password: SETTINGS.ARANGO_PASSWORD,
+    }),
     GraphQLModule,
   ],
   controllers: [
