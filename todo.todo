@@ -62,7 +62,7 @@ somarl.com:
     [ ] logger
       [ ] server log
       [ ] request log
-    X  GRpc
+    [ ] GRpc @longterm
 
   Dev:
     nginx dev proxy: @low
