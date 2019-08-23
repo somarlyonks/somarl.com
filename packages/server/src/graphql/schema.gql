@@ -24,9 +24,9 @@ type Query {
 
 type Recipe {
   id: ID!
+  created: Date!
   title: String!
   description: String
-  created: Date!
   ingredients: [String!]!
 }
 

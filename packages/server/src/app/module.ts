@@ -12,13 +12,7 @@ import GraphQLModule from '../graphql'
 @Module({
   imports: [
     ApiModule,
-    ArangoModule.forRoot({
-      url: SETTINGS.ARANGO_URI,
-      dbName: SETTINGS.DB,
-      arangoVersion: SETTINGS.ARANGO_VERSION,
-      username: SETTINGS.ARANGO_USERNAME,
-      password: SETTINGS.ARANGO_PASSWORD,
-    }),
+    ArangoModule.forRoot(),
     GraphQLModule,
   ],
   controllers: [
@@ -26,6 +20,10 @@ import GraphQLModule from '../graphql'
   ],
   providers: [
     AppService,
+    {
+      provide: 'SETTINGS',
+      useValue: SETTINGS,
+    },
   ],
 })
 export default class ApplicationModule {
