@@ -1,5 +1,6 @@
 import { IArangoDocuemnt } from './specs'
 
+
 export type IEntity <TModel> = IArangoDocuemnt<TModel> & {
   dehydrate (): Dehydrated<TModel>
 }
