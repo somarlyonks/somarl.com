@@ -65,3 +65,43 @@ The core here is, how to make sure there's only one single truth source? And ts 
 Finally, the framework relies much much on the [TypeGraphQL](https://github.com/19majkel94/type-graphql) and a handcrafted arango interface.
 
 You should define api in sub-directories of `packages/server/src` just like the `recipe`. When server bootstraps it generates `packages/server/src/graphql/schema.gql` which will then genenrate typings to `packages/pipe/src/graphql.ts` which will be exported from `Adapters.ts`.
+
+## The data archtecture
+
+### Vertices
+
+```text
+type > tag
+   \   ^
+    \ / \
+     v   \
+   doc < user
+```
+
+### Edges
+
+has
+
+```text
+type >has> tag
+type >has> doc
+doc  >has> doc
+
+tag  >has> tag
+
+user >has> tag
+user >has> doc
+```
+
+acl(access control)
+
+```text
+user >acl> doc
+```
+
+log
+
+```text
+user >log> doc
+user >log> user
+```

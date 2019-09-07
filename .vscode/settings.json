@@ -21,10 +21,10 @@
   "vsicons.associations.files": [
     { "icon": "nest_adapter_ts", "extensions": ["adapter.ts"], "filename": true },
     { "icon": "nest_controller_ts", "extensions": ["controller.ts"], "filename": true },
-    { "icon": "nest_decorator_ts", "extensions": ["decorator.ts"], "filename": true },
+    { "icon": "nest_decorator_ts", "extensions": ["decorator.ts", "decorators.ts"], "filename": true },
     { "icon": "nest_filter_ts", "extensions": ["filter.ts"], "filename": true },
     { "icon": "nest_gateway_ts", "extensions": ["gateway.ts"], "filename": true },
-    { "icon": "nest_guard_ts", "extensions": ["guard.ts"], "filename": true },
+    { "icon": "nest_guard_ts", "extensions": ["guard.ts", "guards.ts"], "filename": true },
     { "icon": "nest_interceptor_ts", "extensions": ["interceptor.ts"], "filename": true },
     { "icon": "nest_middleware_ts", "extensions": ["middleware.ts"], "filename": true },
     { "icon": "nest_module_ts", "extensions": ["module.ts"], "filename": true },

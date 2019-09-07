@@ -20,6 +20,8 @@ input NewRecipeInput {
 type Query {
   recipe(id: String!): Recipe!
   recipes(skip: Int = 0, take: Int = 10): [Recipe!]!
+  user(id: String!): User!
+  me: User!
 }
 
 type Recipe {
@@ -32,4 +34,14 @@ type Recipe {
 
 type Subscription {
   recipeAdded: Recipe!
+}
+
+type User {
+  id: ID!
+  created: Date!
+  nickname: String!
+  email: String!
+  password: String!
+  accessLevel: Float!
+  avatar: String!
 }

@@ -4,11 +4,13 @@ export interface IRepo <TModel> {
 
   create (data: ModelData<TModel>): P<TModel>
 
-  find (options: {query?: S, take: N, skip: N}): P<L<Dehydrated<TModel>>>
+  find (options: {query: S} | {take: N, skip: N}): P<L<Dehydrated<TModel>>>
 
   findOne (id: S): P<Dehydrated<TModel> | void>
 
-  delete (id: S): P<boolean>
+  delete (ids: S): P<boolean>
+
+  deleteOne (ids: L<S>): P<boolean>
 
 }
 
@@ -57,6 +59,11 @@ export interface IArangoDocumentMeta {
   _key: S // 177949
   _id: S  // test/177949
   _rev: S // _ZFmHJNW---
+}
+
+export interface IArangoEdgeMeta extends IArangoDocumentMeta {
+  _from: S // test/177949
+  _to: S   // test/177949
 }
 
 export type IArangoDocuemnt <TModel> = IArangoDocumentMeta & {

@@ -7,11 +7,13 @@ import { CorsMiddleware, LoggerMiddleware } from './middlewares'
 import ApiModule from '../api'
 import ArangoModule from '../arango'
 import GraphQLModule from '../graphql'
+import AuthModule from '../acl/auth'
 
 
 @Module({
   imports: [
     ApiModule,
+    AuthModule,
     ArangoModule.forRoot(),
     GraphQLModule,
   ],

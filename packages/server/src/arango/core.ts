@@ -1,4 +1,4 @@
-import { Module, DynamicModule, Inject, Global } from '@nestjs/common'
+import { Module, DynamicModule, Inject, Global, Logger } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { Database } from 'arangojs'
 import { LoadBalancingStrategy } from 'arangojs/lib/cjs/connection'
@@ -63,6 +63,7 @@ export default class ArangoCoreModule {
             console.log(error)
           }
         }
+        Logger.log(`[AarangoDB]: Connected at ${options.url}`)
         return db
       },
     }

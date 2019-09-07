@@ -1,15 +1,14 @@
 import { Module } from '@nestjs/common'
 
-import RecipeResolver from './resolver'
-import RecipeService from './service'
-import { RecipeRepo } from './repos'
+import UserRepo from './repo'
+import UserService from './service'
+import UserResolver from './resolver'
+import { RESOURCE_NAME } from './consts'
 
 import { DateScalar } from '../shared'
-import { SETTINGS } from '../../settings'
 import DatabaseModel, { getDbToken } from '../../arango'
+import SETTINGS from '../../settings'
 
-
-const RESOURCE_NAME = 'recipe'
 
 @Module({
   imports: [
@@ -30,10 +29,13 @@ const RESOURCE_NAME = 'recipe'
       provide: 'RESOURCE_DB',
       useExisting: getDbToken(RESOURCE_NAME),
     },
-    RecipeResolver,
-    RecipeService,
-    RecipeRepo,
+    UserResolver,
+    UserService,
+    UserRepo,
     DateScalar,
   ],
+  exports: [
+    UserService,
+  ],
 })
-export default class RecipesModule {}
+export default class UserModule {}

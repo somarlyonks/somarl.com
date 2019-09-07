@@ -3,87 +3,47 @@ import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs
 import Entity, { IEntity } from './entity'
 import { IRepo, IShimDocCollection } from './specs'
 import { QueryOptions } from 'arangojs/lib/cjs/database'
+import { ArrayCursor } from 'arangojs/lib/cjs/cursor'
 
 
-// /** @description Adapted query object */
-// class Q <TModel> {
+// TODO: reimplement this standalone from the arangojs for God's sake
+class Q <TModel> {
 
-//   protected readonly collection: DocumentCollection
-//   protected filterQuery: A
-//   protected filterOptions: A
+  protected readonly collection: IShimDocCollection
+  protected dsl: S
+  protected queryOptions: QueryOptions
+  protected queryset?: ArrayCursor
 
-//   public constructor (
-//     protected readonly resourceName: S,
-//     protected readonly db: Database
-//   ) {
-//     this.collection = this.db.collection(this.resourceName)
-//     this.filterQuery = {}
-//     this.filterOptions = {}
-//   }
+  public constructor (
+    protected readonly resourceName: S,
+    protected readonly db: Database
+  ) {
+    this.collection = this.db.collection(this.resourceName) as IShimDocCollection
+    this.queryOptions = {}
+    this.dsl = ''
+  }
 
-//   /** @end the query */
-//   public async find (query?: A, options?: A) {
-//     if (query) this.filter(query)
+  public query (dsl: S, options?: QueryOptions) {
+    this.dsl = dsl
+    if (options) {
+      this.queryOptions = {
+        ...this.queryOptions,
+        ...options,
+      }
+    }
+    return this
+  }
 
-//     // return this.collection
-//     //   .find(this.filterQuery, { ...this.filterOptions, ...options })
-//     //   .toArray()
-//     return []
-//   }
+  public async all (): P<L<IEntity<TModel>>> {
+    if (!this.queryset) {
+      if (!this.dsl) throw new InternalServerErrorException('Query Error')
+      this.queryset = await this.db.query(this.dsl, {}, this.queryOptions)
+    }
+    const ds = await this.queryset.all()
+    return ds.map(Entity)
+  }
 
-//   public filter (query: A, options?: A) {
-//     this.filterQuery = {
-//       ...this.filterQuery,
-//       ...query,
-//     }
-//     this.filterOptions = {
-//       ...this.filterOptions,
-//       ...options,
-//     }
-
-//     return this
-//   }
-
-//   // public async exclude (query?: ): P<IEntity<TModel> | undefined> {
-//   //   //
-//   // }
-
-//   public async first (query?: A): P<TModel | undefined> {
-//     return (await this.find(query, { limit: 1 }))[0]
-//   }
-
-//   /** return the exect queried object or raise */
-//   public async get (query?: A) {
-//     const candidates = await this.find(query, {limit: 2})
-//     if (!candidates.length) throw new NotFoundException(query)
-//     if (candidates.length > 1) throw new InternalServerErrorException('Too many candidates.')
-//     return candidates[0]
-//   }
-
-//   public async take (skip = 0, take = 10): P<L<TModel>> {
-//     return this.find(undefined, {limit: take, skip})
-//   }
-
-//   public async create (data: ModelData<TModel>) {
-//     const r = await this.collection.save({
-//       ...data,
-//       created: new Date(),
-//     } as A)
-//     console.log('CCCCCCCCCCCC', r) // TODELETE
-//     if (r.result.ok !== 1) throw new InternalServerErrorException('Failed to create data.')
-//     return r
-//   }
-
-//   // protected async update (data: ModelData<TModel>) {
-//   //   //
-//   // }
-
-//   public async delete (query: A) {
-//     this.filter(query)
-//     return this.collection.remove(this.filterQuery)
-//   }
-
-// }
+}
 
 
 abstract class AbsRepo <TModel> {
@@ -98,9 +58,9 @@ abstract class AbsRepo <TModel> {
   }
 
   /** We have to initialize it every time we query to prevent conflicts */
-  // protected get Q (): Q<TModel> {
-  //   return new Q(this.resourceName, this.db)
-  // }
+  protected get Q (): Q<TModel> {
+    return new Q(this.resourceName, this.db)
+  }
 
   protected async $rawQS (dsl: S, options?: QueryOptions) {
     return this.db.query(dsl, {}, options)
@@ -138,15 +98,15 @@ abstract class AbsRepo <TModel> {
     return this.$lookupBy$Key(id)
   }
 
-  protected async $deleteOneByKey (key: S) {
+  protected async $deleteByKey (key: S) {
     return this.collection.remove(key)
   }
 
-  protected async $deleteOneById (id: S) {
+  protected async $deleteById (id: S) {
     return this.collection.remove({_id: id})
   }
 
-  protected async $deleteManyByKeys (keys: L<S>) {
+  protected async $deleteByKeys (keys: L<S>) {
     return this.collection.remove(keys.map(_key => ({_key})))
   }
 
@@ -193,14 +153,25 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> implements I
     return this.$lookupById(id).then(d => d.dehydrate())
   }
 
-  public async find (options: {query?: S, take: N, skip: N}) {
-    const ds = await this.$page(options.skip, options.take)
+  public async find (options: {query: S} | {take: N, skip: N}) {
+    const ds = 'query' in options
+      ? await this.Q.query(options.query).all()
+      : await this.$page(options.skip, options.take)
     return ds.map(d => d.dehydrate())
+  }
+
+  public async deleteOne (ids: L<S>) {
+    try {
+      this.$deleteByKeys(ids)
+      return true
+    } catch (error) {
+      return false
+    }
   }
 
   public async delete (id: S) {
     try {
-      this.$deleteOneById(id)
+      this.$deleteByKey(id)
       return true
     } catch (error) {
       return false
