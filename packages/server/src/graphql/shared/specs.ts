@@ -3,7 +3,7 @@ export interface IModel {
   created: Date
 }
 
-export interface IRelation extends IModel {
+export interface IRelation extends IModel { // TODO: @sy resolved relation
   from: S
   to: S
 }

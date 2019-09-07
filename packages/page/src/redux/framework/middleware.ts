@@ -5,7 +5,7 @@ import { IStoreFactory, IEnhancer, IAction, IStore, IMiddleware, IMiddlewareAPI 
 export function applyMiddleware <TState, TAction extends IAction> (
   ...middlewares: L<IMiddleware<TState, TAction>>
 ): IEnhancer {
-  return (createStore: IStoreFactory) => ((reducer: A, attach: A = {}) => {
+  return (createStore: IStoreFactory) => ((reducer, attach = {}) => {
     const store = createStore(reducer, attach) as unknown as IStore<TState, TAction>
 
     let dispatch: F = () => {

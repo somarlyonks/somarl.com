@@ -26,22 +26,22 @@ export default class RecipeResolver {
   ) {}
 
   @Query(returns => Recipe)
-  public async recipe (@Args('id') id: string): Promise<Recipe> {
+  public async recipe (@Args('id') id: string) {
     const recipe = this.recipeService.findOneById(id)
     if (!await recipe) throw new NotFoundException(id)
 
-    return recipe as Promise<Recipe>
+    return recipe
   }
 
   @Query(returns => [Recipe])
-  public recipes (@Args() recipesArgs: RecipesArgs): Promise<Recipe[]> {
+  public recipes (@Args() recipesArgs: RecipesArgs) {
     return this.recipeService.findAll(recipesArgs)
   }
 
   @Mutation(returns => Recipe)
   public async addRecipe (
     @Args('newRecipeData') newRecipeData: NewRecipeInput
-  ): Promise<Recipe> {
+  ) {
     const recipe = this.recipeService.create(newRecipeData)
     pubSub.publish('recipeAdded', { recipeAdded: await recipe })
     return recipe
