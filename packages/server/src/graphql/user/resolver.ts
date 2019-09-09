@@ -28,7 +28,6 @@ export default class UserResolver {
   @Query(returns => User)
   @UseGuards(GqlAuthGuard)
   public async me (@CurrentUser() user: User) {
-    // FIXME: @syu not working yet
     return await this.userService.findOneById(user.id)
   }
 
