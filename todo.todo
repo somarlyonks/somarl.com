@@ -13,6 +13,7 @@ somarl.com:
     [ ] admin auth @low
     [x] footer
     [ ] favicon
+    [ ] image uploader
     Context:
       [ ] refactor preact-context to redux
       [x] self implemented redux
@@ -50,6 +51,7 @@ somarl.com:
     [x] server frame - nestjs
     [x] GraphQL
     [ ] exception system
+    [ ] basic doctype system @high
     [x] mongo frame
       [x] server module
       X interface module
