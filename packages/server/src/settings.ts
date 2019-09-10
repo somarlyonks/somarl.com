@@ -28,6 +28,12 @@ export default class S {
   public static DB = process.env.DB || DB_DEFAULT
   public static DB_HOST = process.env.DB_HOST || `localhost`
 
+  public static BUILTIN_COLLECTIONS = [
+    'recipe',
+    'user',
+    'image',
+  ]
+
   public static ARANGO_VERSION = parseInt(process.env.ARANGO_VERSION || ARANGO_VERSION, 10)
   public static ARANGO_PORT = process.env.ARANGO_PORT || ARANGO_PORT_DEFAULT
   public static ARANGO_URI = `http://${S.DB_HOST}:${S.ARANGO_PORT}`
