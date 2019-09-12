@@ -1,17 +1,19 @@
 import { Module } from '@nestjs/common'
 
-import { BinksController, PublicApiControler } from './controller'
-import { BinksService, PublicApiService } from './service'
+import { BinksController, PublicApiController, QiniuController } from './controllers'
+import { BinksService, PublicApiService, QiniuService } from './services'
 
 
 @Module({
   controllers: [
     BinksController,
-    PublicApiControler,
+    PublicApiController,
+    QiniuController,
   ],
   providers: [
     BinksService,
     PublicApiService,
+    QiniuService,
   ],
 })
 export default class ApiModule {}

@@ -1,24 +1,20 @@
 import { Injectable } from '@nestjs/common'
-import { User } from './models'
+import { IUserService } from './specs'
+import UserRepo from './repo'
 
 
 @Injectable()
-export default class UserService {
-  private readonly users: L<User>
+export default class UserService implements IUserService {
 
-  public constructor () {
-    this.users = [{
-      id: '1',
-      created: new Date(),
-      nickname: 'Sy',
-      email: 'somarl@live.com',
-      password: '123',
-      accessLevel: 0b1111,
-      avatar: '',
-    }]
+  public constructor (
+    private readonly userRepo: UserRepo
+  ) {}
+
+  public async create (data: A) { // TODO: @sy
+    return this.userRepo.create(data)
   }
 
   public async findOneById (id: S) {
-    return this.users[0]
+    return this.userRepo.findOne(id)
   }
 }
