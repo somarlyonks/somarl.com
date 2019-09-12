@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "typeRoots": [
       "src/@types/*"
-    ],
+    ]
   },
   "include": [
     "src"

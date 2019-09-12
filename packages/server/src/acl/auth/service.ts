@@ -1,18 +1,13 @@
-import { Strategy } from 'passport-local'
-import { ExtractJwt, Strategy as StrategyJwt } from 'passport-jwt'
 import { PassportStrategy } from '@nestjs/passport'
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
+import { Strategy } from 'passport-local'
+import { ExtractJwt, Strategy as StrategyJwt } from 'passport-jwt'
 
-import { IAuthService } from './specs'
 import { User, UserService } from '../../graphql'
 import SETTINGS from '../../settings'
 
-
-interface IJwtPayload {
-  username: S
-  sub: S
-}
+import { IAuthService, IStrategy } from './specs'
 
 
 @Injectable()
@@ -25,21 +20,27 @@ export default class AuthService implements IAuthService {
 
   public async validate (username: S, token: S) {
     const user = await this.userService.findOneById(username)
+    // TODO: @sy actuall local secret check
     return user
   }
 
   public async login (user: User) {
-    const payload: IJwtPayload = { username: user.nickname, sub: user.id }
+    const payload: IJwtPayload = { id: user.id }
     return {
       accessToken: this.jwtService.sign(payload),
     }
+  }
+
+  public async logout (user: User) {
+    await this.login(user)
   }
 
 }
 
 
 @Injectable()
-export class LocalStratgy extends PassportStrategy(Strategy, 'local') {
+export class LocalStratgy extends PassportStrategy(Strategy, 'local') implements IStrategy {
+
   public constructor (private readonly authService: AuthService) {
     super()
   }
@@ -55,8 +56,11 @@ export class LocalStratgy extends PassportStrategy(Strategy, 'local') {
 
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(StrategyJwt, 'jwt') {
-  public constructor () {
+export class JwtStrategy extends PassportStrategy(StrategyJwt, 'jwt') implements IStrategy {
+
+  public constructor (
+    private readonly userService: UserService
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -65,9 +69,7 @@ export class JwtStrategy extends PassportStrategy(StrategyJwt, 'jwt') {
   }
 
   public async validate (payload: IJwtPayload) {
-    return {
-      nickname: payload.username,
-      id: payload.sub,
-    }
+    return this.userService.findOneById(payload.id)
   }
+
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
 import { NewRecipeInput, RecipesArgs } from './dto'
-import { Recipe } from './models'
 import { IRecipeService } from './specs'
 import { RecipeRepo } from './repos'
 
@@ -20,11 +19,11 @@ export default class RecipeService implements IRecipeService {
     return this.recipeRepo.findOne(id)
   }
 
-  public async findAll (recipesArgs: RecipesArgs): Promise<Recipe[]> {
+  public async findAll (recipesArgs: RecipesArgs) {
     return this.recipeRepo.find(recipesArgs)
   }
 
-  public async removeById (id: S): Promise<boolean> {
+  public async removeById (id: S) {
     return this.recipeRepo.delete(id)
   }
 }
