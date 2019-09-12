@@ -17,6 +17,9 @@ const ARANGO_VERSION = '30407'
 const DB_DEFAULT = 'test'
 const BINKS_DIR = '/home/sy/Dropbox/bing/persistent'
 const SINA_APP_KEY = 1524513978 // this doesn't have to be a secret
+const QINIU_SCOPE = 'static'
+const QINIU_URL = 'https://static.qotes.top/'
+const QINIU_ACCESS_KEY = 'R2VkFTTK6oT8CbhadlMT9Fkh6TrEotAfDA_SItaQ'
 
 
 export default class S {
@@ -55,10 +58,16 @@ export default class S {
     'http://192.168.1.119:3001',
   ]
 
-  public static DARKSKY_SECRETKEY = process.env.DARKSKY_SECRETKEY || ''
   public static BINKS_DIR = process.env.BINKS_DIR || BINKS_DIR
 
+  public static DARKSKY_SECRET_KEY = process.env.DARKSKY_SECRET_KEY
+
   public static SINA_APP_KEY = SINA_APP_KEY
+
+  public static QINIU_SCOPE = QINIU_SCOPE
+  public static QINIU_URL = QINIU_URL
+  public static QINIU_ACCESS_KEY = process.env.QINIU_ACCESS_KEY || QINIU_ACCESS_KEY
+  public static QINIU_SECRET_KEY = process.env.QINIU_SECRET_KEY
 }
 
 
