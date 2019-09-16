@@ -2,7 +2,7 @@ import { h, Component } from 'preact'
 import Footer from './components/footer'
 import Header from './components/header'
 import Main from './components/main'
-import { getBinksColor } from './helpers/Api'
+import Api from './helpers/Api'
 
 import store, { StoreContext, ActionTypes } from './redux/store'
 import { action } from './redux/store/helpers'
@@ -14,9 +14,9 @@ class App extends Component {
   public async componentDidMount () {
     const setColor = action(
       ActionTypes.global.SET_THEMECOLOR,
-      async (color: R<typeof getBinksColor>) => `rgb(${(await color).join(', ')})`
+      async (color: R<typeof Api.getBinksColor>) => `rgb(${(await color).join(', ')})`
     )
-    store.dispatch(setColor(getBinksColor()))
+    store.dispatch(setColor(Api.getBinksColor()))
   }
 
   public render () {

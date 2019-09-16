@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { getBinks } from '../helpers/Api'
+import Api from '../helpers/Api'
 import { HTTPStatusCodes } from '../helpers/Adapter'
 
 
@@ -17,7 +17,7 @@ export default class Footer extends Component<{}, IFooterState> {
   }
 
   public async componentDidMount () {
-    const resp = await getBinks()
+    const resp = await Api.getBinks()
     if (resp.status === HTTPStatusCodes.OK) {
       this.setState({
         binksName: resp.body.image,

@@ -4,7 +4,7 @@ import IconRainDrops from '../icons/raindrops'
 import IconWind from '../icons/wind'
 import IconUmbrella from '../icons/umbrella'
 import WeatherSupport from './support'
-import { getWeather } from '../../helpers/Api'
+import Api from '../../helpers/Api'
 import { weatherTypeMap, HTTPStatusCodes } from '../../helpers/Adapter'
 import rgba from '../../helpers/rgba'
 
@@ -82,7 +82,7 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
   }
 
   public componentDidMount () {
-    const getCurrentWeather = () => getWeather(['flags', 'daily', 'hourly'])
+    const getCurrentWeather = () => Api.getWeather(['flags', 'daily', 'hourly'])
     const updateWeather = () => getCurrentWeather().then(resp => {
       // console.info('RRRR', resp)
       if (resp.status !== HTTPStatusCodes.OK) return

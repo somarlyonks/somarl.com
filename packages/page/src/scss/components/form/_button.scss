@@ -1,0 +1,46 @@
+@import '../../helpers/variables';
+
+.fabric-btn {
+  position: relative;
+  height: 32px;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 16px;
+  background-color: #fff;
+  border: 1px solid $fabricGrey;
+  color: $fabricBlack;
+  border-radius: 0;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: top;
+  min-width: 80px;
+  outline: transparent;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover, &:active {
+    background-color: $fabricWhite;
+    color: $fabricDeepBlack;
+  }
+
+  &--primary {
+    border: initial;
+    background-color: $fabricBlue;
+    color: #fff;
+    &:hover, &:active {
+      background-color: $fabricDeepBlue;
+      color: #fff;
+    }
+  }
+
+  &--borderless {
+    border-color: transparent;
+  }
+
+  &__label {
+    margin: 0 4px;
+    line-height: 1;
+    display: block;
+    font-weight: 600;
+  }
+}

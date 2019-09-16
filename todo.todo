@@ -67,6 +67,9 @@ somarl.com:
     [ ] GRpc @longterm
 
   Dev:
+    https:
+      [ ] page
+      [ ] server
     nginx dev proxy: @low
       [x] page api requests doesn't need this anymore with the help of dotenv
       [ ] page server

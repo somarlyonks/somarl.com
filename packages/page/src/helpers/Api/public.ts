@@ -2,16 +2,10 @@
  * @file seperated api callers
  */
 
-import { fetchPublicJson, fetchServerJson, ApiResponse, joinApiUrl } from './fetch'
-import { IWeatherResponse, IBinksRecord } from './Adapter'
-import ColorThief from './colorthief'
-import { getBlogs } from '../plugins/blog'
+import { fetchPublicJson } from '../fetch'
 
 
 export type PublicApi<R> = F0<Promise<R>>
-
-// type ServerApi<R> = F<Promise<R>>
-
 
 export const getIpGeo: PublicApi<{
   asn: S                   // "AS4812"
@@ -34,7 +28,6 @@ export const getIpGeo: PublicApi<{
   utc_offset: S            // "+0800"
 }> = async () => fetchPublicJson(`https://ipapi.co/json/`)
 
-
 /**
  * fast and no limitations, but ip only
  */
@@ -42,32 +35,4 @@ export const getIp: PublicApi<{
   ip: S // "1.1.1.1"
 }> = async () => fetchPublicJson('https://api.ipify.org/?format=json')
 
-
-/**
- * wrapped DarkSky forecast Api
- */
-export const getWeather = async (excludes = ['flags']) =>
-  fetchServerJson(`weather/?exclude=${excludes.join(',')}`) as Promise<ApiResponse<IWeatherResponse>>
-
-
-export const getBinks = async () => fetchServerJson('binks') as Promise<ApiResponse<IBinksRecord>>
-
-
-export const getBinksColor = async () => await new ColorThief().getColorFromUrl(joinApiUrl('binks.jpg'))
-
-
-const Api = {
-  public: {
-    getIpGeo,
-    getIp,
-    getBlogs,
-  },
-  server: {
-    getWeather,
-    getBinks,
-  },
-}
-
-window.Api = Api
-
-export default Api
+export { getBlogs } from '../../plugins/blog' // TODO: @sy remove this
