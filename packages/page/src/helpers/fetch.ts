@@ -3,7 +3,7 @@ import { HTTPStatusCodes } from './Adapter'
 
 export const API_SERVER = process.env.REACT_APP_API_SERVER
 
-export const joinApiUrl = (endpoint: S) => endpoint.startsWith('/')
+export const joinApiUrl = (endpoint: S) => API_SERVER!.endsWith('/') || endpoint.startsWith('/')
   ? `${API_SERVER}${endpoint}`
   : `${API_SERVER}/${endpoint}`
 
