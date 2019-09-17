@@ -58,4 +58,4 @@ export function action <T extends S, TPayload = A>
   }
 }
 
-// TODO:  setter helper
+// TODO: setter helper

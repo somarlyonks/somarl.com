@@ -2,7 +2,7 @@
  * @file seperated api callers
  */
 
-import { fetchPublicJson } from '../fetch'
+import { req } from '../fetch'
 
 
 export type PublicApi<R> = F0<Promise<R>>
@@ -26,13 +26,13 @@ export const getIpGeo: PublicApi<{
   region_code: S           // "SH"
   timezone: S              // "Asia/Shanghai"
   utc_offset: S            // "+0800"
-}> = async () => fetchPublicJson(`https://ipapi.co/json/`)
+}> = async () => req.GET(`https://ipapi.co/json/`)
 
 /**
  * fast and no limitations, but ip only
  */
 export const getIp: PublicApi<{
   ip: S // "1.1.1.1"
-}> = async () => fetchPublicJson('https://api.ipify.org/?format=json')
+}> = async () => req.GET('https://api.ipify.org/?format=json')
 
 export { getBlogs } from '../../plugins/blog' // TODO: @sy remove this

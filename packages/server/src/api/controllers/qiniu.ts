@@ -10,7 +10,7 @@ export default class QiniuController {
 
   @Post('token')
   public async token (@Req() req: Request) {
-    return this.qiniuService.getUploadToken(req.body.userId)
+    return { token: this.qiniuService.getUploadToken(req.body.userId) }
   }
 
   @Post('upload_callback')
