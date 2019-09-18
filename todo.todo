@@ -78,6 +78,7 @@ somarl.com:
     Monorepo settings:
       [x] greenkeeper enabled
       [x] fix yarn workspaces not symlinked
+      [ ] Part of Api Schema from metaData
     Monorepo workflow:
       [x] pipe build
       [x] GraphQL auto sync

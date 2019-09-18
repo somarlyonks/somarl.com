@@ -19,6 +19,8 @@ export interface IGlobalState {
   themeColor: S
   terminalState: GTermianlState
   richOutput: S
+  qiniuUrl: S
+  qiniuToken: S
 }
 
 /**
@@ -35,6 +37,7 @@ export type IGlobalAction = IAction<'INCREMENT', N>
                           | IAction<'SET_THEMECOLOR', S>
                           | IAction<'SET_TERMINALSTATE', GTermianlState>
                           | IAction<'SET_RICHOUTPUT', S>
+                          | IAction<'SET_QINIU_TOKEN', S>
 
 /**
  * @description Types in typescript are not datas as dependent type langs like Idris,
@@ -45,7 +48,8 @@ const actionTypes = [ 'INCREMENT'
                     , 'RESOLVE_ERROR'
                     , 'SET_THEMECOLOR'
                     , 'SET_TERMINALSTATE'
-                    , 'SET_RICHOUTPUT' ] as const
+                    , 'SET_RICHOUTPUT'
+                    , 'SET_QINIU_TOKEN' ] as const
 
 const ActionTypes = registerActions(actionTypes, 'global')
 
@@ -78,6 +82,15 @@ const reducers: IReducers<IGlobalState, Resolved<IGlobalAction>> = {
 
   richOutput (state: S, action: IAction) {
     if (action.type === ActionTypes.SET_RICHOUTPUT) return action.payload
+    return state
+  },
+
+  qiniuToken (state: S, action: IAction) {
+    if (action.type === ActionTypes.SET_QINIU_TOKEN) return action.payload
+    return state
+  },
+
+  qiniuUrl (state: S, action: IAction) {
     return state
   },
 }

@@ -1,6 +1,6 @@
 import { Plugin, PluginAction, PluginActionOption } from './draft'
 import { PublicApi } from '../helpers/Api'
-import { fetchPublicJson } from '../helpers/fetch'
+import { req } from '../helpers/fetch'
 
 
 export interface IBlogMeta {
@@ -20,7 +20,7 @@ export interface IBlogMeta {
   }
 }
 
-export const getBlogs: PublicApi<L<IBlogMeta>> = async () => fetchPublicJson('https://api.github.com/repos/somarlyonks/somarlyonks.github.io/contents/_posts')
+export const getBlogs: PublicApi<L<IBlogMeta>> = async () => req.GET('https://api.github.com/repos/somarlyonks/somarlyonks.github.io/contents/_posts')
 
 export default class BlogPlugin extends Plugin {
   public blogs: L<IBlogMeta> = []

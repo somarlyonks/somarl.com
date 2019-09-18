@@ -12,6 +12,7 @@ import Consumer from './components/consumer'
 
 class App extends Component {
   public async componentDidMount () {
+    window.SS = { Api }
     const setColor = action(
       ActionTypes.global.SET_THEMECOLOR,
       async (color: R<typeof Api.getBinksColor>) => `rgb(${(await color).join(', ')})`

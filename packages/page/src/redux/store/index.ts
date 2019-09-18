@@ -34,6 +34,8 @@ const preloadedState: IImplState = {
     themeColor: 'lightCoral',
     terminalState: 'blur',
     richOutput: '',
+    qiniuUrl: 'https://static.qotes.top/',
+    qiniuToken: '',
   },
   local: 0,
 }
