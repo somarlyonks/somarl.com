@@ -1,8 +1,8 @@
 import { HTTPStatusCodes } from './Adapter'
+import { API_SERVER } from './consts'
 
 
 type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'TRACE' | 'OPTIONS'
-export const API_SERVER = process.env.REACT_APP_API_SERVER
 
 export const joinApiUrl = (endpoint: S) => API_SERVER!.endsWith('/') || endpoint.startsWith('/')
   ? `${API_SERVER}${endpoint}`
@@ -40,7 +40,7 @@ function isResponseOK (result: ApiResponse): result is IApiResponseSuccess {
 
 function fetchFactory (method: IMethod) {
   return async (url: S, { body, headers }: {
-    body?: S
+    body?: BodyInit
     headers?: O
   } = {}) => {
     const options = { body, headers, method }
@@ -60,7 +60,7 @@ export const req = {
  */
 async function fetchServerJson (endpoint: S, { method, body, headers }: {
   method: IMethod
-  body?: S
+  body?: BodyInit
   headers?: O
 }): Promise<ApiResponse> {
   const api = API_SERVER + '/' + endpoint
@@ -95,15 +95,14 @@ async function fetchServerJson (endpoint: S, { method, body, headers }: {
 
 export async function fetchPublicJson (api: S, { method, body, headers }: {
   method: IMethod
-  body?: S
+  body?: BodyInit
   headers?: O
 }) {
   const init: RequestInit = {
     method,
     mode: 'cors',
     headers: headers || {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
   }
   if (body) {
