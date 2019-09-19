@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 import { useCallback } from 'preact/hooks'
 
 import store, { IImplState, useMappedState, ActionTypes } from '../../redux/store'

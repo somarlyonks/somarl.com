@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 import Api from '../helpers/Api'
 import { HTTPStatusCodes } from '../helpers/Adapter'
 

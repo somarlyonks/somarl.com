@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from 'preact' // lgtm [js/unused-local-variable]
 
 
 const IconWind = () => (

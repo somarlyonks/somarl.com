@@ -29,7 +29,10 @@
     "lint": "npm-run-all lint-page lint-pipe lint-server",
     "-----": "--------------------------------------------------------------------------------",
     "commitlint": "commitlint",
-    "husky": "node node_modules/husky/bin/install.js"
+    "husky": "node node_modules/husky/bin/install.js",
+    "------": "-------------------------------------------------------------------------------",
+    "frpc": "cd scripts/frp && sh frpc.sh && concurrently \"./frpc -c frpc.ini\" \"tail -f frpc.log\" ",
+    "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
   "devDependencies": {
     "@babel/core": "7.6.0",

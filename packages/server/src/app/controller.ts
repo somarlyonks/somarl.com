@@ -10,4 +10,9 @@ export default class AppController {
   public getHello (): S {
     return this.appService.getHello()
   }
+
+  @Get('/status')
+  public beat () {
+    return 'alive'
+  }
 }

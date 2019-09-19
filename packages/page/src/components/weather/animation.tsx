@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 import { WeatherTypes} from '../../helpers/Adapter'
 import rgba from '../../helpers/rgba'
 

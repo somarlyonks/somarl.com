@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from 'preact' // lgtm [js/unused-local-variable]
 import PanelLeft from './panel/left'
 import PanelRight from './panel/right'
 import WeatherWidget from './weather/widget'

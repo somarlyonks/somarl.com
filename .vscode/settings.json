@@ -9,7 +9,9 @@
     "**/coverage": true,
     "packages/page/build/dist": true,
     "packages/pipe/build": true,
-    "packages/server/build": true
+    "packages/server/build": true,
+    "scripts/frp/frpc": true,
+    "scripts/frp/frps": true
   },
   "search.exclude": {
     "packages/page/build": true
