@@ -547,7 +547,7 @@ const MMCQ = (() => {
         }
         // FIXME: wrong count of vboxes
         if (ncolors >= target) return
-        if (niters++ > maxIterations) return
+        niters++
       }
     }
 

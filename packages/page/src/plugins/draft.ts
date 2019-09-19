@@ -119,9 +119,8 @@ export class Plugin extends AliasAbastract<PluginAction> {
     if (!maybe) this.onError(message)
   }
 
-  public onError (message: S = 'not specified') {
+  public onError (message: S = 'not specified'): never {
     throw new Error(`[Plugin Error]: ${this.name} - ${message}.`)
-    return '' // keep this
   }
 
   public getActionsDescriptions () {
