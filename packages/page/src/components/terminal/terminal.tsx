@@ -1,4 +1,4 @@
-import { h, Component, JSX } from 'preact'
+import { h, Component } from 'preact'
 import { useCallback } from 'preact/hooks'
 
 import store, { IImplState, useMappedState, ActionTypes } from '../../redux/store'
@@ -48,7 +48,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     fakeContrastText: '',
   }
 
-  private readonly onFocus: JSX.FocusEventHandler = event => {
+  private readonly onFocus: h.JSX.FocusEventHandler = event => {
     if (this.props.onFocus) {
       this.props.onFocus()
     }
@@ -58,7 +58,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
   }
 
 
-  private readonly onBlur: JSX.FocusEventHandler = event => {
+  private readonly onBlur: h.JSX.FocusEventHandler = event => {
     this.setState({ supportDisplay: false })
     setTerminalState('blur')
   }
@@ -80,7 +80,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     return isFireOnChangeNeeded ? text : false
   }
 
-  private readonly onChange: JSX.EventHandler<Event> = event => {
+  private readonly onChange: h.JSX.GenericEventHandler = event => {
     const maybeDirtyText = this.jumpTo(event)
 
     if (maybeDirtyText !== false && this.props.onChange) {
@@ -88,7 +88,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     }
   }
 
-  private readonly onKeyUp: JSX.KeyboardEventHandler = event => {
+  private readonly onKeyUp: h.JSX.KeyboardEventHandler = event => {
     this.jumpTo(event)
     const target = event.target as HTMLInputElement
 

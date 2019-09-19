@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 import Footer from './components/footer'
 import Header from './components/header'
 import Main from './components/main'
