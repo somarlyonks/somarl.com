@@ -1,4 +1,4 @@
-import { h, Component, JSX } from 'preact'
+import { h, Component } from 'preact'
 import WeatherAnimation, { WeatherTypes } from './animation'
 import IconRainDrops from '../icons/raindrops'
 import IconWind from '../icons/wind'
@@ -115,7 +115,7 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
     if (this.timer) clearInterval(this.timer)
   }
 
-  public readonly toggle: JSX.MouseEventHandler = event => {
+  public readonly toggle: h.JSX.MouseEventHandler = event => {
     this.setState((prevState: IWeatherWidgetState) => ({ toggled: !prevState.toggled }))
   }
 

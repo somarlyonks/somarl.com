@@ -1,11 +1,11 @@
-import { h, JSX } from 'preact'
+import { h } from 'preact'
 
 
 interface IButtonProps {
   label: S
   classNames?: L<S>
   labelClassName?: S
-  onClick?: JSX.MouseEventHandler
+  onClick?: h.JSX.MouseEventHandler
   style?: string | {[key: string]: string | number}
 }
 

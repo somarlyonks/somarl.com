@@ -22,7 +22,7 @@ export default class QiniuService {
       "mimeType": $(mimeType),
       "imageInfo": $(imageInfo),
       "url": "${SETTINGS.QINIU_URL}$(key)"
-    }`.replace(' ', '').replace('\n', '')
+    }`.replace(/\s/g, '')
 
     /** @ref https://developer.qiniu.com/kodo/manual/1206/put-policy */
     const putPolicy = new qiniu.rs.PutPolicy({
