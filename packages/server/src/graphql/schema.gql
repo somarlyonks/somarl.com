@@ -6,6 +6,15 @@
 """Date custom scalar type"""
 scalar Date
 
+type Image implements IModel {
+  id: ID!
+  created: Date!
+  key: String!
+  name: String!
+  url: String!
+  imageInfo: String
+}
+
 interface IModel {
   id: ID!
   created: Date!
