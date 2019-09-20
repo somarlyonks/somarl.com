@@ -65,6 +65,7 @@ somarl.com:
       [ ] server log
       [ ] request log
     [ ] GRpc @longterm
+      [ ] rpc guard
 
   Dev:
     https:
