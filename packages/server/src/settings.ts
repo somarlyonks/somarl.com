@@ -9,7 +9,8 @@ import './helpers/env'
 const SERVER_PORT_DEV = 3001
 const SERVER_PORT_PROD = 8081
 const SERVER_CNAME = 'api'
-const SERVER_HOST = 'dev.local'
+const FRP_SERVER_CNAME = 'frp'
+const SERVER_HOST = 'somarl.com'
 const SERVER_PROTOCOL = 'http' // TODO: SSL and http/2
 const JWT_SECRET_DEV = 'TBLq4!4.2m'
 const ARANGO_PORT_DEFAULT = 8529
@@ -24,9 +25,12 @@ const QINIU_ACCESS_KEY = 'R2VkFTTK6oT8CbhadlMT9Fkh6TrEotAfDA_SItaQ'
 
 export default class S {
   public static ENV = process.env.SOMARL_ENV || 'dev'
+  public static DEV = S.ENV === 'dev'
   public static SERVER_PORT = process.env.SERVER_PORT || S.ENV === 'prod' ? SERVER_PORT_PROD : process.env.SERVER_PORT_DEV || SERVER_PORT_DEV
   public static SERVER_URI = `${SERVER_PROTOCOL}://${SERVER_CNAME}.${SERVER_HOST}`
+  public static FRP_SERVER_URI = `${SERVER_PROTOCOL}://${FRP_SERVER_CNAME}.${SERVER_HOST}`
   public static SERVER_URL = S.SERVER_URI
+  public static FRP_SERVER_URL = S.FRP_SERVER_URI
 
   public static DB = process.env.DB || DB_DEFAULT
   public static DB_HOST = process.env.DB_HOST || `localhost`

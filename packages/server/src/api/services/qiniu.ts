@@ -7,7 +7,7 @@ import { SETTINGS } from '../../settings'
 @Injectable()
 export default class QiniuService {
 
-  public getUploadToken (endUser = 'anonymous') {
+  public getUploadToken (endUser = 'anonymous', sync = false) {
     const mac = new qiniu.auth.digest.Mac(
       SETTINGS.QINIU_ACCESS_KEY,
       SETTINGS.QINIU_SECRET_KEY
@@ -25,18 +25,21 @@ export default class QiniuService {
     }`.replace(/\s/g, '')
 
     /** @ref https://developer.qiniu.com/kodo/manual/1206/put-policy */
-    const putPolicy = new qiniu.rs.PutPolicy({
+    const policy = {
       scope: SETTINGS.QINIU_SCOPE,
       expires: 86400,
       mimeLimit: 'image/*',
       saveKey: '$(year)/$(mon)/$(day)/$(etag)$(ext)',
       endUser,
       returnBody,
-      // TODO: @sy
-      // callbackUrl: 'http://api.somarl.com/qiniu/upload_callback',
-      // callbackBody: returnBody,
-      // callbackBodyType: 'application/json',
-    })
+    }
+    const putPolicy = new qiniu.rs.PutPolicy(Object.assign(policy,
+      sync ? {
+        callbackUrl: `${SETTINGS.DEV ? SETTINGS.FRP_SERVER_URL : SETTINGS.SERVER_URL}/qiniu/upload_callback`,
+        callbackBody: returnBody,
+        callbackBodyType: 'application/json',
+      } : {}
+    ))
 
     return putPolicy.uploadToken(mac)
   }
