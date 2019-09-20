@@ -6,9 +6,39 @@
 """Date custom scalar type"""
 scalar Date
 
+type Image implements IModel {
+  id: ID!
+  created: Date!
+  key: String!
+  name: String!
+  url: String!
+  imageInfo: String
+}
+
+interface IModel {
+  id: ID!
+  created: Date!
+}
+
+interface IRelation {
+  id: ID!
+  created: Date!
+  from: String!
+  to: String!
+}
+
 type Mutation {
+  addImage(newImageData: NewImageInput!): Image!
+  removeImage(id: String!): Boolean!
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
   removeRecipe(id: String!): Boolean!
+}
+
+input NewImageInput {
+  key: String!
+  name: String!
+  url: String!
+  imageInfo: String
 }
 
 input NewRecipeInput {
@@ -18,13 +48,15 @@ input NewRecipeInput {
 }
 
 type Query {
+  image(id: String!): Image!
+  images(skip: Int = 0, take: Int = 10): [Image!]!
   recipe(id: String!): Recipe!
   recipes(skip: Int = 0, take: Int = 10): [Recipe!]!
   user(id: String!): User!
   me: User!
 }
 
-type Recipe {
+type Recipe implements IModel {
   id: ID!
   created: Date!
   title: String!
@@ -36,12 +68,12 @@ type Subscription {
   recipeAdded: Recipe!
 }
 
-type User {
+type User implements IModel {
   id: ID!
   created: Date!
   nickname: String!
   email: String!
   password: String!
-  accessLevel: Float!
+  accessLevel: Int!
   avatar: String!
 }

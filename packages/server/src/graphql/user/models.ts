@@ -1,29 +1,23 @@
-import { Field, ObjectType, ID } from 'type-graphql'
-import { IModel } from '../shared'
+import { Field, ObjectType, Int } from 'type-graphql'
+import { Model } from '../shared'
 
 
 @ObjectType()
-export class User implements IModel {
-  @Field(type => ID)
-  public id!: S
-
+export class User extends Model {
   @Field()
-  public created!: Date
-
-  @Field(type => String)
   public nickname!: S
 
-  @Field(type => String)
+  @Field()
   public email!: S
 
-  @Field(type => String)
+  @Field()
   public password!: S
 
   /** access to logs */
-  @Field(type => Number)
+  @Field(type => Int)
   public accessLevel!: N
 
   /** @description the image key */
-  @Field(type => String)
+  @Field()
   public avatar!: S
 }

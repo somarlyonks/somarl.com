@@ -13,4 +13,4 @@ import RecipeService from './service'
     RecipeService,
   ],
 })
-export default class RecipesModule {}
+export default class RecipeModule {}

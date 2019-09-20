@@ -1,15 +1,9 @@
-import { Field, ObjectType, ID } from 'type-graphql'
-import { IModel } from '../shared'
+import { Field, ObjectType } from 'type-graphql'
+import { Model } from '../shared'
 
 
 @ObjectType()
-export class Recipe implements IModel {
-  @Field(type => ID)
-  public id!: S
-
-  @Field()
-  public created!: Date
-
+export class Recipe extends Model {
   @Field(type => String)
   public title!: S
 
