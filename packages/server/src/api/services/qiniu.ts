@@ -34,11 +34,11 @@ export default class QiniuService {
       returnBody,
     }
     const putPolicy = new qiniu.rs.PutPolicy(Object.assign(policy,
-      sync ? {
+      sync && {
         callbackUrl: `${SETTINGS.DEV ? SETTINGS.FRP_SERVER_URL : SETTINGS.SERVER_URL}/qiniu/upload_callback`,
         callbackBody: returnBody,
         callbackBodyType: 'application/json',
-      } : {}
+      }
     ))
 
     return putPolicy.uploadToken(mac)

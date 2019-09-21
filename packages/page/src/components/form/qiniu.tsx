@@ -14,11 +14,10 @@ async function uploadFile (file: File) {
 
   const data = new window.FormData()
   data.append('file', file)
-  data.append('token', await Api.getQiniuToken())
+  data.append('token', await Api.getQiniuSyncToken())
 
   const r = await req.POST(QINIU_UPLOAD_URL, { body: data })
   console.info('RRR', r) // TODELETE
-  // TODO: @sy sync image to db
 }
 
 /**

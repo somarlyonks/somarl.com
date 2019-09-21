@@ -6,25 +6,30 @@ import {
 
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sLocal, { ILocalState, ILocalAction } from './local'
+import sQiniu, { IQiniuState, IQiniuAction } from './qiniu'
 import { applyMiddleware } from '../framework/middleware'
 
 
 export interface IImplState {
   global: IGlobalState
   local: ILocalState
+  qiniu: IQiniuState
 }
 
 export interface IImplActions extends IActions<IImplState> {
   global: IGlobalAction
   local: ILocalAction
+  qiniu: IQiniuAction
 }
 
 export type IImplAction = IGlobalAction
                         | ILocalAction
+                        | IQiniuAction
 
 export const ActionTypes = {
   global: sGlobal.ActionTypes,
   local: sLocal.ActionTypes,
+  qiniu: sQiniu.ActionTypes,
 }
 
 const preloadedState: IImplState = {
@@ -34,15 +39,19 @@ const preloadedState: IImplState = {
     themeColor: 'lightCoral',
     terminalState: 'blur',
     richOutput: '',
-    qiniuUrl: 'https://static.qotes.top/',
-    qiniuToken: '',
   },
   local: 0,
+  qiniu: {
+    token: '',
+    syncToken: '',
+    url: 'https://static.qotes.top/',
+  },
 }
 
 const reducers = {
   global: sGlobal.reducer,
   local: sLocal.reducer,
+  qiniu: sQiniu.reducer,
 } as IReducers<IImplState, IImplAction>
 
 export const actions: IBoundActions<IImplState, IImplActions> = redux.bindActions(ActionTypes)

@@ -5,9 +5,7 @@
 import { req } from '../fetch'
 
 
-export type PublicApi<R> = F0<Promise<R>>
-
-export const getIpGeo: PublicApi<{
+export const getIpGeo = async () => req.GET<{
   asn: S                   // "AS4812"
   city: S                  // "Shanghai"
   continent_code: S        // "AS"
@@ -26,13 +24,13 @@ export const getIpGeo: PublicApi<{
   region_code: S           // "SH"
   timezone: S              // "Asia/Shanghai"
   utc_offset: S            // "+0800"
-}> = async () => req.GET(`https://ipapi.co/json/`)
+}>(`https://ipapi.co/json/`)
 
 /**
  * fast and no limitations, but ip only
  */
-export const getIp: PublicApi<{
+export const getIp = async () => req.GET<{
   ip: S // "1.1.1.1"
-}> = async () => req.GET('https://api.ipify.org/?format=json')
+}>('https://api.ipify.org/?format=json')
 
 export { getBlogs } from '../../plugins/blog' // TODO: @sy remove this

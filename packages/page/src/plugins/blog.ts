@@ -1,6 +1,5 @@
 import { Plugin, PluginAction, PluginActionOption } from './draft'
-import { PublicApi } from '../helpers/Api'
-import { req } from '../helpers/fetch'
+import { req, isResponseOK } from '../helpers/fetch'
 
 
 export interface IBlogMeta {
@@ -20,7 +19,9 @@ export interface IBlogMeta {
   }
 }
 
-export const getBlogs: PublicApi<L<IBlogMeta>> = async () => req.GET('https://api.github.com/repos/somarlyonks/somarlyonks.github.io/contents/_posts')
+export const getBlogs = async () => req.GET<
+  L<IBlogMeta>
+>('https://api.github.com/repos/somarlyonks/somarlyonks.github.io/contents/_posts')
 
 export default class BlogPlugin extends Plugin {
   public blogs: L<IBlogMeta> = []
@@ -44,12 +45,16 @@ class BlogActionGet extends PluginAction {
       optionValueMap[option.name] = option.value
     }
 
-    const blogs = await getBlogs()
+    const r = await getBlogs()
+    if (!isResponseOK(r)) return ''
+    const { body: blogs } = r
     ; (this.plugin as BlogPlugin).blogs = blogs
 
     if (optionValueMap['--order'] === '') {
     } else {
-      const blog = await fetch(blogs[Number(optionValueMap['--order'])].download_url).then(r => r.text())
+      const blog = await fetch(
+        blogs[Number(optionValueMap['--order'])].download_url
+      ).then(r1 => r1.text())
       this.emit(blog)
     }
     return blogs.map(blog => blog.name).join('\n')
