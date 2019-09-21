@@ -7,17 +7,40 @@ const localizeToken = (token: S) => {
   return token
 }
 
+const localizeSyncToken = (token: S) => {
+  window.SS.qiniuSyncToken = token
+  return token
+}
+
 export async function getQiniuToken () {
   if (window.SS.qiniuToken) return window.SS.qiniuToken
 
   const state = store.getState()
-  if (state && state.global.qiniuToken) return localizeToken(state.global.qiniuToken)
+  if (state && state.qiniu.token) return localizeToken(state.qiniu.token)
 
   const r = await req.POST('qiniu/token')
   const { token } = r.body
   store.dispatch({
-    type: ActionTypes.global.SET_QINIU_TOKEN,
+    type: ActionTypes.qiniu.SET_QINIU_TOKEN,
     payload: token,
   })
   return localizeToken(token)
+}
+
+
+export async function getQiniuSyncToken () {
+  if (window.SS.qiniuSyncToken) return window.SS.qiniuSyncToken
+
+  const state = store.getState()
+  if (state && state.qiniu.syncToken) return localizeToken(state.qiniu.syncToken)
+
+  const r = await req.POST('qiniu/token', {
+    json: { sync: true },
+  })
+  const { token } = r.body
+  store.dispatch({
+    type: ActionTypes.qiniu.SET_QINIU_SYNC_TOKEN,
+    payload: token,
+  })
+  return localizeSyncToken(token)
 }

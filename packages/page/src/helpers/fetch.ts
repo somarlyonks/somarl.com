@@ -39,11 +39,12 @@ function isResponseOK (result: ApiResponse): result is IApiResponseSuccess {
 
 
 function fetchFactory (method: IMethod) {
-  return async (url: S, { body, headers }: {
+  return async (url: S, { body, headers, json }: {
     body?: BodyInit
     headers?: O
+    json?: O
   } = {}) => {
-    const options = { body, headers, method }
+    const options = { body, headers, method, json }
     if (!url.startsWith('http')) return fetchServerJson(url, options)
     return fetchPublicJson(url, options)
   }
@@ -58,21 +59,24 @@ export const req = {
  * fetch cors are supposed to send preflighted OPTIONS request
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
  */
-async function fetchServerJson (endpoint: S, { method, body, headers }: {
+async function fetchServerJson (endpoint: S, { method, body, headers, json }: {
   method: IMethod
   body?: BodyInit
   headers?: O
+  json?: O
 }): Promise<ApiResponse> {
   const api = API_SERVER + '/' + endpoint
   const init: RequestInit = {
     method,
     mode: 'cors',
-    headers: headers || {
+    headers: Object.assign({}, headers || {
       Accept: 'application/json, image/*',
-    },
+    }, json ? {
+      'Content-Type': 'application/json;charset=UTF-8',
+    } : {}),
   }
   if (body) {
-    init.body = body
+    init.body = json ? JSON.stringify(json) : body
   }
 
   const resp = await fetch(api, init)
@@ -93,20 +97,23 @@ async function fetchServerJson (endpoint: S, { method, body, headers }: {
 }
 
 
-export async function fetchPublicJson (api: S, { method, body, headers }: {
+export async function fetchPublicJson (api: S, { method, body, headers, json }: {
   method: IMethod
   body?: BodyInit
   headers?: O
+  json?: O
 }) {
   const init: RequestInit = {
     method,
     mode: 'cors',
-    headers: headers || {
-      Accept: 'application/json',
-    },
+    headers: Object.assign({}, headers || {
+      Accept: 'application/json, image/*',
+    }, json ? {
+      'Content-Type': 'application/json;charset=UTF-8',
+    } : {}),
   }
   if (body) {
-    init.body = body
+    init.body = json ? JSON.stringify(json) : body
   }
 
   return fetch(api, init).then(r => r.json())

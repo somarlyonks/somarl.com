@@ -12,6 +12,7 @@ declare global {
     SS: {
       Api: typeof Api
       qiniuToken?: S
+      qiniuSyncToken?: S
     }
   }
 }
