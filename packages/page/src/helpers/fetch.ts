@@ -71,9 +71,9 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
     mode: 'cors',
     headers: Object.assign({}, headers || {
       Accept: 'application/json, image/*',
-    }, json ? {
+    }, json && {
       'Content-Type': 'application/json;charset=UTF-8',
-    } : {}),
+    }),
   }
   if (body) {
     init.body = json ? JSON.stringify(json) : body
@@ -108,9 +108,9 @@ export async function fetchPublicJson <TResponse = A> (api: S, { method, body, h
     mode: 'cors',
     headers: Object.assign({}, headers || {
       Accept: 'application/json, image/*',
-    }, json ? {
+    }, json && {
       'Content-Type': 'application/json;charset=UTF-8',
-    } : {}),
+    }),
   }
   if (body) {
     init.body = json ? JSON.stringify(json) : body
