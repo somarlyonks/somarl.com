@@ -4,11 +4,11 @@
 
 import { getWeather } from './darksky'
 import { getIpGeo, getIp, getBlogs } from './public'
-import { getBinks, getBinksColor } from './binks'
+import * as binksApi from './binks'
 import * as qiniuApi from './qiniu'
 
+import { isResponseOK } from '../fetch'
 
-export type PublicApi<R> = F0<Promise<R>>
 
 const publicApi = {
   getIpGeo,
@@ -17,15 +17,17 @@ const publicApi = {
 }
 
 const serverApi = {
-  getBinks,
-  getBinksColor,
   getWeather,
+  ...binksApi,
   ...qiniuApi,
 }
 
 const Api = {
+  isResponseOK,
+
   public: publicApi,
   ...publicApi,
+
   server: serverApi,
   ...serverApi,
 }

@@ -1,5 +1,5 @@
 import store, { ActionTypes } from '../../redux/store'
-import { req } from '../fetch'
+import { req, isResponseOK } from '../fetch'
 
 
 const localizeToken = (token: S) => {
@@ -18,7 +18,10 @@ export async function getQiniuToken () {
   const state = store.getState()
   if (state && state.qiniu.token) return localizeToken(state.qiniu.token)
 
-  const r = await req.POST('qiniu/token')
+  const r = await req.POST<{token: S}>('qiniu/token')
+
+  if (!isResponseOK(r)) throw new Error('failed to fetch qiniu token')
+
   const { token } = r.body
   store.dispatch({
     type: ActionTypes.qiniu.SET_QINIU_TOKEN,
@@ -34,9 +37,12 @@ export async function getQiniuSyncToken () {
   const state = store.getState()
   if (state && state.qiniu.syncToken) return localizeToken(state.qiniu.syncToken)
 
-  const r = await req.POST('qiniu/token', {
+  const r = await req.POST<{token: S}>('qiniu/token', {
     json: { sync: true },
   })
+
+  if (!isResponseOK(r)) throw new Error('failed to fetch qiniu token')
+
   const { token } = r.body
   store.dispatch({
     type: ActionTypes.qiniu.SET_QINIU_SYNC_TOKEN,

@@ -31,7 +31,7 @@ export type ApiResponse <T = any> = IApiResponseFail | IApiResponseSuccess<T>
  *     console.info(resp.body) // tsc warning!
  *   }
  */
-function isResponseOK (result: ApiResponse): result is IApiResponseSuccess {
+export function isResponseOK (result: ApiResponse): result is IApiResponseSuccess {
   return result.status === HTTPStatusCodes.OK ||
          result.status === HTTPStatusCodes.CREATED ||
          result.status === HTTPStatusCodes.ACCEPTED
@@ -39,14 +39,14 @@ function isResponseOK (result: ApiResponse): result is IApiResponseSuccess {
 
 
 function fetchFactory (method: IMethod) {
-  return async (url: S, { body, headers, json }: {
+  return async <TResponse = A> (url: S, { body, headers, json }: {
     body?: BodyInit
     headers?: O
     json?: O
   } = {}) => {
     const options = { body, headers, method, json }
-    if (!url.startsWith('http')) return fetchServerJson(url, options)
-    return fetchPublicJson(url, options)
+    if (!url.startsWith('http')) return fetchServerJson<TResponse>(url, options)
+    return fetchPublicJson<TResponse>(url, options)
   }
 }
 
@@ -59,12 +59,12 @@ export const req = {
  * fetch cors are supposed to send preflighted OPTIONS request
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
  */
-async function fetchServerJson (endpoint: S, { method, body, headers, json }: {
+async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, headers, json }: {
   method: IMethod
   body?: BodyInit
   headers?: O
   json?: O
-}): Promise<ApiResponse> {
+}): Promise<ApiResponse<TResponse>> {
   const api = API_SERVER + '/' + endpoint
   const init: RequestInit = {
     method,
@@ -97,12 +97,12 @@ async function fetchServerJson (endpoint: S, { method, body, headers, json }: {
 }
 
 
-export async function fetchPublicJson (api: S, { method, body, headers, json }: {
+export async function fetchPublicJson <TResponse = A> (api: S, { method, body, headers, json }: {
   method: IMethod
   body?: BodyInit
   headers?: O
   json?: O
-}) {
+}): Promise<ApiResponse<TResponse>> {
   const init: RequestInit = {
     method,
     mode: 'cors',
