@@ -19,12 +19,12 @@ export default class QiniuController {
 
   @Post('upload_callback')
   public async uploadCallback (@Req() req: Request) {
-    console.info('RRR', req.body) // TODELETE
     if (req.body) {
       await this.imageService.create(Object.assign({}, req.body, {
         imageInfo: JSON.stringify(req.body.imageInfo || {}),
       }))
+      // TODO: create relation to user if possible
     }
-    return req.body
+    return 'success'
   }
 }
