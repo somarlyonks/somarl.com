@@ -5,7 +5,7 @@ import { Request, Response } from 'express'
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   public use (req: Request, res: Response, next: F) {
-    Logger.log('Request', req.hostname) // TODO: @sy
+    Logger.log('Request', req.originalUrl) // TODO: @sy
     next()
   }
 }
