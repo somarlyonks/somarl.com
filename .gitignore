@@ -65,6 +65,4 @@ tsconfig.tsbuildinfo
 
 # frp
 scripts/frp/frpc
-scripts/frp/frpc.log
 scripts/frp/frps
-scripts/frp/frps.log

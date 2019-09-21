@@ -50,6 +50,8 @@ somarl.com:
   Server:
     [x] server frame - nestjs
     [x] GraphQL
+      [ ] JSON scalar
+      [ ] Date scalar
     [ ] exception system
     [ ] basic doctype system @high
     [x] mongo frame

@@ -17,13 +17,11 @@ function ensureSlash (path, needsSlash) {
   return path
 }
 
-const getPublicUrl = appPackageJson =>
-  envPublicUrl || require(appPackageJson).homepage
+const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage
 
 function getServedPath (appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson)
-  const servedUrl = envPublicUrl ||
-    (publicUrl ? url.parse(publicUrl).pathname : '/')
+  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/')
   return ensureSlash(servedUrl, true)
 }
 
