@@ -9,4 +9,4 @@ import ColorThief from '../colorthief'
 
 export const getBinks = async () => req.GET<IBinksRecord>('binks')
 
-export const getBinksColor = async () => await new ColorThief().getColorFromUrl(joinApiUrl('binks.jpg'))
+export const getBinksColor = async () => new ColorThief().getColorFromUrl(joinApiUrl('binks.jpg'))

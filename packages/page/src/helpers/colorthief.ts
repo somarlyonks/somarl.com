@@ -118,7 +118,7 @@ export default class ColorThief {
       const img = new Image()
       img.crossOrigin = 'anonymous'
       img.onload = () => resolve(this.getColor(img, quality))
-      img.onerror = () => reject(`[ColorThief] failed to load image ${src}`)
+      img.onerror = () => reject(new Error(`[ColorThief] failed to load image ${src}`))
       img.src = src
     })
   }
@@ -132,7 +132,7 @@ export default class ColorThief {
       const img = new Image()
       img.crossOrigin = 'anonymous'
       img.onload = () => resolve(this.getPalette(img, colorCount, quality))
-      img.onerror = () => reject(`[ColorThief] failed to load image ${src}`)
+      img.onerror = () => reject(new Error(`[ColorThief] failed to load image ${src}`))
       img.src = src
     })
   }
