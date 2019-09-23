@@ -51,32 +51,32 @@ const ActionTypes = registerActions(actionTypes, 'global')
 
 /** @description The real reducers only have to deal with the resolved actions. */
 const reducers: IReducers<IGlobalState, Resolved<IGlobalAction>> = {
-  errMsgs (state: L<S>, action: IAction) {
+  errMsgs (state, action) {
     if (action.errMsg) {
-      if (action.type !== ActionTypes.RESOLVE_ERROR) return state.concat(action.errMsg)
+      if (action.type !== ActionTypes.RESOLVE_ERROR) return state.concat(action.errMsg!)
       return state.filter(s => s !== action.errMsg)
     }
     return state
   },
 
-  testCount (state: N, action: Resolved<IGlobalAction>) {
+  testCount (state, action) {
     if (action.type === ActionTypes.INCREMENT) return state + action.payload
     if (action.type === ActionTypes.DECREMENT) return state - parseInt(action.payload, 10)
 
     return state
   },
 
-  themeColor (state: S, action: IAction) {
+  themeColor (state, action) {
     if (action.type === ActionTypes.SET_THEMECOLOR) return action.payload
     return state
   },
 
-  terminalState (state: GTermianlState, action: IAction) {
+  terminalState (state, action) {
     if (action.type === ActionTypes.SET_TERMINALSTATE) return action.payload
     return state
   },
 
-  richOutput (state: S, action: IAction) {
+  richOutput (state, action) {
     if (action.type === ActionTypes.SET_RICHOUTPUT) return action.payload
     return state
   },

@@ -8,14 +8,9 @@ const paths = require('./paths')
 delete require.cache[require.resolve('./paths')]
 
 const NODE_ENV = process.env.NODE_ENV
-if (!NODE_ENV) {
-  throw new Error(
-    'The NODE_ENV environment variable is required but was not specified.'
-  )
-}
+if (!NODE_ENV) throw new Error('The NODE_ENV environment variable is required.')
 
-// https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-var dotenvFiles = [
+const dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
   `${paths.dotenv}.${NODE_ENV}`,
   NODE_ENV !== 'test' && `${paths.dotenv}.local`,
@@ -54,25 +49,15 @@ const REACT_APP = /^REACT_APP_/i
 function getClientEnvironment (publicUrl) {
   const raw = Object.keys(process.env)
     .filter(key => REACT_APP.test(key))
-    .reduce(
-      (env, key) => {
-        env[key] = process.env[key]
-        return env
-      },
-      {
-        NODE_ENV: process.env.NODE_ENV || 'development',
-        // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
-        PUBLIC_URL: publicUrl,
-      }
-    )
+    .reduce((env, key) => Object.assign(env, { [key]: process.env[key] }), {
+      NODE_ENV: process.env.NODE_ENV || 'development',
+      PUBLIC_URL: publicUrl, // <img src={process.env.PUBLIC_URL + '/img/logo.png'} />
+    })
+
   const stringified = {
-    'process.env': Object.keys(raw).reduce(
-      (env, key) => {
-        env[key] = JSON.stringify(raw[key])
-        return env
-      },
-      {}
-    ),
+    'process.env': Object.keys(raw).reduce((env, key) => Object.assign(env, {
+      [key]: JSON.stringify(raw[key])
+    }), {}),
   }
 
   return { raw, stringified }

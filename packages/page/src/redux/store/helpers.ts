@@ -18,7 +18,8 @@ export function registerActions <T extends ReadonlyArray<S>> (actionsTypes: T, n
   const actions = {}
 
   for (let i = 0; i < actionsTypes.length; i++) {
-    actions[actionsTypes[i]] = `${namespace}/${i}`
+    const actionType = actionsTypes[i]
+    actions[actionType] = `${namespace}/${i}:${actionType}`
   }
 
   return actions as {
