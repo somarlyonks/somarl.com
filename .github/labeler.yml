@@ -1,0 +1,10 @@
+page: packages/page/**/*
+
+pipe: packages/pipe/**/*
+
+server: packages/server/**/*
+
+chore:
+  - "!packages/**"
+  - packages/tsconfig.json
+  - packages/tsconfig.common.json
