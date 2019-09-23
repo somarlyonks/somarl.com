@@ -7,6 +7,11 @@ export function promiseMiddleware <TState, TAction extends IAction> ({ dispatch 
     if (!isPromise(action.payload)) return next(action)
     return action.payload
       .then((payload: TAction['payload']) => dispatch({ ...action, payload }))
-      .catch((error: Error) => dispatch({ ...action, payload: error, errMsg: error.message }))
+      .catch((error: Error) => {
+        console.groupCollapsed('%c[redux]: error', 'color: #e00;')
+        console.error(error)
+        dispatch({ ...action, payload: error, errMsg: error.message })
+        console.groupEnd()
+      })
   }
 }

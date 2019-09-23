@@ -61,8 +61,8 @@ const store = redux.createStore<IImplState, IImplAction>(
     preloadedState,
     enhancer: applyMiddleware(
       promiseMiddleware as IMiddleware<IImplState, IImplAction>,
-      errorMiddleware,
-      loggerMiddleware
+      loggerMiddleware,
+      errorMiddleware
     ),
   }
 )
