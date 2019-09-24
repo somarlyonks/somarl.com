@@ -1,23 +1,31 @@
 import { CustomScalar, Scalar } from '@nestjs/graphql'
-import { Kind } from 'graphql'
+import { Kind, ValueNode } from 'graphql'
 
 
-@Scalar('Date', type => Date)
-export class DateScalar implements CustomScalar<number, Date> {
+@Scalar('DateString', type => Date)
+export class DateScalar implements CustomScalar<S, Date> {
   public description = 'Date custom scalar type'
 
-  public parseValue (value: number): Date {
+  /** value from the client input variables */
+  public parseValue (value: S): Date {
     return new Date(value) // value from the client
   }
 
-  public serialize (value: Date): number {
-    return value.getTime() // value sent to the client
+  /**
+   * value sent to the client
+   * @example 2019-09-24T13:30:32.302
+   */
+  public serialize (value: Date): S {
+    const localTime = new Date(+value - new Date().getTimezoneOffset() * 60 * 1000)
+    return localTime.toISOString().replace('Z', '')
   }
 
-  public parseLiteral (ast: any): Date {
-    if (ast.kind === Kind.INT) {
+  /** value from the client query */
+  public parseLiteral (ast: ValueNode): Date {
+    if (ast.kind === Kind.STRING || ast.kind === Kind.INT) {
       return new Date(ast.value)
     }
-    return new Date(0)
+
+    throw new Error('Failed to parse gql query with scalar date')
   }
 }

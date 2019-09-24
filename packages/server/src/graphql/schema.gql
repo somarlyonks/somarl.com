@@ -4,11 +4,11 @@
 # -----------------------------------------------
 
 """Date custom scalar type"""
-scalar Date
+scalar DateString
 
 type Image implements IModel {
   id: ID!
-  created: Date!
+  created: DateString!
   key: String!
   name: String!
   url: String!
@@ -17,14 +17,14 @@ type Image implements IModel {
 
 interface IModel {
   id: ID!
-  created: Date!
+  created: DateString!
 }
 
 interface IRelation {
   id: ID!
-  created: Date!
-  from: String!
-  to: String!
+  created: DateString!
+  from: ID!
+  to: ID!
 }
 
 type Mutation {
@@ -58,7 +58,7 @@ type Query {
 
 type Recipe implements IModel {
   id: ID!
-  created: Date!
+  created: DateString!
   title: String!
   description: String
   ingredients: [String!]!
@@ -70,9 +70,10 @@ type Subscription {
 
 type User implements IModel {
   id: ID!
-  created: Date!
+  created: DateString!
   nickname: String!
   email: String!
+  lastseen: DateString!
   password: String!
   accessLevel: Int!
   avatar: String!
