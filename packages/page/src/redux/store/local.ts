@@ -1,4 +1,4 @@
-import { registerActions } from './helpers'
+import { registerActions } from '../helpers'
 import { IAction } from '../framework'
 
 

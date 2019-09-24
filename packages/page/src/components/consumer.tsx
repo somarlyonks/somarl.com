@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { useCallback } from 'preact/hooks'
 import store, { IImplState, StoreContext, useMappedState, ActionTypes } from '../redux/store'
-import { action } from '../redux/store/helpers'
+import { action } from '../redux/helpers'
 
 
 const API = async (x: S) => x

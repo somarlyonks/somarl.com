@@ -2,7 +2,7 @@ import redux, { IStore, IReducers, IActions, IBoundActions, IMiddleware } from '
 import {
   createContext,
   promiseMiddleware, errorMiddleware, loggerMiddleware
-} from '../middleware'
+} from '../middlewares'
 
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sLocal, { ILocalState, ILocalAction } from './local'
