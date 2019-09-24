@@ -1,10 +1,11 @@
-page: packages/page/**/*
+page: packages/page/src/**/*
 
-pipe: packages/pipe/**/*
+pipe: packages/pipe/src/**/*
 
-server: packages/server/**/*
+server: packages/server/src/**/*
+
+doc: "*.md"
 
 chore:
-  - "!packages/**"
-  - packages/tsconfig.json
-  - packages/tsconfig.common.json
+  - "!packages/**/src/**/*"
+  - "!*.md"
