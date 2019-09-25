@@ -7,7 +7,10 @@
   "files.exclude": {
     "**/node_modules": true,
     "**/coverage": true,
+    "**/tsconfig.tsbuildinfo": true,
+    "**/*.log": true,
     "packages/page/build/dist": true,
+    "packages/page/src/css": true,
     "packages/pipe/build": true,
     "packages/server/build": true,
     "scripts/frp/frpc": true,
