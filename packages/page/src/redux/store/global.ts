@@ -5,7 +5,7 @@
  */
 
 import redux, { IAction, IReducers } from '../framework'
-import { registerActions } from './helpers'
+import { registerActions } from '../helpers'
 
 
 export type GTermianlState = 'focus'  // show terminal output when focus

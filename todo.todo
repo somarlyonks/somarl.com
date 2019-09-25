@@ -10,6 +10,7 @@ somarl.com:
     [ ] code splitting @longterm
     [x] context
     [x] api frame
+      [ ] extract service from api
     [ ] admin auth @low
     [x] footer
     [ ] favicon
@@ -50,8 +51,10 @@ somarl.com:
   Server:
     [x] server frame - nestjs
     [x] GraphQL
-      [ ] JSON scalar
-      [ ] Date scalar
+      X JSON scalar
+      [x] Date scalar
+      [x] Adapter type transformer
+        [ ] scalar type inferor @low
     [ ] exception system
     [ ] basic doctype system @high
     [x] mongo frame

@@ -2,11 +2,12 @@ import redux, { IStore, IReducers, IActions, IBoundActions, IMiddleware } from '
 import {
   createContext,
   promiseMiddleware, errorMiddleware, loggerMiddleware
-} from '../middleware'
+} from '../middlewares'
 
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sLocal, { ILocalState, ILocalAction } from './local'
 import sQiniu, { IQiniuState, IQiniuAction } from './qiniu'
+import sUser, { IUserState, IUserAction } from './user'
 import { applyMiddleware } from '../framework/middleware'
 
 
@@ -14,22 +15,26 @@ export interface IImplState {
   global: IGlobalState
   local: ILocalState
   qiniu: IQiniuState
+  user: IUserState
 }
 
 export interface IImplActions extends IActions<IImplState> {
   global: IGlobalAction
   local: ILocalAction
   qiniu: IQiniuAction
+  user: IUserAction
 }
 
 export type IImplAction = IGlobalAction
                         | ILocalAction
                         | IQiniuAction
+                        | IUserAction
 
 export const ActionTypes = {
   global: sGlobal.ActionTypes,
   local: sLocal.ActionTypes,
   qiniu: sQiniu.ActionTypes,
+  user: sUser.ActionTypes,
 }
 
 const preloadedState: IImplState = {
@@ -46,12 +51,17 @@ const preloadedState: IImplState = {
     syncToken: '',
     url: 'https://static.qotes.top/',
   },
+  user: {
+    isLoggedIn: false,
+    user: undefined,
+  },
 }
 
 const reducers = {
   global: sGlobal.reducer,
   local: sLocal.reducer,
   qiniu: sQiniu.reducer,
+  user: sUser.reducer,
 } as IReducers<IImplState, IImplAction>
 
 export const actions: IBoundActions<IImplState, IImplActions> = redux.bindActions(ActionTypes)

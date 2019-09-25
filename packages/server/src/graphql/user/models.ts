@@ -11,6 +11,9 @@ export class User extends Model {
   public email!: S
 
   @Field()
+  public lastseen?: Date
+
+  @Field()
   public password!: S
 
   /** access to logs */

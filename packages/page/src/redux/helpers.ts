@@ -1,5 +1,5 @@
-import { randomString } from '../../helpers/Adapter'
-import { IAction } from '../framework'
+import { randomString } from '../helpers/Adapter'
+import { IAction } from './framework'
 
 
 let defualtSlug = 0

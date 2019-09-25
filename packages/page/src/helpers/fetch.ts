@@ -1,5 +1,6 @@
 import { HTTPStatusCodes } from './Adapter'
 import { API_SERVER } from './consts'
+import { HEADERS } from './headers'
 
 
 type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'TRACE' | 'OPTIONS'
@@ -8,9 +9,13 @@ export const joinApiUrl = (endpoint: S) => API_SERVER!.endsWith('/') || endpoint
   ? `${API_SERVER}${endpoint}`
   : `${API_SERVER}/${endpoint}`
 
+interface IApiError {
+  error?: A // TODO: @sy error specs in pipe
+}
+
 export interface IApiResponseSuccess <T = any> {
   status: HTTPStatusCodes.OK
-  body: T
+  body: T & IApiError
 }
 
 /**
@@ -18,6 +23,7 @@ export interface IApiResponseSuccess <T = any> {
  */
 export interface IApiResponseFail {
   status: Exclude<HTTPStatusCodes, HTTPStatusCodes.OK>
+  body?: IApiError
 }
 
 export type ApiResponse <T = any> = IApiResponseFail | IApiResponseSuccess<T>
@@ -69,11 +75,15 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
   const init: RequestInit = {
     method,
     mode: 'cors',
-    headers: Object.assign({}, headers || {
-      Accept: 'application/json, image/*',
-    }, json && {
-      'Content-Type': 'application/json;charset=UTF-8',
-    }),
+    headers: Object.assign({},
+      HEADERS.auth(),
+      headers || {
+        Accept: 'application/json, image/*',
+      },
+      json && {
+        'Content-Type': 'application/json;charset=UTF-8',
+      }
+    ),
   }
   if (body) {
     init.body = json ? JSON.stringify(json) : body

@@ -1,5 +1,5 @@
 import redux, { IAction, IReducers } from '../framework'
-import { registerActions } from './helpers'
+import { registerActions } from '../helpers'
 
 
 export interface IQiniuState {

@@ -5,7 +5,7 @@ import Main from './components/main'
 import Api from './helpers/Api'
 
 import store, { StoreContext, ActionTypes } from './redux/store'
-import { action } from './redux/store/helpers'
+import { action } from './redux/helpers'
 
 import Consumer from './components/consumer'
 

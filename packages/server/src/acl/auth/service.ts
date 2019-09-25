@@ -26,9 +26,18 @@ export default class AuthService implements IAuthService {
 
   public async login (user: User) {
     const payload: IJwtPayload = { id: user.id }
+    await this.logBeat(user)
+
     return {
-      accessToken: this.jwtService.sign(payload),
+      user,
+      token: this.jwtService.sign(payload),
     }
+  }
+
+  public async logBeat (user: User) {
+    const lastseen = new Date()
+    // TODO: @sy update lastseen
+    return { lastseen }
   }
 
   public async logout (user: User) {

@@ -21,9 +21,9 @@ export abstract class IRelation implements IAbsRelation {
   @Field()
   public created!: Date
 
-  @Field()
+  @Field(type => ID)
   public from!: S
 
-  @Field()
+  @Field(type => ID)
   public to!: S
 }
