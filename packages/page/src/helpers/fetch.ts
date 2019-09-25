@@ -9,9 +9,13 @@ export const joinApiUrl = (endpoint: S) => API_SERVER!.endsWith('/') || endpoint
   ? `${API_SERVER}${endpoint}`
   : `${API_SERVER}/${endpoint}`
 
+interface IApiError {
+  error?: A // TODO: @sy error specs in pipe
+}
+
 export interface IApiResponseSuccess <T = any> {
   status: HTTPStatusCodes.OK
-  body: T
+  body: T & IApiError
 }
 
 /**
@@ -19,6 +23,7 @@ export interface IApiResponseSuccess <T = any> {
  */
 export interface IApiResponseFail {
   status: Exclude<HTTPStatusCodes, HTTPStatusCodes.OK>
+  body?: IApiError
 }
 
 export type ApiResponse <T = any> = IApiResponseFail | IApiResponseSuccess<T>

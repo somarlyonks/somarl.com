@@ -10,6 +10,7 @@ somarl.com:
     [ ] code splitting @longterm
     [x] context
     [x] api frame
+      [ ] extract service from api
     [ ] admin auth @low
     [x] footer
     [ ] favicon

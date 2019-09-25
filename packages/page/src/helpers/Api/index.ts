@@ -6,6 +6,7 @@ import { getWeather } from './darksky'
 import { getIpGeo, getIp, getBlogs } from './public'
 import * as binksApi from './binks'
 import * as qiniuApi from './qiniu'
+import * as userApi from './user'
 
 import { isResponseOK } from '../fetch'
 
@@ -20,6 +21,7 @@ const serverApi = {
   getWeather,
   ...binksApi,
   ...qiniuApi,
+  ...userApi,
 }
 
 const Api = {

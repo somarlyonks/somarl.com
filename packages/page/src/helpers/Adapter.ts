@@ -19,4 +19,4 @@ export type IUser = Pick<User, 'id'
                              | 'nickname'
                              | 'email'
                              | 'lastseen'
-                             | 'avatar'>
+                             | 'avatar'> & { token?: S }
