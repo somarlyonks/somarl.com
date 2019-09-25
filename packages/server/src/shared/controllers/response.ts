@@ -4,18 +4,18 @@ function handleError (error: Error) {
 
 export abstract class JSONResp {
 
-  public static success (payload: O = {}) {
+  public static success <TPayload extends O = {}> (payload?: TPayload) {
     return {
       ...payload,
       error: '',
-    }
+    } as TPayload & {error: S}
   }
 
-  public static error (error: Error, payload: O = {}) {
+  public static error <TPayload extends O = {}> (error: Error, payload?: TPayload) {
     return {
       ...payload,
       error: handleError(error),
-    }
+    } as TPayload & {error: A}
   }
 
 }

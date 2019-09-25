@@ -28,4 +28,10 @@ export default class AuthController {
     return  JSONResp.success()
   }
 
+  @UseGuards(AuthGuard('jwt'))
+  @Post('logged')
+  public async logged (@Request () req: Req) {
+    return JSONResp.success(await this.authSerivce.logBeat(req.user!))
+  }
+
 }
