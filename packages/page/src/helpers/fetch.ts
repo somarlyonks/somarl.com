@@ -1,5 +1,6 @@
 import { HTTPStatusCodes } from './Adapter'
 import { API_SERVER } from './consts'
+import { HEADERS } from './headers'
 
 
 type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'TRACE' | 'OPTIONS'
@@ -69,11 +70,15 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
   const init: RequestInit = {
     method,
     mode: 'cors',
-    headers: Object.assign({}, headers || {
-      Accept: 'application/json, image/*',
-    }, json && {
-      'Content-Type': 'application/json;charset=UTF-8',
-    }),
+    headers: Object.assign({},
+      HEADERS.auth(),
+      headers || {
+        Accept: 'application/json, image/*',
+      },
+      json && {
+        'Content-Type': 'application/json;charset=UTF-8',
+      }
+    ),
   }
   if (body) {
     init.body = json ? JSON.stringify(json) : body
