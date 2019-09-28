@@ -42,8 +42,8 @@ export class LS {
 
     const valueType = this.typeof(value)
     if (valueType === 'function') {
-      item.type === 'undefined'
-      item.value === 'undefined'
+      item.type = 'undefined'
+      item.value = 'undefined'
     }
 
     this.HOST.setItem(this.PREFIXED(key), JSON.stringify(item))
