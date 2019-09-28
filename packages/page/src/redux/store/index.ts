@@ -4,7 +4,9 @@ import {
   promiseMiddleware, errorMiddleware, loggerMiddleware
 } from '../middlewares'
 
+// order by alaphbet, except global
 import sGlobal, { IGlobalState, IGlobalAction } from './global'
+import sFetch, { IFetchState, IFetchAction } from './fetch'
 import sLocal, { ILocalState, ILocalAction } from './local'
 import sQiniu, { IQiniuState, IQiniuAction } from './qiniu'
 import sUser, { IUserState, IUserAction } from './user'
@@ -13,6 +15,7 @@ import { applyMiddleware } from '../framework/middleware'
 
 export interface IImplState {
   global: IGlobalState
+  fetch: IFetchState
   local: ILocalState
   qiniu: IQiniuState
   user: IUserState
@@ -20,18 +23,21 @@ export interface IImplState {
 
 export interface IImplActions extends IActions<IImplState> {
   global: IGlobalAction
+  fetch: IFetchAction
   local: ILocalAction
   qiniu: IQiniuAction
   user: IUserAction
 }
 
 export type IImplAction = IGlobalAction
+                        | IFetchAction
                         | ILocalAction
                         | IQiniuAction
                         | IUserAction
 
 export const ActionTypes = {
   global: sGlobal.ActionTypes,
+  fetch: sFetch.ActionTypes,
   local: sLocal.ActionTypes,
   qiniu: sQiniu.ActionTypes,
   user: sUser.ActionTypes,
@@ -44,6 +50,9 @@ const preloadedState: IImplState = {
     themeColor: 'lightCoral',
     terminalState: 'blur',
     richOutput: '',
+  },
+  fetch: {
+    progress: undefined,
   },
   local: 0,
   qiniu: {
@@ -59,6 +68,7 @@ const preloadedState: IImplState = {
 
 const reducers = {
   global: sGlobal.reducer,
+  fetch: sFetch.reducer,
   local: sLocal.reducer,
   qiniu: sQiniu.reducer,
   user: sUser.reducer,

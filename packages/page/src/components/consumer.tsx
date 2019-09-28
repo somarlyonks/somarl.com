@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { useCallback } from 'preact/hooks'
-import store, { IImplState, StoreContext, useMappedState, ActionTypes } from '../redux/store'
-import { action } from '../redux/helpers'
+
+import store, { IImplState, useMappedState, ActionTypes, actionProxy } from 'src/redux'
 
 
 const API = async (x: S) => x
@@ -9,7 +9,7 @@ const API2 = async (x: N) => {
   if (Math.random() > (1 / 2)) throw Error('Testing Error handling')
   return x
 }
-const incN = action(ActionTypes.global.INCREMENT, API2)
+const incN = actionProxy(ActionTypes.global.INCREMENT, API2)
 
 const Consumer = () => {
   const { global } = useMappedState(useCallback((state: IImplState) => state, []))
@@ -21,12 +21,12 @@ const Consumer = () => {
   const AInc: h.JSX.MouseEventHandler = event => store.dispatch(incN(1))
 
   return (
-    <StoreContext.Provider value={store}>
+    <div>
       <p>{global.errMsgs}</p>
       <button onClick={ADec}>-</button>
       <span>{global.testCount}</span>
       <button onClick={AInc}>+</button>
-    </StoreContext.Provider>
+    </div>
   )
 }
 
