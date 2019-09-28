@@ -9,7 +9,7 @@ export interface IQiniuState {
 }
 
 export type IQiniuAction = IAction<'SET_QINIU_TOKEN', S>
-                          | IAction<'SET_QINIU_SYNC_TOKEN', S>
+                         | IAction<'SET_QINIU_SYNC_TOKEN', S>
 
 const actionTypes = [ 'SET_QINIU_TOKEN'
                     , 'SET_QINIU_SYNC_TOKEN' ] as const

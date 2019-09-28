@@ -42,7 +42,7 @@
     "no-invalid-this": true,
     "no-irregular-whitespace": true,
     "no-this-assignment": true,
-    "no-unused-expression": false,
+    "no-unused-expression": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "ordered-imports": false,

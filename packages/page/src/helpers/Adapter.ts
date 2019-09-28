@@ -6,6 +6,7 @@ export {
   compose,
   randomString,
   isPromise,
+  clamp,
 } from '@somarl.com/pipe'
 
 

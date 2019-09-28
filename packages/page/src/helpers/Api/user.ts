@@ -1,11 +1,12 @@
 import store, { ActionTypes } from '../../redux/store'
+import { LS } from '../../redux/helpers'
 import { req, isResponseOK } from '../fetch'
 import { IUser } from '../Adapter'
 
 
 function localize (user: IUser, token: S): IUser {
   const u = { ...user, token }
-  localStorage.setItem('user', JSON.stringify(u))
+  LS.SET('user', u)
   store.dispatch({
     type: ActionTypes.user.LOGIN,
     payload: u,
@@ -13,21 +14,23 @@ function localize (user: IUser, token: S): IUser {
   return u
 }
 
-function boot (): IUser | {token: undefined} {
-  return JSON.parse(localStorage.getItem('user') || '{}')
+function boot () {
+  return LS.GET<IUser>('user')
+}
+
+interface ILoginResp {
+  user: IUser
+  token: S
 }
 
 
 export async function login (username?: S, token?: S) {
-  const logged = boot()
-  if (logged && logged.token) {
-    const r = await req.POST('auth/logged')
-    if (isResponseOK(r)) return localize(logged, logged.token)
-  }
+  const loggedUser = await logged()
+  if (loggedUser) return loggedUser
 
   if (!username || !token) throw new Error('Login without token!')
 
-  const r2 = await req.POST<{user: IUser, token: S}>('auth/login', {
+  const r2 = await req.POST<ILoginResp>('auth/login', {
     json: { username, token },
   })
 
@@ -36,9 +39,20 @@ export async function login (username?: S, token?: S) {
 }
 
 
+export async function logged () {
+  const user = boot()
+  if (!user || !user.token) return false
+
+  const r = await req.POST<ILoginResp>('auth/logged')
+  if (isResponseOK(r)) return localize(r.body.user, r.body.token)
+
+  return false
+}
+
+
 export async function logout () {
-  const logged = boot()
-  if (!logged || !logged.token) return
+  const user = boot()
+  if (!user || !user.token) return
   const r = await req.POST('auth/logout')
   if (!isResponseOK(r)) throw new Error(r.body && r.body.error)
   return
