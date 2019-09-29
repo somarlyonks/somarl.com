@@ -4,8 +4,6 @@ pipe: packages/pipe/src/**/*
 
 server: packages/server/src/**/*
 
-doc: "*.md"
+chore: "!packages/**/src/**/*"
 
-chore:
-  - "!packages/**/src/**/*"
-  - "!*.md"
+docs: "*.md"
