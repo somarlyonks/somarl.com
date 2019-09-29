@@ -15,7 +15,7 @@
     "graphql-types": "cd packages/server && npm run graphql-types",
     "--": "-----------------------------------------------------------------------------------",
     "page": "cd packages/page && npm start",
-    "pipe": "concurrently \"npm run build-pipe -- -- -w\" \" npm run graphql-types -- -- -w\"",
+    "pipe": "concurrently 'npm run build-pipe -- -- -w' 'npm run graphql-types -- -- -w'",
     "server": "cd packages/server && npm start",
     "---": "----------------------------------------------------------------------------------",
     "build-page": "cd packages/page && npm run build",
@@ -31,7 +31,7 @@
     "commitlint": "commitlint",
     "husky": "node node_modules/husky/bin/install.js",
     "------": "-------------------------------------------------------------------------------",
-    "frpc": "cd scripts/frp && sh frpc.sh && concurrently \"./frpc -c frpc.ini\" \"tail -f frpc.log\" ",
+    "frpc": "cd scripts/frp && sh frpc.sh && concurrently './frpc -c frpc.ini' 'tail -f frpc.log'",
     "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
   "devDependencies": {
@@ -52,7 +52,7 @@
     "babel-preset-react-app": "^9.0.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "chalk": "^2.4.2",
-    "concurrently": "^4.1.1",
+    "concurrently": "^4.1.2",
     "css-loader": "^3.0.0",
     "dotenv": "^8.1.0",
     "dotenv-expand": "^5.1.0",
