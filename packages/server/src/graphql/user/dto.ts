@@ -1,17 +1,23 @@
 // tslint:disable: no-magic-numbers
 
-import { IsOptional, MaxLength } from 'class-validator'
+import { IsOptional, MaxLength, IsEmail } from 'class-validator'
 import { Field, InputType } from 'type-graphql'
 
 
 @InputType()
 export class NewUserInput {
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @MaxLength(30)
-  public nickname!: S
+  public nickname?: S
 
   @Field({ nullable: true })
   @IsOptional()
+  @IsEmail()
+  @MaxLength(30)
+  public email?: S
+
+  @Field()
   @MaxLength(255)
-  public password?: S
+  public password!: S
 }

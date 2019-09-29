@@ -24,24 +24,26 @@ export default class AuthService implements IAuthService {
     return user
   }
 
-  public async login (user: User) {
-    const payload: IJwtPayload = { id: user.id }
-    await this.logBeat(user)
-
-    return {
-      user,
-      token: this.jwtService.sign(payload),
-    }
+  public async signUp (userData: A) {
+    const user = await this.userService.create(userData)
+    return this.login(user)
   }
 
-  public async logBeat (user: User) {
-    const lastseen = new Date()
+  public async login (user: User) {
+    // const lastseen = new Date()
     // TODO: @sy update lastseen
-    return { lastseen }
+    const token = this.generateToken(user.id)
+
+    return { user, token }
   }
 
   public async logout (user: User) {
-    await this.login(user)
+    this.generateToken(user.id)
+  }
+
+  private generateToken (id: S) {
+    const payload: IJwtPayload = { id }
+    return this.jwtService.sign(payload)
   }
 
 }
@@ -56,7 +58,7 @@ export class LocalStratgy extends PassportStrategy(Strategy, 'local') implements
 
   public async validate (username: S, token: S) {
     const user = await this.authService.validate(username, token)
-    if (!user) throw new UnauthorizedException()
+    if (!user) throw new UnauthorizedException('user not registered')
 
     return user
   }
