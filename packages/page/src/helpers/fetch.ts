@@ -1,6 +1,7 @@
 import { HTTPStatusCodes } from './Adapter'
 import { API_SERVER } from './consts'
 import { HEADERS } from './headers'
+import { ProgressThread } from '../components/sui/progress'
 
 
 type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'TRACE' | 'OPTIONS'
@@ -51,8 +52,15 @@ function fetchFactory (method: IMethod) {
     json?: O
   } = {}) => {
     const options = { body, headers, method, json }
-    if (!url.startsWith('http')) return fetchServerJson<TResponse>(url, options)
-    return fetchPublicJson<TResponse>(url, options)
+    const fetcher = url.startsWith('http') ? fetchPublicJson : fetchServerJson
+    const progressThread = new ProgressThread()
+    try {
+      return await fetcher<TResponse>(url, options)
+    } catch (error) {
+      throw new Error(error)
+    } finally {
+      progressThread.done()
+    }
   }
 }
 
