@@ -1,18 +1,15 @@
 import { NotFoundException, UseGuards } from '@nestjs/common'
-// import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql'
-import { Args, Query, Resolver } from '@nestjs/graphql'
-// import { PubSub } from 'apollo-server-express'
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
-// import { NewUserInput } from './dto'
+import { NewUserInput } from './dto'
 import { User } from './models'
 import UserService from './service'
 import { GqlAuthGuard, CurrentUser } from '../../shared'
 
 
-// const pubSub = new PubSub()
-
 @Resolver(() => User)
 export default class UserResolver {
+
   public constructor (
     private readonly userService: UserService
   ) {}
@@ -31,17 +28,11 @@ export default class UserResolver {
     return await this.userService.findOneById(user.id)
   }
 
-  // @Mutation(returns => User)
-  // public async createUser (
-  //   @Args('newRecipeData') newRecipeData: NewUserInput
-  // ): Promise<User> {
-  //   const recipe = this.userService.create(newRecipeData)
-  //   pubSub.publish('recipeAdded', { recipeAdded: await recipe })
-  //   return recipe
-  // }
+  @Mutation(returns => User)
+  public async createUser (
+    @Args('newRecipeData') newUserData: NewUserInput
+  ) {
+    return this.userService.create(newUserData)
+  }
 
-  // @Subscription(returns => User)
-  // public recipeAdded () {
-  //   return pubSub.asyncIterator('recipeAdded')
-  // }
 }

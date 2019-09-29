@@ -10,13 +10,13 @@ somarl.com:
     [ ] code splitting @longterm
     [x] context
     [x] api frame
-      [ ] extract service from api
+      X extract service from api
     [ ] admin auth @low
     [x] footer
     [ ] favicon
-    [ ] image uploader
+    [x] image uploader
     Context:
-      [ ] refactor preact-context to redux
+      [x] refactor preact-context to redux
       [x] self implemented redux
         [x] store factory
         [x] reducer composer
@@ -27,7 +27,7 @@ somarl.com:
       X self implemented saga
       [x] redux async
       [ ] apollo middleware
-      [ ] immutable @low
+      X immutable @low
     Refactor Plugin System:
       Terminal:
         [x] basic UI
@@ -42,11 +42,12 @@ somarl.com:
           [x] Api
         [ ] blog
         [ ] RSS @low
-        [ ] SSH @low
+        X SSH
       [ ] left and right interactive hooks
     PWA:
       [ ] service worker
-      [ ] local history
+      [ ] local history  # maybe implement with LS/redux middleware
+      [ ] SSR @low
 
   Server:
     [x] server frame - nestjs
@@ -54,7 +55,8 @@ somarl.com:
       X JSON scalar
       [x] Date scalar
       [x] Adapter type transformer
-        [ ] scalar type inferor @low
+        X scalar type inferor @low
+      [ ] temporary internal rpc
     [ ] exception system
     [ ] basic doctype system @high
     [x] mongo frame

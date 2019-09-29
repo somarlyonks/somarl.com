@@ -1,6 +1,6 @@
-import { Controller, Request, Post, UseGuards } from '@nestjs/common'
+import { Request } from 'express'
+import { Controller, Req, Post, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { Request as Req } from 'express'
 
 import { JSONResp } from '../../shared'
 
@@ -14,15 +14,20 @@ export default class AuthController {
     private readonly authSerivce: AuthService
   ) {}
 
+  @Post('sign')
+  public async signUp (@Req() req: Request) {
+    return JSONResp.success(await this.authSerivce.signUp(req.body))
+  }
+
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  public async login (@Request() req: Req) {
+  public async login (@Req() req: Request) {
     return JSONResp.success(await this.authSerivce.login(req.user!))
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Post('logout')
-  public async logout (@Request() req: Req) {
+  public async logout (@Req() req: Request) {
     await this.authSerivce.logout(req.user!)
 
     return  JSONResp.success()
@@ -30,8 +35,8 @@ export default class AuthController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('logged')
-  public async logged (@Request () req: Req) {
-    return JSONResp.success(await this.authSerivce.logBeat(req.user!))
+  public async logged (@Req() req: Request) {
+    return JSONResp.success(await this.authSerivce.login(req.user!))
   }
 
 }

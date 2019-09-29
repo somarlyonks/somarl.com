@@ -8,7 +8,7 @@ export class User extends Model {
   public nickname!: S
 
   @Field()
-  public email!: S
+  public email?: S
 
   @Field()
   public lastseen?: Date

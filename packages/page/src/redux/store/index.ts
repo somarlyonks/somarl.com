@@ -1,7 +1,7 @@
 import redux, { IStore, IReducers, IActions, IBoundActions, IMiddleware } from '../framework'
 import {
   createContext,
-  promiseMiddleware, errorMiddleware, loggerMiddleware
+  promiseMiddleware, errorMiddleware, LoggerMiddleware
 } from '../middlewares'
 
 // order by alaphbet, except global
@@ -81,7 +81,11 @@ const store = redux.createStore<IImplState, IImplAction>(
     preloadedState,
     enhancer: applyMiddleware(
       promiseMiddleware as IMiddleware<IImplState, IImplAction>,
-      loggerMiddleware,
+      LoggerMiddleware.configure({
+        ignores: [
+          ActionTypes.fetch.SET_PROGRESS,
+        ],
+      }),
       errorMiddleware
     ),
   }
