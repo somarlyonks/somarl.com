@@ -1,5 +1,7 @@
 export { default as Api } from './Api'
+export * from './exceptions'
 export * from './fetch'
 export * from './consts'
 export * from './headers'
+export { default as rgba } from './rgba'
 export * from './threads'

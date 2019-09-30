@@ -1,7 +1,13 @@
-import * as React from 'react'
+import preact from 'preact'
+import { JSXInternal } from 'preact/src/jsx'
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends React.DOMAttributes<T> {
-    // 'pop-content'?: string
+
+declare module 'preact/src/jsx' {
+
+	namespace JSXInternal {
+		interface IntrinsicElements {
+			animateTransform: A
+		}
   }
+
 }

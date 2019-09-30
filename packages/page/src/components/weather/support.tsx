@@ -1,5 +1,5 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import IconDarkSky from '../icons/darksky'
+import { DarkSky } from '../icons'
 
 
 const WeatherSupport = () => (
@@ -9,7 +9,7 @@ const WeatherSupport = () => (
     target="_blank"
     rel="noopener"
   >
-    <span className="support__icon_darksky"><IconDarkSky /></span>
+    <span className="support__icon_darksky"><DarkSky /></span>
     <span>Powered by Dark Sky</span>
   </a>
 )
