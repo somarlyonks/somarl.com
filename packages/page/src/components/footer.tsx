@@ -1,6 +1,5 @@
 import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 import Api from '../helpers/Api'
-import { HTTPStatusCodes } from '../helpers/Adapter'
 
 
 export interface IFooterState {
@@ -18,7 +17,7 @@ export default class Footer extends Component<{}, IFooterState> {
 
   public async componentDidMount () {
     const resp = await Api.getBinks()
-    if (resp.status === HTTPStatusCodes.OK) {
+    if (Api.isResponseOK(resp)) {
       this.setState({
         binksName: resp.body.image,
         binksCopyright: resp.body.copyright,

@@ -57,7 +57,8 @@ function fetchFactory (method: IMethod) {
     try {
       return await fetcher<TResponse>(url, options)
     } catch (error) {
-      throw new Error(error)
+      console.error(error)
+      return { status: 0, body: { error: 'NotImplementedErrorInceptor' }} as IApiResponseFail
     } finally {
       progressThread.done()
     }
