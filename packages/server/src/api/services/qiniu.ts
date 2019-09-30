@@ -21,6 +21,7 @@ export default class QiniuService {
       "size": $(fsize),
       "mimeType": $(mimeType),
       "imageInfo": $(imageInfo),
+      "userId": $(x:userId),
       "url": "${SETTINGS.QINIU_URL}$(key)"
     }`.replace(/\s/g, '')
 
