@@ -1,10 +1,12 @@
 * {
   box-sizing: border-box;
   background-repeat: no-repeat;
-}
-
-*::after, *::before {
-  box-sizing: border-box;
+  &::after, &::before {
+    box-sizing: border-box;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 html {
