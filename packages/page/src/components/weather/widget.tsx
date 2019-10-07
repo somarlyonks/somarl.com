@@ -3,7 +3,8 @@ import { h, Component } from 'preact'
 import WeatherAnimation, { WeatherTypes } from './animation'
 import WeatherSupport from './support'
 import * as Icons from '../icons'
-import { Api, rgba } from '../../helpers'
+import { rgba } from '../../helpers'
+import Api from '../../helpers/Api'
 import { weatherTypeMap } from '../../helpers/Adapter'
 
 
