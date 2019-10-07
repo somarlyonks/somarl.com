@@ -1,7 +1,6 @@
 import { h, Component } from 'preact'
-import { useCallback } from 'preact/hooks'
 
-import store, { IImplState, useMappedState, ActionTypes } from '../../redux/store'
+import store, { ActionTypes, useRedux } from '../../redux'
 import { GTermianlState } from '../../redux/store/global'
 
 
@@ -60,7 +59,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
 
   private readonly onBlur: h.JSX.FocusEventHandler = event => {
     this.setState({ supportDisplay: false })
-    setTerminalState('blur')
+    setTerminalState('blur') // FIXME: @sy DEBUG
   }
 
   /** @setState */
@@ -111,7 +110,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
   }
 
   public render () {
-    const { global } = useMappedState(useCallback((state: IImplState) => state, []))
+    const { global } = useRedux()
 
     return (
       <div className="terminal-input">

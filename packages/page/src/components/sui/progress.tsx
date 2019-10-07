@@ -1,7 +1,6 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { useCallback } from 'preact/hooks'
 
-import store, { IImplState, useMappedState, ActionTypes } from '../../redux'
+import store, { ActionTypes, useRedux } from '../../redux'
 
 import { clamp } from '../../helpers/Adapter'
 import { Threads, IThread } from '../../helpers'
@@ -69,8 +68,7 @@ export class ProgressThread implements IThread {
 
 
 const Progress = () => {
-  // const $el = useRef<HTMLElement>()
-  const state = useMappedState(useCallback((_state: IImplState) => _state, []))
+  const state = useRedux()
   const { progress } = state.fetch
   const { themeColor: color } = state.global
 

@@ -1,12 +1,11 @@
 import { h, Component } from 'preact'
+
 import WeatherAnimation, { WeatherTypes } from './animation'
-import IconRainDrops from '../icons/raindrops'
-import IconWind from '../icons/wind'
-import IconUmbrella from '../icons/umbrella'
 import WeatherSupport from './support'
+import * as Icons from '../icons'
+import { rgba } from '../../helpers'
 import Api from '../../helpers/Api'
 import { weatherTypeMap } from '../../helpers/Adapter'
-import rgba from '../../helpers/rgba'
 
 
 export interface IWeatherWidgetProps {
@@ -45,15 +44,15 @@ const WeatherInfomations = ({display, weatherInfo}: IWeatherInfomationsProps) =>
       </div>
       <div className="weather-widget__info-detail flex">
         <div className="weather-widget__info-detail_block">
-          <span className="weather-widget__info-detail_icon"><IconRainDrops /></span>
+          <span className="weather-widget__info-detail_icon"><Icons.RainDrops /></span>
           <span>{(weatherInfo.humidity * 100).toFixed(0) + '%'}</span>
         </div>
         <div className="weather-widget__info-detail_block">
-          <span className="weather-widget__info-detail_icon"><IconWind /></span>
+          <span className="weather-widget__info-detail_icon"><Icons.Wind /></span>
           <span>{weatherInfo.windSpeed.toFixed(0) + 'm/s'}</span>
         </div>
         <div className="weather-widget__info-detail_block">
-          <span className="weather-widget__info-detail_icon"><IconUmbrella /></span>
+          <span className="weather-widget__info-detail_icon"><Icons.Umbrella /></span>
           <span>{(weatherInfo.precipProbability * 100).toFixed(0) + '%'}</span>
         </div>
       </div>

@@ -36,7 +36,7 @@
     "no-eval": true,
     "no-for-in-array": true,
     "no-dynamic-delete": true,
-    "no-redundant-jsdoc": true,
+    "no-redundant-jsdoc": false,
     "no-magic-numbers": [true, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 24, 50, 60, 100, 256, 1000],
     "no-null-keyword": true,
     "no-invalid-this": true,
