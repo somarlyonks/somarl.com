@@ -1,5 +1,5 @@
-$SIZE: 200px;
-$SMALL_SIZE: 50px;
+$SMALL_SIZE: $nav-height;
+$SIZE: $nav-height * 4;
 
 .weather-widget {
   color: #fff;

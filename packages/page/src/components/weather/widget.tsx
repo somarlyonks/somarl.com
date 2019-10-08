@@ -109,7 +109,7 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
 
   public render () {
     return (
-      <div class="absolute tl-0 weather-widget">
+      <div class="relative weather-widget">
         <WeatherAnimation type={this.state.weatherType} />
         <WeatherInfomations weatherInfo={this.state.weatherInfo} />
       </div>
