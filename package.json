@@ -102,5 +102,9 @@
     "packages/**/dist/*",
     "**/*.json",
     "commitlint.config.js"
+  ],
+  "browserslist": [
+    "last 2 Chrome versions",
+    "Firefox ESR"
   ]
 }
