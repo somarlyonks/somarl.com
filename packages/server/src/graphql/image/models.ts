@@ -1,5 +1,5 @@
 import { Field, ObjectType } from 'type-graphql'
-import { Model } from '../shared'
+import { Model, JSONScalarType } from '../shared'
 
 
 @ObjectType()
@@ -13,6 +13,9 @@ export class Image extends Model {
   @Field()
   public url!: S
 
-  @Field({ nullable: true })
-  public imageInfo?: S
+  @Field(type => JSONScalarType, { nullable: true })
+  public imageInfo?: S | {
+    width: N,
+    height: N
+  } & O
 }
