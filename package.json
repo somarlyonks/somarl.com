@@ -72,7 +72,7 @@
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
     "raf": "3.4.1",
-    "react-dev-utils": "9.0.1",
+    "react-dev-utils": "9.1.0",
     "resolve": "1.10.1",
     "source-map-loader": "0.2.4",
     "style-loader": "1.0.0",
