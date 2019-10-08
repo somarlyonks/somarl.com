@@ -12,7 +12,7 @@ type Image implements IModel {
   key: String!
   name: String!
   url: String!
-  imageInfo: String
+  imageInfo: JSON
 }
 
 interface IModel {
@@ -27,11 +27,15 @@ interface IRelation {
   to: ID!
 }
 
+"""JSON custom scalar type"""
+scalar JSON
+
 type Mutation {
   addImage(newImageData: NewImageInput!): Image!
   removeImage(id: String!): Boolean!
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
   removeRecipe(id: String!): Boolean!
+  createUser(newRecipeData: NewUserInput!): User!
 }
 
 input NewImageInput {
@@ -44,7 +48,14 @@ input NewImageInput {
 input NewRecipeInput {
   title: String!
   description: String
+  meta: JSON
   ingredients: [String!]!
+}
+
+input NewUserInput {
+  nickname: String
+  email: String
+  password: String!
 }
 
 type Query {
@@ -61,6 +72,7 @@ type Recipe implements IModel {
   created: DateString!
   title: String!
   description: String
+  meta: JSON
   ingredients: [String!]!
 }
 

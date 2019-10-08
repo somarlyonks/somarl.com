@@ -1,15 +1,13 @@
 import { h, Component } from 'preact'
 
-import WeatherAnimation, { WeatherTypes } from './animation'
+import WeatherAnimation from './animation'
 import WeatherSupport from './support'
 import * as Icons from '../icons'
-import { rgba } from '../../helpers'
 import Api from '../../helpers/Api'
-import { weatherTypeMap } from '../../helpers/Adapter'
+import { weatherTypeMap, WeatherTypes } from '../../helpers/Adapter'
 
 
 export interface IWeatherWidgetProps {
-  backgroundColor?: S
 }
 
 interface IWidgetWeatherInfo {
@@ -29,30 +27,27 @@ export interface IWeatherWidgetState {
 
 interface IWeatherInfomationsProps {
   weatherInfo: IWidgetWeatherInfo
-  display: boolean
 }
 
 
-const WeatherInfomations = ({display, weatherInfo}: IWeatherInfomationsProps) => (
-  <div
-    style={{display: display ? 'block' : 'none'}}
-  >
-    <div className="weather-widget__info">
-      <div className="weather-widget__info-main">
-        <div className="weather-widget__info-main_temperature">{weatherInfo.temperature.toFixed(0) + '°'}</div>
-        <div className="weather-widget__info-main_summary">{weatherInfo.summary}</div>
+const WeatherInfomations = ({weatherInfo}: IWeatherInfomationsProps) => (
+  <div class="weather-widget__info-container">
+    <div class="weather-widget__info">
+      <div class="weather-widget__info-main">
+        <div class="weather-widget__info-main_temperature">{weatherInfo.temperature.toFixed(0) + '°'}</div>
+        <div class="weather-widget__info-main_summary">{weatherInfo.summary}</div>
       </div>
-      <div className="weather-widget__info-detail flex">
-        <div className="weather-widget__info-detail_block">
-          <span className="weather-widget__info-detail_icon"><Icons.RainDrops /></span>
+      <div class="weather-widget__info-detail flex">
+        <div class="weather-widget__info-detail_block">
+          <span class="weather-widget__info-detail_icon"><Icons.RainDrops /></span>
           <span>{(weatherInfo.humidity * 100).toFixed(0) + '%'}</span>
         </div>
-        <div className="weather-widget__info-detail_block">
-          <span className="weather-widget__info-detail_icon"><Icons.Wind /></span>
+        <div class="weather-widget__info-detail_block">
+          <span class="weather-widget__info-detail_icon"><Icons.Wind /></span>
           <span>{weatherInfo.windSpeed.toFixed(0) + 'm/s'}</span>
         </div>
-        <div className="weather-widget__info-detail_block">
-          <span className="weather-widget__info-detail_icon"><Icons.Umbrella /></span>
+        <div class="weather-widget__info-detail_block">
+          <span class="weather-widget__info-detail_icon"><Icons.Umbrella /></span>
           <span>{(weatherInfo.precipProbability * 100).toFixed(0) + '%'}</span>
         </div>
       </div>
@@ -62,9 +57,8 @@ const WeatherInfomations = ({display, weatherInfo}: IWeatherInfomationsProps) =>
 )
 
 export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeatherWidgetState> {
-  public timer?: A
+  public timer?: NodeJS.Timeout
   public static defaultProps: IWeatherWidgetProps = {
-    backgroundColor: '',
   }
 
   public readonly state: IWeatherWidgetState = {
@@ -83,7 +77,6 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
   public componentDidMount () {
     const getCurrentWeather = () => Api.getWeather(['flags', 'daily', 'hourly'])
     const updateWeather = () => getCurrentWeather().then(resp => {
-      // console.info('RRRR', resp)
       if (!Api.isResponseOK(resp)) return
 
       const { currently } = resp.body
@@ -107,41 +100,18 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
     }).catch(console.warn)
 
     updateWeather()
-    this.timer = setInterval(updateWeather, 1000 * 60 * 5) // update every 5 minutes
+    this.timer = setInterval(updateWeather, 1000 * 60 * 5)
   }
 
   public componentWillUnmount () {
     if (this.timer) clearInterval(this.timer)
   }
 
-  public readonly toggle: h.JSX.MouseEventHandler = event => {
-    this.setState((prevState: IWeatherWidgetState) => ({ toggled: !prevState.toggled }))
-  }
-
   public render () {
-    const { backgroundColor } = this.props
-
-    const style: any = {} // TODO: @sy style types
-    if (backgroundColor) {
-      style.backgroundColor = rgba(backgroundColor)
-    }
-
     return (
-      <div
-        className={`absolute tl-0 weather-widget ${this.state.toggled ? 'weather-widget_toggled' : ''}`}
-        style={style}
-        onMouseEnter={this.toggle}
-        onMouseLeave={this.toggle}
-      >
-        <WeatherAnimation
-          type={this.state.weatherType}
-          size="small"
-          backgroundColor="transparent"
-        />
-        <WeatherInfomations
-          display={this.state.toggled}
-          weatherInfo={this.state.weatherInfo}
-        />
+      <div class="relative weather-widget">
+        <WeatherAnimation type={this.state.weatherType} />
+        <WeatherInfomations weatherInfo={this.state.weatherInfo} />
       </div>
     )
   }

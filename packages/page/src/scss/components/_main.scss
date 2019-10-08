@@ -36,3 +36,8 @@ body:focus-within {
     opacity: 1;
   }
 }
+
+nav.nav {
+  right: 0;
+  height: $nav-height;
+}

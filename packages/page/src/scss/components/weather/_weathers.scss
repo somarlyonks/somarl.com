@@ -1,45 +1,5 @@
-@import 'keyframes';
-@import 'breeze';
-@import 'cloud';
-@import 'cloud2';
-@import 'fog';
-@import 'night';
-@import 'rain';
-@import 'snow';
-@import 'star';
-@import 'sun';
-@import 'thunder';
-@import 'widget';
-
-
-$SIZE: 200px;
-$SMALL_SIZE: 50px;
-
-.weather-container {
-  @include absoluteTL(50%, 50%);
-  width: $SIZE;
-  height: $SIZE;
-  font-size: $SIZE;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  background-color: rgba(#0bf, 0.8);
-  border-radius: 2.5%;
-}
-
-.weather-container_small {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: none;
-  width: $SMALL_SIZE;
-  height: $SMALL_SIZE;
-  font-size: $SMALL_SIZE;
-  border-radius: 0;
-  transition:
-    width 0.8s,
-    height 0.8s;
-}
+$SMALL_SIZE: $nav-height;
+$SIZE: $nav-height * 4;
 
 .weather-widget {
   color: #fff;
@@ -50,15 +10,85 @@ $SMALL_SIZE: 50px;
   transition:
     width 0.8s,
     height 0.8s;
+
+  &__info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    padding-top: 0;
+    width: 50%;
+    &-container {
+      display: none;
+    }
+    &-main_temperature {
+      font-size: 5em;
+      text-align: center;
+    }
+    &-main_summary {
+      font-size: 1.5em;
+      text-align: center;
+    }
+    &-detail {
+      margin-top: 0;
+      text-align: center;
+    }
+    &-detail_icon {
+      padding: 0 2px;
+      svg {
+        width: 1em;
+        height: 1em;
+      }
+    }
+    &-detail_block {
+      width: 33.3%;
+      font-size: 0.875em;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(#000, 0.6);
+    width: $SIZE * 2;
+    height: $SIZE;
+    .weather-animation {
+      width: $SIZE;
+      height: $SIZE;
+      font-size: $SIZE;
+    }
+    .weather-widget {
+      &__info-container {
+        display: block;
+      }
+    }
+  }
 }
 
-.weather-widget_toggled {
-  background-color: rgba(#000, 0.6);
-  width: $SIZE * 2;
-  height: $SIZE;
-  .weather-container_small {
-    width: $SIZE;
-    height: $SIZE;
-    font-size: $SIZE;
-  }
+.weather-animation {
+  @import 'keyframes';
+  @import 'breeze';
+  @import 'cloud';
+  @import 'cloud2';
+  @import 'fog';
+  @import 'night';
+  @import 'rain';
+  @import 'snow';
+  @import 'star';
+  @import 'sun';
+  @import 'thunder';
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 2.5%;
+  transform: none;
+  width: $SMALL_SIZE;
+  height: $SMALL_SIZE;
+  font-size: $SMALL_SIZE;
+  border-radius: 0;
+  transition:
+    width 0.8s,
+    height 0.8s;
 }

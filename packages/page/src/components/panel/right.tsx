@@ -4,8 +4,6 @@ import { useCallback } from 'preact/hooks'
 
 import { IImplState, useMappedState } from '../../redux/store'
 
-// import WeatherBoard from '../weather/board'
-
 
 export default class PanelRight extends Component<{}, {}> {
   public render () {

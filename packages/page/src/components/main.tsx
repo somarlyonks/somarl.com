@@ -7,10 +7,12 @@ import WeatherWidget from './weather/widget'
 export default function Main () {
   return (
     <main>
-      <WeatherWidget />
+      <nav class="nav absolute tl-0 flex">
+        <WeatherWidget />
+      </nav>
 
-      <div className="container">
-        <div className="row">
+      <div class="container">
+        <div class="row">
           <PanelLeft />
           <PanelRight />
         </div>

@@ -52,7 +52,7 @@ somarl.com:
   Server:
     [x] server frame - nestjs
     [x] GraphQL
-      X JSON scalar
+      [x] JSON scalar
       [x] Date scalar
       [x] Adapter type transformer
         X scalar type inferor @low

@@ -3,7 +3,7 @@ import { ModuleMetadata } from '@nestjs/common/interfaces/modules/module-metadat
 
 import DatabaseModel, { getDbToken } from '../../arango'
 
-import { DateScalar } from './scalars'
+import { DateScalar, JSONScalar } from './scalars'
 
 
 export function ResourceModule (RESOURCE_NAME: S, meta: ModuleMetadata) {
@@ -25,6 +25,7 @@ export function ResourceModule (RESOURCE_NAME: S, meta: ModuleMetadata) {
         useExisting: getDbToken(RESOURCE_NAME),
       },
       DateScalar,
+      JSONScalar,
       ...meta.providers || [],
     ],
     exports: meta.exports,
