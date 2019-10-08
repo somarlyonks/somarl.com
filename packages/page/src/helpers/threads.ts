@@ -1,8 +1,13 @@
-export interface IThread {
-  pid: N
+export abstract class Thread {
+  public pid: N = 0
+
+  /** don't refer threads in thread */
+  public constructor (threads: Threads<Thread>) {
+    threads.fork(this)
+  }
 }
 
-export class Threads <TThread extends IThread> {
+export class Threads <TThread extends Thread> {
   private count: N
   private queue: L<TThread>
 
@@ -26,5 +31,19 @@ export class Threads <TThread extends IThread> {
   public fork (thread: TThread) {
     thread.pid = this.count++
     this.queue.push(thread)
+  }
+
+  public run (threads: TThread | L<TThread>, action: F1<TThread, A>, concurrently = false) {
+    const act: F1<TThread, A> = thread => action(thread)
+
+    if (!Array.isArray(threads)) {
+      threads = [threads]
+    }
+
+    if (!concurrently) {
+      threads = threads.filter(this.isHead.bind(this))
+    }
+
+    threads.forEach(act)
   }
 }

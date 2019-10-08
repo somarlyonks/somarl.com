@@ -3,7 +3,7 @@ import { h } from 'preact' // lgtm [js/unused-local-variable]
 import store, { ActionTypes, useRedux } from '../../redux'
 
 import { clamp } from '../../helpers/Adapter'
-import { Threads, IThread } from '../../helpers'
+import { Threads, Thread } from '../../helpers'
 
 
 const progressThreads = new Threads<ProgressThread>()
@@ -11,9 +11,7 @@ const progressThreads = new Threads<ProgressThread>()
 // tslint:disable: no-magic-numbers
 const TRICKLE_SPEED = 200
 
-export class ProgressThread implements IThread {
-
-  public pid: N = 0
+export class ProgressThread extends Thread {
 
   private progress: N = 0
 
@@ -27,7 +25,7 @@ export class ProgressThread implements IThread {
   ]
 
   public constructor (start = true) {
-    progressThreads.fork(this)
+    super(progressThreads)
     if (start) this.start()
   }
 
@@ -57,10 +55,10 @@ export class ProgressThread implements IThread {
   private setProgress (progress: N) {
     this.progress = clamp(progress, 0, 100)
 
-    if (progressThreads.isHead(this)) store.dispatch({
+    progressThreads.run(this, thread => store.dispatch({
       type: ActionTypes.fetch.SET_PROGRESS,
-      payload: this.progress,
-    })
+      payload: thread.progress,
+    }))
   }
 
 }
