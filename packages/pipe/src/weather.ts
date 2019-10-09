@@ -1,13 +1,13 @@
-export type WeatherTypes = 'breeze' |
-  'cloud' |
-  'cloud2' |
-  'fog' |
-  'night' |
-  'rain' |
-  'snow' |
-  'star' |
-  'sun' |
-  'thunder'
+export type WeatherTypes = 'breeze'
+                         | 'cloud'
+                         | 'cloud2'
+                         | 'fog'
+                         | 'night'
+                         | 'rain'
+                         | 'snow'
+                         | 'star'
+                         | 'sun'
+                         | 'thunder'
 
 
 /**
@@ -19,21 +19,27 @@ export const weatherTypeMap: {
   'clear-day': 'sun',
   'clear-night': 'star',
   'rain': 'rain',
-  'snow': 'snow',
   'sleet': 'rain',
+  'snow': 'snow',
   'wind': 'breeze',
   'fog': 'fog',
   'cloudy': 'cloud',
-  'partly-cloudy-day': 'cloud',
   'partly-cloudy-night': 'night',
+  'partly-cloudy-day': 'cloud',
   'fallback': 'cloud',
 }
 
-export type DarkSkyIcons =
-  'clear-day' | 'clear-night' | 'rain' |
-  'snow' | 'sleet' | 'wind' | 'fog' | 'cloudy' |
-  'partly-cloudy-day' | 'partly-cloudy-night' |
-  'fallback' // prepared for other circumstances like hail, thunderstorm, or tornado
+export type DarkSkyIcons = 'clear-day'
+                         | 'clear-night'
+                         | 'rain'
+                         | 'sleet'
+                         | 'snow'
+                         | 'wind'
+                         | 'fog'
+                         | 'cloudy'
+                         | 'partly-cloudy-day'
+                         | 'partly-cloudy-night'
+                         | 'fallback' // prepared for other circumstances like hail, thunderstorm, or tornado
 
 /**
  * SI units are as follows:
@@ -52,13 +58,12 @@ export type DarkSkyIcons =
  * pressure: Hectopascals.
  * visibility: Kilometers.
  */
-type DarkSkyUnits =
-  'auto' | // automatically select units based on geographic location
-  'ca' |   // same as si, except that windSpeed and windGust are in kilometers per hour
-  'uk2' |  // same as si, except that nearestStormDistance and visibility are in miles,
-           // and windSpeed and windGust in miles per hour
-  'us' |   // Imperial units (the default)
-  'si'     // SI units
+type DarkSkyUnits = 'auto'  // automatically select units based on geographic location
+                  | 'ca'    // same as si, except that windSpeed and windGust are in kilometers per hour
+                  | 'uk2'   // same as si, except that nearestStormDistance and visibility are in miles,
+                            // and windSpeed and windGust in miles per hour
+                  | 'us'    // Imperial units (the default)
+                  | 'si'    // SI units
 
 interface IDarkSkyDataPointAbstract {
   // The percentage of sky occluded by clouds, between 0 and 1, inclusive.
@@ -133,15 +138,14 @@ interface IDarkSkyDataPointDaily extends
   apparentTemperatureLow: N
   apparentTemperatureLowTime: N
   // The fractional part of the lunation number during the given day.
-  moonPhase:
-    0 |    // new moon
-    // waxing crescent
-    0.25 | // first quarter moon
-    // waxing gibbous
-    0.5 |  // full moon
-    // waning gibbous
-    0.75   // last quarter moon
-    // waning crescent
+  moonPhase: 0     // new moon
+           //         waxing crescent
+           | 0.25  // first quarter moon
+           //         waxing gibbous
+           | 0.5   // full moon
+           //         waning gibbous
+           | 0.75  // last quarter moon
+           //         waning crescent
   // UNIX time
   sunriseTime: N
   sunsetTime: N
@@ -180,10 +184,10 @@ interface IDarkSkyAlert {
   // An array of strings representing the names of the regions covered by this weather alert.
   regions: L<S>
   //
-  severity:
-    'advisory' | // an individual should be aware of potentially severe weather
-    'watch' |    // an individual should prepare for potentially severe weather
-    'warning'    // one should take immediate action to protect themselves and others from potentially severe weather
+  severity: 'advisory'  // an individual should be aware of potentially severe weather
+          | 'watch'     // an individual should prepare for potentially severe weather
+          | 'warning'   // one should take immediate action to protect themselves and others from
+                        // potentially severe weather
   // The UNIX time at which the alert was issued.
   time: N
   // A brief description of the alert.
