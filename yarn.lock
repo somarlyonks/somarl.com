@@ -11162,10 +11162,10 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@3.7.0-dev.20191008:
-  version "3.7.0-dev.20191008"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.0-dev.20191008.tgz#45f29daf2c95b4a1e84f094b158766f97eebafc1"
-  integrity sha512-6Q9Tk1+5DvAKdIpjLNDDEJszYcDsaagykZtE+INTwGydt0fPffrB+M6/TDWPu/iDASjWLDw3HBC02/bEyFK1aw==
+typescript@3.7.0-dev.20191009:
+  version "3.7.0-dev.20191009"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.0-dev.20191009.tgz#852e49dca797bb35acf930583ef65e7b3b23fc01"
+  integrity sha512-Vk/wZedTpVd3QAhr3mG1+sbUHcpJ1wfw49Wo1NCQvzMa0vHCJeocEwWzaV2yWprsuuFv4+e8tjCj1Vnme2CMHg==
 
 typescript@^3.0.1:
   version "3.5.3"
