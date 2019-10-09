@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 
 import WeatherAnimation from './animation'
 import WeatherSupport from './support'
@@ -77,14 +77,12 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
   public componentDidMount () {
     const getCurrentWeather = () => Api.getWeather(['flags', 'daily', 'hourly'])
     const updateWeather = () => getCurrentWeather().then(resp => {
-      if (!Api.isResponseOK(resp)) return
-
-      const { currently } = resp.body
+      if (!Api.isResponseOK(resp) || !resp.body.currently) return
 
       const {
         icon,
         apparentTemperature, summary, temperature, humidity, precipProbability, windSpeed,
-      } = currently!
+      } = resp.body.currently
 
       const weatherType = weatherTypeMap[icon] || weatherTypeMap.fallback
       const weatherInfo: IWidgetWeatherInfo = {
