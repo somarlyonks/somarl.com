@@ -6,7 +6,6 @@
 @import 'weather';
 
 body {
-  // TODO: dynamic background
   background-image: url($REACT_APP_API_SERVER + "/binks.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -26,10 +26,6 @@
   transform: translateZ(0);
 }
 
-// .terminal-hang_hidden {
-//   height: 50px;
-// }
-
 .terminal-out {
   color: white;
   background-color: $sectionBackgroundColor;
@@ -40,18 +36,9 @@
     opacity $terminalTransitionTime;
   overflow: hidden;
   opacity: 1;
+  &__content {
+    padding: 15px;
+    overflow-y: auto;
+    height: 100%;
+  }
 }
-
-.terminal-out__content {
-  padding: 15px;
-  overflow-y: auto;
-  height: 100%;
-}
-
-.terminal-out__content::-webkit-scrollbar {
-  width: 0
-}
-
-// .terminal-hint {
-//   margin-bottom: 200px;
-// }
