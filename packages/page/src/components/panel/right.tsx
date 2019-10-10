@@ -11,7 +11,7 @@ export default class PanelRight extends Component<{}, {}> {
 
     return (
       <section className={`col-md panel-right fluent-arcylic ${global.terminalState === 'output' ? '' : 'panel-right_hidden'}`}>
-        <article className="panel-right__content font-read">
+        <article className="panel-right__content no-scrollbar font-read">
           {global.richOutput}
         </article>
       </section>
