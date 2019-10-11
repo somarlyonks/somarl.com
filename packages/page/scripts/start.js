@@ -63,12 +63,10 @@ choosePort(HOST, DEFAULT_PORT)
       // openBrowser(urls.localUrlForBrowser)
     })
 
-    ; ['SIGINT', 'SIGTERM'].forEach(function (sig) {
-      process.on(sig, function () {
-        devServer.close()
-        process.exit()
-      })
-    })
+    ; ['SIGINT', 'SIGTERM'].forEach(sig => process.on(sig, () => {
+      devServer.close()
+      process.exit()
+    }))
   })
   .catch(err => {
     if (err && err.message) console.error(err.message)
