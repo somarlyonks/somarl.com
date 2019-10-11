@@ -86,7 +86,7 @@ const Progress = () => {
       <div
         class="progress-peg absolute"
         style={{
-          'box-shadow': `20px 0 60px 1px ${color}, 20px 0 30px 0 ${color}`,
+          'box-shadow': `20px 0 60px 2px ${color}, 20px 0 30px 0 ${color}`,
         }}
       />
     </div>

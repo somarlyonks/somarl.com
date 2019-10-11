@@ -15,6 +15,11 @@ $fabricGrey: rgb(138, 136, 134);
 
 $nav-height: 50px;
 
+// z-index
+$Z-progress: 1001;
+$Z-nav: 1000;
+$Z-termianal: 999;
+
 $grid-breakpoints: (
   xs: 0,
   sm: 450px,

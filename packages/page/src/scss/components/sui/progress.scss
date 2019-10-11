@@ -1,5 +1,8 @@
+@import '../../helpers/variables';
+
 .progress-bar {
-  height: 2px;
+  z-index: $Z-progress;
+  height: 4px;
   width: 100%;
 }
 

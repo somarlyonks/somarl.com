@@ -36,7 +36,12 @@ body:focus-within {
   }
 }
 
-nav.nav {
+header.nav {
   right: 0;
   height: $nav-height;
+  z-index: $Z-nav;
+  transition: background-color 0.3s ease-out;
+  &:hover {
+    background-color: rgba(#000, 0.1);
+  }
 }

@@ -3,10 +3,9 @@ $SIZE: $nav-height * 4;
 
 .weather-widget {
   color: #fff;
-  background-color: rgba(#000, 0.5);
+  background-color: rgba(#000, 0.6);
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
-  z-index: 999;
   transition:
     width 0.8s,
     height 0.8s;
@@ -19,6 +18,7 @@ $SIZE: $nav-height * 4;
     padding-top: 0;
     width: 50%;
     &-container {
+      height: 100%;
       display: none;
     }
     &-main_temperature {
@@ -47,7 +47,7 @@ $SIZE: $nav-height * 4;
   }
 
   &:hover {
-    background-color: rgba(#000, 0.6);
+    background-color: rgba(#000, 0.9);
     width: $SIZE * 2;
     height: $SIZE;
     .weather-animation {
@@ -57,6 +57,7 @@ $SIZE: $nav-height * 4;
     }
     .weather-widget {
       &__info-container {
+        background-color: rgba(#fff, 0.1);
         display: block;
       }
     }

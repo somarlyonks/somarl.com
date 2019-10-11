@@ -77,3 +77,7 @@ One space after every ',' and `:`
 `0.1` is preferred to `.1`
 
 `#ccc` is preferred to `#CCC` and `#cccccc`. `#CcC` is not accepted.
+
+## z-index
+
+Components should not use plain number as z-index but variable listed in `scss/helpers/_variables.scss`
