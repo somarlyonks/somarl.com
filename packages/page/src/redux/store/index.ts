@@ -45,6 +45,7 @@ export const ActionTypes = {
 
 const preloadedState: IImplState = {
   global: {
+    ready: '',
     testCount: 0,
     errMsgs: [],
     themeColor: 'lightCoral',

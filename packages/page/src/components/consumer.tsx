@@ -11,7 +11,7 @@ const API2 = async (x: N) => {
 }
 const incN = actionProxy(ActionTypes.global.INCREMENT, API2)
 
-const Consumer = () => {
+export default function Consumer () {
   const { global } = useMappedState(useCallback((state: IImplState) => state, []))
 
   const ADec: h.JSX.MouseEventHandler = event => store.dispatch({
@@ -29,5 +29,3 @@ const Consumer = () => {
     </div>
   )
 }
-
-export default Consumer

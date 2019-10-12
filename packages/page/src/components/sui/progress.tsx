@@ -65,7 +65,7 @@ export class ProgressThread extends Thread {
 // tslint:enable: no-magic-numbers
 
 
-const Progress = () => {
+export default function Progress () {
   const state = useRedux()
   const { progress } = state.fetch
   const { themeColor: color } = state.global
@@ -86,11 +86,9 @@ const Progress = () => {
       <div
         class="progress-peg absolute"
         style={{
-          'box-shadow': `20px 0 60px 1px ${color}, 20px 0 30px 0 ${color}`,
+          'box-shadow': `20px 0 60px 2px ${color}, 20px 0 30px 0 ${color}`,
         }}
       />
     </div>
   )
 }
-
-export default Progress

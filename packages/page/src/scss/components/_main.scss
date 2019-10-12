@@ -1,4 +1,5 @@
 @import '../helpers/variables';
+@import '../helpers/mixins';
 @import 'form';
 @import 'sui';
 @import 'terminal';
@@ -36,7 +37,9 @@ body:focus-within {
   }
 }
 
-nav.nav {
+header.nav {
+  @include sweepToBottom(rgba(#000, 0.1));
   right: 0;
-  height: $nav-height;
+  height: $navHeight;
+  z-index: $zNav;
 }

@@ -77,3 +77,23 @@ One space after every ',' and `:`
 `0.1` is preferred to `.1`
 
 `#ccc` is preferred to `#CCC` and `#cccccc`. `#CcC` is not accepted.
+
+## z-index
+
+Components should not use plain number as z-index but variable listed in `scss/helpers/_variables.scss`
+
+## variable
+
+```scss
+// override external variables: snake_case
+$grid-breakpoints
+
+// gobal variables: camelCase
+$zDomino
+
+// local variables: CAP_SNAKE_CASE
+$SMALL_SIZE
+
+// mixin parameters: snake_case
+$background_color
+```
