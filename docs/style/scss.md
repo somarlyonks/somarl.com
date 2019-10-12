@@ -81,3 +81,19 @@ One space after every ',' and `:`
 ## z-index
 
 Components should not use plain number as z-index but variable listed in `scss/helpers/_variables.scss`
+
+## variable
+
+```scss
+// override external variables: snake_case
+$grid-breakpoints
+
+// gobal variables: camelCase
+$zDomino
+
+// local variables: CAP_SNAKE_CASE
+$SMALL_SIZE
+
+// mixin parameters: snake_case
+$background_color
+```

@@ -5,9 +5,6 @@
   @-moz-keyframes #{$name} {
     @content;
   }
-  // @-ms-keyframes #{$name} {
-  //   @content;
-  // }
   @keyframes #{$name} {
     @content;
   }
@@ -40,4 +37,19 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+@mixin sweepToBottom($color) {
+  position: relative;
+  transition: color 1s;
+  &::before {
+    @include absoluteContentFull;
+    background: $color;
+    transform: scaleY(0);
+    transform-origin: 50% 0%;
+    transition: transform 300ms ease-out;
+  }
+  &:hover::before {
+    transform: scaleY(1);
+  }
 }

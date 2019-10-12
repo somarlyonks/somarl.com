@@ -1,5 +1,6 @@
-$SMALL_SIZE: $nav-height;
-$SIZE: $nav-height * 4;
+$SMALL_SIZE: $navHeight;
+$SIZE: $navHeight * 4;
+$TRANSITION_TIME: 0.5s;
 
 .weather-widget {
   color: #fff;
@@ -7,8 +8,8 @@ $SIZE: $nav-height * 4;
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
   transition:
-    width 0.8s,
-    height 0.8s;
+    width $TRANSITION_TIME,
+    height $TRANSITION_TIME;
 
   &__info {
     position: absolute;
@@ -90,6 +91,6 @@ $SIZE: $nav-height * 4;
   font-size: $SMALL_SIZE;
   border-radius: 0;
   transition:
-    width 0.8s,
-    height 0.8s;
+    width $TRANSITION_TIME,
+    height $TRANSITION_TIME;
 }

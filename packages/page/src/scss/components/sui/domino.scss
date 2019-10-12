@@ -1,14 +1,14 @@
 @import '../../helpers/variables';
 
-$bar-animation-duration: 2.8s;
-$bar-width: 3px;
-$bar-height: 25px;
-$bar-count: 7;
+$BAR_WIDTH: 3px;
+$BAR_HEIGHT: 25px;
+$BAR_COUNT: 7;
 
-$bar-animation-duration-single: -($bar-animation-duration / $bar-count);
+$BAR_ANIMATION_DURATION: 2.8s;
+$BAR_ANIMATION_DURATION_SINGLE: -($BAR_ANIMATION_DURATION / $BAR_COUNT);
 
 .domino-container {
-  z-index: $Z-domino;
+  z-index: $zDomino;
   background-color: #f7f7f7;
   color: #333;
   opacity: 1;
@@ -23,7 +23,7 @@ $bar-animation-duration-single: -($bar-animation-duration / $bar-count);
   position: relative;
   padding: 0;
   width: 100px;
-  height: $bar-height;
+  height: $BAR_HEIGHT;
   list-style: none;
   margin: 0 auto;
 
@@ -31,12 +31,12 @@ $bar-animation-duration-single: -($bar-animation-duration / $bar-count);
     display: block;
     position: absolute;
     right: 0;
-    width: $bar-width;
-    height: $bar-height;
+    width: $BAR_WIDTH;
+    height: $BAR_HEIGHT;
     border-radius: 1px;
     transform-origin: 50% 100%;
     background-color: #333;
-    animation: domino linear $bar-animation-duration infinite;
+    animation: domino linear $BAR_ANIMATION_DURATION infinite;
     will-change: transform;
 
     &:nth-child(1) {
@@ -45,27 +45,27 @@ $bar-animation-duration-single: -($bar-animation-duration / $bar-count);
     }
     &:nth-child(2) {
       transform: translateX(-15px) rotate(0deg);
-      animation-delay: $bar-animation-duration-single;
+      animation-delay: $BAR_ANIMATION_DURATION_SINGLE;
     }
     &:nth-child(3) {
       transform: translateX(-30px) rotate(0deg);
-      animation-delay: ($bar-animation-duration-single * 2);
+      animation-delay: ($BAR_ANIMATION_DURATION_SINGLE * 2);
     }
     &:nth-child(4) {
       transform: translateX(-45px) rotate(10deg);
-      animation-delay: ($bar-animation-duration-single * 3);
+      animation-delay: ($BAR_ANIMATION_DURATION_SINGLE * 3);
     }
     &:nth-child(5) {
       transform: translateX(-60px) rotate(40deg);
-      animation-delay: ($bar-animation-duration-single * 4);
+      animation-delay: ($BAR_ANIMATION_DURATION_SINGLE * 4);
     }
     &:nth-child(6) {
       transform: translateX(-75px) rotate(62deg);
-      animation-delay: ($bar-animation-duration-single * 5);
+      animation-delay: ($BAR_ANIMATION_DURATION_SINGLE * 5);
     }
     &:nth-child(7) {
       transform: translateX(-90px) rotate(72deg);
-      animation-delay: ($bar-animation-duration-single * 6);
+      animation-delay: ($BAR_ANIMATION_DURATION_SINGLE * 6);
     }
   }
 }
