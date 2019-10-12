@@ -6,7 +6,6 @@ import Main from './components/main'
 import Api from './helpers/Api'
 import store, { StoreContext, ActionTypes, actionProxy } from './redux'
 
-import Consumer from './components/consumer'
 import Progress from './components/sui/progress'
 
 
@@ -24,7 +23,6 @@ class App extends Component {
     return (
       <StoreContext.Provider value={store}>
         <Progress />
-        <div style={{position: 'absolute', right: 0}}><Consumer /></div>
         <Header />
         <Main />
         <Footer />

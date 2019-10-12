@@ -6,7 +6,7 @@ import { useRedux } from '../../redux'
  * @ref https://codepen.io/aurer/pen/jEGbA
  * @author Aurer@https://codepen.io/aurer
  */
-const IconLoading = ({ style }: { style?: S }) => {
+export default function IconLoading ({ style }: { style?: S }) {
   const { global } = useRedux()
 
   return (
@@ -37,5 +37,3 @@ const IconLoading = ({ style }: { style?: S }) => {
     </svg>
   )
 }
-
-export default IconLoading
