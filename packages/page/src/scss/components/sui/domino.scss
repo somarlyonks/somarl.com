@@ -1,0 +1,110 @@
+@import '../../helpers/variables';
+
+$bar-animation-duration: 2.8s;
+$bar-width: 3px;
+$bar-height: 25px;
+$bar-count: 7;
+
+$bar-animation-duration-single: -($bar-animation-duration / $bar-count);
+
+.domino-container {
+  z-index: $Z-domino;
+  background-color: #f7f7f7;
+  color: #333;
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+  &--ready {
+    z-index: -1;
+    opacity: 0;
+  }
+}
+
+.dominos {
+  position: relative;
+  padding: 0;
+  width: 100px;
+  height: $bar-height;
+  list-style: none;
+  margin: 0 auto;
+
+  .domino {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: $bar-width;
+    height: $bar-height;
+    border-radius: 1px;
+    transform-origin: 50% 100%;
+    background-color: #333;
+    animation: domino linear $bar-animation-duration infinite;
+    will-change: transform;
+
+    &:nth-child(1) {
+      transform: translateX(0) rotate(0deg);
+      opacity: .2;
+    }
+    &:nth-child(2) {
+      transform: translateX(-15px) rotate(0deg);
+      animation-delay: $bar-animation-duration-single;
+    }
+    &:nth-child(3) {
+      transform: translateX(-30px) rotate(0deg);
+      animation-delay: ($bar-animation-duration-single * 2);
+    }
+    &:nth-child(4) {
+      transform: translateX(-45px) rotate(10deg);
+      animation-delay: ($bar-animation-duration-single * 3);
+    }
+    &:nth-child(5) {
+      transform: translateX(-60px) rotate(40deg);
+      animation-delay: ($bar-animation-duration-single * 4);
+    }
+    &:nth-child(6) {
+      transform: translateX(-75px) rotate(62deg);
+      animation-delay: ($bar-animation-duration-single * 5);
+    }
+    &:nth-child(7) {
+      transform: translateX(-90px) rotate(72deg);
+      animation-delay: ($bar-animation-duration-single * 6);
+    }
+  }
+}
+
+@keyframes domino {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  14.28% {
+    transform: translateX(-15px) rotate(0deg);
+    opacity: 1;
+  }
+  28.56% {
+    transform: translateX(-30px) rotate(0deg);
+    opacity: 1;
+  }
+  37.12% {
+    transform: translateX(-39px) rotate(0deg);
+    opacity: 1;
+  }
+  42.84% {
+    transform: translateX(-45px) rotate(10deg);
+    opacity: 1;
+  }
+  57.12% {
+    transform: translateX(-60px) rotate(40deg);
+    opacity: 1;
+  }
+  71.4% {
+    transform: translateX(-75px) rotate(62deg);
+    opacity: 1;
+  }
+  85.68% {
+    transform: translateX(-90px) rotate(72deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-105px) rotate(74deg);
+    opacity: 0;
+  }
+}
