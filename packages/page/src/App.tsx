@@ -1,35 +1,43 @@
-import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
+import { h } from 'preact' // lgtm [js/unused-local-variable]
 
 import Footer from './components/footer'
 import Header from './components/header'
 import Main from './components/main'
+import { Progress, Domino } from './components/sui'
 import Api from './helpers/Api'
 import store, { StoreContext, ActionTypes, actionProxy } from './redux'
 
-import Progress from './components/sui/progress'
 
+window.SS = { Api }
 
-class App extends Component {
-  public async componentDidMount () {
-    window.SS = { Api }
-    const setColor = actionProxy(
-      ActionTypes.global.SET_THEMECOLOR,
-      async (color: R<typeof Api.getBinksColor>) => `rgb(${(await color).join(', ')})`
-    )
-    store.dispatch(setColor(Api.getBinksColor()))
+const pColor = Api.getBinksColor()
+const setColor = actionProxy(
+  ActionTypes.global.SET_THEMECOLOR,
+  async (color: R<typeof Api.getBinksColor>) => `rgb(${(await color).join(', ')})`
+)
+const initState = actionProxy(
+  ActionTypes.global.READY,
+  async (...promises: L<P>) => {
+    try {
+      await Promise.all(promises)
+      return 'ready'
+    } catch (error) {
+      return error.message
+    }
   }
+)
+store.dispatch(setColor(pColor))
+store.dispatch(initState(pColor))
 
-  public render () {
-    return (
-      <StoreContext.Provider value={store}>
-        <Progress />
-        <Header />
-        <Main />
-        <Footer />
-      </StoreContext.Provider>
-    )
-  }
+
+export default function App () {
+  return (
+    <StoreContext.Provider value={store}>
+      <Progress />
+      <Header />
+      <Main />
+      <Footer />
+      <Domino />
+    </StoreContext.Provider>
+  )
 }
-
-
-export default App

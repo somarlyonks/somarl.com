@@ -14,6 +14,7 @@ export type GTermianlState = 'focus'  // show terminal output when focus
 
 
 export interface IGlobalState {
+  ready: S
   testCount: N
   errMsgs: L<S>
   themeColor: S
@@ -29,7 +30,8 @@ export interface IGlobalState {
  *   const action = {type: ActionTypes.INCREMENT, payload: 1} // good
  *   const action = {type: ActionTypes.INCREMENT, payload: '1'} // type error
  */
-export type IGlobalAction = IAction<'INCREMENT', N>
+export type IGlobalAction = IAction<'READY', S>
+                          | IAction<'INCREMENT', N>
                           | IAction<'DECREMENT', S>
                           | IAction<'RESOLVE_ERROR', S>
                           | IAction<'SET_THEMECOLOR', S>
@@ -40,7 +42,8 @@ export type IGlobalAction = IAction<'INCREMENT', N>
  * @description Types in typescript are not datas as dependent type langs like Idris,
  *    so we have to manully registerActions here.
  */
-const actionTypes = [ 'INCREMENT'
+const actionTypes = [ 'READY'
+                    , 'INCREMENT'
                     , 'DECREMENT'
                     , 'RESOLVE_ERROR'
                     , 'SET_THEMECOLOR'
@@ -51,6 +54,11 @@ const ActionTypes = registerActions(actionTypes, 'global')
 
 /** @description The real reducers only have to deal with the resolved actions. */
 const reducers: IReducers<IGlobalState, Resolved<IGlobalAction>> = {
+  ready (state, action) {
+    if (action.type === ActionTypes.READY) return action.payload
+    return state
+  },
+
   errMsgs (state, action) {
     if (action.errMsg) {
       if (action.type !== ActionTypes.RESOLVE_ERROR) return state.concat(action.errMsg!)
