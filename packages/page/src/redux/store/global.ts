@@ -14,6 +14,7 @@ export type GTermianlState = 'focus'  // show terminal output when focus
 
 
 export interface IGlobalState {
+  /** @deprecated implemented with app local state */
   ready: S
   testCount: N
   errMsgs: L<S>

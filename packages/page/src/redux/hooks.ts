@@ -2,4 +2,9 @@ import { useCallback } from 'preact/hooks'
 import { IImplState, useMappedState } from './store'
 
 
-export const useRedux = () => useMappedState(useCallback((state: IImplState) => state, []))
+export function useRedux <T extends F1<IImplState>> (
+  stateMapper: T,
+  inputs: ReadonlyArray<unknown> = []
+) {
+  return useMappedState(useCallback(stateMapper, inputs)) as ReturnType<T>
+}

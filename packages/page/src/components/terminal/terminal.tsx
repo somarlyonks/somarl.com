@@ -59,7 +59,7 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
 
   private readonly onBlur: h.JSX.FocusEventHandler = event => {
     this.setState({ supportDisplay: false })
-    setTerminalState('blur') // FIXME: @sy DEBUG
+    // setTerminalState('blur') // FIXME: @sy DEBUG
   }
 
   /** @setState */
@@ -100,23 +100,20 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     }
   }
 
-  /**
-   * Mannully set the initial state supportDisplay to true because of the autofocus
-   * But it's not a good idea to call the callback
-   */
   public componentDidMount () {
     // this.onFocus() // autoFocus
-    // this.setState({supportDisplay: true})
   }
 
   public render () {
-    const { global } = useRedux()
+    const { borderLeftColor } = useRedux(state => ({
+      borderLeftColor: state.global.themeColor,
+    }))
 
     return (
       <div className="terminal-input">
         <input
           type="text"
-          style={{borderLeftColor: global.themeColor}}
+          style={{borderLeftColor}}
           className="terminal-input__input"
           onFocus={this.onFocus}
           onBlur={this.onBlur}
