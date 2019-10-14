@@ -85,7 +85,7 @@ Components should not use plain number as z-index but variable listed in `scss/h
 ## variable
 
 ```scss
-// override external variables: snake_case
+// override external variables: kebab-case
 $grid-breakpoints
 
 // gobal variables: camelCase
