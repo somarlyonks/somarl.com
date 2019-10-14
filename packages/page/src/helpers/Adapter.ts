@@ -7,6 +7,7 @@ export {
   randomString,
   isPromise,
   clamp,
+  CONSTS as PIPE_CONSTS,
 } from '@somarl.com/pipe'
 
 

@@ -3,8 +3,8 @@ import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 import WeatherAnimation from './animation'
 import WeatherSupport from './support'
 import * as Icons from '../icons'
-import Api from '../../helpers/Api'
-import { weatherTypeMap, WeatherTypes } from '../../helpers/Adapter'
+import Api from 'src/helpers/Api'
+import { weatherTypeMap, WeatherTypes } from 'src/helpers'
 
 
 export interface IWeatherWidgetProps {

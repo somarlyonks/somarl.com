@@ -32,6 +32,7 @@ export default class ApplicationModule {
   public configure (consumer: MiddlewareConsumer) {
     CorsMiddleware.configure({
       origin (requestOrigin: S | void, cb: F) {
+        // tslint:disable-next-line: no-null-keyword
         if (!requestOrigin || SETTINGS.ALLOWED_ORIGINS.includes(requestOrigin)) cb(null, true)
         else cb(new Error('Not allowed by CORS'))
       },

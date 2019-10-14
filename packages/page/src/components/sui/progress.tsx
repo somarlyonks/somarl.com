@@ -1,8 +1,7 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 
 import store, { ActionTypes, useRedux } from 'src/redux'
-import { clamp } from 'src/helpers/Adapter'
-import { Threads, Thread } from 'src/helpers'
+import { clamp, Threads, Thread } from 'src/helpers'
 
 
 const progressThreads = new Threads<ProgressThread>()
