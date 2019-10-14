@@ -4,6 +4,10 @@ pipe: packages/pipe/src/**/*
 
 server: packages/server/src/**/*
 
-chore: "!packages/**/src/**/*"
+chore:
+  - "!packages/**/src/**/*"
+  - "./**/*"
 
-docs: "*.md"
+docs:
+  - "docs/*"
+  - "docs/**/*"

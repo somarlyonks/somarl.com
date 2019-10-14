@@ -119,6 +119,12 @@ const ComponentC = () => ()
 
 ## [SCSS](./scss.md)
 
-## localize strategy
+## Redux
+
+### props / state / redux?
+
+Props are preferred. Local state is prior to redux states.
+
+### localize strategy
 
 Depends on the duration of the things to save: if it lasts less than 1 day, localize it to `window.ss`, otherwise to `localStorage` or `ServiceWorker`.

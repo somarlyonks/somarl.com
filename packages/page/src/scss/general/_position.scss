@@ -1,12 +1,12 @@
 .absolute {
-  position: absolute;
+  position: absolute !important;
   &--tl {
-    position: absolute;
+    position: absolute !important;
     top: 0;
     left: 0;
   }
   &--full {
-    position: absolute;
+    position: absolute !important;
     top: 0;
     right: 0;
     bottom: 0;
@@ -15,11 +15,11 @@
 }
 
 .relative {
-  position: relative;
+  position: relative !important;
 }
 
 .fixed {
-  position: fixed;
+  position: fixed !important;
 }
 
 .tl-0 {

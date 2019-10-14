@@ -15,9 +15,7 @@ const readFile = promisify(fs.readFile)
 // tslint:disable-next-line: no-var-requires
 const binksMeta: IBinksRecord[] = require(path.join(binksDir, '..', 'buffer/COPYRIGHTS.json'))
 
-/**
- * TODO: dynamic load imgs
- */
+
 @Injectable()
 export default class BinksService {
   private imgs?: L<S>

@@ -1,10 +1,11 @@
 import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
-import { useCallback } from 'preact/hooks'
 
-import store, { IImplState, useMappedState, ActionTypes } from '../../redux/store'
+import store, { ActionTypes, useRedux } from '../../redux'
 
 import Terminal from '../terminal/terminal'
 import Sysh from '../../helpers/sysh'
+
+import Avatar from '../sui/avatar'
 
 
 interface IPanelLeftStates {
@@ -50,9 +51,12 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
 
 
   public render () {
-    const { global } = useMappedState(useCallback((state: IImplState) => state, []))
+    const { terminalState, user } = useRedux(state => ({
+      terminalState: state.global.terminalState,
+      user: state.user.user,
+    }))
     return (
-      <section className={`col-md flex-verticle panel-left panel-left_${global.terminalState}`}>
+      <section className={`col-md flex-verticle panel-left panel-left_${terminalState}`}>
         <div className="terminal-hang" />
 
         <Terminal
@@ -61,6 +65,7 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
         />
 
         <aside className="flex-grow terminal-out">
+          <Avatar user={user} />
           <div className="terminal-out__content no-scrollbar pre-wrap font-mono">{this.state.output}</div>
         </aside>
       </section>

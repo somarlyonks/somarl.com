@@ -9,7 +9,7 @@ import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sFetch, { IFetchState, IFetchAction } from './fetch'
 import sLocal, { ILocalState, ILocalAction } from './local'
 import sQiniu, { IQiniuState, IQiniuAction } from './qiniu'
-import sUser, { IUserState, IUserAction } from './user'
+import sUser, { IUserState, IUserAction, ANONYMOUS_USER } from './user'
 import { applyMiddleware } from '../framework/middleware'
 
 
@@ -63,7 +63,7 @@ const preloadedState: IImplState = {
   },
   user: {
     isLoggedIn: false,
-    user: undefined,
+    user: ANONYMOUS_USER,
   },
 }
 

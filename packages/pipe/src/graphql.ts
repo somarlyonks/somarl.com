@@ -15,7 +15,14 @@ export interface NewImageInput {
 export interface NewRecipeInput {
     title: string;
     description?: string;
+    meta?: JSON;
     ingredients: string[];
+}
+
+export interface NewUserInput {
+    nickname?: string;
+    email?: string;
+    password: string;
 }
 
 export interface IModel {
@@ -36,7 +43,7 @@ export interface Image extends IModel {
     key: string;
     name: string;
     url: string;
-    imageInfo?: string;
+    imageInfo?: JSON;
 }
 
 export interface IMutation {
@@ -44,6 +51,7 @@ export interface IMutation {
     removeImage(id: string): boolean | Promise<boolean>;
     addRecipe(newRecipeData: NewRecipeInput): Recipe | Promise<Recipe>;
     removeRecipe(id: string): boolean | Promise<boolean>;
+    createUser(newRecipeData: NewUserInput): User | Promise<User>;
 }
 
 export interface IQuery {
@@ -60,6 +68,7 @@ export interface Recipe extends IModel {
     created: DateString;
     title: string;
     description?: string;
+    meta?: JSON;
     ingredients: string[];
 }
 
@@ -79,3 +88,4 @@ export interface User extends IModel {
 }
 
 type DateString = S;
+export type JSON = any;

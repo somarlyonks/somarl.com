@@ -1,7 +1,6 @@
 import { h } from 'preact'
-import { useCallback } from 'preact/hooks'
 
-import store, { IImplState, useMappedState, ActionTypes, actionProxy } from 'src/redux'
+import store, { useRedux, ActionTypes, actionProxy } from 'src/redux'
 
 
 const API = async (x: S) => x
@@ -12,7 +11,10 @@ const API2 = async (x: N) => {
 const incN = actionProxy(ActionTypes.global.INCREMENT, API2)
 
 export default function Consumer () {
-  const { global } = useMappedState(useCallback((state: IImplState) => state, []))
+  const { errMsgs, testCount } = useRedux(state => ({
+    errMsgs: state.global.errMsgs,
+    testCount: state.global.testCount,
+  }))
 
   const ADec: h.JSX.MouseEventHandler = event => store.dispatch({
     type: ActionTypes.global.DECREMENT,
@@ -22,9 +24,9 @@ export default function Consumer () {
 
   return (
     <div>
-      <p>{global.errMsgs}</p>
+      <p>{errMsgs}</p>
       <button onClick={ADec}>-</button>
-      <span>{global.testCount}</span>
+      <span>{testCount}</span>
       <button onClick={AInc}>+</button>
     </div>
   )

@@ -35,6 +35,8 @@ somarl.com:
         [ ] sysh
         [ ] parser
         [ ] runner
+        [ ] router
+        [ ] command inheritence
       Plugins:
         Weather:
           [x] styles

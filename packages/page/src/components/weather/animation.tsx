@@ -1,5 +1,5 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { WeatherTypes } from '../../helpers/Adapter'
+import { WeatherTypes } from 'src/helpers'
 
 
 interface IWeatherAnimationProps {

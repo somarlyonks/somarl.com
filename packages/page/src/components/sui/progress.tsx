@@ -1,9 +1,7 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 
-import store, { ActionTypes, useRedux } from '../../redux'
-
-import { clamp } from '../../helpers/Adapter'
-import { Threads, Thread } from '../../helpers'
+import store, { ActionTypes, useRedux } from 'src/redux'
+import { clamp, Threads, Thread } from 'src/helpers'
 
 
 const progressThreads = new Threads<ProgressThread>()
@@ -66,9 +64,10 @@ export class ProgressThread extends Thread {
 
 
 export default function Progress () {
-  const state = useRedux()
-  const { progress } = state.fetch
-  const { themeColor: color } = state.global
+  const { progress, color } = useRedux(state => ({
+    progress: state.fetch.progress,
+    color: state.global.themeColor,
+  }), [2])
 
   if (progress === undefined) return (<span style="display: none;">NONE</span>)
 

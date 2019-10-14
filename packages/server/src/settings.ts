@@ -56,6 +56,7 @@ export default class S {
   public static ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://192.168.1.119:3000',
+    'http://dev.somarl.com:3000',
     'http://www.somarl.com',
     'https://www.somarl.com',
     'http://somarl.com',

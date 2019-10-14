@@ -1,7 +1,15 @@
+import { PIPE_CONSTS } from './Adapter'
+
+
 export const API_SERVER = process.env.REACT_APP_API_SERVER
-export const QINIU_UPLOAD_URL = 'https://upload.qiniup.com/'
+export const QINIU_UPLOAD_URL = PIPE_CONSTS.QINIU_UPLOAD_URL
+export const QINIU_URL = PIPE_CONSTS.QINIU_URL
+export const DEFAULT_AVATAR = PIPE_CONSTS.DEFAULT_AVATAR
+
 
 export const CONSTS = {
   API_SERVER,
   QINIU_UPLOAD_URL,
+  QINIU_URL,
+  DEFAULT_AVATAR,
 }
