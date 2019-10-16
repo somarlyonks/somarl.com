@@ -1,5 +1,7 @@
 import { h } from 'preact'
-import * as Icons from '../icons'
+
+import * as Icons from '../../icons'
+import Fabric from '../fabric'
 
 
 interface IButtonProps {
@@ -17,7 +19,7 @@ interface IButtonProps {
  * @example
  *   <Button label="primary" classNames={['primary', 'borderless']} />
  */
-const Button = ({
+export default function Button ({
   label,
   loading = false,
   disabled = false,
@@ -25,22 +27,20 @@ const Button = ({
   labelClassName = '',
   onClick = () => {},
   style = '',
-}: IButtonProps) => (
-  <button
-    onClick={onClick}
-    className={'fabric-btn ' + classNames.map(s => `${s} fabric-btn--${s}`).join(' ')}
-    style={style}
-    disabled={disabled || loading}
-  >
-    <span class="fabric-wrapper">
-      <span class="fabric-container">
+}: IButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={'fabric-btn ' + classNames.map(s => `${s} fabric-btn--${s}`).join(' ')}
+      style={style}
+      disabled={disabled || loading}
+    >
+      <Fabric>
         {loading
           ? <Icons.Loading style="transform: scale(0.75);" />
           : <span class={'fabric-btn__label ' + labelClassName}>{label}</span>
         }
-      </span>
-    </span>
-  </button>
-)
-
-export default Button
+      </Fabric>
+    </button>
+  )
+}
