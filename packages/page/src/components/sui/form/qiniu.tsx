@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { useRef, PropRef, useState } from 'preact/hooks'
 
 import Button from './button'
-import { req, Api, QINIU_UPLOAD_URL, iOError } from '../../helpers'
+import { req, Api, QINIU_UPLOAD_URL, iOError } from 'src/helpers'
 
 
 interface IQiniuInputProps {

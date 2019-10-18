@@ -46,7 +46,6 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
   { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {}
 
-// This is the production configuration focused on producing a fast and minimal bundle.
 module.exports = {
   mode: 'production',
   // Don't attempt to continue if there are any errors.
@@ -86,7 +85,7 @@ module.exports = {
   module: {
     strictExportPresence: true,
     rules: [
-      // { parser: { requireEnsure: false } },
+      { parser: { requireEnsure: false } },
       {
         test: /\.(js|jsx|mjs)$/,
         loader: require.resolve('source-map-loader'),

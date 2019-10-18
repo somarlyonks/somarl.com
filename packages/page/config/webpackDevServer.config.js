@@ -7,38 +7,30 @@ const config = require('./webpack.config.dev')
 const paths = require('./paths')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
+const PUBLIC_HOST = process.env.PUBLIC_HOST || false
 const host = process.env.HOST || '0.0.0.0'
 
-module.exports = function (proxy, allowedHost) {
+module.exports = function () {
   return {
-    // https://github.com/webpack/webpack-dev-server/issues/887
-    // https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a
-    disableHostCheck: !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
+    disableHostCheck: true,
+    public: PUBLIC_HOST,
+    host,
+    https: protocol === 'https',
     compress: true,
     clientLogLevel: 'none',
     contentBase: paths.appPublic,
     watchContentBase: true,
     hot: true,
-    // as we specified in the config. In development, we always serve from /.
     publicPath: config.output.publicPath,
     quiet: true,
-    // https://github.com/facebookincubator/create-react-app/issues/293
-    // https://github.com/facebookincubator/create-react-app/issues/1065
     watchOptions: {
       ignored: ignoredFiles(paths.appSrc),
     },
-    // Enable HTTPS if the HTTPS environment variable is set to 'true'
-    https: protocol === 'https',
-    host,
     overlay: false,
     historyApiFallback: {
-      // See https://github.com/facebookincubator/create-react-app/issues/387.
       disableDotRule: true,
     },
-    public: allowedHost,
-    proxy,
     before (app) {
-      // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware())
       // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware())

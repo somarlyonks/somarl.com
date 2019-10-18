@@ -1,0 +1,30 @@
+$SIZE: 40px;
+$SMALL_SIZE: 20px;
+$LARGE_SIZE: 60px;
+
+.avatar {
+  height: $SIZE;
+  width: $SIZE;
+  &--small {
+    width: $SMALL_SIZE;
+    height: $SMALL_SIZE;
+  }
+  &--large {
+    width: $LARGE_SIZE;
+    height: $LARGE_SIZE;
+  }
+  &--circle {
+    img {
+      border-radius: 100%;
+    }
+  }
+  &--rounded {
+    img {
+      border-radius: 10%;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

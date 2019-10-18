@@ -19,10 +19,8 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles')
 const {
   choosePort,
   createCompiler,
-  prepareProxy,
   prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils')
-// const openBrowser = require('react-dev-utils/openBrowser')
 const paths = require('../config/paths')
 const config = require('../config/webpack.config.dev')
 const createDevServerConfig = require('../config/webpackDevServer.config')
@@ -32,6 +30,7 @@ const isInteractive = process.stdout.isTTY
 
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000
 const HOST = process.env.HOST || '0.0.0.0'
+const PUBLIC_HOST = process.env.PUBLIC_HOST || false
 
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) process.exit(1)
 
@@ -43,16 +42,13 @@ choosePort(HOST, DEFAULT_PORT)
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
     const appName = require(paths.appPackageJson).name
     const urls = prepareUrls(protocol, HOST, port)
+    if (PUBLIC_HOST) {
+      urls.lanUrlForTerminal = `${protocol}://${PUBLIC_HOST}`
+    }
 
     const compiler = createCompiler({webpack, config, appName, urls, useYarn})
 
-    const proxySetting = require(paths.appPackageJson).proxy
-    const proxyConfig = prepareProxy(proxySetting, paths.appPublic)
-
-    const serverConfig = createDevServerConfig(
-      proxyConfig,
-      urls.lanUrlForConfig
-    )
+    const serverConfig = createDevServerConfig()
     const devServer = new WebpackDevServer(compiler, serverConfig)
 
     devServer.listen(port, HOST, err => {
@@ -60,7 +56,6 @@ choosePort(HOST, DEFAULT_PORT)
       if (isInteractive) clearConsole()
 
       console.log(chalk.cyan('Starting the development server...\n'))
-      // openBrowser(urls.localUrlForBrowser)
     })
 
     ; ['SIGINT', 'SIGTERM'].forEach(sig => process.on(sig, () => {

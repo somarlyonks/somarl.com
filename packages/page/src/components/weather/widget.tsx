@@ -1,4 +1,5 @@
-import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
+import { h } from 'preact' // lgtm [js/unused-local-variable]
+import { useState, useEffect } from 'preact/hooks'
 
 import WeatherAnimation from './animation'
 import WeatherSupport from './support'
@@ -6,9 +7,6 @@ import * as Icons from '../icons'
 import Api from 'src/helpers/Api'
 import { weatherTypeMap, WeatherTypes } from 'src/helpers'
 
-
-export interface IWeatherWidgetProps {
-}
 
 interface IWidgetWeatherInfo {
   summary: S
@@ -20,7 +18,6 @@ interface IWidgetWeatherInfo {
 }
 
 export interface IWeatherWidgetState {
-  toggled: boolean
   weatherType: WeatherTypes
   weatherInfo: IWidgetWeatherInfo
 }
@@ -56,13 +53,8 @@ const WeatherInfomations = ({weatherInfo}: IWeatherInfomationsProps) => (
   </div>
 )
 
-export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeatherWidgetState> {
-  public timer?: NodeJS.Timeout
-  public static defaultProps: IWeatherWidgetProps = {
-  }
-
-  public readonly state: IWeatherWidgetState = {
-    toggled: false,
+export default function WeatherWidget () {
+  const [state, setState] = useState<IWeatherWidgetState>({
     weatherType: 'cloud',
     weatherInfo: {
       summary: 'Cloudy',
@@ -72,9 +64,9 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
       precipProbability: 0.1,
       windSpeed: 2,
     },
-  }
+  })
 
-  public componentDidMount () {
+  useEffect(() => {
     const getCurrentWeather = () => Api.getWeather(['flags', 'daily', 'hourly'])
     const updateWeather = () => getCurrentWeather().then(resp => {
       if (!Api.isResponseOK(resp) || !resp.body.currently) return
@@ -94,23 +86,18 @@ export default class WeatherWidget extends Component<IWeatherWidgetProps, IWeath
         windSpeed,
       }
 
-      this.setState({ weatherType, weatherInfo })
+      setState({ weatherType, weatherInfo })
     }).catch(console.warn)
 
     updateWeather()
-    this.timer = setInterval(updateWeather, 1000 * 60 * 5)
-  }
+    const timer = setInterval(updateWeather, 1000 * 60 * 5)
+    return () => clearInterval(timer)
+  }, [])
 
-  public componentWillUnmount () {
-    if (this.timer) clearInterval(this.timer)
-  }
-
-  public render () {
-    return (
-      <div class="relative weather-widget">
-        <WeatherAnimation type={this.state.weatherType} />
-        <WeatherInfomations weatherInfo={this.state.weatherInfo} />
-      </div>
-    )
-  }
+  return (
+    <div class="relative weather-widget">
+      <WeatherAnimation type={state.weatherType} />
+      <WeatherInfomations weatherInfo={state.weatherInfo} />
+    </div>
+  )
 }
