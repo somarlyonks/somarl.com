@@ -1,7 +1,6 @@
 import { HTTPStatusCodes } from './Adapter'
 import { API_SERVER } from './consts'
 import { HEADERS } from './headers'
-import { ProgressThread } from '../components/sui/progress'
 
 
 type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'TRACE' | 'OPTIONS'
@@ -53,14 +52,14 @@ function fetchFactory (method: IMethod) {
   } = {}) => {
     const options = { body, headers, method, json }
     const fetcher = url.startsWith('http') ? fetchPublicJson : fetchServerJson
-    const progressThread = new ProgressThread()
+    const progressThread = window.ProgressThread && new window.ProgressThread()
     try {
       return await fetcher<TResponse>(url, options)
     } catch (error) {
       console.error(error)
       return { status: 0, body: { error: 'NotImplementedErrorInceptor' }} as IApiResponseFail
     } finally {
-      progressThread.done()
+      if (progressThread) progressThread.done()
     }
   }
 }
