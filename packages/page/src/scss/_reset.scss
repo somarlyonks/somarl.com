@@ -1,6 +1,11 @@
 * {
   box-sizing: border-box;
   background-repeat: no-repeat;
+  text-decoration: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-shadow: none;
+  -webkit-font-smoothing: antialiased;
   &::after, &::before {
     box-sizing: border-box;
   }
@@ -36,4 +41,9 @@ ul {
 
 h1 {
   margin: 0;
+}
+
+input {
+  border-radius: 0;
+  appearance: none;
 }

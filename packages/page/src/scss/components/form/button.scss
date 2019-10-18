@@ -34,9 +34,9 @@
   }
 
   &:disabled {
-    background-color: rgb(243, 242, 241);
-    border-color: rgb(243, 242, 241);
-    color: rgb(161, 159, 157);
+    background-color: $fabricDeepWhite;
+    border-color: $fabricDeepWhite;
+    color: $fabricLightGrey;
   }
 
   &--borderless {
