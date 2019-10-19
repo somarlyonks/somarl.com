@@ -9,23 +9,31 @@ import '../config/env'
 import paths from '../config/paths'
 
 
-// node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css
+function getArg (tag: string, fallback: string = ''): string {
+  const { argv } = process
+  const index = argv.findIndex(arg => arg === tag)
+  if (index !== -1 && argv.length > index + 1) return argv[index + 1]
+  return fallback
+}
 
+// node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css
 const sassEnv = (name: string, value: string) => `$${name}: ${value};`
 const sassEnvs = (envs: object) => Object.keys(envs).map(_var => sassEnv(_var, envs[_var])).join('\n')
-// const sassEntry = entry => `@import '${entry}';`
 const chalkErr = (err: Error) => console.info(chalk.red(String(err)))
 
 
-function loader (entry: any, envs: object, resolve: any, reject: any) {
-  // const data = sassEnvs(envs) + sassEntry(entry)
+const isStory = getArg('--story') === 'true'
+const inputFile = isStory ? paths.appStoryScss : paths.appScss
+const outputFile = isStory ? paths.appStoryCss : paths.appCss
+
+function loader (entry: string, envs: object, resolve: any, reject: any) {
   const data = sassEnvs(envs)
   const options = Object.assign({}, {
-    file: paths.appScss,
+    file: entry,
     includePaths: [
       paths.appNodeModules,
     ],
-    outFile: paths.appCss,
+    outFile: outputFile,
   }, {
     // data
   })
@@ -40,13 +48,13 @@ function loader (entry: any, envs: object, resolve: any, reject: any) {
 }
 
 loader(
-  paths.appScss,
+  inputFile,
   {
     REACT_APP_API_SERVER: `'${process.env.REACT_APP_API_SERVER}'`,
   },
-  (r: sass.Result) => fs.createFile(paths.appCss, err =>
-    err ? chalkErr(err) : fs.writeFile(paths.appCss, r.css, err2 =>
-      err2 ? chalkErr(err2) : console.info(chalk.green(`Wrote file ${paths.appCss}`))
+  (r: sass.Result) => fs.createFile(outputFile, err =>
+    err ? chalkErr(err) : fs.writeFile(outputFile, r.css, err2 =>
+      err2 ? chalkErr(err2) : console.info(chalk.green(`Wrote file ${outputFile}`))
     )
   ),
   chalkErr

@@ -1,5 +1,7 @@
 # sass
 src/**/*.css
 src/**/_env.scss
+src/css
+src/story-css
 
 build/*

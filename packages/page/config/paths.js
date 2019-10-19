@@ -36,6 +36,8 @@ module.exports = {
   appScss: resolveApp('src/scss/index.scss'),
   appScssEnv: resolveApp('src/scss/_env.scss'),
   appCss: resolveApp('src/css/index.css'),
+  appStoryScss: resolveApp('src/stories/scss/index.scss'),
+  appStoryCss: resolveApp('src/story-css/index.css'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),

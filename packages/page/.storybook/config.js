@@ -1,4 +1,4 @@
 import { configure } from '@storybook/preact';
-import '../src/css/index.css'
+import '../src/story-css/index.css'
 
 configure(require.context('../src', true, /\.stories\.tsx$/), module);

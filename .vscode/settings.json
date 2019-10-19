@@ -11,13 +11,15 @@
     "**/*.log": true,
     "packages/page/build/dist": true,
     "packages/page/src/css": true,
+    // "packages/page/src/story-css": true,
     "packages/pipe/build": true,
     "packages/server/build": true,
     "scripts/frp/frpc": true,
     "scripts/frp/frps": true
   },
   "search.exclude": {
-    "packages/page/build": true
+    "packages/page/build": true,
+    "packages/page/src/story-css": true
   },
   "files.associations": {
     "tslint.json": "jsonc"
