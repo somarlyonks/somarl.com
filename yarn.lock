@@ -2568,9 +2568,9 @@
     pretty-hrtime "^1.0.3"
     regenerator-runtime "^0.12.1"
 
-"@storybook/preact@^5.2.4":
+"@storybook/preact@5.2.4":
   version "5.2.4"
-  resolved "https://registry.npmjs.org/@storybook/preact/-/preact-5.2.4.tgz#e09bc1297fa052a03284223295e43008cb1f6161"
+  resolved "https://registry.yarnpkg.com/@storybook/preact/-/preact-5.2.4.tgz#e09bc1297fa052a03284223295e43008cb1f6161"
   integrity sha512-vCYjhbKh+ZnDUjCuk+6JrG7sZy7l8vuUzPkzgw9N2cnpv1Cz49H577Akj/OhJFBmYX4XDPKbpYKFNmGXQh42Iw==
   dependencies:
     "@babel/plugin-transform-react-jsx" "^7.3.0"
