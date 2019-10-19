@@ -1,8 +1,8 @@
-import { h } from 'preact'
-import { Button } from '../components/sui'
+import { h } from 'preact' // lgtm [js/unused-local-variable]
 
-export default { title: 'Button' }
+
+export default { title: 'Welcome' }
 
 export const withText = () => (
-  <Button label="Standard" />
+  <div>Ho, hey!</div>
 )

@@ -26,6 +26,9 @@
     border-image: initial;
     border-radius: 2px;
     background: #fff;
+    &:hover {
+      border-color: $fabricBlack;
+    }
     input {
       font-size: 14px;
       font-weight: 400;
@@ -48,10 +51,16 @@
     }
   }
 
+  &__description {
+    color: $fabricGrey;
+    font-size: 12px;
+    padding-top: 3px;
+  }
+
   &__error-message {
     color: $fabricScarlet;
     font-size: 12px;
-    padding-top: 6px;
+    padding-top: 5px;
   }
 
   &--disabled {
@@ -63,8 +72,20 @@
       border-color: $fabricDeepWhite;
       input {
         color: $fabricLightGrey;
-        border-color: $fabricDeepWhite
+        border-color: $fabricDeepWhite;
       }
+    }
+  }
+
+  &--invalid {
+    .text-field__input-container {
+      border-color: $fabricScarlet;
+    }
+  }
+
+  &__input-container {
+    &:focus-within {
+      border-color: $fabricBlue;
     }
   }
 }
