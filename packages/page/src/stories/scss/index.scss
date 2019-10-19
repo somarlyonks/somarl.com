@@ -1,0 +1,12 @@
+@import '../../scss/index';
+
+body {
+  background-image: none;
+  margin: 10px;
+  padding: 10px;
+}
+
+body::before {
+  content: none;
+  background: #fff;
+}

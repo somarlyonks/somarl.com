@@ -5,7 +5,7 @@ import store, { ActionTypes, useRedux } from '../../redux'
 import Terminal from '../terminal/terminal'
 import Sysh from '../../helpers/sysh'
 
-import { Avatar, Qiniu } from 'src/components/sui'
+import { Avatar, Qiniu, TextField } from 'src/components/sui'
 
 
 interface IPanelLeftStates {
@@ -67,6 +67,11 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
         <aside className="flex-grow terminal-out">
           <Avatar user={user} />
           <Qiniu onUpload={console.info} />
+          <div style="background-color: #fff; padding: 15px;">
+            <TextField label="Standard" placeholder="placeholder" onInput={console.info} />
+            <TextField label="Disabled" value="test value" disabled={true} onInput={console.info} />
+            <TextField label="Disabled" placeholder="input here" disabled={true} onInput={console.info} />
+          </div>
           <div className="terminal-out__content no-scrollbar pre-wrap font-mono">{this.state.output}</div>
         </aside>
       </section>

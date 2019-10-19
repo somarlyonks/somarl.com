@@ -1,0 +1,91 @@
+@import '../../helpers/variables';
+
+.text-field {
+  cursor: text;
+  &:not(:first-child) {
+    margin-top: 15px;
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $fabricBlack;
+    margin: 0px;
+    display: block;
+    padding: 5px 0;
+    overflow-wrap: break-word;
+  }
+  &__input-container {
+    margin: 0px;
+    padding: 0px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border: 1px solid $fabricGrey;
+    border-image: initial;
+    border-radius: 2px;
+    background: #fff;
+    &:hover {
+      border-color: $fabricBlack;
+    }
+    input {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 0;
+      padding: 0 8px;
+      color: $fabricBlack;
+      width: 100%;
+      min-width: 0px;
+      text-overflow: ellipsis;
+      border-radius: 0px;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+      background: none transparent;
+      outline: 0px;
+      &::placeholder {
+        color: $fabricLightGrey;
+      }
+    }
+  }
+
+  &__description {
+    color: $fabricGrey;
+    font-size: 12px;
+    padding-top: 3px;
+  }
+
+  &__error-message {
+    color: $fabricScarlet;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  &--disabled {
+    label {
+      color: $fabricLightGrey;
+    }
+    .text-field__input-container {
+      background: $fabricDeepWhite;
+      border-color: $fabricDeepWhite;
+      input {
+        color: $fabricLightGrey;
+        border-color: $fabricDeepWhite;
+      }
+    }
+  }
+
+  &--invalid {
+    .text-field__input-container {
+      border-color: $fabricScarlet;
+    }
+  }
+
+  &__input-container {
+    &:focus-within {
+      border-color: $fabricBlue;
+    }
+  }
+}

@@ -9,7 +9,7 @@ const progressThreads = new Threads<ProgressThread>()
 // tslint:disable: no-magic-numbers
 const TRICKLE_SPEED = 200
 
-export class ProgressThread extends Thread {
+class ProgressThread extends Thread {
 
   private progress: N = 0
 
@@ -28,6 +28,7 @@ export class ProgressThread extends Thread {
   }
 
   public start () {
+    this.setProgress(0)
     const worker = () => setTimeout(() => {
       this.trickle()
       worker()
@@ -60,6 +61,7 @@ export class ProgressThread extends Thread {
   }
 
 }
+window.ProgressThread = ProgressThread
 // tslint:enable: no-magic-numbers
 
 
@@ -78,7 +80,7 @@ export default function Progress () {
       style={{
         transition: `all ${TRICKLE_SPEED}ms linear`,
         transform: `translate3d(${progress - 100}%, 0, 0)`,
-        opacity: progress === 100 ? 0 : 1,
+        opacity: progress === 0 || progress === 100 ? 0 : 1,
         background: color,
       }}
     >
