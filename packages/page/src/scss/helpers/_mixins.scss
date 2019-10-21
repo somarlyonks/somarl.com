@@ -53,3 +53,20 @@
     transform: scaleY(1);
   }
 }
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin inputBoxShadow($color) {
+  box-shadow:
+    0 1px 1px 0 rgba($color, 0.08),
+    0 1px 3px 1px rgba($color, 0.16);
+}
+
+@mixin inputFocusBoxShadow($color) {
+  box-shadow:
+    0 1px 3px 1px rgba($color, 0.2),
+    0 2px 8px 4px rgba($color, 0.1);
+}

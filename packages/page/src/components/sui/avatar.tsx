@@ -6,8 +6,8 @@ import { IUserState } from 'src/redux/store/user'
 
 interface IProps {
   user: IUserState['user']
-  size?: 'large' | 'default' | 'small'
-  shape?: 'circle' | 'rounded' | 'square'
+  size?: 'default' | 'large' | 'medium' | 'small'
+  shape?: 'rounded' | 'circle' | 'square'
 }
 
 

@@ -5,7 +5,7 @@
     "jsx": "react",
     "jsxFactory": "h",
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es6", "dom"],
+    "lib": ["es2019", "dom"],
     "module": "esnext", // prod: commonjs
     "moduleResolution": "node",
     "outDir": "build/dist",

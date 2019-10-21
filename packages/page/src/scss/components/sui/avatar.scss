@@ -1,17 +1,24 @@
+@import '../../helpers/mixins';
+
 $SIZE: 40px;
 $SMALL_SIZE: 20px;
+$MEDIUM_SIZE: 32px;
 $LARGE_SIZE: 60px;
 
 .avatar {
-  height: $SIZE;
-  width: $SIZE;
+  @include square($SIZE);
   &--small {
-    width: $SMALL_SIZE;
-    height: $SMALL_SIZE;
+    @include square($SMALL_SIZE);
+  }
+  &--medium {
+    @include square($MEDIUM_SIZE);
   }
   &--large {
-    width: $LARGE_SIZE;
-    height: $LARGE_SIZE;
+    @include square($LARGE_SIZE);
+  }
+
+  img {
+    @include square(100%);
   }
   &--circle {
     img {
@@ -22,9 +29,5 @@ $LARGE_SIZE: 60px;
     img {
       border-radius: 10%;
     }
-  }
-  img {
-    width: 100%;
-    height: 100%;
   }
 }

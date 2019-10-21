@@ -1,4 +1,5 @@
 @import '../../helpers/variables';
+@import '../../helpers/mixins';
 
 .text-field {
   cursor: text;
@@ -80,12 +81,14 @@
   &--invalid {
     .text-field__input-container {
       border-color: $fabricScarlet;
+      @include inputBoxShadow($fabricScarlet);
     }
   }
 
   &__input-container {
     &:focus-within {
       border-color: $fabricBlue;
+      @include inputBoxShadow($fabricBlue);
     }
   }
 }

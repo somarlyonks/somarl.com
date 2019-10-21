@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.common.json",
   "compilerOptions": {
-    "lib": ["es2016", "esnext.asynciterable"],
+    "lib": ["es2019"],
     "module": "commonjs",
     "target": "es2017",
     "outDir": "./build",

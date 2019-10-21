@@ -17,6 +17,9 @@
   outline: transparent;
   user-select: none;
   -webkit-font-smoothing: antialiased;
+  text-overflow: ellipsis;
+  appearance: button;
+  cursor: pointer;
 
   &:hover, &:active {
     background-color: $fabricWhite;

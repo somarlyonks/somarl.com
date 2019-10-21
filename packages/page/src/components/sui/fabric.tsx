@@ -6,11 +6,14 @@ interface IFabricProps {
   children: A
 }
 
-export default function Fabric (props: IFabricProps) {
+export default function Fabric ({
+  class: className = '',
+  children,
+}: IFabricProps) {
   return (
-    <div class={`fabric-wrapper absolute--full ${props.class}`}>
+    <div class={`fabric-wrapper ${className}`}>
       <div class="fabric-container">
-        {...props.children}
+        {...children}
       </div>
     </div>
   )
