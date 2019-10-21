@@ -6,7 +6,7 @@ import Fabric from '../fabric'
 
 interface IButtonProps {
   label: S
-  loading?: boolean // TODO: loading
+  loading?: boolean
   disabled?: boolean
   classNames?: L<S>
   labelClassName?: S

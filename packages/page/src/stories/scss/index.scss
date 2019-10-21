@@ -10,3 +10,19 @@ body::before {
   content: none;
   background: #fff;
 }
+
+.story- {
+  &suite {
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
+    &__caption {
+      margin-block-end: 5px;
+    }
+    &__content {
+      & > *:not(:last-of-type) {
+        margin-right: 10px;
+      }
+    }
+  }
+}

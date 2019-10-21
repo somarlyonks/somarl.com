@@ -9,7 +9,7 @@
     "build": "npm-run-all build-css build-js",
     "build-css": "ts-node -O '{\"module\": \"commonjs\"}' scripts/build-css.ts",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules ./src/scss -o ./src/css --watch",
-    "build-css-story": "ts-node -O '{\"module\": \"commonjs\"}' scripts/build-css.ts --story true",
+    "build-css-story": "NODE_ENV=development ts-node -O '{\"module\": \"commonjs\"}' scripts/build-css.ts --story true",
     "watch-css-story": "npm run build-css-story && node-sass-chokidar --include-path ./node_modules ./src/stories/scss ./src/scss -o ./src/story-css --watch",
     "test": "node scripts/test.js",
     "ci": "node scripts/test.js --ci --coverage",

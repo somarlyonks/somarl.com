@@ -1,12 +1,8 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { TextField, Button } from 'src/components/sui'
+import { TextField } from 'src/components/sui'
 
 
-export default {
-  title: 'sui',
-}
-
-export const textField = () => {
+export const TextFieldStory = () => {
   const maxLength = 10
   const validate = async (value: S) =>
     value.length > maxLength
@@ -27,11 +23,5 @@ export const textField = () => {
       />
       <TextField label="With description" description="this is required" required={true} onInput={console.info} />
     </div>
-  )
-}
-
-export const button = () => {
-  return (
-    <Button label="Standard" />
   )
 }
