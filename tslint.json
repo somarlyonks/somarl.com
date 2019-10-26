@@ -44,6 +44,7 @@
     "no-this-assignment": true,
     "no-unused-expression": true,
     "no-var-keyword": true,
+    "object-literal-key-quotes": [true, "as-needed"],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "one-line": [true, "check-open-brace", "check-whitespace", "check-else", "check-catch", "check-finally"],

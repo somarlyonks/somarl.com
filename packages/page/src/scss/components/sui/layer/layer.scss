@@ -1,0 +1,29 @@
+@import '../../../helpers/variables';
+
+.layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  visibility: hidden;
+  z-index: -1;
+  &--callout {
+    z-index: $zHover;
+  }
+  &--dialog {
+    z-index: $zDialog;
+  }
+
+  &__content {
+    position: relative;
+  }
+}
+
+.callout {
+  visibility: visible;
+  position: absolute;
+}
