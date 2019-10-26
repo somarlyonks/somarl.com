@@ -1,0 +1,53 @@
+@import '../../helpers/variables';
+@import '../../helpers/mixins';
+
+.hover- {
+  &wrapper {
+    display: inline-block;
+  }
+  &callout {
+    background: #fff;
+    color: #333;
+    &::after {
+      @include absoluteCTL(50%, 50%);
+      width: 0;
+      height: 0;
+      font-size: 0;
+      overflow: hidden;
+      border-width: 6px;
+      border-style: solid dashed dashed;
+    }
+    &--top {
+      transform: translate(-50%, -100%);
+      &::after {
+        border-color: #fff transparent transparent transparent;
+        top: 100%;
+        transform: translate(-50%, 0%);
+      }
+    }
+    &--right {
+      transform: translate(0, -50%);
+      &::after {
+        border-color: transparent #fff transparent transparent;
+        left: 0;
+        transform: translate(-100%, -50%);
+      }
+    }
+    &--bottom {
+      transform: translate(-50%, 0);
+      &::after {
+        border-color: transparent transparent #fff transparent;
+        top: 0;
+        transform: translate(-50%, -100%);
+      }
+    }
+    &--left {
+      transform: translate(-100%, -50%);
+      &::after {
+        border-color: transparent transparent transparent #fff;
+        left: 100%;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}

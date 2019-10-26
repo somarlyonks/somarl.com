@@ -15,3 +15,14 @@ type R<T> = T extends F<infer RR> ? RR : never
 type Resolved<TSource> = TSource extends P<infer RSource>
   ? RSource
   : { [K in keyof TSource]: Resolved<TSource[K]> }
+
+interface IV2 {
+  x: N
+  y: N
+}
+
+interface IV3 extends IVect2 {
+  z: N
+}
+
+type TargetElement = Element | EventTarget | null
