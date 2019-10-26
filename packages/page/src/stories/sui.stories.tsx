@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/preact'
 
 import {
   AvatarStory, DominoStory,
+  HoverableStory,
   ButtonStory, TextFieldStory
 } from './sui'
 
@@ -10,6 +11,7 @@ import {
 storiesOf('sui', module)
   .add('Avatar', () => <AvatarStory />)
   .add('Domino', () => <DominoStory />)
+  .add('hoverable', () => <HoverableStory />)
 
 storiesOf('sui|form', module)
   .add('Button', () => <ButtonStory />)
