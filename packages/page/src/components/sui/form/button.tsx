@@ -35,7 +35,7 @@ export default function Button ({
       style={style}
       disabled={disabled || loading}
     >
-      <Fabric>
+      <Fabric clearfix={true}>
         {loading
           ? <Icons.Loading style="transform: scale(0.75);" />
           : <span class={'fabric-btn__label ' + labelClassName}>{label}</span>
