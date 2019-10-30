@@ -1,18 +1,22 @@
+export type IPosition = 'top' | 'right' | 'bottom' | 'left'
+                      | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-left' | 'bottom-right'
+                      | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
+
 export function getRelativePivot (
-  $el: TargetElement, position: 'top' | 'right' | 'bottom' | 'left', offset = 0
+  $el: TargetElement, position: IPosition, offset = 0
 ): {} | IV2 {
   return getPivot($el, position, offset, false)
 }
 
 export function getAbsolutePivot (
-  $el: TargetElement, position: 'top' | 'right' | 'bottom' | 'left', offset = 0
+  $el: TargetElement, position: IPosition, offset = 0
 ): {} | IV2 {
   return getPivot($el, position, offset)
 }
 
 export function getPivot (
   $el: TargetElement,
-  position: 'top' | 'right' | 'bottom' | 'left',
+  position: IPosition,
   offset = 0,
   absolute = true
 ): {} | IV2 {
@@ -25,7 +29,9 @@ export function getPivot (
     y: box.height / 2,
   }
 
-  switch (position) {
+  const [mainPosition, subPosition] = position.split('-')
+
+  switch (mainPosition) {
     case 'top':
       ret.y = 0 - offset
       break
@@ -37,6 +43,24 @@ export function getPivot (
       break
     case 'left':
       ret.x = 0 - offset
+      break
+
+    default:
+      break
+  }
+
+  switch (subPosition) {
+    case 'top':
+      ret.y = 0
+      break
+    case 'right':
+      ret.x = box.width
+      break
+    case 'bottom':
+      ret.y = box.height
+      break
+    case 'left':
+      ret.x = 0
       break
 
     default:

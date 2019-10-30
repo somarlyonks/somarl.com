@@ -9,63 +9,35 @@
     background: #fff;
     color: $fabricBlack;
     border-radius: 2px;
-    padding: 5px;
-    &::after, &::before {
-      @include absoluteCTL(50%, 50%);
-      width: 6px;
-      height: 6px;
-      font-size: 0;
-      overflow: hidden;
-      border: 0;
-      background: #fff;
-      z-index: -1;
-      transform-origin: 0 0;
+    padding: 0;
+    margin: 0;
+    &--top {
+      transform: translate(0, -100%);
     }
-    &::before {
-      transform: rotate(45deg) translate(-50%, -50%);
-      box-shadow: inherit;
+    &--right {
+      transform: translate(0, 0);
+    }
+    &--bottom {
+      transform: translate(0， 0);
+    }
+    &--left {
+      transform: translate(-100%, 0);
     }
     &--top, &--bottom {
-      &::after {
-        width: 10px;
+      .hover-beak {
+        transform: translate(-50%, 0) rotate(45deg);
       }
     }
     &--left, &--right {
-      &::after {
-        height: 10px;
+      .hover-beak {
+        transform: translate(0, -50%) rotate(45deg);
       }
     }
-    &--top {
-      &, &::after {
-        transform: translate(-50%, -100%);
-      }
-      &::before, &::after {
-        top: 100%;
-      }
-    }
-    &--right {
-      &, &::after {
-        transform: translate(0, -50%);
-      }
-      &::before, &::after {
-        left: 0;
-      }
-    }
-    &--bottom {
-      &, &::after {
-        transform: translate(-50%, 0);
-      }
-      &::before, &::after {
-        top: 0;
-      }
-    }
-    &--left {
-      &, &::after {
-        transform: translate(-100%, -50%);
-      }
-      &::before, &::after {
-        left: 100%;
-      }
-    }
+  }
+  &beak {
+    position: absolute;
+    background: #fff;
+    transform: rotate(45deg);
+    box-shadow: inherit;
   }
 }
