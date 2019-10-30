@@ -47,6 +47,41 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     fakeContrastText: '',
   }
 
+  public componentDidMount () {
+    // this.onFocus() // autoFocus
+  }
+
+  public render () {
+    const { borderLeftColor } = useRedux(state => ({
+      borderLeftColor: state.global.themeColor,
+    }))
+
+    return (
+      <div className="terminal-input">
+        <input
+          type="text"
+          style={{borderLeftColor}}
+          className="terminal-input__input"
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          onInput={this.onChange}
+          onKeyUp={this.onKeyUp}
+          onMouseUp={this.jumpTo}
+        />
+        <SupportInput
+          className="terminal-input__support"
+          supportText={this.state.caretText}
+          display={this.state.supportDisplay}
+        />
+        <SupportInput
+          className="terminal-input__support terminal-input__support_contrast"
+          supportText={this.state.fakeContrastText}
+          display={this.state.supportDisplay}
+        />
+      </div>
+    )
+  }
+
   private readonly onFocus: h.JSX.FocusEventHandler = event => {
     if (this.props.onFocus) {
       this.props.onFocus()
@@ -98,40 +133,5 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
         this.props.onEmit(target.value)
       }
     }
-  }
-
-  public componentDidMount () {
-    // this.onFocus() // autoFocus
-  }
-
-  public render () {
-    const { borderLeftColor } = useRedux(state => ({
-      borderLeftColor: state.global.themeColor,
-    }))
-
-    return (
-      <div className="terminal-input">
-        <input
-          type="text"
-          style={{borderLeftColor}}
-          className="terminal-input__input"
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onInput={this.onChange}
-          onKeyUp={this.onKeyUp}
-          onMouseUp={this.jumpTo}
-        />
-        <SupportInput
-          className="terminal-input__support"
-          supportText={this.state.caretText}
-          display={this.state.supportDisplay}
-        />
-        <SupportInput
-          className="terminal-input__support terminal-input__support_contrast"
-          supportText={this.state.fakeContrastText}
-          display={this.state.supportDisplay}
-        />
-      </div>
-    )
   }
 }

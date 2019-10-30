@@ -20,13 +20,6 @@ const binksMeta: IBinksRecord[] = require(path.join(binksDir, '..', 'buffer/COPY
 export default class BinksService {
   private imgs?: L<S>
 
-  private async getTodayImageName () {
-    if (!this.imgs) {
-      this.imgs = await sortdir(binksDir)
-    }
-    return this.imgs[getDayOfYear() % this.imgs.length]
-  }
-
   public async getImage () {
     const imgName = await this.getTodayImageName()
     return readFile(path.join(binksDir, imgName))
@@ -37,5 +30,12 @@ export default class BinksService {
     const img = imgName.split('.')[0]
 
     return binksMeta.find(record => record.image === img) || { copyright: '', image: img }
+  }
+
+  private async getTodayImageName () {
+    if (!this.imgs) {
+      this.imgs = await sortdir(binksDir)
+    }
+    return this.imgs[getDayOfYear() % this.imgs.length]
   }
 }

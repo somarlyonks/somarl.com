@@ -13,11 +13,11 @@ export const ButtonStory = () => {
       </Suite>
 
       <Suite caption="disabled">
-        <Button label="Standard" disabled={true} />
+        <Button label="Disabled" disabled />
       </Suite>
 
       <Suite caption="loading">
-        <Button label="Standard" loading={true} />
+        <Button label="Loading" loading />
       </Suite>
     </div>
   )

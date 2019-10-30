@@ -6,7 +6,7 @@ export async function fetchPublicJson (api: S, body?: S) {
     // mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
   }
   if (body) {

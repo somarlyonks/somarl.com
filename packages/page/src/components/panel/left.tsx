@@ -20,28 +20,6 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
     output: 'Input things like: blogs --page=2',
   }
 
-  private readonly handleInputChange = (input: string) => {
-    this.setState({output: '...'})
-    this.parseInput(input).then(
-      output => this.setState({ output })
-    )
-  }
-
-  private readonly handleInputted = (input: string) => {
-    this.setState({output: 'processing...'})
-    this.execCommand(input).then(
-      output => this.setState({ output })
-    )
-  }
-
-  private readonly parseInput = (input: string) => {
-    return Sysh.parse(input)
-  }
-
-  private readonly execCommand = (input: string) => {
-    return Sysh.exec(input)
-  }
-
   public componentDidMount () {
     Sysh.register(output => store.dispatch({
       type: ActionTypes.global.SET_RICHOUTPUT,
@@ -71,5 +49,27 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
         </aside>
       </section>
     )
+  }
+
+  private readonly handleInputChange = (input: string) => {
+    this.setState({output: '...'})
+    this.parseInput(input).then(
+      output => this.setState({ output })
+    )
+  }
+
+  private readonly handleInputted = (input: string) => {
+    this.setState({output: 'processing...'})
+    this.execCommand(input).then(
+      output => this.setState({ output })
+    )
+  }
+
+  private readonly parseInput = (input: string) => {
+    return Sysh.parse(input)
+  }
+
+  private readonly execCommand = (input: string) => {
+    return Sysh.exec(input)
   }
 }

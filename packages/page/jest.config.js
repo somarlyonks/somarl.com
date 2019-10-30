@@ -2,7 +2,8 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
-    '!src/registerServiceWorker.ts'
+    '!src/registerServiceWorker.ts',
+    '!src/stories/**/*'
   ],
   // 'roots': [
   //   '<rootDir>/src/test'

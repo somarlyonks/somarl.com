@@ -8,7 +8,7 @@ import { IRecipeRepo } from './specs'
 @Injectable()
 export class RecipeRepo extends Repo<Recipe> implements IRecipeRepo {
   protected async preCreate (data: ModelData<Recipe>) {
-    console.log('Extra things done before create!!!')
+    console.info('Extra things done before create!!!')
     return data
   }
 }
