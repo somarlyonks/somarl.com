@@ -38,7 +38,7 @@
     "type-graphql": "0.17.5"
   },
   "devDependencies": {
-    "@types/passport-jwt": "3.0.2",
+    "@types/passport-jwt": "3.0.3",
     "@types/passport-local": "1.0.33",
     "@types/qiniu": "7.0.1",
     "if-env": "1.0.4",
