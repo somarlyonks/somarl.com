@@ -1,9 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.tabSize": 2,
-  "[python]": {
-    "editor.tabSize": 4
-  },
   "files.exclude": {
     "**/node_modules": true,
     "**/coverage": true,
@@ -39,5 +36,17 @@
     { "icon": "nest_service_ts", "extensions": ["service.ts"], "filename": true },
     { "icon": "testts", "extensions": ["specs.ts", "spec.ts"], "filename": true },
     { "icon": "graphql", "extensions": ["schema.gql"], "filename": true}
-  ]
+  ],
+  "vsicons.associations.folders": [
+    {
+      "icon": "middleware",
+      "extensions": ["middlewares"],
+      "filename": true
+    },
+    {
+      "icon": "story",
+      "extensions": [".storybook"],
+      "filename": true
+    }
+  ],
 }

@@ -11,17 +11,22 @@ export const TextFieldStory = () => {
   return (
     <div>
       <TextField label="Standard" placeholder="placeholder" onInput={console.info} />
-      <TextField label="Disabled" value="test value" disabled={true} onInput={console.info} />
-      <TextField label="Required" required={true} onInput={console.info} />
+      <TextField label="Disabled" value="test value" disabled onInput={console.info} />
+      <TextField label="Required" required onInput={console.info} />
       <TextField label="maxLength" maxLength={maxLength} placeholder="placeholder" onInput={console.info} />
       <TextField
         label="PromiseValidate"
         value="This is too looooooooooooooooooooog."
-        required={true}
+        required
         onInput={console.info}
         validate={validate}
       />
-      <TextField label="With description" description="this is required" required={true} onInput={console.info} />
+      <TextField
+        label="With description"
+        description="this is required"
+        required
+        onInput={console.info}
+      />
     </div>
   )
 }

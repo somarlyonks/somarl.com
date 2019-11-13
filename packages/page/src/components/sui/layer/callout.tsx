@@ -1,5 +1,5 @@
-import { h } from 'preact' // lgtm [js/unused-local
-import { forwardRef } from 'preact/compat'
+import { h } from 'preact'
+import { forwardRef, Ref } from 'preact/compat'
 
 import { Layer } from './layer'
 
@@ -8,7 +8,7 @@ interface ICalloutProps {
   visible: boolean
   top: N
   left: N
-  children: A
+  children: h.JSX.Element | L<h.JSX.Element>
   class?: S
 }
 
@@ -18,7 +18,7 @@ export const Callout = forwardRef(({
   left,
   top,
   class: className = '',
-}: ICalloutProps, ref) => {
+}: ICalloutProps, ref: Ref<HTMLDivElement>) => {
   if (visible) return (
     <Layer type="callout">
       <div
@@ -27,10 +27,10 @@ export const Callout = forwardRef(({
         tabIndex={-1}
         style={{ top, left }}
       >
-        {...children}
+        {children}
       </div>
     </Layer>
   )
 
-  return (<div class="hidden" />)
+  return (<div ref={ref} class="callout__scarecrow">{children}</div>)
 })

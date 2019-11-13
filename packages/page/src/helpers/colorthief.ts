@@ -159,8 +159,8 @@ export default class ColorThief {
 
 
 class PQueue<T = A> {
-  private sorted: boolean
   public contents: L<T>
+  private sorted: boolean
 
   public get size () {
     return this.contents.length
@@ -171,11 +171,6 @@ class PQueue<T = A> {
   ) {
     this.sorted = false
     this.contents = []
-  }
-
-  private sort () {
-    this.contents.sort(this.compareFn)
-    this.sorted = true
   }
 
   public push (o: T) {
@@ -201,6 +196,11 @@ class PQueue<T = A> {
   public debug () {
     if (!this.sorted) this.sort()
     return this.contents
+  }
+
+  private sort () {
+    this.contents.sort(this.compareFn)
+    this.sorted = true
   }
 }
 
@@ -252,6 +252,28 @@ const MMCQ = (() => {
       public b2: N,
       public histo: L<N>
     ) { }
+
+    public static fromPixels (pixels: L<L<N>>, histo: L<N>) {
+      let rmin = Infinity
+      let gmin = Infinity
+      let bmin = Infinity
+      let rmax = pixels[ 0 ][ 0 ] >> rshift
+      let gmax = pixels[ 0 ][ 1 ] >> rshift
+      let bmax = pixels[ 0 ][ 2 ] >> rshift
+      // find min/max
+      pixels.forEach(pixel => {
+        const rval = pixel[ 0 ] >> rshift
+        const gval = pixel[ 1 ] >> rshift
+        const bval = pixel[ 2 ] >> rshift
+        if (rval < rmin) rmin = rval
+        else if (rval > rmax) rmax = rval
+        if (gval < gmin) gmin = gval
+        else if (gval > gmax) gmax = gval
+        if (bval < bmin) bmin = bval
+        else if (bval > bmax) bmax = bval
+      })
+      return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, histo)
+    }
 
     public volume (force = false): N {
       if (!this._volume || force) {
@@ -322,28 +344,6 @@ const MMCQ = (() => {
         gval >= this.g1 && gval <= this.g2 &&
         bval >= this.b1 && bval <= this.b2
       )
-    }
-
-    public static fromPixels (pixels: L<L<N>>, histo: L<N>) {
-      let rmin = Infinity
-      let gmin = Infinity
-      let bmin = Infinity
-      let rmax = pixels[ 0 ][ 0 ] >> rshift
-      let gmax = pixels[ 0 ][ 1 ] >> rshift
-      let bmax = pixels[ 0 ][ 2 ] >> rshift
-      // find min/max
-      pixels.forEach(pixel => {
-        const rval = pixel[ 0 ] >> rshift
-        const gval = pixel[ 1 ] >> rshift
-        const bval = pixel[ 2 ] >> rshift
-        if (rval < rmin) rmin = rval
-        else if (rval > rmax) rmax = rval
-        if (gval < gmin) gmin = gval
-        else if (gval > gmax) gmax = gval
-        if (bval < bmin) bmin = bval
-        else if (bval > bmax) bmax = bval
-      })
-      return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, histo)
     }
   }
 

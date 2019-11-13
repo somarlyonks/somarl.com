@@ -5,11 +5,11 @@ import cors from 'cors'
 
 @Injectable()
 export class CorsMiddleware implements NestMiddleware {
+  private static options: cors.CorsOptions
+
   public static configure (opts: cors.CorsOptions) {
     this.options = opts
   }
-
-  private static options: cors.CorsOptions
 
   public use (req: Request, res: Response, next: F) {
     res.header('X-Powered-By', 'NestJS')

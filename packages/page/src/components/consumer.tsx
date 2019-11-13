@@ -16,11 +16,11 @@ export default function Consumer () {
     testCount: state.global.testCount,
   }))
 
-  const ADec: h.JSX.MouseEventHandler = event => store.dispatch({
+  const ADec: h.JSX.MouseEventHandler<HTMLButtonElement> = event => store.dispatch({
     type: ActionTypes.global.DECREMENT,
     payload: API('1'),
   })
-  const AInc: h.JSX.MouseEventHandler = event => store.dispatch(incN(1))
+  const AInc: h.JSX.MouseEventHandler<HTMLButtonElement> = event => store.dispatch(incN(1))
 
   return (
     <div>

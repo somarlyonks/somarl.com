@@ -60,7 +60,7 @@ export default class ArangoCoreModule {
           try {
             await db.login(options.username, options.password)
           } catch (error) {
-            console.log(error)
+            console.info(error)
           }
         }
         Logger.log(`[AarangoDB]: Connected at ${options.url}`)

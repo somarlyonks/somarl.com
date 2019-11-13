@@ -30,7 +30,7 @@ const SupportInput = ({className, supportText, display}: ISupportInputProps) => 
     className={className}
     value={supportText}
     style={{display: display ? 'block' : 'none'}}
-    readOnly={true}
+    readOnly
   />
 )
 
@@ -45,59 +45,6 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     supportDisplay: false,
     caretText: '█',
     fakeContrastText: '',
-  }
-
-  private readonly onFocus: h.JSX.FocusEventHandler = event => {
-    if (this.props.onFocus) {
-      this.props.onFocus()
-    }
-
-    this.setState({ supportDisplay: true })
-    setTerminalState('focus')
-  }
-
-
-  private readonly onBlur: h.JSX.FocusEventHandler = event => {
-    this.setState({ supportDisplay: false })
-    // setTerminalState('blur') // FIXME: @sy DEBUG
-  }
-
-  /** @setState */
-  private readonly jumpTo = (event: Event) => {
-    if (!event.target) return ''
-
-    const target = event.target as HTMLInputElement
-    const position = target.selectionStart
-    const prefix = Array(position).fill(' ' as any).join('')
-    const text = target.value
-    const caretText = prefix + '█'
-    const fakeContrastText = prefix + (text[position!] || ' ')
-    const isFireOnChangeNeeded = this.props.onChange ? text !== this.state.text : true
-
-    this.setState({ text, caretText, fakeContrastText })
-
-    return isFireOnChangeNeeded ? text : false
-  }
-
-  private readonly onChange: h.JSX.GenericEventHandler = event => {
-    const maybeDirtyText = this.jumpTo(event)
-
-    if (maybeDirtyText !== false && this.props.onChange) {
-      this.props.onChange(maybeDirtyText)
-    }
-  }
-
-  private readonly onKeyUp: h.JSX.KeyboardEventHandler = event => {
-    this.jumpTo(event)
-    const target = event.target as HTMLInputElement
-
-    if (event.key === 'Enter') {
-      target.blur()
-      setTerminalState('output')
-      if (this.props.onEmit) {
-        this.props.onEmit(target.value)
-      }
-    }
   }
 
   public componentDidMount () {
@@ -133,5 +80,58 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
         />
       </div>
     )
+  }
+
+  private readonly onFocus: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
+    if (this.props.onFocus) {
+      this.props.onFocus()
+    }
+
+    this.setState({ supportDisplay: true })
+    setTerminalState('focus')
+  }
+
+
+  private readonly onBlur: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
+    this.setState({ supportDisplay: false })
+    // setTerminalState('blur') // FIXME: @sy DEBUG
+  }
+
+  /** @setState */
+  private readonly jumpTo = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
+    if (!event.target) return ''
+
+    const target = event.target as HTMLInputElement
+    const position = target.selectionStart
+    const prefix = Array(position).fill(' ' as any).join('')
+    const text = target.value
+    const caretText = prefix + '█'
+    const fakeContrastText = prefix + (text[position!] || ' ')
+    const isFireOnChangeNeeded = this.props.onChange ? text !== this.state.text : true
+
+    this.setState({ text, caretText, fakeContrastText })
+
+    return isFireOnChangeNeeded ? text : false
+  }
+
+  private readonly onChange: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
+    const maybeDirtyText = this.jumpTo(event)
+
+    if (maybeDirtyText !== false && this.props.onChange) {
+      this.props.onChange(maybeDirtyText)
+    }
+  }
+
+  private readonly onKeyUp: h.JSX.KeyboardEventHandler<HTMLInputElement> = event => {
+    this.jumpTo(event)
+    const target = event.target as HTMLInputElement
+
+    if (event.key === 'Enter') {
+      target.blur()
+      setTerminalState('output')
+      if (this.props.onEmit) {
+        this.props.onEmit(target.value)
+      }
+    }
   }
 }

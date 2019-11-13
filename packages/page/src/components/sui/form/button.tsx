@@ -10,7 +10,7 @@ interface IButtonProps {
   disabled?: boolean
   classNames?: L<S>
   labelClassName?: S
-  onClick?: h.JSX.MouseEventHandler
+  onClick?: h.JSX.MouseEventHandler<HTMLButtonElement>
   style?: S | {[key: string]: S | N}
 }
 
@@ -35,7 +35,7 @@ export default function Button ({
       style={style}
       disabled={disabled || loading}
     >
-      <Fabric>
+      <Fabric clearfix>
         {loading
           ? <Icons.Loading style="transform: scale(0.75);" />
           : <span class={'fabric-btn__label ' + labelClassName}>{label}</span>

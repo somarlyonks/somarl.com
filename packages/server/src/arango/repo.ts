@@ -57,6 +57,14 @@ abstract class AbsRepo <TModel> {
     this.collection = this.db.collection(this.resourceName) as IShimDocCollection
   }
 
+  /**
+   * the adapted id is ArangoDocument._key
+   *                   ArangoDocument._id = collectionName/key
+   */
+  public $getIdByKey (id: S) {
+    return `${this.resourceName}/${id}`
+  }
+
   /** We have to initialize it every time we query to prevent conflicts */
   protected get Q (): Q<TModel> {
     return new Q(this.resourceName, this.db)
@@ -124,29 +132,13 @@ abstract class AbsRepo <TModel> {
     return this.collection.all()
   }
 
-  /**
-   * the adapted id is ArangoDocument._key
-   *                   ArangoDocument._id = collectionName/key
-   */
-  public $getIdByKey (id: S) {
-    return `${this.resourceName}/${id}`
-  }
-
 }
 
 
 export default abstract class Repo <TModel> extends AbsRepo<TModel> implements IRepo<TModel> {
 
-  protected async preCreate (data: ModelData<TModel>): P<ModelData<TModel>> {
-    return data
-  }
-
   public async create (data: ModelData<TModel>): P<TModel> {
     return this.postCreate(await this.$create(await this.preCreate(data)))
-  }
-
-  protected async postCreate (entity: IEntity<TModel>): P<TModel> {
-    return entity.dehydrate()
   }
 
   public async findOne (id: S) {
@@ -176,6 +168,14 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> implements I
     } catch (error) {
       return false
     }
+  }
+
+  protected async preCreate (data: ModelData<TModel>): P<ModelData<TModel>> {
+    return data
+  }
+
+  protected async postCreate (entity: IEntity<TModel>): P<TModel> {
+    return entity.dehydrate()
   }
 
 }

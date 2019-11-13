@@ -10,7 +10,7 @@ interface ITextFieldProps {
   label?: S
   value?: S
   placeholder?: S
-  onInput?: h.JSX.GenericEventHandler
+  onInput?: h.JSX.GenericEventHandler<HTMLInputElement>
   required?: boolean
   disabled?: boolean
   validate?: ITextFieldValidator
@@ -52,7 +52,7 @@ export default function TextField ({
     else validate(validatedMsg)
   }
 
-  const onInput: h.JSX.GenericEventHandler = event => {
+  const onInput: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
     const target = event.target as HTMLInputElement
     const newValue = target.value
     const newState: ITextFieldState = {
