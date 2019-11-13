@@ -21,18 +21,7 @@ interface IAdaptedStorageItem {
  */
 export class LS {
   private static HOST = localStorage
-
-  private static typeof (value: A) {
-    if (Object.prototype.toString.call(value) === '[object Date]') return 'date'
-    if (value === null) return 'null'
-    return typeof value
-  }
-
   private static STORAGE_PREFIX = '@@redux/LS/'
-
-  private static PREFIXED (key: string) {
-    return this.STORAGE_PREFIX + key
-  }
 
   public static SET (key: S, value: A) {
     const item: IAdaptedStorageItem = {
@@ -73,5 +62,15 @@ export class LS {
       if (!key.startsWith(this.STORAGE_PREFIX)) continue
       this.HOST.removeItem(key)
     }
+  }
+
+  private static typeof (value: A) {
+    if (Object.prototype.toString.call(value) === '[object Date]') return 'date'
+    if (value === null) return 'null'
+    return typeof value
+  }
+
+  private static PREFIXED (key: string) {
+    return this.STORAGE_PREFIX + key
   }
 }

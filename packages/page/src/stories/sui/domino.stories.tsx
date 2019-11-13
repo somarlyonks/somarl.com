@@ -13,7 +13,7 @@ export const DominoStory = () => {
   return (
     <div >
       <div class="absolute" style="z-index: 10000; top: 20px; left: 20px;">
-        <Button label={ready || 'Click me to complete loading.'} onClick={loaded}/>
+        <Button label={ready || 'Click me to complete loading.'} onClick={loaded} />
       </div>
       <Domino ready={ready} />
       <Fabric class="absolute--full">

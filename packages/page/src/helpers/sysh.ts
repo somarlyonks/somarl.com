@@ -29,12 +29,13 @@ export type StdOut = string
 
 
 export default class SyshParser {
+  public static syshWelcome = 'Input things like: plugin'
+
   private static configs = {
     hintLines: 5,
   }
-  public static reciver = (output: StdOut) => {}
 
-  public static syshWelcome = 'Input things like: plugin'
+  public static reciver = (output: StdOut) => {}
 
   /** real time parse for hints/history search */
   public static async parse (command: string): Promise<StdOut> {
