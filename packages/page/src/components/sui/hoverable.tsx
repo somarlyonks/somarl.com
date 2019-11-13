@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { useState, useRef } from 'preact/hooks'
 
-import { bem, getAbsolutePivot, IPosition } from 'src/helpers'
+import { bem, getAbsolutePivot, ISimplePosition, IOffsetPosition, IPosition, simplePositionMap } from 'src/helpers'
 import { Callout } from './layer'
 
 interface IHoverableProps {
@@ -10,19 +10,51 @@ interface IHoverableProps {
   delay?: N
   onShow?: h.JSX.GenericEventHandler
   onHide?: h.JSX.GenericEventHandler
-  position?: 'top' | 'right' | 'bottom' | 'left'
+  position?: IPosition
   offset?: N
   beakSize?: N
 }
 
 interface IHoverableState {
   visible: boolean
-  position: 'top' | 'right' | 'bottom' | 'left'
+  position: IOffsetPosition
   x: N
   y: N
-  beakPosition: 'top' | 'right' | 'bottom' | 'left'
-  beakOffsetPosition: 'top' | 'right' | 'bottom' | 'left'
+  beakPosition: ISimplePosition
+  beakOffsetPosition: ISimplePosition
   beakOffset: N
+}
+
+const oppositePositionMap: {[k in IHoverableState['position']]: ISimplePosition} = {
+  'top-left': 'bottom',
+  'top-right': 'bottom',
+  'right-top': 'left',
+  'right-bottom': 'left',
+  'bottom-left': 'top',
+  'bottom-right': 'top',
+  'left-top': 'right',
+  'left-bottom': 'right',
+}
+
+const beakOffsetPositionMap: {[k in IHoverableState['position']]: ISimplePosition} = {
+  'top-left': 'left',
+  'top-right': 'right',
+  'right-top': 'top',
+  'right-bottom': 'bottom',
+  'bottom-left': 'left',
+  'bottom-right': 'right',
+  'left-top': 'top',
+  'left-bottom': 'bottom',
+}
+const beakOffsetAxisMap: {[k in IHoverableState['position']]: 'width' | 'height'} = {
+  'top-left': 'width',
+  'top-right': 'width',
+  'right-top': 'height',
+  'right-bottom': 'height',
+  'bottom-left': 'width',
+  'bottom-right': 'width',
+  'left-top': 'height',
+  'left-bottom': 'height',
 }
 
 
@@ -40,11 +72,12 @@ export default function Hoverable ({
   children,
   onShow,
   onHide,
-  position: propPosition = 'top',
+  position: rawPropPosition = 'top',
   offset = 7,
   beakSize = 5,
 }: IHoverableProps) {
   let delayTimer: NodeJS.Timeout
+  const propPosition: IOffsetPosition = simplePositionMap[rawPropPosition] || 'top-left'
   const [{ visible, x, y, position, beakPosition: beakPostion, beakOffsetPosition: beakOffsetPostion, beakOffset }, setState] = useState<IHoverableState>({
     visible: false,
     position: propPosition,
@@ -58,8 +91,11 @@ export default function Hoverable ({
 
   const $callout = useRef<HTMLDivElement>()
 
-  const getPosition = ($target: TargetElement, expectedPosition: IHoverableProps['position']) => {
-    const candidates: L<IHoverableState['position']> = ['top', 'bottom', 'right', 'left']
+  const getPosition = ($target: TargetElement, expectedPosition: IOffsetPosition) => {
+    const candidates: L<IHoverableState['position']> = [ 'top-left', 'top-right'
+                                                       , 'right-top' , 'right-bottom'
+                                                       , 'bottom-left' , 'bottom-right'
+                                                       , 'left-top' , 'left-bottom']
 
     if (!$callout.current) throw Error('callout content not ready')
     if (!($target instanceof Element)) throw Error('callout target not ready')
@@ -69,52 +105,47 @@ export default function Hoverable ({
 
     /** @todo @sy improve this */
     const isPositionFine = (xy: IV2, testPosition: IHoverableState['position']) => {
-      switch (testPosition) {
-        case 'top':
-          return calloutBox.height < xy.y
+      const [mainPosition, subPosition] = testPosition.split('-') as  L<ISimplePosition>
+      const isMainPositionFine = () => {
+        switch (mainPosition) {
+          case 'top':
+            return calloutBox.height < xy.y
 
-        case 'bottom':
-          return calloutBox.height + xy.y < window.innerHeight
+          case 'bottom':
+            return calloutBox.height + xy.y < window.innerHeight
 
-        case 'left':
-          return calloutBox.width < xy.x
+          case 'left':
+            return calloutBox.width < xy.x
 
-        case 'right':
-          return calloutBox.width + xy.x < window.innerWidth
+          case 'right':
+            return calloutBox.width + xy.x < window.innerWidth
+        }
       }
+      const isSubPositionFine = () => {
+        switch (subPosition) {
+          case 'left':
+            return xy.x + calloutBox.width < window.innerWidth
+
+          case 'right':
+            return xy.x > 0
+
+          case 'top':
+            return xy.y + calloutBox.height < window.innerHeight
+
+          case 'bottom':
+            return xy.y > 0
+        }
+      }
+      return isMainPositionFine() && isSubPositionFine()
     }
 
     const tryPosition = (testPosition: IHoverableState['position']): IV2 => {
-      const positionMap: {[k: string]: IPosition} = {
-        top: 'top-left',
-        right: 'right-top',
-        bottom: 'bottom-left',
-        left: 'left-top',
-      }
-      return {x: 0, y: 0, ...getAbsolutePivot($target, positionMap[testPosition], offset)}
+      return {x: 0, y: 0, ...getAbsolutePivot($target, testPosition, offset)}
     }
 
     const acceptPosition = (
       acceptedPosition: IHoverableState['position'], xy: IV2
     ): Partial<IHoverableState> => {
-      const oppositePositionMap: {[k: string]: IHoverableState['position']} = {
-        top: 'bottom',
-        right: 'left',
-        bottom: 'top',
-        left: 'right',
-      }
-      const beakOffsetPositionMap: {[k: string]: IHoverableState['position']} = {
-        top: 'left',
-        right: 'top',
-        bottom: 'left',
-        left: 'top',
-      }
-      const beakOffsetAxisMap: {[k: string]: 'width' | 'height'} = {
-        top: 'width',
-        right: 'height',
-        bottom: 'width',
-        left: 'height',
-      }
       const beakOffsetAxis = beakOffsetAxisMap[acceptedPosition]
       const adjustedBeakOffset = Math.min(calloutBox[beakOffsetAxis], targetBox[beakOffsetAxis]) / 2
 

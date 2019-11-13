@@ -11,26 +11,38 @@
     border-radius: 2px;
     padding: 0;
     margin: 0;
-    &--top {
-      transform: translate(0, -100%);
-    }
-    &--right {
-      transform: translate(0, 0);
-    }
-    &--bottom {
-      transform: translate(0， 0);
-    }
-    &--left {
-      transform: translate(-100%, 0);
-    }
-    &--top, &--bottom {
-      .hover-beak {
-        transform: translate(-50%, 0) rotate(45deg);
+    &- {
+      &-top-left, &-right-bottom {
+        transform: translate(0, -100%);
       }
-    }
-    &--left, &--right {
-      .hover-beak {
-        transform: translate(0, -50%) rotate(45deg);
+      &-top-right, &-left-bottom {
+        transform: translate(-100%, -100%);
+      }
+      &-right-top, &-bottom-left {
+        transform: translate(0, 0);
+      }
+      &-bottom-right, &-left-top {
+        transform: translate(-100%, 0);
+      }
+      &-top-left, &-bottom-left {
+        .hover-beak {
+          transform: translate(-50%, 0) rotate(45deg);
+        }
+      }
+      &-top-right, &-bottom-right {
+        .hover-beak {
+          transform: translate(50%, 0) rotate(45deg);
+        }
+      }
+      &-left-top, &-right-top {
+        .hover-beak {
+          transform: translate(0, -50%) rotate(45deg);
+        }
+      }
+      &-right-bottom, &-left-bottom {
+        .hover-beak {
+          transform: translate(0, 50%) rotate(45deg);
+        }
       }
     }
   }

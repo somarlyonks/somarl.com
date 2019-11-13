@@ -9,21 +9,37 @@ export const HoverableStory = () => {
   return (
     <div>
       <Suite caption="positions">
-      <Hoverable position="top">
+        <Hoverable position="top-left">
           <Button label="top" />
           <div>top</div>
         </Hoverable>
-        <Hoverable position="right">
+        <Hoverable position="top-right">
+          <Button label="top-right" />
+          <div>top-right</div>
+        </Hoverable>
+        <Hoverable position="right-top">
           <Button label="right" />
           <div>right</div>
         </Hoverable>
-        <Hoverable position="bottom">
+        <Hoverable position="right-bottom">
+          <Button label="right-bottom" />
+          <div>right-bottom</div>
+        </Hoverable>
+        <Hoverable position="bottom-left">
           <Button label="bottom" />
           <div>bottom</div>
         </Hoverable>
-        <Hoverable position="left">
+        <Hoverable position="bottom-right">
+          <Button label="bottom-right" />
+          <div>bottom-right</div>
+        </Hoverable>
+        <Hoverable position="left-top">
           <Button label="left" />
           <div>left</div>
+        </Hoverable>
+        <Hoverable position="left-bottom">
+          <Button label="left-bottom" />
+          <div>left-bottom</div>
         </Hoverable>
       </Suite>
 
@@ -47,7 +63,7 @@ export const HoverableStory = () => {
         </Hoverable>
       </Suite>
 
-      <Suite caption="right position not enough" fixme>
+      <Suite caption="right position not enough">
         <div style="flex: 2" />
         <Hoverable>
           <Button label="Hover" />

@@ -1,6 +1,9 @@
-export type IPosition = 'top' | 'right' | 'bottom' | 'left'
-                      | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-left' | 'bottom-right'
-                      | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
+export type ISimplePosition = 'top' | 'right' | 'bottom' | 'left'
+export type IOffsetPosition = 'top-left' | 'top-right'
+                            | 'right-top' | 'right-bottom'
+                            | 'bottom-left' | 'bottom-right'
+                            | 'left-top' | 'left-bottom'
+export type IPosition = ISimplePosition | IOffsetPosition
 
 export function getRelativePivot (
   $el: TargetElement, position: IPosition, offset = 0
@@ -73,4 +76,20 @@ export function getPivot (
   }
 
   return ret
+}
+
+
+export const simplePositionMap: {[k in IPosition]: IOffsetPosition} = {
+  top: 'top-left',
+  right: 'right-top',
+  bottom: 'bottom-left',
+  left: 'left-top',
+  'top-left': 'top-left',
+  'top-right': 'top-right',
+  'right-top': 'right-top',
+  'right-bottom': 'right-bottom',
+  'bottom-left': 'bottom-left',
+  'bottom-right': 'bottom-right',
+  'left-top': 'left-top',
+  'left-bottom': 'left-bottom',
 }
