@@ -69,7 +69,7 @@ export default function Progress () {
   const { progress, color } = useRedux(state => ({
     progress: state.fetch.progress,
     color: state.global.themeColor,
-  }), [2])
+  }))
 
   if (progress === undefined) return (<span style="display: none;">NONE</span>)
 
