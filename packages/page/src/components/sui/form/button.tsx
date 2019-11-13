@@ -10,7 +10,7 @@ interface IButtonProps {
   disabled?: boolean
   classNames?: L<S>
   labelClassName?: S
-  onClick?: h.JSX.MouseEventHandler
+  onClick?: h.JSX.MouseEventHandler<HTMLButtonElement>
   style?: S | {[key: string]: S | N}
 }
 

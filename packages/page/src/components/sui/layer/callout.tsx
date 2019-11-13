@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { forwardRef } from 'preact/compat'
+import { forwardRef, Ref } from 'preact/compat'
 
 import { Layer } from './layer'
 
@@ -18,7 +18,7 @@ export const Callout = forwardRef(({
   left,
   top,
   class: className = '',
-}: ICalloutProps, ref) => {
+}: ICalloutProps, ref: Ref<HTMLDivElement>) => {
   if (visible) return (
     <Layer type="callout">
       <div

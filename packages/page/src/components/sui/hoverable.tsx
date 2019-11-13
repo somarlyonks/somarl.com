@@ -8,8 +8,8 @@ interface IHoverableProps {
   class?: S
   children: L<h.JSX.Element>
   delay?: N
-  onShow?: h.JSX.GenericEventHandler
-  onHide?: h.JSX.GenericEventHandler
+  onShow?: h.JSX.GenericEventHandler<HTMLDivElement>
+  onHide?: h.JSX.GenericEventHandler<HTMLDivElement>
   position?: IPosition
   offset?: N
   beakSize?: N
@@ -170,7 +170,7 @@ export default function Hoverable ({
     return {position: candidates[0], x: 0, y: 0} // covered by loop guard, placed here to fool tsc
   }
 
-  const showHover: h.JSX.MouseEventHandler = e => {
+  const showHover: h.JSX.MouseEventHandler<HTMLDivElement> = e => {
     delayTimer = setTimeout(() => {
       try {
         setState(prev => ({...prev, visible: true, ...getPosition(e.target, propPosition)}))
@@ -180,7 +180,7 @@ export default function Hoverable ({
       }
     }, delay)
   }
-  const hideHover: h.JSX.MouseEventHandler = e => {
+  const hideHover: h.JSX.MouseEventHandler<HTMLDivElement> = e => {
     clearTimeout(delayTimer)
     deriveState({visible: false})
     if (onHide) onHide(e)
