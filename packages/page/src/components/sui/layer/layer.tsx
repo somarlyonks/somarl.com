@@ -48,8 +48,3 @@ export function Layer ({
     </div>
   )
 }
-
-
-export function CalloutLayer () {
-  // TODO: @sy
-}

@@ -1,0 +1,69 @@
+@import '../../../helpers/variables';
+@import '../../../helpers/mixins';
+
+
+.callout {
+  visibility: visible;
+  position: absolute;
+  box-shadow:
+    rgba(0, 0, 0, 0.133) 0px 6.4px 14.4px 0px,
+    rgba(0, 0, 0, 0.11) 0px 1.2px 3.6px 0px;
+  &__content {
+    position: relative;
+    padding: 5px 10px;
+    background-color: #fff;
+  }
+  &__beak {
+    position: absolute;
+    background: #fff;
+    transform: rotate(45deg);
+    box-shadow: inherit;
+  }
+  &__scarecrow {
+    visibility: hidden;
+    @include absoluteTL(0, 0);
+    z-index: -1;
+  }
+}
+
+.callout {
+  background: #fff;
+  color: $fabricBlack;
+  border-radius: 2px;
+  padding: 0;
+  margin: 0;
+  &- {
+    &-top-left, &-right-bottom {
+      transform: translate(0, -100%);
+    }
+    &-top-right, &-left-bottom {
+      transform: translate(-100%, -100%);
+    }
+    &-right-top, &-bottom-left {
+      transform: translate(0, 0);
+    }
+    &-bottom-right, &-left-top {
+      transform: translate(-100%, 0);
+    }
+    &-top-left, &-bottom-left {
+      .callout__beak {
+        transform: translate(-50%, 0) rotate(45deg);
+      }
+    }
+    &-top-right, &-bottom-right {
+      .callout__beak {
+        transform: translate(50%, 0) rotate(45deg);
+      }
+    }
+    &-left-top, &-right-top {
+      .callout__beak {
+        transform: translate(0, -50%) rotate(45deg);
+      }
+    }
+    &-right-bottom, &-left-bottom {
+      .callout__beak {
+        transform: translate(0, 50%) rotate(45deg);
+      }
+    }
+  }
+}
