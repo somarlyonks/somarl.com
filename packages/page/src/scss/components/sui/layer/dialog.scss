@@ -1,0 +1,18 @@
+@import '../../../helpers/variables';
+@import '../../../helpers/mixins';
+
+
+.dialog {
+  background-color: #fff;
+  padding: 10px;
+  &__button-group {
+    button:not(:last-of-type) {
+      margin-right: 10px;
+    }
+  }
+  &__scarecrow {
+    visibility: hidden;
+    @include absoluteTL(0, 0);
+    z-index: -1;
+  }
+}
