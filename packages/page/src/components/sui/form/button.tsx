@@ -2,36 +2,37 @@ import { h } from 'preact'
 
 import * as Icons from '../../icons'
 import Fabric from '../fabric'
+import { bem } from 'src/helpers'
 
 
 interface IButtonProps {
   label: S
   loading?: boolean
   disabled?: boolean
-  classNames?: L<S>
+  class?: S
   labelClassName?: S
+  primary?: boolean
+  borderless?: boolean
   onClick?: h.JSX.MouseEventHandler<HTMLButtonElement>
   style?: S | {[key: string]: S | N}
 }
 
-/**
- * @description magic words: 'primary', 'borderless'
- * @example
- *   <Button label="primary" classNames={['primary', 'borderless']} />
- */
+
 export default function Button ({
   label,
   loading = false,
   disabled = false,
-  classNames = [],
+  class: className = '',
   labelClassName = '',
   onClick = () => {},
   style = '',
+  primary = false,
+  borderless = false,
 }: IButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={'fabric-btn ' + classNames.map(s => `${s} fabric-btn--${s}`).join(' ')}
+      class={`fabric-btn ${className} ` + bem('fabric-btn', '', [{primary, borderless}])}
       style={style}
       disabled={disabled || loading}
     >
