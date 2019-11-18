@@ -93,8 +93,10 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
       }
     ),
   }
-  if (body) {
-    init.body = json ? JSON.stringify(json) : body
+  if (json) {
+    init.body = JSON.stringify(json)
+  } else if (body) {
+    init.body = body
   }
 
   const resp = await fetch(api, init)
@@ -130,8 +132,10 @@ export async function fetchPublicJson <TResponse = A> (api: S, { method, body, h
       'Content-Type': 'application/json;charset=UTF-8',
     }),
   }
-  if (body) {
-    init.body = json ? JSON.stringify(json) : body
+  if (json) {
+    init.body = JSON.stringify(json)
+  } else if (body) {
+    init.body = body
   }
 
   return fetch(api, init).then(r => r.json())

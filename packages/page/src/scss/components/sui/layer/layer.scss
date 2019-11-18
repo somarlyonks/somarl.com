@@ -12,6 +12,15 @@
   overflow-y: auto;
   visibility: hidden;
   z-index: -1;
+
+  .callout, .dialog {
+    visibility: visible;
+    position: absolute;
+    box-shadow:
+      rgba(0, 0, 0, 0.133) 0px 6.4px 14.4px 0px,
+      rgba(0, 0, 0, 0.11) 0px 1.2px 3.6px 0px;
+  }
+
   &--callout {
     z-index: $zHover;
   }
@@ -21,23 +30,5 @@
 
   &__content {
     position: relative;
-  }
-}
-
-.callout {
-  visibility: visible;
-  position: absolute;
-  box-shadow:
-    rgba(0, 0, 0, 0.133) 0px 6.4px 14.4px 0px,
-    rgba(0, 0, 0, 0.11) 0px 1.2px 3.6px 0px;
-  &__content {
-    position: relative;
-    padding: 5px 10px;
-    background-color: #fff;
-  }
-  &__scarecrow {
-    visibility: hidden;
-    @include absoluteTL(0, 0);
-    z-index: -1;
   }
 }

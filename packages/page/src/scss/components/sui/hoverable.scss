@@ -1,55 +1,6 @@
 @import '../../helpers/variables';
 @import '../../helpers/mixins';
 
-.hover- {
-  &wrapper {
-    display: inline-block;
-  }
-  &callout {
-    background: #fff;
-    color: $fabricBlack;
-    border-radius: 2px;
-    padding: 0;
-    margin: 0;
-    &- {
-      &-top-left, &-right-bottom {
-        transform: translate(0, -100%);
-      }
-      &-top-right, &-left-bottom {
-        transform: translate(-100%, -100%);
-      }
-      &-right-top, &-bottom-left {
-        transform: translate(0, 0);
-      }
-      &-bottom-right, &-left-top {
-        transform: translate(-100%, 0);
-      }
-      &-top-left, &-bottom-left {
-        .hover-beak {
-          transform: translate(-50%, 0) rotate(45deg);
-        }
-      }
-      &-top-right, &-bottom-right {
-        .hover-beak {
-          transform: translate(50%, 0) rotate(45deg);
-        }
-      }
-      &-left-top, &-right-top {
-        .hover-beak {
-          transform: translate(0, -50%) rotate(45deg);
-        }
-      }
-      &-right-bottom, &-left-bottom {
-        .hover-beak {
-          transform: translate(0, 50%) rotate(45deg);
-        }
-      }
-    }
-  }
-  &beak {
-    position: absolute;
-    background: #fff;
-    transform: rotate(45deg);
-    box-shadow: inherit;
-  }
+.hover-wrapper {
+  display: inline-block;
 }

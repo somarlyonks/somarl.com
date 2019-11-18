@@ -8,8 +8,8 @@ export const ButtonStory = () => {
     <div>
       <Suite caption="common">
         <Button label="Standard" onClick={console.info} />
-        <Button label="Primary" classNames={['primary']} />
-        <Button label="Borderless" classNames={['borderless']} />
+        <Button label="Primary" primary />
+        <Button label="Borderless" borderless />
       </Suite>
 
       <Suite caption="disabled">
