@@ -3,6 +3,7 @@ import { forwardRef, Ref, useRef, useState, useEffect } from 'preact/compat'
 
 import { Layer } from './layer'
 import { Button } from '../form'
+import { Cross } from 'src/components/icons'
 
 
 interface IDialogLayerProps {
@@ -38,7 +39,6 @@ const DialogLayer = forwardRef(({
   top,
   class: className = '',
 }: IDialogLayerProps, ref: Ref<HTMLDivElement>) => {
-  console.info('LLL', ref, visible) // TODELETE
   if (visible) return (
     <Layer type="dialog">
       <div
@@ -74,7 +74,7 @@ export function Dialog ({
     const dialogBox = $el.getBoundingClientRect()
     return {
       x: (window.innerWidth - dialogBox.width) / 2,
-      y: (window.innerHeight - dialogBox.height) / 2,
+      y: (window.innerHeight - dialogBox.height) * 2 / 5,
     }
   }
 
@@ -98,10 +98,9 @@ export function Dialog ({
           >
             <h1>{title}</h1>
             <Button
-              label="✕" // TODO: @sy replace it with icon
-              borderless
+              icon={<Cross />}
               onClick={onCancel}
-              style="padding: 0; font-size: 1.5em; min-width: 0; width: 32px; height: 32px"
+              borderless
             />
           </div>
         )
