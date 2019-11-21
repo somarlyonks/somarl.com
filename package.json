@@ -86,7 +86,7 @@
     "tslint-react": "4.1.0",
     "typescript": "3.7.0-dev.20191008",
     "uglifyjs-webpack-plugin": "2.2.0",
-    "url-loader": "2.2.0",
+    "url-loader": "2.3.0",
     "webpack": "4.41.2",
     "webpack-dev-server": "3.9.0",
     "webpack-manifest-plugin": "2.2.0"
