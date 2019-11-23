@@ -6,7 +6,8 @@ import { bem } from 'src/helpers'
 
 
 interface IButtonProps {
-  label: S
+  label?: S
+  icon?: h.JSX.Element
   loading?: boolean
   disabled?: boolean
   class?: S
@@ -20,6 +21,7 @@ interface IButtonProps {
 
 export default function Button ({
   label,
+  icon,
   loading = false,
   disabled = false,
   class: className = '',
@@ -32,13 +34,15 @@ export default function Button ({
   return (
     <button
       onClick={onClick}
-      class={`fabric-btn ${className} ` + bem('fabric-btn', '', [{primary, borderless}])}
+      class={`fabric-btn ${className} ` + bem('fabric-btn', '', [{primary, borderless, icon}])}
       style={style}
       disabled={disabled || loading}
     >
       <Fabric clearfix>
-        {loading
-          ? <Icons.Loading style="transform: scale(0.75);" />
+        { loading ?
+            <Icons.Loading style="transform: scale(0.75);" />
+          : icon ?
+            icon
           : <span class={'fabric-btn__label ' + labelClassName}>{label}</span>
         }
       </Fabric>

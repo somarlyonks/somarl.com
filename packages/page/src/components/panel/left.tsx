@@ -1,11 +1,11 @@
 import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
 
-import store, { ActionTypes, useRedux } from '../../redux'
+import store, { ActionTypes, useRedux } from 'src/redux'
+import Sysh from 'src/helpers/sysh'
 
 import Terminal from '../terminal/terminal'
-import Sysh from '../../helpers/sysh'
-
-import { Avatar, Qiniu } from 'src/components/sui'
+import { Qiniu } from 'src/components/sui'
+import { bm } from 'src/helpers'
 
 
 interface IPanelLeftStates {
@@ -29,12 +29,11 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
 
 
   public render () {
-    const { terminalState, user } = useRedux(state => ({
+    const { terminalState } = useRedux(state => ({
       terminalState: state.global.terminalState,
-      user: state.user.user,
     }))
     return (
-      <section className={`col-md flex-verticle panel-left panel-left_${terminalState}`}>
+      <section className={`col-md flex-verticle ${bm('panel-left', [terminalState])}`}>
         <div className="terminal-hang" />
 
         <Terminal
@@ -43,7 +42,6 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
         />
 
         <aside className="flex-grow terminal-out">
-          <Avatar user={user} />
           <Qiniu onUpload={console.info} />
           <div className="terminal-out__content no-scrollbar pre-wrap font-mono">{this.state.output}</div>
         </aside>

@@ -10,7 +10,7 @@ export const DialogStory = () => {
   const showDialog = () => setState(true)
   const hideDialog = () => setState(false)
   return (
-    <Suite caption="top position not enough">
+    <Suite caption="stardard">
       <Button label="Dialog" onClick={showDialog} />
       <Dialog
         visible={visible}

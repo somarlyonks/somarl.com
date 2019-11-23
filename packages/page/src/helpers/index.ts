@@ -1,5 +1,5 @@
 export { default as Api } from './Api'
-export { default as bem } from './bem'
+export * from './bem'
 export * from './exceptions'
 export * from './consts'
 export * from './dom'
