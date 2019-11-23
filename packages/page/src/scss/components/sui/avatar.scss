@@ -7,6 +7,8 @@ $LARGE_SIZE: 60px;
 
 .avatar {
   @include square($SIZE);
+  z-index: 1;
+
   &--small {
     @include square($SMALL_SIZE);
   }

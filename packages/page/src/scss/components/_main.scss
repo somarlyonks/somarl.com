@@ -35,10 +35,3 @@ body:focus-within {
     opacity: 1;
   }
 }
-
-header.nav {
-  @include sweepToBottom(rgba(#000, 0.1));
-  right: 0;
-  height: $navHeight;
-  z-index: $zNav;
-}

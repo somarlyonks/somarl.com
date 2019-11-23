@@ -94,10 +94,9 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
 
   private readonly onBlur: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
     this.setState({ supportDisplay: false })
-    // setTerminalState('blur') // FIXME: @sy DEBUG
+    setTerminalState('blur')
   }
 
-  /** @setState */
   private readonly jumpTo = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
     if (!event.target) return ''
 

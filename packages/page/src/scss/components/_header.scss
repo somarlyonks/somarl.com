@@ -1,0 +1,11 @@
+@import '../helpers/variables';
+@import '../helpers/mixins';
+
+
+header.nav {
+  @include sweepToBottom(rgba(#000, 0.1));
+  right: 0;
+  height: $navHeight;
+  z-index: $zNav;
+  align-items: center;
+}

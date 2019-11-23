@@ -2,20 +2,18 @@
 
 .panel-left {
   height: 100vh;
-}
-
-.panel-left_blur {
-  .terminal-out {
-    opacity: 0;
+  &--blur {
+    .terminal-out {
+      opacity: 0;
+    }
   }
-}
-
-.panel-left_output {
-  .terminal-hang {
-    height: 50px;
-  }
-  .terminal-out {
-    margin-bottom: 100px;
+  &--output {
+    .terminal-hang {
+      height: 0px;
+    }
+    .terminal-out {
+      margin-bottom: 100px;
+    }
   }
 }
 
