@@ -5,7 +5,7 @@ import Sysh from 'src/helpers/sysh'
 
 import Terminal from '../terminal/terminal'
 import { Qiniu } from 'src/components/sui'
-import { bm } from 'src/helpers'
+import { bem } from 'src/helpers'
 
 
 interface IPanelLeftStates {
@@ -33,7 +33,7 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
       terminalState: state.global.terminalState,
     }))
     return (
-      <section className={`col-md flex-verticle ${bm('panel-left', [terminalState])}`}>
+      <section className={`col-md flex-verticle ${bem('panel-left', [terminalState])}`}>
         <div className="terminal-hang" />
 
         <Terminal
