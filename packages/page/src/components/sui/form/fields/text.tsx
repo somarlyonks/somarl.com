@@ -69,7 +69,7 @@ export default function TextField ({
   }, [value])
 
   return (
-    <div class={bem('text-field', '', [{ disabled, invalid: !!errMsg }])}>
+    <div class={bem('text-field', [{ disabled, invalid: !!errMsg }])}>
       {!!label && <label id={lableId} for={inputId}>{label}</label>}
       <div class="text-field__input-container">
         <input

@@ -19,7 +19,7 @@ export default function domino ({ ready }: IDominoProps) {
   }, [])
 
   return (
-    <Fabric class={'absolute--full ' + bem('domino-container', '', [ready === 'ready' && 'ready'])}>
+    <Fabric class={'absolute--full ' + bem('domino-container', [ready === 'ready' && 'ready'])}>
       <ul class="dominos" aria-busy="true" aria-label="Loading">
         <li class="domino" />
         <li class="domino" />

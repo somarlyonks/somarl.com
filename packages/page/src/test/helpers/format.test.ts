@@ -1,4 +1,4 @@
-import { format } from '../helpers/transformers'
+import { format } from '../../helpers/transformers'
 
 it('formats string', () => {
   expect(format('x', 1)).toBe('x')
