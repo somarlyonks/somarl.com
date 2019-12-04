@@ -36,7 +36,7 @@ somarl.com:
         [ ] sysh
         [ ] parser
         [ ] runner
-        [ ] router
+        [ ] emulate router
         [ ] command inheritence
       Plugins:
         Weather:
@@ -60,18 +60,18 @@ somarl.com:
       [x] Adapter type transformer
         X scalar type inferor @low
       [ ] temporary internal rpc
-    [ ] exception system
+    [ ] exception system @high
     [ ] basic doctype system @high
     [x] mongo frame
       [x] server module
       X interface module
-    [ ] migrate to ArangoDB
+    [x] migrate to ArangoDB
       [x] server module
-      [ ] data interface
+      [x] data interface
     [ ] test frame
       [ ] frame test
       [ ] business test
-    [ ] logger
+    [ ] logger (might be covered by ArangoDB)
       [ ] server log
       [ ] request log
     [ ] GRpc @longterm

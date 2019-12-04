@@ -5,10 +5,15 @@
 .dialog {
   background-color: #fff;
   padding: 10px;
+  &__title {
+    justify-content: space-between;
+    align-items: center;
+  }
   &__button-group {
     button:not(:last-of-type) {
       margin-right: 10px;
     }
+    justify-content: flex-end;
   }
   &__scarecrow {
     visibility: hidden;

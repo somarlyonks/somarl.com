@@ -1,5 +1,6 @@
-import { h } from 'preact'
-import { forwardRef, Ref, useRef, useState, useEffect } from 'preact/compat'
+import { h, Ref } from 'preact'
+import { useRef, useState, useEffect } from 'preact/hooks'
+import { forwardRef } from 'preact/compat'
 
 import { Layer } from './layer'
 import { Button } from '../form'
@@ -92,10 +93,7 @@ export function Dialog ({
     >
       {
         !!title && (
-          <div
-            class="dialog__title flex"
-            style="justify-content: space-between; align-items: center;"
-          >
+          <div class="dialog__title flex">
             <h1>{title}</h1>
             <Button
               icon={<Cross />}
@@ -110,10 +108,7 @@ export function Dialog ({
       </div>
       {
         showButtons && (
-          <div
-            class="dialog__button-group flex"
-            style="justify-content: flex-end;"
-          >
+          <div class="dialog__button-group flex">
             <Button label="Confirm" onClick={onConfirm} primary />
             <Button label="Cancel" onClick={onCancel} />
           </div>

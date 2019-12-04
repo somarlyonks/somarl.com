@@ -22,7 +22,7 @@ export function Layer ({
 }: ILayerProps) {
   const [{ $el }, setState] = useState<ILayerState>({
   })
-  const className = bem('layer', '', [type])
+  const className = bem('layer', [type])
   useEffect(() => {
     const layerHost = document.createElement('div')
     layerHost.className = className
