@@ -12,6 +12,9 @@
   &:disabled {
     cursor: not-allowed !important;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 html {
