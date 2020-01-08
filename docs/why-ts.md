@@ -2,7 +2,7 @@
 
 ## Front end
 
-2019 is here! I can't see the reason why you choose React/NG but still writing JS if webpack/Rollup is packaging you code.
+I can't see the reason why you choose React/NG but still writing JS if webpack/Rollup is packaging you code.
 
 Elm is pretty fine, but TS makes sharing code between front/back ends possible. The later also makes GraphQL and GRpc worth try. I have to admit that there must someone able to fullfill these with Elm and some backend from Haskell, but I'm sure that's not me.
 
