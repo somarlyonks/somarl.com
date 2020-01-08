@@ -47,13 +47,16 @@ export default function TextField ({
     const defaultValidator: ITextFieldValidator = msg => required && newValue === '' ? 'Required!' : ''
     propValidate = propValidate || defaultValidator
     const validatedMsg = propValidate(newValue)
-    const validate = (msg: S) => setState(prev => ({ ...prev, errMsg: msg }))
+    const validate = (msg: S) => setState(prev => {
+      const isResolvingStale = prev.value !== newValue
+      return isResolvingStale ? prev : { ...prev, errMsg: msg }
+    })
     if (isPromise(validatedMsg)) validatedMsg.then(validate)
     else validate(validatedMsg)
   }
 
   const onInput: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
-    const target = event.target as HTMLInputElement
+    const target = event.currentTarget
     const newValue = target.value
     const newState: ITextFieldState = {
       value: newValue,
@@ -61,7 +64,7 @@ export default function TextField ({
     }
     setState(newState)
 
-    if (propOnInput) propOnInput(event)
+    if (propOnInput) propOnInput.bind(event.currentTarget)(event)
   }
 
   useEffect(() => {
