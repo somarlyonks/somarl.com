@@ -40,7 +40,7 @@ export default class Footer extends Component<{}, IFooterState> {
           <span className="footer__image-info-connect">&nbsp;-&nbsp;</span>
           <span className="footer__image-info-copyright">{this.state.binksCopyright}</span>
         </span>
-        <span className="footer__copyright">© 2019 Sy. All rights reserved.</span>
+        <span className="footer__copyright">© 2020 Sy. All rights reserved.</span>
       </footer>
     )
   }

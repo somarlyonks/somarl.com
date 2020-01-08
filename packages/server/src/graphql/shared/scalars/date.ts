@@ -13,7 +13,7 @@ export class DateScalar implements CustomScalar<S, Date> {
 
   /**
    * value sent to the client
-   * @example 2019-09-24T13:30:32.302
+   * @example 2020-09-24T13:30:32.302
    */
   public serialize (value: Date): S {
     const localTime = new Date(+value - new Date().getTimezoneOffset() * 60 * 1000)
