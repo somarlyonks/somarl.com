@@ -47,9 +47,6 @@ export function getPivot (
     case 'left':
       ret.x = 0 - offset
       break
-
-    default:
-      break
   }
 
   switch (subPosition) {
@@ -64,9 +61,6 @@ export function getPivot (
       break
     case 'left':
       ret.x = 0
-      break
-
-    default:
       break
   }
 

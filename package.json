@@ -36,7 +36,7 @@
     "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
   "devDependencies": {
-    "@babel/core": "7.7.7",
+    "@babel/core": "7.8.3",
     "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.3.4",
     "@commitlint/config-lerna-scopes": "8.3.4",
@@ -47,7 +47,7 @@
     "@types/jsonwebtoken": "8.3.6",
     "@types/node-fetch": "2.5.4",
     "@types/node-sass": "4.11.0",
-    "autoprefixer": "9.7.3",
+    "autoprefixer": "9.7.4",
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
     "babel-preset-react-app": "9.1.0",

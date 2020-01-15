@@ -3,7 +3,10 @@ module.exports = {
     'src/**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
     '!src/registerServiceWorker.ts',
-    '!src/stories/**/*'
+    '!src/stories/**/*',
+    '!src/components/**/*',
+    '!src/helpers/Api/**/*',
+    '!src/helpers/fetch.ts',
   ],
   // 'roots': [
   //   '<rootDir>/src/test'
