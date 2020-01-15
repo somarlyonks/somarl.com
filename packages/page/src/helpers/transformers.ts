@@ -7,13 +7,14 @@ export function hex2rgb (hex: S) {
 }
 
 
-const completeHex = (s: S) => {
+export const completeHex = (s: S) => {
   if (s.length >= 7) return s.slice(0, 7)
   if (s.length === 6) return s + 'f'
   if (s.length === 5) return `${s.slice(0, 3)}${s[3]}${s[3]}${s[4]}${s[4]}`
   if (s.length === 4) return `${s.slice(0, 1)}${s[1]}${s[1]}${s[2]}${s[2]}${s[3]}${s[3]}`
   return s
 }
+
 
 /**
  * fixes campatibilities for shortcut rgba colors like rgba(#fff, 0.2) to rgba(255, 255, 255, 0.2)
@@ -50,14 +51,20 @@ export function format (src: S, width: N, align: 'L'|'C'|'R' = 'L') {
 }
 
 
-export function reduce <T> (arr: L<T>, acc: (r: T, c: T) => T) {
-  return arr.reduce(acc)
+export function reduce <T> (arr: L<T>, acc: (r: T, c: T) => T): T
+export function reduce <T, TR> (arr: L<T>, acc: (r: TR, c: T) => TR, init: TR): TR
+export function reduce <T, TR> (arr: L<T>, acc: (r: TR, c: T) => TR, init?: TR) {
+  if (arguments.length === 3) return arr.reduce<TR>(acc, init!)
+  return arr.reduce(acc as unknown as (r: T, c: T) => T)
 }
 
 
-export function sum (arr: L<N>) {
-  return reduce(arr, (r, c) => r + c)
+export function sum (...xs: L<L<N> | N>): N {
+  return reduce(xs, (r, c) => r + (
+    typeof c === 'number' ? c : sum(...c)
+  ), 0)
 }
+
 
 export function qUrl (key: S) {
   return QINIU_URL + key

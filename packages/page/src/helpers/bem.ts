@@ -19,21 +19,15 @@ export function bem (block: S, element?: S | IModifiers, modifiers: IModifiers =
       _element = ''
     }
     const prefix = `${block}${_element ? '__' + _element : ''}`
-    const segments = [prefix]
 
-    for (const modifier of _modifiers!) {
-      if (!modifier) continue
-      if (typeof modifier === 'string') {
-        segments.push(`${prefix}--${modifier}`)
-      } else {
-        for (const key in modifier) {
-          if (!modifier[key]) continue
-          segments.push(`${prefix}--${key}`)
-        }
-      }
-    }
-
-    return segments.join(' ')
+    return [prefix].concat(
+      _modifiers!.filter(m => m).map(modifier => {
+        if (typeof modifier === 'string') return `${prefix}--${modifier}`
+        return Object.keys(modifier!).filter(key => modifier![key]).map(
+          key => `${prefix}--${key}`
+        ).join(' ')
+      })
+    ).join(' ')
   }
   if (arguments.length === 1) return elementBuilder
   if (arguments.length === 2) return elementBuilder('', element as IModifiers)
