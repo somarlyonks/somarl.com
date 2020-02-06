@@ -12,12 +12,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@nestjs/common": "6.10.12",
-    "@nestjs/core": "6.10.12",
+    "@nestjs/common": "6.11.6",
+    "@nestjs/core": "6.11.6",
     "@nestjs/graphql": "6.5.3",
     "@nestjs/jwt": "6.1.1",
     "@nestjs/passport": "6.1.1",
-    "@nestjs/platform-express": "6.10.12",
+    "@nestjs/platform-express": "6.11.6",
     "@somarl.com/pipe": "0.1.0",
     "apollo-server": "2.9.16",
     "apollo-server-express": "2.9.16",
