@@ -63,7 +63,7 @@
     "fork-ts-checker-webpack-plugin": "4.0.3",
     "fs-extra": "8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
-    "husky": "4.2.2",
+    "husky": "4.2.3",
     "if-env": "1.0.4",
     "jest": "24.9.0",
     "lerna": "3.20.2",
