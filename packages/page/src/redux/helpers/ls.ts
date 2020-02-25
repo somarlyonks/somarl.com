@@ -1,6 +1,6 @@
 interface IAdaptedStorageItem {
   type: 'primitive' | 'object' | 'date' | 'null' | 'undefined' | 'NOT_FOUND'
-  value: any
+  value: A // TODO: allow a-n-y
 }
 
 

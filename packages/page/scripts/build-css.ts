@@ -26,7 +26,12 @@ const isStory = getArg('--story') === 'true'
 const inputFile = isStory ? paths.appStoryScss : paths.appScss
 const outputFile = isStory ? paths.appStoryCss : paths.appCss
 
-function loader (entry: string, envs: object, resolve: any, reject: any) {
+function loader (
+  entry: string,
+  envs: object,
+  resolve: (r: sass.Result) => void,
+  reject: (err: Error) => void
+) {
   const data = sassEnvs(envs)
   const options = Object.assign({}, {
     file: entry,

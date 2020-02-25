@@ -25,7 +25,7 @@ export function compose <T1, T2, R1, R2, R>     (fn3: F1<R2, R>, fn2: F1<R1, R2>
 export function compose <T1, T2, T3, R2, R1, R> (fn3: F1<R2, R>, fn2: F1<R1, R2>, fn1: F3<T1, T2, T3, R1>): FI3<T1, T2, T3, R>
 export function compose <R = A> (...fns: F[]): FI<R>
 export function compose <R = A> (...fns: F[]) {
-  const composed = fns.reduce((c, fn) => (...args: any[]) => c(fn(...args))) as FI<R>
+  const composed = fns.reduce((c, fn) => (...args: L<A>) => c(fn(...args))) as FI<R>
   composed.callees = fns.map(fn => fn.name || 'anonymous').reverse()
 
   return named(`composed(${composed.callees.join(',')})`)(composed)

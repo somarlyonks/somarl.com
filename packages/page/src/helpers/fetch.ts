@@ -13,7 +13,7 @@ interface IApiError {
   error?: A // TODO: @sy error specs in pipe
 }
 
-export interface IApiResponseSuccess <T = any> {
+export interface IApiResponseSuccess <T = {}> {
   status: HTTPStatusCodes.OK
   body: T & IApiError
 }
@@ -26,7 +26,7 @@ export interface IApiResponseFail {
   body?: IApiError
 }
 
-export type ApiResponse <T = any> = IApiResponseFail | IApiResponseSuccess<T>
+export type ApiResponse <T = {}> = IApiResponseFail | IApiResponseSuccess<T>
 
 /**
  * type guard here, since then it's free to just check like

@@ -101,8 +101,8 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     if (!event.target) return ''
 
     const target = event.target as HTMLInputElement
-    const position = target.selectionStart
-    const prefix = Array(position).fill(' ' as any).join('')
+    const position = target.selectionStart || 0
+    const prefix = Array<S>(position).fill(' ').join('')
     const text = target.value
     const caretText = prefix + '█'
     const fakeContrastText = prefix + (text[position!] || ' ')

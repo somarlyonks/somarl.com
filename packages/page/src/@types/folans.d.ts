@@ -21,8 +21,4 @@ interface IV2 {
   y: N
 }
 
-interface IV3 extends IVect2 {
-  z: N
-}
-
 type TargetElement = Element | EventTarget | null

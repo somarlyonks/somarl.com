@@ -86,6 +86,7 @@
   }
 
   &__input-container {
+    transition: box-shadow 0.30s ease-in-out;
     &:focus-within {
       border-color: $fabricBlue;
       @include inputBoxShadow($fabricBlue);

@@ -58,11 +58,7 @@ export default function TextField ({
   const onInput: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
     const target = event.currentTarget
     const newValue = target.value
-    const newState: ITextFieldState = {
-      value: newValue,
-      errMsg: '',
-    }
-    setState(newState)
+    setState(prev => ({...prev, value: newValue}))
 
     if (propOnInput) propOnInput.bind(event.currentTarget)(event)
   }
@@ -88,7 +84,7 @@ export default function TextField ({
           aria-invalid={!!errMsg || (required && !value)}
         />
       </div>
-      {!!description && <div className="text-field__description" role="alert">{description}</div>}
+      {!!description && <div class="text-field__description" role="alert">{description}</div>}
       {!!errMsg && <div class="text-field__error-message" role="alert">{errMsg}</div>}
     </div>
   )
