@@ -95,4 +95,4 @@ const store = redux.createStore<IImplState, IImplAction>(
 export default store
 
 export const { StoreContext, useMappedState } = createContext<IImplState, IImplAction, IStore<IImplState, IImplAction>>(store)
-; (window as any).store = store
+; (window as A).store = store

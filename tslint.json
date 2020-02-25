@@ -49,7 +49,7 @@
       }
     ],
     "newline-before-return": false,
-    "no-any": false,
+    "no-any": true,
     "no-bitwise": false,
     "no-boolean-literal-compare": true,
     "no-conditional-assignment": true,

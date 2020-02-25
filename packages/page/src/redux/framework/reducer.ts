@@ -6,7 +6,7 @@ export function combineReducers <TState, TAction extends IAction> (reducers: IRe
 
   return function combination (state: TState, action: TAction) {
     let hasChanged = false
-    const nextState: TState = {} as any
+    const nextState: TState = {} as unknown as TState
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < reducerKeys.length; i++) {
       const key = reducerKeys[i]
