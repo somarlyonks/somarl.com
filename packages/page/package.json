@@ -20,7 +20,7 @@
     "bootstrap": "4.4.1",
     "object-assign": "4.1.1",
     "preact": "10.3.2",
-    "promise": "8.0.3",
+    "promise": "8.1.0",
     "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {
