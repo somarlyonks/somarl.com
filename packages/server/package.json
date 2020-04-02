@@ -22,7 +22,7 @@
     "apollo-server": "2.10.1",
     "apollo-server-express": "2.10.1",
     "arangojs": "6.14.0",
-    "chalk": "3.0.0",
+    "chalk": "4.0.0",
     "class-transformer": "0.2.3",
     "dotenv": "8.2.0",
     "graphql": "14.6.0",
