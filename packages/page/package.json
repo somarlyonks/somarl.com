@@ -19,7 +19,7 @@
     "@somarl.com/pipe": "0.1.0",
     "bootstrap": "4.4.1",
     "object-assign": "4.1.1",
-    "preact": "10.3.4",
+    "preact": "10.4.0",
     "promise": "8.1.0",
     "whatwg-fetch": "3.0.0"
   },
