@@ -33,7 +33,8 @@ module.exports = function () {
     before (app) {
       app.use(errorOverlayMiddleware())
       // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
-      app.use(noopServiceWorkerMiddleware())
+      // https://github.com/facebook/create-react-app/issues/8499#issuecomment-589561657
+      app.use(noopServiceWorkerMiddleware(paths.publicUrl))
     },
   }
 }
