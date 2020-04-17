@@ -17,7 +17,7 @@ function ensureSlash (path, needsSlash) {
   return path
 }
 
-const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage
+const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage || ''
 
 function getServedPath (appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson)
