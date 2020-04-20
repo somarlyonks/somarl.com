@@ -132,11 +132,25 @@ export async function fetchPublicJson <TResponse = A> (api: S, { method, body, h
       'Content-Type': 'application/json;charset=UTF-8',
     }),
   }
-  if (json) {
+  if (json && method === 'POST') {
     init.body = JSON.stringify(json)
   } else if (body) {
     init.body = body
   }
 
-  return fetch(api, init).then(r => r.json())
+  const resp = await fetch(api, init)
+  const { status } = resp
+
+  const result: ApiResponse = { status }
+
+  if (isResponseOK(result)) {
+    const contentType = resp.headers.get('Content-Type')
+    result.body = contentType && contentType.includes('text/html')
+      ? await resp.text()
+      : await resp.json()
+  } else {
+    console.warn('Request to', resp.url, 'failed with status code', status)
+  }
+
+  return result
 }

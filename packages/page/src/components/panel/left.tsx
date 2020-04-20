@@ -4,7 +4,6 @@ import store, { ActionTypes, useRedux } from 'src/redux'
 import Sysh from 'src/helpers/sysh'
 
 import Terminal from '../terminal/terminal'
-import { Qiniu } from 'src/components/sui'
 import { bem } from 'src/helpers'
 
 
@@ -42,7 +41,6 @@ export default class PanelLeft extends Component<{}, IPanelLeftStates> {
         />
 
         <aside className="flex-grow terminal-out">
-          <Qiniu onUpload={console.info} />
           <div className="terminal-out__content no-scrollbar pre-wrap font-mono">{this.state.output}</div>
         </aside>
       </section>

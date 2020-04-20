@@ -1,12 +1,11 @@
 * {
-  box-sizing: border-box;
   background-repeat: no-repeat;
   text-decoration: none;
   font-size: 100%;
   vertical-align: baseline;
   box-shadow: none;
   -webkit-font-smoothing: antialiased;
-  &::after, &::before {
+  &, &::after, &::before {
     box-sizing: border-box;
   }
   &:disabled {
@@ -50,4 +49,20 @@ h1 {
 input {
   border-radius: 0;
   appearance: none;
+}
+
+
+::-webkit-scrollbar {
+  background-color: #F7F7F7;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.48);
+  border-radius: 8px;
+  border: solid #F7F7F7;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #686868;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #808080;
 }
