@@ -14,6 +14,6 @@ storiesOf('sui', module)
   .add('Hoverable', () => <HoverableStory />)
   .add('Dialog', () => <DialogStory />)
 
-storiesOf('sui|form', module)
+storiesOf('sui/form', module)
   .add('Button', () => <ButtonStory />)
   .add('TextField', () => <TextFieldStory />)

@@ -21,7 +21,7 @@ export interface IBlogMeta {
 
 export const getBlogs = async () => req.GET<
   L<IBlogMeta>
->('https://api.github.com/repos/somarlyonks/somarlyonks.github.io/contents/_posts')
+>('https://api.github.com/repos/somarlyonks/somarlyonks.github.io/contents/_posts', {json: true})
 
 export default class BlogPlugin extends Plugin {
   public blogs: L<IBlogMeta> = []

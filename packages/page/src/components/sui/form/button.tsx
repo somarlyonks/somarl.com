@@ -34,6 +34,7 @@ export default function Button ({
   return (
     <button
       onClick={onClick}
+      type="button"
       class={`fabric-btn ${className} ` + bem('fabric-btn', [{primary, borderless, icon}])}
       style={style}
       disabled={disabled || loading}

@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from 'type-graphql'
+import { ObjectType, Field, ID } from '@nestjs/graphql'
 
 import { IModel, IRelation } from './interfaces'
 

@@ -27,7 +27,7 @@ export const AvatarStory = () => {
         <Avatar size="medium" shape="circle" user={matthew} />
       </Suite>
 
-      <Suite caption="small(20 * 20)">
+      <Suite caption="small(20 x 20)">
         <Avatar size="small" user={matthew} />
         <Avatar size="small" shape="square" user={matthew} />
         <Avatar size="small" shape="circle" user={matthew} />
