@@ -1,4 +1,4 @@
-import { ArgsType } from 'type-graphql'
+import { ArgsType } from '@nestjs/graphql'
 import { ListArgs } from '../../shared'
 
 @ArgsType()

@@ -1,7 +1,7 @@
 // tslint:disable: no-magic-numbers
 
+import { Field, InputType } from '@nestjs/graphql'
 import { IsOptional, MaxLength } from 'class-validator'
-import { Field, InputType } from 'type-graphql'
 
 
 @InputType()
