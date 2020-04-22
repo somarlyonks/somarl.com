@@ -1,4 +1,6 @@
-import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
+import { h } from 'preact' // lgtm [js/unused-local-variable]
+import { useState, useEffect } from 'preact/hooks'
+
 import Api from '../helpers/Api'
 
 
@@ -8,40 +10,40 @@ export interface IFooterState {
   binksCopyright: S
 }
 
-export default class Footer extends Component<{}, IFooterState> {
-  public readonly state: IFooterState = {
+export default function Footer () {
+  const [state, setState] = useState<IFooterState>({
     toggled: true,
     binksName: '',
     binksCopyright: '',
+  })
+  const deriveState = (prcd: Partial<IFooterState>) => setState(prev => ({...prev, ...prcd}))
+
+  useEffect(() => {
+    Api.getBinks().then(resp => {
+      if (Api.isResponseOK(resp)) {
+        deriveState({
+          binksName: resp.body.image,
+          binksCopyright: resp.body.copyright,
+        })
+      }
+      deriveState({toggled: localStorage.getItem('footerToggled') === 'true'})
+    })
+  }, [])
+
+  function toggle () {
+    localStorage.setItem('footerToggled', `${!state.toggled}`)
+    setState((prev: IFooterState) => ({...prev, toggled: !prev.toggled}))
   }
 
-  public async componentDidMount () {
-    const resp = await Api.getBinks()
-    if (Api.isResponseOK(resp)) {
-      this.setState({
-        binksName: resp.body.image,
-        binksCopyright: resp.body.copyright,
-      })
-    }
-    this.setState({toggled: localStorage.getItem('footerToggled') === 'true'})
-  }
-
-  public readonly toggle = () => {
-    localStorage.setItem('footerToggled', `${!this.state.toggled}`)
-    this.setState((prev: IFooterState) => ({toggled: !prev.toggled}))
-  }
-
-  public render () {
-    return (
-      <footer className={`footer_toggle${this.state.toggled ? 'd' : ''}`}>
-        <div className="absolute footer__widget" onClick={this.toggle} />
-        <span className={`footer__image-info footer__image-info_${this.state.binksCopyright ? 'adequate' : 'simple'}`}>
-          <span className="footer__image-info-name">"{this.state.binksName || 'Failed to load image'}"</span>
-          <span className="footer__image-info-connect">&nbsp;-&nbsp;</span>
-          <span className="footer__image-info-copyright">{this.state.binksCopyright}</span>
-        </span>
-        <span className="footer__copyright">© 2020 Sy. All rights reserved.</span>
-      </footer>
-    )
-  }
+  return (
+    <footer className={`footer_toggle${state.toggled ? 'd' : ''}`}>
+      <div className="absolute footer__widget" onClick={toggle} />
+      <span className={`footer__image-info footer__image-info_${state.binksCopyright ? 'adequate' : 'simple'}`}>
+        <span className="footer__image-info-name">"{state.binksName || 'Failed to load image'}"</span>
+        <span className="footer__image-info-connect">&nbsp;-&nbsp;</span>
+        <span className="footer__image-info-copyright">{state.binksCopyright}</span>
+      </span>
+      <span className="footer__copyright">© 2020 Sy. All rights reserved.</span>
+    </footer>
+  )
 }

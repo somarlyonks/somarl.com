@@ -1,4 +1,6 @@
-import { h, Component } from 'preact' // lgtm [js/unused-local-variable]
+
+import { h } from 'preact' // lgtm [js/unused-local-variable]
+import { useState, useEffect } from 'preact/hooks'
 
 import store, { ActionTypes, useRedux } from 'src/redux'
 import Sysh from 'src/helpers/sysh'
@@ -13,59 +15,56 @@ interface IPanelLeftStates {
 }
 
 
-export default class PanelLeft extends Component<{}, IPanelLeftStates> {
-  public readonly state: IPanelLeftStates = {
+export default function PanelLeft () {
+  const [state, setState] = useState<IPanelLeftStates>({
     inputText: '',
     output: 'Input things like: blogs --page=2',
-  }
-
-  public componentDidMount () {
+  })
+  const deriveState = (s: Partial<IPanelLeftStates>) => setState(prev => ({...prev, ...s}))
+  useEffect(() => {
     Sysh.register(output => store.dispatch({
       type: ActionTypes.global.SET_RICHOUTPUT,
       payload: output,
     }))
-  }
+  }, [])
+  const { terminalState } = useRedux(s => ({
+    terminalState: s.global.terminalState,
+  }))
 
-
-  public render () {
-    const { terminalState } = useRedux(state => ({
-      terminalState: state.global.terminalState,
-    }))
-    return (
-      <section className={`col-md flex-verticle ${bem('panel-left', [terminalState])}`}>
-        <div className="terminal-hang" />
-
-        <Terminal
-          onChange={this.handleInputChange}
-          onEmit={this.handleInputted}
-        />
-
-        <aside className="flex-grow terminal-out">
-          <div className="terminal-out__content no-scrollbar pre-wrap font-mono">{this.state.output}</div>
-        </aside>
-      </section>
+  const handleInputChange = (input: string) => {
+    deriveState({output: '...'})
+    parseInput(input).then(
+      output => deriveState({ output })
     )
   }
 
-  private readonly handleInputChange = (input: string) => {
-    this.setState({output: '...'})
-    this.parseInput(input).then(
-      output => this.setState({ output })
+  const handleInputted = (input: string) => {
+    deriveState({output: 'processing...'})
+    execCommand(input).then(
+      output => deriveState({ output })
     )
   }
 
-  private readonly handleInputted = (input: string) => {
-    this.setState({output: 'processing...'})
-    this.execCommand(input).then(
-      output => this.setState({ output })
-    )
-  }
-
-  private readonly parseInput = (input: string) => {
+  const parseInput = (input: string) => {
     return Sysh.parse(input)
   }
 
-  private readonly execCommand = (input: string) => {
+  const execCommand = (input: string) => {
     return Sysh.exec(input)
   }
+
+  return (
+    <section className={`col-md flex-verticle ${bem('panel-left', [terminalState])}`}>
+      <div className="terminal-hang" />
+
+      <Terminal
+        onChange={handleInputChange}
+        onEmit={handleInputted}
+      />
+
+      <aside className="flex-grow terminal-out">
+        <div className="terminal-out__content no-scrollbar pre-wrap font-mono">{state.output}</div>
+      </aside>
+    </section>
+  )
 }

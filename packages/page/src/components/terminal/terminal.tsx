@@ -1,4 +1,6 @@
-import { h, Component } from 'preact'
+
+import { h } from 'preact'
+import { useState } from 'preact/hooks'
 
 import store, { ActionTypes, useRedux } from '../../redux'
 import { GTermianlState } from '../../redux/store/global'
@@ -39,65 +41,31 @@ const setTerminalState = (payload: GTermianlState) => store.dispatch({
   payload,
 })
 
-export default class TerminalInput extends Component<ITerminalInputProps, ITerminalInputStates> {
-  public readonly state: ITerminalInputStates = {
+export default function TerminalInput (props: ITerminalInputProps) {
+  const [state, setState] = useState<ITerminalInputStates>({
     text: '',
     supportDisplay: false,
     caretText: '█',
     fakeContrastText: '',
-  }
+  })
+  const deriveState = (s: Partial<ITerminalInputStates>) => setState(prev => ({...prev, ...s}))
 
-  public componentDidMount () {
-    // this.onFocus() // autoFocus
-  }
-
-  public render () {
-    const { borderLeftColor } = useRedux(state => ({
-      borderLeftColor: state.global.themeColor,
-    }))
-
-    return (
-      <div className="terminal-input">
-        <input
-          type="text"
-          style={{borderLeftColor}}
-          className="terminal-input__input"
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onInput={this.onChange}
-          onKeyUp={this.onKeyUp}
-          onMouseUp={this.jumpTo}
-        />
-        <SupportInput
-          className="terminal-input__support"
-          supportText={this.state.caretText}
-          display={this.state.supportDisplay}
-        />
-        <SupportInput
-          className="terminal-input__support terminal-input__support_contrast"
-          supportText={this.state.fakeContrastText}
-          display={this.state.supportDisplay}
-        />
-      </div>
-    )
-  }
-
-  private readonly onFocus: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
-    if (this.props.onFocus) {
-      this.props.onFocus()
+  const onFocus: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
+    if (props.onFocus) {
+      props.onFocus()
     }
 
-    this.setState({ supportDisplay: true })
+    deriveState({ supportDisplay: true })
     setTerminalState('focus')
   }
 
 
-  private readonly onBlur: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
-    this.setState({ supportDisplay: false })
+  const onBlur: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
+    deriveState({ supportDisplay: false })
     setTerminalState('blur')
   }
 
-  private readonly jumpTo = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
+  const jumpTo = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
     if (!event.target) return ''
 
     const target = event.target as HTMLInputElement
@@ -106,31 +74,60 @@ export default class TerminalInput extends Component<ITerminalInputProps, ITermi
     const text = target.value
     const caretText = prefix + '█'
     const fakeContrastText = prefix + (text[position!] || ' ')
-    const isFireOnChangeNeeded = this.props.onChange ? text !== this.state.text : true
+    const isFireOnChangeNeeded = props.onChange ? text !== state.text : true
 
-    this.setState({ text, caretText, fakeContrastText })
+    deriveState({ text, caretText, fakeContrastText })
 
     return isFireOnChangeNeeded ? text : false
   }
 
-  private readonly onChange: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
-    const maybeDirtyText = this.jumpTo(event)
+  const onChange: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
+    const maybeDirtyText = jumpTo(event)
 
-    if (maybeDirtyText !== false && this.props.onChange) {
-      this.props.onChange(maybeDirtyText)
+    if (maybeDirtyText !== false && props.onChange) {
+      props.onChange(maybeDirtyText)
     }
   }
 
-  private readonly onKeyUp: h.JSX.KeyboardEventHandler<HTMLInputElement> = event => {
-    this.jumpTo(event)
+  const onKeyUp: h.JSX.KeyboardEventHandler<HTMLInputElement> = event => {
+    jumpTo(event)
     const target = event.target as HTMLInputElement
 
     if (event.key === 'Enter') {
       target.blur()
       setTerminalState('output')
-      if (this.props.onEmit) {
-        this.props.onEmit(target.value)
+      if (props.onEmit) {
+        props.onEmit(target.value)
       }
     }
   }
+
+  const { borderLeftColor } = useRedux(s => ({
+    borderLeftColor: s.global.themeColor,
+  }))
+
+  return (
+    <div className="terminal-input">
+      <input
+        type="text"
+        style={{borderLeftColor}}
+        className="terminal-input__input"
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onInput={onChange}
+        onKeyUp={onKeyUp}
+        onMouseUp={jumpTo}
+      />
+      <SupportInput
+        className="terminal-input__support"
+        supportText={state.caretText}
+        display={state.supportDisplay}
+      />
+      <SupportInput
+        className="terminal-input__support terminal-input__support_contrast"
+        supportText={state.fakeContrastText}
+        display={state.supportDisplay}
+      />
+    </div>
+  )
 }
