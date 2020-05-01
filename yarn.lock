@@ -4724,10 +4724,10 @@ aproba@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/aproba/-/aproba-2.0.0.tgz#52520b8ae5b569215b354efc0caa3fe1e45a8adc"
 
-arangojs@6.14.0:
-  version "6.14.0"
-  resolved "https://registry.yarnpkg.com/arangojs/-/arangojs-6.14.0.tgz#f6633e6420556a1bf84575de0ce445a77e75eac2"
-  integrity sha512-s6ScHKJ5T8dpv4m8UdQY+/tvj+eJ8ZtaL+VRnHzkCxmgflt5RbtWLciG5xMWlozOBJYcq5TSobC0TbKcvg6uNA==
+arangojs@6.14.1:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/arangojs/-/arangojs-6.14.1.tgz#49f0911a35313ad27c3a34b39df0649373f8c1cd"
+  integrity sha512-TJfqwLCo4RyXH5j3i491xKc6qBUsOhd3aIwrTMTuhMkzT6pGRYLvemrmM+XG5HlwYS33M0Ppdj3V6YBsk0HYYg==
   dependencies:
     "@types/node" "*"
     es6-error "^4.0.1"
