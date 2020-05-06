@@ -1,3 +1,4 @@
 export const lorem = {
+  title: 'Lorem Ipsum',
   middle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet erat porta, efficitur enim tincidunt, finibus mauris. Maecenas varius sollicitudin diam in accumsan. Ut ac lacus nec massa auctor eleifend. Integer fringilla ligula ac ligula elementum dictum. Suspendisse potenti. Sed ut dui in metus maximus ultrices. In id ante ut nunc commodo pulvinar. In nisi velit, viverra sed odio vitae, tincidunt vehicula sapien. Nunc at consectetur diam. Proin augue sapien, eleifend ut placerat vitae, porta at augue. Nulla ornare nisi eu nisi facilisis tempor. Aliquam erat volutpat. Donec eget arcu sit amet diam sollicitudin faucibus non nec purus. Suspendisse blandit massa ut erat porttitor, a euismod ex convallis. In porttitor urna turpis, quis lacinia diam iaculis ac.',
 }

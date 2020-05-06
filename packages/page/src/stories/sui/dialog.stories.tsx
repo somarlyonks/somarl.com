@@ -14,7 +14,7 @@ export const DialogStory = () => {
       <Button label="Dialog" onClick={showDialog} />
       <Dialog
         visible={visible}
-        title="Lorem Ipsum"
+        title={lorem.title}
         onConfirm={hideDialog}
         onCancel={hideDialog}
       >

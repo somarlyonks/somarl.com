@@ -1,6 +1,6 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 
-import { Avatar } from 'src/components/sui'
+import { Avatar, Hoverable } from 'src/components/sui'
 import { Suite } from '../helpers'
 
 
@@ -28,7 +28,10 @@ export const AvatarStory = () => {
       </Suite>
 
       <Suite caption="small(20 x 20)">
-        <Avatar size="small" user={matthew} />
+        <Hoverable position="right-top" contentClass="pd--10">
+          <Avatar size="small" user={matthew} />
+          <Avatar size="large" user={matthew} />
+        </Hoverable>
         <Avatar size="small" shape="square" user={matthew} />
         <Avatar size="small" shape="circle" user={matthew} />
       </Suite>

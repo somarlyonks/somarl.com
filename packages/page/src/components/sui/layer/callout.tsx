@@ -136,9 +136,9 @@ export function Callout ({
 
   const getPosition = ($targetEl: TargetElement, expectedPosition: IOffsetPosition) => {
     const candidates: L<ICalloutState['position']> = [ 'top-left', 'top-right'
-                                                     , 'right-top' , 'right-bottom'
-                                                     , 'bottom-left' , 'bottom-right'
-                                                     , 'left-top' , 'left-bottom']
+                                                     , 'right-top', 'right-bottom'
+                                                     , 'bottom-left', 'bottom-right'
+                                                     , 'left-top', 'left-bottom']
 
     if (!$callout.current) throw Error('callout content not ready')
     if (!($targetEl instanceof Element)) throw Error('callout target not ready')
