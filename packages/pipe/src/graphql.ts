@@ -5,6 +5,7 @@
  */
 
 /* tslint:disable */
+/* eslint-disable */
 export interface NewImageInput {
     key: string;
     name: string;
@@ -28,13 +29,6 @@ export interface NewUserInput {
 export interface IModel {
     id: string;
     created: DateString;
-}
-
-export interface IRelation {
-    id: string;
-    created: DateString;
-    from: string;
-    to: string;
 }
 
 export interface Image extends IModel {

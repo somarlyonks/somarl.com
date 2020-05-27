@@ -19,7 +19,7 @@ async function createDatabase (db: Database) {
   try {
     console.info(chalk.green('Creating databse.'))
     db.createDatabase(S.DB)
-    console.log(chalk.green('Created databse', S.DB))
+    console.info(chalk.green('Created databse', S.DB))
   } catch (error) {
     console.error(chalk.red(error))
     process.exit(1)

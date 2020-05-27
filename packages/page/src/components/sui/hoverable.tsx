@@ -7,6 +7,7 @@ import { Callout } from './layer'
 interface IHoverableProps {
   children: L<h.JSX.Element>
   class?: S
+  contentClass?: S
   position?: IPosition
   delay?: N
   onShow?: F0<void>
@@ -26,6 +27,7 @@ interface IHoverableProps {
  */
 export default function Hoverable ({
   class: className = '',
+  contentClass = '',
   position = 'top',
   delay = 256,
   children,
@@ -36,7 +38,7 @@ export default function Hoverable ({
 }: IHoverableProps) {
   const [visible, setState] = useState(false)
 
-  let delayTimer: NodeJS.Timeout
+  let delayTimer: A
   const showHover: h.JSX.MouseEventHandler<HTMLDivElement> = e => {
     delayTimer = setTimeout(() => {
       try {
@@ -65,6 +67,7 @@ export default function Hoverable ({
           onHide={onHide}
           offset={offset}
           beakSize={beakSize}
+          class={contentClass}
         >
           {children}
         </Callout>
