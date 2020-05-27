@@ -38,7 +38,7 @@ export default function Hoverable ({
 }: IHoverableProps) {
   const [visible, setState] = useState(false)
 
-  let delayTimer: NodeJS.Timeout
+  let delayTimer: A
   const showHover: h.JSX.MouseEventHandler<HTMLDivElement> = e => {
     delayTimer = setTimeout(() => {
       try {
