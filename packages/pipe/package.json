@@ -1,6 +1,7 @@
 {
   "name": "@somarl.com/pipe",
   "version": "0.1.0",
+  "license": "MIT",
   "main": "build/Adapter.js",
   "typings": "build/Adapter.d.ts",
   "scripts": {

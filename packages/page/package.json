@@ -1,6 +1,7 @@
 {
   "name": "@somarl.com/page",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start-js": "node scripts/start.js",

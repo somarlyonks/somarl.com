@@ -1,6 +1,7 @@
 {
   "name": "@somarl.com/server",
   "version": "0.1.0",
+  "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production ?? npm run prod || npm run dev",
     "prod": "nodemon src/server.ts",
@@ -12,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.5.0",
     "@nestjs/common": "7.1.0",
     "@nestjs/core": "7.1.0",
     "@nestjs/graphql": "7.3.9",
@@ -27,8 +29,10 @@
     "dotenv": "8.2.0",
     "graphql": "14.6.0",
     "graphql-tools": "5.0.0",
+    "handlebars": "^4.7.6",
     "local": "0.3.3",
     "node-fetch": "2.6.0",
+    "nodemailer": "^6.4.8",
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
