@@ -27,31 +27,31 @@
     caret-color: transparent;
     font-family: 'DejaVu Sans Mono', monospace, 'Courier New', Courier;
   }
-}
 
-.terminal-input__input {
-  background-color: rgba(white, 0.5);
-  color: rgba($inputColor, 0.8);
-  z-index: 9;
-  transition: background-color, 0.8s ease-out;
-}
-.terminal-input__input:focus {
-  background-color: rgba(white, 0.8);
-}
+  &__input {
+    background-color: rgba(white, 0.5);
+    color: rgba($inputColor, 0.8);
+    z-index: 9;
+    transition: background-color, 0.8s ease-out;
+    &:focus {
+      background-color: rgba(white, 0.8);
+    }
+  }
 
-.terminal-input__support {
-  display: none;
-  position: absolute;
-  top: 0;
-  pointer-events:none;
-  background-color: rgba(white, 0);
-  border-left: 0.4rem solid transparent;
-  color: rgba($inputColor, 1);
-  z-index: 10;
-  animation: blink 1s step-end infinite;
-}
+  &__support {
+    display: none;
+    position: absolute;
+    top: 0;
+    pointer-events:none;
+    background-color: rgba(white, 0);
+    border-left: 0.4rem solid transparent;
+    color: rgba($inputColor, 1);
+    z-index: 10;
+    animation: blink 1s step-end infinite;
+  }
 
-.terminal-input__support_contrast {
-  color: rgba($inpurContrastColor, 0.8);
-  z-index: 11;
+  &__support_contrast {
+    color: rgba($inpurContrastColor, 0.8);
+    z-index: 11;
+  }
 }
