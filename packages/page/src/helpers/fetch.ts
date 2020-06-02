@@ -78,7 +78,7 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
   body?: BodyInit
   headers?: O
   json?: O
-}): Promise<ApiResponse<TResponse>> {
+}) {
   const api = API_SERVER + '/' + endpoint
   const init: RequestInit = {
     method,
@@ -100,9 +100,9 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
   }
 
   const resp = await fetch(api, init)
-  const { status } = resp
+  const status = resp.status as HTTPStatusCodes
 
-  const result: ApiResponse = { status }
+  const result: ApiResponse = { status } as ApiResponse
 
   if (isResponseOK(result)) {
     const contentType = resp.headers.get('Content-Type')
@@ -113,7 +113,7 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
     console.warn('Request to', resp.url, 'failed with status code', status)
   }
 
-  return result
+  return result as ApiResponse<TResponse>
 }
 
 
@@ -122,7 +122,7 @@ export async function fetchPublicJson <TResponse = A> (api: S, { method, body, h
   body?: BodyInit
   headers?: O
   json?: O
-}): Promise<ApiResponse<TResponse>> {
+}) {
   const init: RequestInit = {
     method,
     mode: 'cors',
@@ -139,9 +139,9 @@ export async function fetchPublicJson <TResponse = A> (api: S, { method, body, h
   }
 
   const resp = await fetch(api, init)
-  const { status } = resp
+  const status = resp.status as HTTPStatusCodes
 
-  const result: ApiResponse = { status }
+  const result: ApiResponse = { status } as ApiResponse
 
   if (isResponseOK(result)) {
     const contentType = resp.headers.get('Content-Type')
@@ -152,5 +152,5 @@ export async function fetchPublicJson <TResponse = A> (api: S, { method, body, h
     console.warn('Request to', resp.url, 'failed with status code', status)
   }
 
-  return result
+  return result as ApiResponse<TResponse>
 }

@@ -1,7 +1,7 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect } from 'preact/hooks'
 
-import Api from '../helpers/Api'
+import { Api, bem } from 'src/helpers'
 
 
 export interface IFooterState {
@@ -35,15 +35,17 @@ export default function Footer () {
     setState((prev: IFooterState) => ({...prev, toggled: !prev.toggled}))
   }
 
+  const em = bem('footer')
+
   return (
-    <footer className={`footer_toggle${state.toggled ? 'd' : ''}`}>
-      <div className="absolute footer__widget" onClick={toggle} />
-      <span className={`footer__image-info footer__image-info_${state.binksCopyright ? 'adequate' : 'simple'}`}>
-        <span className="footer__image-info-name">"{state.binksName || 'Failed to load image'}"</span>
-        <span className="footer__image-info-connect">&nbsp;-&nbsp;</span>
-        <span className="footer__image-info-copyright">{state.binksCopyright}</span>
+    <footer class={em([state.toggled && 'toggled'])}>
+      <div class="absolute footer__widget" onClick={toggle} />
+      <span class={em('image-info', [state.binksCopyright ? 'adequate' : 'simple'])}>
+        <span class="footer__image-info-name">"{state.binksName || 'Failed to load image'}"</span>
+        <span class="footer__image-info-connect">&nbsp;-&nbsp;</span>
+        <span class="footer__image-info-copyright">{state.binksCopyright}</span>
       </span>
-      <span className="footer__copyright">© 2020 Sy. All rights reserved.</span>
+      <span class="footer__copyright">© 2020 Sy. All rights reserved.</span>
     </footer>
   )
 }
