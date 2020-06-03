@@ -22,6 +22,7 @@ const SINA_APP_KEY = 1524513978 // this doesn't have to be a secret
 const QINIU_SCOPE = 'static'
 const QINIU_URL = 'https://static.qotes.top/'
 const QINIU_ACCESS_KEY = 'R2VkFTTK6oT8CbhadlMT9Fkh6TrEotAfDA_SItaQ'
+const MAILER_USERNAME = 'dobby@somarl.com'
 
 
 export default class S {
@@ -74,6 +75,9 @@ export default class S {
   public static QINIU_URL = QINIU_URL
   public static QINIU_ACCESS_KEY = process.env.QINIU_ACCESS_KEY || QINIU_ACCESS_KEY
   public static QINIU_SECRET_KEY = process.env.QINIU_SECRET_KEY
+
+  public static MAILER_USERNAME = process.env.MAILER_USERNAME || MAILER_USERNAME
+  public static MAILER_PASSWORD = process.env.MAILER_PASSWORD
 }
 
 
