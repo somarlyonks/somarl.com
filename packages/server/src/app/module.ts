@@ -8,6 +8,7 @@ import ApiModule from '../api'
 import ArangoModule from '../arango'
 import GraphQLModule from '../graphql'
 import AuthModule from '../acl/auth'
+import { MailerModule } from '../shared/modules'
 
 
 @Module({
@@ -16,6 +17,7 @@ import AuthModule from '../acl/auth'
     AuthModule,
     ArangoModule.forRoot(),
     GraphQLModule,
+    MailerModule.forRoot(),
   ],
   controllers: [
     AppController,
