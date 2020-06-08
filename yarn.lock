@@ -3577,14 +3577,14 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nestjs-modules/mailer@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@nestjs-modules/mailer/-/mailer-1.5.0.tgz#58546f3ed8ee7c0e3151086a331d0ea30d009c87"
-  integrity sha512-oyeZib/B6Qeqv023cZ8A8cA4pn1JADnkJ27MCaQl8j3fly7A5bnMwkwKHWZnRERqq0Z37nUYQ9Y6tENscPtLUw==
+"@nestjs-modules/mailer@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@nestjs-modules/mailer/-/mailer-1.5.1.tgz#d97c1b580918b905aa3264f228c284e605f05fb7"
+  integrity sha512-Iyt3wEuJW4rNnEU71zKNqVap9qj+q6s21JXlSmhV2j3sq5CQcCRELAnw+itg650UYF4KiYH5O4ZR+TvKgYZyVw==
   dependencies:
     glob "7.1.6"
     inline-css "2.6.3"
-    preview-email "2.0.1"
+    preview-email "2.0.2"
   optionalDependencies:
     "@types/ejs" "^3.0.3"
     "@types/pug" "2.0.4"
@@ -14981,10 +14981,10 @@ pretty-hrtime@^1.0.0, pretty-hrtime@^1.0.3:
   resolved "https://registry.npmjs.org/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-preview-email@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/preview-email/-/preview-email-2.0.1.tgz#da237848702778b5a2dca38ed5963aa854c1ac3e"
-  integrity sha512-KXmv0oKonf9slHXjZ1O+QvGsq7IKJs3IINB4b8XWZ3IwONyGiGqpXthCrTZuDzhLG1kPn6FKOOikdm21bturcQ==
+preview-email@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/preview-email/-/preview-email-2.0.2.tgz#6cecec27ec91eb1ec1b0b67581d2f44f15c27b69"
+  integrity sha512-FADpJ1p5VX0F/V57gcxc8IoxX63JuyDOOMN4Y7tJwil8K1/lvN0HtO7mZHIP2kgwhMMehjYTxqnjFtSGg1/LXw==
   dependencies:
     "@babel/runtime" "^7.6.3"
     dayjs "^1.8.16"
