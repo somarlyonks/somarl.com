@@ -54,7 +54,7 @@
     "babel-loader": "8.1.0",
     "babel-preset-react-app": "9.1.2",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
-    "chalk": "4.0.0",
+    "chalk": "4.1.0",
     "concurrently": "5.2.0",
     "css-loader": "3.5.3",
     "dotenv": "8.2.0",
