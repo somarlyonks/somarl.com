@@ -164,10 +164,10 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
     // Perform type checking and linting in a separate process to speed up compilation
     new ForkTsCheckerWebpackPlugin({
-      async: false,
-      watch: paths.appSrc,
-      tsconfig: paths.appTsConfig,
-      tslint: paths.appTsLint,
+      async: true,
+      typescript: {
+        configFile: paths.appTsConfig,
+      },
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
