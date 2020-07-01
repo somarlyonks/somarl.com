@@ -4,10 +4,11 @@ import { TextField } from 'src/components/sui'
 
 export const TextFieldStory = () => {
   const maxLength = 10
-  const validate = async (value: S) =>
+  const asyncValidate = async (value: S) =>
     value.length > maxLength
       ? `Limited length ${maxLength}! Currently${value.length}.`
       : ''
+
   return (
     <div>
       <TextField label="Standard" placeholder="placeholder" onInput={console.info} />
@@ -19,7 +20,7 @@ export const TextFieldStory = () => {
         value="This is too looooooooooooooooooooog."
         required
         onInput={console.info}
-        validate={validate}
+        validate={asyncValidate}
       />
       <TextField
         label="With description"
@@ -28,6 +29,7 @@ export const TextFieldStory = () => {
         onInput={console.info}
       />
       <TextField label="Password" type="password" placeholder="placeholder" onInput={console.info} />
+      <TextField label="Email" type="email" placeholder="sy@somarl.com" onInput={console.info} />
     </div>
   )
 }

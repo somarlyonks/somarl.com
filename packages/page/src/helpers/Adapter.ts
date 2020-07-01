@@ -8,6 +8,8 @@ export {
   isPromise,
   clamp,
   CONSTS as PIPE_CONSTS,
+  isFunction, isString,
+  isValidEmail,
 } from '@somarl.com/pipe'
 
 

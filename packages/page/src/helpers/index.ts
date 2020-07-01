@@ -9,4 +9,4 @@ export * from './headers'
 export * from './threads'
 export { qUrl } from './transformers'
 
-export { WeatherTypes, weatherTypeMap } from './Adapter'
+export * from './Adapter'
