@@ -15655,10 +15655,10 @@ qiniu@*:
     tunnel-agent "0.6.0"
     urllib "2.22.0"
 
-qiniu@7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/qiniu/-/qiniu-7.3.1.tgz#e2bf25b721da710eceb9c1813dd981b9b68c8ee8"
-  integrity sha512-tdGdMCSZdRVJeGrd68UCg1SyrMxTgH4jCOHxR94jG2XqEqgrFzGwC7LszDSGqyNaN8jOjWu13OjbnzXm8iaN9A==
+qiniu@7.3.2:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/qiniu/-/qiniu-7.3.2.tgz#2655ffc65396272b4b1aaa8588aa7b1cc167d3cb"
+  integrity sha512-rn9I+/DaQKWh7/+9uVdR/kIVRT0yS7tne5LDQQQ2MtGFN5MgIjyoznztxVRuzs4ZWXdy7Qw/bYHYQcW5jB2xJA==
   dependencies:
     agentkeepalive "^4.0.2"
     block-stream2 "^2.0.0"
