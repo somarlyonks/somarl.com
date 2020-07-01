@@ -15,7 +15,7 @@ export const TextFieldStory = () => {
       <TextField label="Required" required onInput={console.info} />
       <TextField label="maxLength" maxLength={maxLength} placeholder="placeholder" onInput={console.info} />
       <TextField
-        label="PromiseValidate"
+        label="Async Validate"
         value="This is too looooooooooooooooooooog."
         required
         onInput={console.info}
@@ -27,6 +27,7 @@ export const TextFieldStory = () => {
         required
         onInput={console.info}
       />
+      <TextField label="Password" type="password" placeholder="placeholder" onInput={console.info} />
     </div>
   )
 }

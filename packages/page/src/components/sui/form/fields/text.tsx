@@ -6,7 +6,9 @@ import { bem } from 'src/helpers'
 
 
 type ITextFieldValidator = F1<S, S | P<S>>
-interface ITextFieldProps {
+interface IProps {
+  type?: 'text' | 'password' | 'email'
+  name?: S
   label?: S
   value?: S
   placeholder?: S
@@ -25,6 +27,8 @@ interface ITextFieldState {
 
 
 export default function TextField ({
+  type = 'text',
+  name,
   label,
   placeholder,
   value: propValue = '',
@@ -34,7 +38,7 @@ export default function TextField ({
   disabled = false,
   description,
   maxLength,
-}: ITextFieldProps) {
+}: IProps) {
   const id = randomString()
   const inputId = `text-field-input-${id}`
   const lableId = `text-field-label-${id}`
@@ -72,7 +76,8 @@ export default function TextField ({
       {!!label && <label id={lableId} for={inputId}>{label}</label>}
       <div class="text-field__input-container">
         <input
-          type="text"
+          type={type}
+          name={name}
           id={inputId}
           value={value}
           placeholder={placeholder}

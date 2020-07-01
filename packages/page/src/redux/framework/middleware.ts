@@ -1,3 +1,4 @@
+
 import { compose } from 'src/helpers/func'
 import { IStoreFactory, IEnhancer, IAction, IStore, IMiddleware, IMiddlewareAPI } from './shared'
 
