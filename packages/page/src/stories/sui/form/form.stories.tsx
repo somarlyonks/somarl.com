@@ -1,11 +1,16 @@
+
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { Button, Fabric } from 'src/components/sui'
+import { useState } from 'preact/hooks'
+
+import { Button, Fabric, Dialog } from 'src/components/sui'
 import RegisterForm from 'src/components/user/registerform'
+import { randomString } from 'src/helpers'
 
 
 export const FormStory = () => {
 
-  const id = 'x'
+  const id = `story-form-${randomString()}`
+  const id2 = `story-form-${randomString()}`
 
   const onSubmit: h.JSX.GenericEventHandler<HTMLFormElement> = event => {
     const target = event.currentTarget
@@ -13,13 +18,28 @@ export const FormStory = () => {
     const data = Object.fromEntries(formdata.entries())
     console.info('submitted with data', data)
   }
+  const [visible, setState] = useState(false)
+  const showDialog = () => setState(true)
+  const hideDialog = () => setState(false)
 
   return (
     <div>
+      <h2 class="story-suite__caption">Example Reigster form</h2>
       <RegisterForm onSubmit={onSubmit} id={id} />
       <Fabric clearfix class="pd--10">
         <Button type="submit" form={id} label="submit" />
       </Fabric>
+
+      <h2 class="story-suite__caption">In dialog</h2>
+      <Button label="Dialog" onClick={showDialog} />
+      <Dialog
+        visible={visible}
+        title="Register"
+        onCancel={hideDialog}
+        form={id2}
+      >
+        <RegisterForm onSubmit={onSubmit} id={id2} />
+      </Dialog>
     </div>
   )
 }

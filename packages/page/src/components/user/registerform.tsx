@@ -44,8 +44,8 @@ export default function RegisterForm ({
 
   return (
     <Form id={id} onSubmit={onSubmit}>
-      <TextField name="email" type="email" onInput={onInputEmail} maxLength={50} />
-      <TextField name="password" type="password" onInput={onInputPassword} validate={validatePassword} />
+      <TextField label="Email" name="email" type="email" onInput={onInputEmail} maxLength={50} />
+      <TextField label="Password" name="password" type="password" onInput={onInputPassword} validate={validatePassword} />
     </Form>
   )
 }
