@@ -51,6 +51,13 @@ input {
   appearance: none;
 }
 
+form {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-block-start: 1rem;
+  margin-block-end: 2rem;
+}
+
 
 ::-webkit-scrollbar {
   background-color: #F7F7F7;
