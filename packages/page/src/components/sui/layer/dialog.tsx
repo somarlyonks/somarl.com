@@ -24,6 +24,7 @@ interface IDialogProps {
   onCancel?: F0<void>
   showButtons?: boolean
   title?: S
+  form?: S
 }
 
 
@@ -65,6 +66,7 @@ export function Dialog ({
   onConfirm = () => {},
   showButtons = true,
   title = '',
+  form,
 }: IDialogProps) {
   const $dialog = useRef<HTMLElement>()
   const [{ x, y }, setState] = useState<IDialogState>({
@@ -109,8 +111,8 @@ export function Dialog ({
       {
         showButtons && (
           <div class="dialog__button-group flex">
-            <Button label="Confirm" onClick={onConfirm} primary />
-            <Button label="Cancel" onClick={onCancel} />
+            <Button form={form} type={form ? 'submit' : 'button'} label="Confirm" onClick={onConfirm} primary />
+            <Button form={form} label="Cancel" onClick={onCancel} />
           </div>
         )
       }
