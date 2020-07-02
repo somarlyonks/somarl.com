@@ -2,10 +2,10 @@
 
 .fabric-btn {
   position: relative;
-  height: 32px;
+  height: 2rem;
   font-size: 14px;
   font-weight: 400;
-  padding: 0 16px;
+  padding: 0 1rem;
   background-color: #fff;
   border: 1px solid $fabricGrey;
   color: $fabricBlack;
@@ -13,7 +13,7 @@
   text-decoration: none;
   text-align: center;
   vertical-align: top;
-  min-width: 80px;
+  min-width: 5rem;
   outline: transparent;
   user-select: none;
   -webkit-font-smoothing: antialiased;
@@ -55,7 +55,7 @@
   }
 
   &__label {
-    margin: 0 4px;
+    margin: 0 0.25rem;
     line-height: 1;
     display: block;
     font-weight: 600;

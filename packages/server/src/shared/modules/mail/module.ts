@@ -4,6 +4,7 @@ import { MailerModule, MailerOptions } from '@nestjs-modules/mailer'
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
 
 import SETTINGS from '../../../settings'
+import { capitalize } from '../../../helpers/Adapter'
 
 
 @Module({})
@@ -26,7 +27,7 @@ export default class MailerWrapModule {
           },
           defaults: {
             from: {
-              name: SETTINGS.MAILER_USERNAME.split('@')[0],
+              name: capitalize(SETTINGS.MAILER_USERNAME.split('@')[0]),
               address: SETTINGS.MAILER_USERNAME,
             },
             subject: 'Hi from Dobby!',

@@ -2,13 +2,14 @@
  * Expelliarmus !
  */
 
-export * from './status'
-export * from './weather'
 export * from './binks'
+export * from './compose'
 export * from './consts'
+export * from './graphql'
 export * from './is'
 export * from './math'
 export * from './named'
-export * from './compose'
-export * from './randomString'
-export * from './graphql'
+export * from './status'
+export * from './string'
+export * from './validate'
+export * from './weather'

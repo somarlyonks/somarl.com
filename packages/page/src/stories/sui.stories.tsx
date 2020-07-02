@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/preact'
 import {
   AvatarStory, DominoStory,
   HoverableStory, DialogStory,
-  ButtonStory, TextFieldStory
+  ButtonStory, TextFieldStory, FormStory
 } from './sui'
 
 
@@ -17,3 +17,4 @@ storiesOf('sui', module)
 storiesOf('sui/form', module)
   .add('Button', () => <ButtonStory />)
   .add('TextField', () => <TextFieldStory />)
+  .add('Form', () => <FormStory />)
