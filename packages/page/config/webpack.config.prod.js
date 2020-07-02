@@ -203,7 +203,7 @@ module.exports = {
       },
     }),
     // It is absolutely essential that NODE_ENV was set to production here for speed.
-    new webpack.DefinePlugin(env.stringified),
+    new webpack.DefinePlugin(env.stringified), // lgtm [js/build-artifact-leak]
     new UglifyJsPlugin({
       uglifyOptions: {
         ecma: 8,

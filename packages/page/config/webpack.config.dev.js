@@ -158,7 +158,7 @@ module.exports = {
       template: paths.appHtml,
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.DefinePlugin(env.stringified),
+    new webpack.DefinePlugin(env.stringified), // lgtm [js/build-artifact-leak]
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
