@@ -6,6 +6,8 @@ import { bem } from 'src/helpers'
 
 
 interface IButtonProps {
+  type?: 'button' | 'submit' | 'reset'
+  name?: S
   label?: S
   icon?: h.JSX.Element
   loading?: boolean
@@ -16,10 +18,13 @@ interface IButtonProps {
   borderless?: boolean
   onClick?: h.JSX.MouseEventHandler<HTMLButtonElement>
   style?: S | {[key: string]: S | N}
+  form?: S
 }
 
 
 export default function Button ({
+  type = 'button',
+  name,
   label,
   icon,
   loading = false,
@@ -30,14 +35,17 @@ export default function Button ({
   style = '',
   primary = false,
   borderless = false,
+  form,
 }: IButtonProps) {
   return (
     <button
-      onClick={onClick}
-      type="button"
+      type={type}
+      name={name}
       class={`fabric-btn ${className} ` + bem('fabric-btn', [{primary, borderless, icon}])}
       style={style}
       disabled={disabled || loading}
+      form={form}
+      onClick={onClick}
     >
       <Fabric clearfix>
         { loading ?
