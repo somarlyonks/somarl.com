@@ -20,8 +20,12 @@ body::before {
       margin-block-end: 5px;
     }
     &__content {
-      & > *:not(:last-of-type) {
-        margin-right: 10px;
+      flex-wrap: wrap;
+      & > * {
+        margin-bottom: 10px;
+        &:not(:last-of-type) {
+          margin-right: 10px;
+        }
       }
     }
     &--fixme {
