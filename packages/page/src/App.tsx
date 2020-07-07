@@ -6,7 +6,7 @@ import Header from './components/header'
 import Main from './components/main'
 import { Progress, Domino } from './components/sui'
 import Api from './helpers/Api'
-import store, { StoreContext, ActionTypes, actionProxy } from './redux'
+import store, { StoreContext, actor } from './redux'
 
 
 export default function App () {
@@ -15,12 +15,12 @@ export default function App () {
     window.SS = { Api }
 
     const pColor = Api.getBinksColor()
-    const setColor = actionProxy(
-      ActionTypes.global.SET_THEMECOLOR,
-      async (color: R<typeof Api.getBinksColor>) => `rgb(${(await color).join(', ')})`
-    )
+    const setColor = async (color: R<typeof Api.getBinksColor>) => `rgb(${(await color).join(', ')})`
 
-    store.dispatch(setColor(pColor))
+    actor({
+      type: actor.types.global.SET_THEMECOLOR,
+      payload: setColor(pColor),
+    })
 
     Promise.all([pColor])
       .then(() => setter('ready'))
