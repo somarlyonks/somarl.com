@@ -9,6 +9,7 @@ interface IProps {
   class?: S
   size?: 'default' | 'large' | 'medium' | 'small'
   shape?: 'rounded' | 'circle' | 'square'
+  onClick?: F0<void>
 }
 
 
@@ -17,12 +18,13 @@ export default function avatar ({
   size,
   user,
   class: className = '',
+  onClick,
 }: IProps) {
   const imgKey = user.avatar
   const em = bem('avatar')
 
   return (
-    <div class={`${className} ${em([shape, size])}`}>
+    <div class={`${className} ${em([shape, size])}`} onClick={onClick}>
       <img src={qUrl(imgKey)} alt="" />
     </div>
   )
