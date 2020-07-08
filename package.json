@@ -82,7 +82,7 @@
     "style-loader": "1.2.1",
     "sw-precache-webpack-plugin": "1.0.0",
     "ts-jest": "26.1.1",
-    "ts-loader": "7.0.5",
+    "ts-loader": "8.0.0",
     "ts-node": "8.10.2",
     "tsconfig-paths-webpack-plugin": "3.2.0",
     "tslint": "6.1.2",
