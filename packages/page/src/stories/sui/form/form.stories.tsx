@@ -1,9 +1,8 @@
 
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { useState } from 'preact/hooks'
 
 import { Button, Fabric, Dialog, LoginForm } from 'src/components/sui'
-import { randomString } from 'src/helpers'
+import { randomString, useBoolState } from 'src/helpers'
 
 
 export const FormStory = () => {
@@ -17,9 +16,7 @@ export const FormStory = () => {
     const data = Object.fromEntries(formdata.entries())
     console.info('submitted with data', data)
   }
-  const [visible, setState] = useState(false)
-  const showDialog = () => setState(true)
-  const hideDialog = () => setState(false)
+  const [visible, showDialog, hideDialog] = useBoolState()
 
   return (
     <div>

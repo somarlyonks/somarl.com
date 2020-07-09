@@ -1,7 +1,6 @@
 import { h } from 'preact'
-import { useState } from 'preact/hooks'
 
-import { IPosition } from 'src/helpers'
+import { IPosition, useBoolState } from 'src/helpers'
 import { Callout } from './layer'
 
 interface IHoverableProps {
@@ -36,13 +35,13 @@ export default function Hoverable ({
   offset,
   beakSize,
 }: IHoverableProps) {
-  const [visible, setState] = useState(false)
+  const [visible, show, hide] = useBoolState()
 
   let delayTimer: A
   const showHover: h.JSX.MouseEventHandler<HTMLDivElement> = e => {
     delayTimer = setTimeout(() => {
       try {
-        setState(true)
+        show()
       } catch (err) {
         console.error(err)
       }
@@ -50,7 +49,7 @@ export default function Hoverable ({
   }
   const hideHover: h.JSX.MouseEventHandler<HTMLDivElement> = e => {
     clearTimeout(delayTimer)
-    setState(false)
+    hide()
   }
 
   return (

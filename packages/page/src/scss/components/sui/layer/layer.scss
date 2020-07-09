@@ -15,10 +15,13 @@
 
   .callout, .dialog {
     visibility: visible;
-    position: absolute;
     box-shadow:
       rgba(0, 0, 0, 0.133) 0px 6.4px 14.4px 0px,
       rgba(0, 0, 0, 0.11) 0px 1.2px 3.6px 0px;
+  }
+
+  .callout {
+    position: absolute;
   }
 
   &--callout {
@@ -27,7 +30,13 @@
   &--dialog {
     z-index: $zDialog;
     visibility: visible;
-    background-color: rgba(0, 0, 0, 0.01);
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .layer__content {
+      margin-top: -20%;
+    }
   }
 
   &__content {

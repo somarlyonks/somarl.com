@@ -1,8 +1,8 @@
 import { h } from 'preact'
-import { useRef, PropRef, useState } from 'preact/hooks'
+import { useRef, PropRef } from 'preact/hooks'
 
 import Button from './button'
-import { req, Api, QINIU_UPLOAD_URL, iOError } from 'src/helpers'
+import { req, Api, QINIU_UPLOAD_URL, iOError, useBoolState } from 'src/helpers'
 
 
 interface IQiniuInputProps {
@@ -35,14 +35,14 @@ export default function QiniuInput ({
   accept = 'image/*',
 }: IQiniuInputProps) {
   const $input = useRef<HTMLInputElement>()
-  const [loading, updateLoading] = useState(false)
+  const [loading, showLoading, hideLoading] = useBoolState(false)
 
   const onClick: h.JSX.MouseEventHandler<HTMLElement> = event => $input.current!.click()
   const onChange: h.JSX.GenericEventHandler<HTMLInputElement> = async event => {
     const file = ((event.target as HTMLInputElement).files || [])[0]
-    updateLoading(true)
+    showLoading()
     const r = await uploadFile(file, userId)
-    updateLoading(false)
+    hideLoading()
     onUpload(r)
   }
 
