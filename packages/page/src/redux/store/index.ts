@@ -62,6 +62,7 @@ const preloadedState: IImplState = {
     url: 'https://static.qotes.top/',
   },
   user: {
+    loginVisible: false,
     isLoggedIn: false,
     user: ANONYMOUS_USER,
   },

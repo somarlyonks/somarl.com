@@ -31,7 +31,7 @@ export default function Button ({
   disabled = false,
   class: className = '',
   labelClassName = '',
-  onClick = () => {},
+  onClick,
   style = '',
   primary = false,
   borderless = false,

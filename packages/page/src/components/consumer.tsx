@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-import store, { useRedux, ActionTypes, actionProxy } from 'src/redux'
+import { useRedux, actors, actor } from 'src/redux'
 
 
 const API = async (x: S) => x
@@ -8,7 +8,6 @@ const API2 = async (x: N) => {
   if (Math.random() > (1 / 2)) throw Error('Testing Error handling')
   return x
 }
-const incN = actionProxy(ActionTypes.global.INCREMENT, API2)
 
 export default function Consumer () {
   const { errMsgs, testCount } = useRedux(state => ({
@@ -16,11 +15,11 @@ export default function Consumer () {
     testCount: state.global.testCount,
   }))
 
-  const ADec: h.JSX.MouseEventHandler<HTMLButtonElement> = event => store.dispatch({
-    type: ActionTypes.global.DECREMENT,
-    payload: API('1'),
+  const ADec: h.JSX.MouseEventHandler<HTMLButtonElement> = event => actors.global.DECREMENT(API('1'))
+  const AInc: h.JSX.MouseEventHandler<HTMLButtonElement> = event => actor({
+    type: actor.types.global.INCREMENT,
+    payload: API2(1),
   })
-  const AInc: h.JSX.MouseEventHandler<HTMLButtonElement> = event => store.dispatch(incN(1))
 
   return (
     <div>

@@ -47,7 +47,7 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
 const REACT_APP = /^REACT_APP_/i
 
 function getClientEnvironment (publicUrl) {
-  const raw = Object.keys(process.env)
+  const raw = Object.keys(process.env) // lgtm [js/build-artifact-leak]
     .filter(key => REACT_APP.test(key))
     .reduce((env, key) => Object.assign(env, { [key]: process.env[key] }), {
       NODE_ENV: process.env.NODE_ENV || 'development',

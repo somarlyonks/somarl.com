@@ -6,6 +6,7 @@ export * from './dom'
 export * from './fetch'
 export * from './func'
 export * from './headers'
+export * from './hooks'
 export * from './threads'
 export { qUrl } from './transformers'
 

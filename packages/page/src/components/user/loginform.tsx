@@ -1,6 +1,5 @@
 
 import { h } from 'preact'
-import { useState } from 'preact/hooks'
 
 import { TextField, Form } from 'src/components/sui/form'
 import { randomString } from 'src/helpers'
@@ -11,23 +10,12 @@ interface IProps {
   onSubmit?: h.JSX.GenericEventHandler<HTMLFormElement>
 }
 
-interface IState {
-  email: S
-  password: S
-}
 
-
-export default function RegisterForm ({
+export default function LoginForm ({
   id,
   onSubmit: propOnSubmit,
 }: IProps) {
   id = id || `form-register-${randomString()}`
-  const [, setState] = useState<IState>({email: '', password: ''})
-
-  const onInputEmail: h.JSX.GenericEventHandler<HTMLInputElement> =
-    event => setState(prev => ({...prev, email: event.currentTarget.value}))
-  const onInputPassword: h.JSX.GenericEventHandler<HTMLInputElement> =
-    event => setState(prev => ({...prev, password: event.currentTarget.value}))
 
   const validatePassword = (s: S) => {
     const minLength = 4
@@ -44,8 +32,8 @@ export default function RegisterForm ({
 
   return (
     <Form id={id} onSubmit={onSubmit}>
-      <TextField label="Email" name="email" type="email" onInput={onInputEmail} maxLength={50} />
-      <TextField label="Password" name="password" type="password" onInput={onInputPassword} validate={validatePassword} />
+      <TextField label="Email" name="email" type="email" maxLength={50} />
+      <TextField label="Password" name="password" type="password" validate={validatePassword} />
     </Form>
   )
 }

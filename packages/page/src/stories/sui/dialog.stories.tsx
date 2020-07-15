@@ -1,14 +1,13 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { useState } from 'preact/hooks'
 
 import { Dialog, Button } from 'src/components/sui'
 import { Suite, lorem } from '../helpers'
+import { useBoolState } from 'src/helpers'
 
 
 export const DialogStory = () => {
-  const [visible, setState] = useState(false)
-  const showDialog = () => setState(true)
-  const hideDialog = () => setState(false)
+  const [visible, showDialog, hideDialog] = useBoolState(false)
+
   return (
     <Suite caption="stardard">
       <Button label="Dialog" onClick={showDialog} />
