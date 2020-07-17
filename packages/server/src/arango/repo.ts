@@ -1,12 +1,12 @@
-import { Database } from 'arangojs'
+import { Database, aql } from 'arangojs'
 import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
 import Entity, { IEntity } from './entity'
 import { IRepo, IShimDocCollection } from './specs'
 import { QueryOptions } from 'arangojs/lib/cjs/database'
 import { ArrayCursor } from 'arangojs/lib/cjs/cursor'
+import { AqlQuery } from 'arangojs/lib/cjs/aql-query'
 
 
-// TODO: reimplement this standalone from the arangojs for God's sake
 class Q <TModel> {
 
   protected readonly collection: IShimDocCollection
@@ -70,8 +70,8 @@ abstract class AbsRepo <TModel> {
     return new Q(this.resourceName, this.db)
   }
 
-  protected async $rawQS (dsl: S, options?: QueryOptions) {
-    return this.db.query(dsl, {}, options)
+  protected async $aql (query: AqlQuery, options?: QueryOptions) {
+    return this.db.query(query, options)
   }
 
   protected async $create (data: ModelData<TModel>): P<IEntity<TModel>> {
@@ -119,11 +119,11 @@ abstract class AbsRepo <TModel> {
   }
 
   protected async $page (skip: N, take: N): P<L<IEntity<TModel>>> {
-    const cursor = await this.$rawQS(`
-      FOR c IN ${this.resourceName}
+    const cursor = await this.$aql(aql`
+      FOR d IN ${this.collection}
       LIMIT ${skip}, ${take}
-      RETURN c
-    `, {batchSize: take}) // TODO: @sy
+      RETURN d
+    `, {batchSize: take})
     const ds = await cursor.all()
     return ds.map(Entity)
   }
@@ -132,12 +132,27 @@ abstract class AbsRepo <TModel> {
     return this.collection.all()
   }
 
+  protected async $get (query: AqlQuery, strict=true): P<IEntity<TModel> | void> {
+    const cursor = await this.$aql(aql`
+      FOR d in ${this.collection}
+      ${query}
+      LIMIT 1
+      RETURN d
+    `, {batchSize: 1})
+    const candidates = await cursor.all()
+    if (!candidates.length) {
+      if (strict) throw new NotFoundException(this.resourceName)
+      return
+    }
+    return Entity(candidates[0]) as A
+  }
+
 }
 
 
 export default abstract class Repo <TModel> extends AbsRepo<TModel> implements IRepo<TModel> {
 
-  public async create (data: ModelData<TModel>): P<TModel> {
+  public async create (data: ModelData<TModel>) {
     return this.postCreate(await this.$create(await this.preCreate(data)))
   }
 
@@ -145,7 +160,16 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> implements I
     return this.$lookupById(id).then(d => d.dehydrate())
   }
 
-  public async find (options: {query: S} | {take: N, skip: N}) {
+  public async get (query: AqlQuery): P<Dehydrated<TModel>> | never
+  public async get (query: AqlQuery, _acceptVoid: A): P<Dehydrated<TModel> | void>
+  public async get (query: AqlQuery, _acceptVoid?: A) {
+    const strict = arguments.length === 1
+    const entity = await this.$get(query, strict)
+    if (entity) return entity.dehydrate()
+    return
+  }
+
+  public async find (options: {query: S} | {take: N, skip: N}) { // FIXME: this is ridiculous
     const ds = 'query' in options
       ? await this.Q.query(options.query).all()
       : await this.$page(options.skip, options.take)
@@ -174,7 +198,7 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> implements I
     return data
   }
 
-  protected async postCreate (entity: IEntity<TModel>): P<TModel> {
+  protected async postCreate (entity: IEntity<TModel>) {
     return entity.dehydrate()
   }
 

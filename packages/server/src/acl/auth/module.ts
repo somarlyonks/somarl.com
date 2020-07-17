@@ -15,7 +15,7 @@ import { SETTINGS } from '../../settings'
     JwtModule.register({
       ...SETTINGS.JWT_OPTIONS,
       signOptions: {
-        expiresIn: '60s',
+        expiresIn: '7d',
       },
     }),
   ],

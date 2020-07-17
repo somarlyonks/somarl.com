@@ -22,7 +22,7 @@ export interface NewRecipeInput {
 
 export interface NewUserInput {
     nickname?: string;
-    email?: string;
+    email: string;
     password: string;
 }
 
@@ -45,7 +45,7 @@ export interface IMutation {
     removeImage(id: string): boolean | Promise<boolean>;
     addRecipe(newRecipeData: NewRecipeInput): Recipe | Promise<Recipe>;
     removeRecipe(id: string): boolean | Promise<boolean>;
-    createUser(newRecipeData: NewUserInput): User | Promise<User>;
+    createUser(newUserData: NewUserInput): User | Promise<User>;
 }
 
 export interface IQuery {

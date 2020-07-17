@@ -27,7 +27,7 @@ type Mutation {
   removeImage(id: String!): Boolean!
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
   removeRecipe(id: String!): Boolean!
-  createUser(newRecipeData: NewUserInput!): User!
+  createUser(newUserData: NewUserInput!): User!
 }
 
 input NewImageInput {
@@ -46,7 +46,7 @@ input NewRecipeInput {
 
 input NewUserInput {
   nickname: String
-  email: String
+  email: String!
   password: String!
 }
 
