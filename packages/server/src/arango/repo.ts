@@ -1,10 +1,13 @@
+
 import { Database, aql } from 'arangojs'
-import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
-import Entity, { IEntity } from './entity'
-import { IRepo, IShimDocCollection } from './specs'
 import { QueryOptions } from 'arangojs/lib/cjs/database'
 import { ArrayCursor } from 'arangojs/lib/cjs/cursor'
 import { AqlQuery } from 'arangojs/lib/cjs/aql-query'
+import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
+
+import Entity, { IEntity } from './entity'
+import { IRepo, IShimDocCollection } from './specs'
+import { now } from '../helpers/Adapter'
 
 
 class Q <TModel> {
@@ -77,7 +80,7 @@ abstract class AbsRepo <TModel> {
   protected async $create (data: ModelData<TModel>): P<IEntity<TModel>> {
     const _data = {
       ...data,
-      created: new Date(),
+      created: now(),
     }
     try {
       const r = await this.collection.save(_data)

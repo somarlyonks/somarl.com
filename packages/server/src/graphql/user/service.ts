@@ -6,7 +6,7 @@ import { IUserService } from './specs'
 import UserRepo from './repo'
 import { NewUserInput } from './dto'
 import { DEFAULT_AVATAR } from './consts'
-import { capitalize } from '../../helpers/Adapter'
+import { capitalize, now } from '../../helpers/Adapter'
 
 
 @Injectable()
@@ -40,7 +40,7 @@ export default class UserService implements IUserService {
   }
 
   public async seen (id: S) {
-    return this.userRepo.update(id, {lastseen: new Date()})
+    return this.userRepo.update(id, {lastseen: new Date(now())})
   }
 
 }

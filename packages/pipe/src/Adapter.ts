@@ -5,6 +5,7 @@
 export * from './binks'
 export * from './compose'
 export * from './consts'
+export * from './datetime'
 export * from './graphql'
 export * from './is'
 export * from './math'
