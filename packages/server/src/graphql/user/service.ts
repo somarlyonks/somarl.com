@@ -40,7 +40,7 @@ export default class UserService implements IUserService {
   }
 
   public async seen (id: S) {
-    // TODO:
+    return this.userRepo.update(id, {lastseen: new Date()})
   }
 
 }

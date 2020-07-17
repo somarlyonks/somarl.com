@@ -96,14 +96,10 @@ abstract class AbsRepo <TModel> {
     return this.$lookupBy$Keys(ids)
   }
 
-  protected async $lookupBy$Key ($key: S): P<IEntity<TModel>> {
-    const candidates = await this.$lookupBy$Keys([$key])
-    if (!candidates.length) throw new NotFoundException($key)
-    return candidates[0]
-  }
-
   protected async $lookupById (id: S): P<IEntity<TModel>> {
-    return this.$lookupBy$Key(id)
+    const document = await this.collection.document({_key: id}, true)
+    if (!document) throw new NotFoundException(id)
+    return Entity(document as A) as A
   }
 
   protected async $deleteByKey (key: S) {
@@ -111,7 +107,7 @@ abstract class AbsRepo <TModel> {
   }
 
   protected async $deleteById (id: S) {
-    return this.collection.remove({_id: id})
+    return this.collection.remove({_key: id})
   }
 
   protected async $deleteByKeys (keys: L<S>) {
@@ -147,6 +143,13 @@ abstract class AbsRepo <TModel> {
     return Entity(candidates[0]) as A
   }
 
+  protected async $update (id: S, data: Partial<ModelData<TModel>>, options: {returnNew: boolean, rev?: string} = {
+    returnNew: false,
+  }): P<IEntity<TModel> | void> {
+    const r = await this.collection.update({_key: id}, data, options)
+    if (options.returnNew) return Entity(r.new) as A
+  }
+
 }
 
 
@@ -176,7 +179,11 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> implements I
     return ds.map(d => d.dehydrate())
   }
 
-  public async deleteOne (ids: L<S>) {
+  public async update (id: S, data: Partial<ModelData<TModel>>) {
+    return this.$update(id, data)
+  }
+
+  public async delete (ids: L<S>) {
     try {
       this.$deleteByKeys(ids)
       return true
@@ -185,7 +192,7 @@ export default abstract class Repo <TModel> extends AbsRepo<TModel> implements I
     }
   }
 
-  public async delete (id: S) {
+  public async deleteOne (id: S) {
     try {
       this.$deleteByKey(id)
       return true
