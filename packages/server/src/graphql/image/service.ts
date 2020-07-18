@@ -24,6 +24,6 @@ export default class ImageService implements IImageService {
   }
 
   public async removeById (id: S) {
-    return this.imageRepo.delete(id)
+    return this.imageRepo.deleteOne(id)
   }
 }

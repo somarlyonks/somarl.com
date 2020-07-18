@@ -1,10 +1,11 @@
 import { Request } from 'express'
-import { Controller, Req, Post, UseGuards } from '@nestjs/common'
+import { Controller, Req, Post, UseGuards, Body } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 
 import { JSONResp } from '../../shared'
 
 import AuthService from './service'
+import { NewUserInput } from '../../graphql/user/dto'
 
 
 @Controller('auth')
@@ -15,13 +16,13 @@ export default class AuthController {
   ) {}
 
   @Post('sign')
-  public async signUp (@Req() req: Request) {
-    return JSONResp.success(await this.authSerivce.signUp(req.body))
+  public async signUp (@Body() body: NewUserInput) {
+    return JSONResp.success(await this.authSerivce.signUp(body))
   }
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  public async login (@Req() req: Request) {
+  public async login (@Req() req: Request, @Body() body: NewUserInput) {
     return JSONResp.success(await this.authSerivce.login(req.user!))
   }
 
@@ -30,7 +31,7 @@ export default class AuthController {
   public async logout (@Req() req: Request) {
     await this.authSerivce.logout(req.user!)
 
-    return  JSONResp.success()
+    return JSONResp.success()
   }
 
   @UseGuards(AuthGuard('jwt'))

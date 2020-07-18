@@ -24,6 +24,6 @@ export default class RecipeService implements IRecipeService {
   }
 
   public async removeById (id: S) {
-    return this.recipeRepo.delete(id)
+    return this.recipeRepo.deleteOne(id)
   }
 }

@@ -68,6 +68,8 @@ somarl.com:
     [x] migrate to ArangoDB
       [x] server module
       [x] data interface
+    [ ] migrate to Foxx
+      [ ] build abstract logic upon node and edge thru GraphQL
     [ ] test frame
       [ ] frame test
       [ ] business test

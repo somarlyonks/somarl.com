@@ -30,7 +30,7 @@ export default class UserResolver {
 
   @Mutation(returns => User)
   public async createUser (
-    @Args('newRecipeData') newUserData: NewUserInput
+    @Args('newUserData') newUserData: NewUserInput
   ) {
     return this.userService.create(newUserData)
   }

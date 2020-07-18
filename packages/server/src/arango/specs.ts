@@ -8,9 +8,11 @@ export interface IRepo <TModel> {
 
   findOne (id: S): P<Dehydrated<TModel> | void>
 
-  delete (ids: S): P<boolean>
+  update (id: S, data: Partial<ModelData<TModel>>): P
 
-  deleteOne (ids: L<S>): P<boolean>
+  delete (ids: L<S>): P<boolean>
+
+  deleteOne (id: S): P<boolean>
 
 }
 

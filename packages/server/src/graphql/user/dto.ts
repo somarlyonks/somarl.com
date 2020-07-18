@@ -11,11 +11,10 @@ export class NewUserInput {
   @MaxLength(30)
   public nickname?: S
 
-  @Field({ nullable: true })
-  @IsOptional()
+  @Field()
   @IsEmail()
   @MaxLength(30)
-  public email?: S
+  public email!: S
 
   @Field()
   @MaxLength(255)
