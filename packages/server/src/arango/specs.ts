@@ -1,10 +1,10 @@
 import { DocumentCollection } from 'arangojs'
 
-export interface IRepo <TModel> {
+export interface IRepo<TModel> {
 
   create (data: ModelData<TModel>): P<TModel>
 
-  find (options: {query: S} | {take: N, skip: N}): P<L<Dehydrated<TModel>>>
+  find (options: { query: S } | { take: N, skip: N }): P<L<Dehydrated<TModel>>>
 
   findOne (id: S): P<Dehydrated<TModel> | void>
 
@@ -55,7 +55,7 @@ export interface IArangoCollectionOptions {
   silent?: boolean
 }
 
-type DocumentHandle = string | (({ _key: S } | { _id: S }) & { _rev?: S})
+type DocumentHandle = string | (({ _key: S } | { _id: S }) & { _rev?: S })
 
 export interface IArangoDocumentMeta {
   _key: S // 177949
@@ -68,6 +68,6 @@ export interface IArangoEdgeMeta extends IArangoDocumentMeta {
   _to: S   // test/177949
 }
 
-export type IArangoDocuemnt <TModel> = IArangoDocumentMeta & {
+export type IArangoDocuemnt<TModel> = IArangoDocumentMeta & {
   [K in keyof TModel]: TModel[K]
 }

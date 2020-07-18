@@ -1,3 +1,6 @@
+
+// tslint:disable: object-literal-key-quotes
+
 export type WeatherTypes = 'breeze'
                          | 'cloud'
                          | 'cloud2'

@@ -35,7 +35,7 @@ export default class SyshParser {
     hintLines: 5,
   }
 
-  public static reciver = (output: StdOut) => {}
+  public static reciver = (output: StdOut) => { }
 
   /** real time parse for hints/history search */
   public static async parse (command: string): Promise<StdOut> {

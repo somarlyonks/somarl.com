@@ -1,4 +1,4 @@
-import fetch, {RequestInit} from 'node-fetch'
+import fetch, { RequestInit } from 'node-fetch'
 
 export async function fetchPublicJson (api: S, body?: S) {
   const init: RequestInit = {

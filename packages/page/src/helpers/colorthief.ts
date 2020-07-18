@@ -71,7 +71,7 @@ class CanvasImage {
 
 export default class ColorThief {
   public getColor (sourceImage: HTMLImageElement, quality = 10) {
-    return this.getPalette(sourceImage, 5, quality)[ 0 ]
+    return this.getPalette(sourceImage, 5, quality)[0]
   }
 
   /**
@@ -92,20 +92,20 @@ export default class ColorThief {
     const pixelArray = []
     for (let i = 0, offset, r, g, b, a; i < pixelCount; i = i + quality) {
       offset = i * 4
-      r = pixels[ offset + 0 ]
-      g = pixels[ offset + 1 ]
-      b = pixels[ offset + 2 ]
-      a = pixels[ offset + 3 ]
+      r = pixels[offset + 0]
+      g = pixels[offset + 1]
+      b = pixels[offset + 2]
+      a = pixels[offset + 3]
       // If pixel is mostly opaque and not white
       if (a >= 125) {
         if (!(r > 250 && g > 250 && b > 250)) {
-          pixelArray.push([ r, g, b ])
+          pixelArray.push([r, g, b])
         }
       }
     }
 
     const cmap = MMCQ.quantize(pixelArray, colorCount)
-    const palette = cmap ? cmap.palette() : [ [ 0, 0, 0 ] ]
+    const palette = cmap ? cmap.palette() : [[0, 0, 0]]
 
     canvasImage.removeCanvas()
 
@@ -144,7 +144,7 @@ export default class ColorThief {
       const uInt8Array = new Uint8Array(await r.arrayBuffer())
       // tslint:disable-next-line:prefer-for-of for performance
       for (let i = 0; i < uInt8Array.length; i++) {
-        binaryString += String.fromCharCode(uInt8Array[ i ])
+        binaryString += String.fromCharCode(uInt8Array[i])
       }
     }
     return 'data:image/png;base64,' + window.btoa(binaryString)
@@ -180,8 +180,8 @@ class PQueue<T = A> {
 
   public peek (index?: N) {
     if (!this.sorted) this.sort()
-    if (index === undefined) return this.contents[ this.contents.length - 1 ]
-    return this.contents[ index ]
+    if (index === undefined) return this.contents[this.contents.length - 1]
+    return this.contents[index]
   }
 
   public pop () {
@@ -257,14 +257,14 @@ const MMCQ = (() => {
       let rmin = Infinity
       let gmin = Infinity
       let bmin = Infinity
-      let rmax = pixels[ 0 ][ 0 ] >> rshift
-      let gmax = pixels[ 0 ][ 1 ] >> rshift
-      let bmax = pixels[ 0 ][ 2 ] >> rshift
+      let rmax = pixels[0][0] >> rshift
+      let gmax = pixels[0][1] >> rshift
+      let bmax = pixels[0][2] >> rshift
       // find min/max
       pixels.forEach(pixel => {
-        const rval = pixel[ 0 ] >> rshift
-        const gval = pixel[ 1 ] >> rshift
-        const bval = pixel[ 2 ] >> rshift
+        const rval = pixel[0] >> rshift
+        const gval = pixel[1] >> rshift
+        const bval = pixel[2] >> rshift
         if (rval < rmin) rmin = rval
         else if (rval > rmax) rmax = rval
         if (gval < gmin) gmin = gval
@@ -289,7 +289,7 @@ const MMCQ = (() => {
           for (let j = this.g1; j <= this.g2; j++) {
             for (let k = this.b1; k <= this.b2; k++) {
               const index = getColorIndex(i, j, k)
-              npix += (this.histo[ index ] || 0)
+              npix += (this.histo[index] || 0)
             }
           }
         }
@@ -315,7 +315,7 @@ const MMCQ = (() => {
           for (let j = this.g1; j < this.g2; j++) {
             for (let k = this.b1; k < this.b2; k++) {
               const index = getColorIndex(i, j, k)
-              const hval = this.histo[ index ] || 0
+              const hval = this.histo[index] || 0
               ntot += hval
               rsum += hval * (i + 0.5) * mult
               gsum += hval * (j + 0.5) * mult
@@ -324,7 +324,7 @@ const MMCQ = (() => {
           }
         }
         if (ntot) {
-          this._avg = [ ~~(rsum / ntot), ~~(gsum / ntot), ~~(bsum / ntot) ]
+          this._avg = [~~(rsum / ntot), ~~(gsum / ntot), ~~(bsum / ntot)]
         } else {
           this._avg = [
             ~~(mult * (this.r1 + this.r2 + 1) / 2),
@@ -337,7 +337,7 @@ const MMCQ = (() => {
     }
 
     public contains (pixel: L<N>) {
-      const [ rval, gval, bval ] = [ 0, 1, 2 ].map(channel => pixel[ channel ] >> rshift)
+      const [rval, gval, bval] = [0, 1, 2].map(channel => pixel[channel] >> rshift)
 
       return (
         rval >= this.r1 && rval <= this.r2 &&
@@ -392,9 +392,9 @@ const MMCQ = (() => {
       let pColor
       for (let i = 0; i < this.vboxes.size; i++) {
         const d2 = Math.sqrt(
-          Math.pow(color[ 0 ] - this.vboxes.peek(i).color[ 0 ], 2) +
-          Math.pow(color[ 1 ] - this.vboxes.peek(i).color[ 1 ], 2) +
-          Math.pow(color[ 2 ] - this.vboxes.peek(i).color[ 2 ], 2)
+          Math.pow(color[0] - this.vboxes.peek(i).color[0], 2) +
+          Math.pow(color[1] - this.vboxes.peek(i).color[1], 2) +
+          Math.pow(color[2] - this.vboxes.peek(i).color[2], 2)
         )
         if (d1 === undefined || d2 < d1) {
           d1 = d2
@@ -413,11 +413,11 @@ const MMCQ = (() => {
     const histosize = 1 << (3 * sigbits)
     const histo = new Array(histosize)
     pixels.forEach(pixel => {
-      const rval = pixel[ 0 ] >> rshift
-      const gval = pixel[ 1 ] >> rshift
-      const bval = pixel[ 2 ] >> rshift
+      const rval = pixel[0] >> rshift
+      const gval = pixel[1] >> rshift
+      const bval = pixel[2] >> rshift
       const index = getColorIndex(rval, gval, bval)
-      histo[ index ] = (histo[ index ] || 0) + 1
+      histo[index] = (histo[index] || 0) + 1
     })
     return histo
   }
@@ -430,7 +430,7 @@ const MMCQ = (() => {
     const bw = vbox.b2 - vbox.b1 + 1
     const maxw = Math.max(rw, gw, bw)
     // only one pixel, no split
-    if (vbox.count() === 1) return [ vbox.copy() ]
+    if (vbox.count() === 1) return [vbox.copy()]
 
     // Find the partial sum arrays along the selected axis.
     let total = 0
@@ -442,11 +442,11 @@ const MMCQ = (() => {
         for (let j = vbox.g1; j <= vbox.g2; j++) {
           for (let k = vbox.b1; k <= vbox.b2; k++) {
             const index = getColorIndex(i, j, k)
-            sum += (histo[ index ] || 0)
+            sum += (histo[index] || 0)
           }
         }
         total += sum
-        partialsum[ i ] = total
+        partialsum[i] = total
       }
     } else if (maxw === gw) {
       for (let i = vbox.g1; i <= vbox.g2; i++) {
@@ -454,11 +454,11 @@ const MMCQ = (() => {
         for (let j = vbox.r1; j <= vbox.r2; j++) {
           for (let k = vbox.b1; k <= vbox.b2; k++) {
             const index = getColorIndex(j, i, k)
-            sum += (histo[ index ] || 0)
+            sum += (histo[index] || 0)
           }
         }
         total += sum
-        partialsum[ i ] = total
+        partialsum[i] = total
       }
     } else {  // maxw == bw
       for (let i = vbox.b1; i <= vbox.b2; i++) {
@@ -466,38 +466,38 @@ const MMCQ = (() => {
         for (let j = vbox.r1; j <= vbox.r2; j++) {
           for (let k = vbox.g1; k <= vbox.g2; k++) {
             const index = getColorIndex(j, k, i)
-            sum += (histo[ index ] || 0)
+            sum += (histo[index] || 0)
           }
         }
         total += sum
-        partialsum[ i ] = total
+        partialsum[i] = total
       }
     }
     partialsum.forEach((d, i) => {
-      lookaheadsum[ i ] = total - d
+      lookaheadsum[i] = total - d
     })
 
     function doCut (color: S): L<VBox> {
       const dim1 = color + '1'
       const dim2 = color + '2'
       let count2 = 0
-      for (let i = vbox[ dim1 ]; i <= vbox[ dim2 ]; i++) {
-        if (partialsum[ i ] > total / 2) {
+      for (let i = vbox[dim1]; i <= vbox[dim2]; i++) {
+        if (partialsum[i] > total / 2) {
           const vbox1 = vbox.copy()
           const vbox2 = vbox.copy()
-          const left = i - vbox[ dim1 ]
-          const right = vbox[ dim2 ] - i
+          const left = i - vbox[dim1]
+          const right = vbox[dim2] - i
           let d2 = left <= right
-            ? Math.min(vbox[ dim2 ] - 1, ~~(i + right / 2))
-            : Math.max(vbox[ dim1 ], ~~(i - 1 - left / 2))
+            ? Math.min(vbox[dim2] - 1, ~~(i + right / 2))
+            : Math.max(vbox[dim1], ~~(i - 1 - left / 2))
           // avoid 0-count boxes
-          while (!partialsum[ d2 ]) d2++
-          count2 = lookaheadsum[ d2 ]
-          while (!count2 && partialsum[ d2 - 1 ]) count2 = lookaheadsum[ --d2 ]
+          while (!partialsum[d2]) d2++
+          count2 = lookaheadsum[d2]
+          while (!count2 && partialsum[d2 - 1]) count2 = lookaheadsum[--d2]
           // set dimensions
-          vbox1[ dim2 ] = d2
-          vbox2[ dim1 ] = vbox1[ dim2 ] + 1
-          return [ vbox1, vbox2 ]
+          vbox1[dim2] = d2
+          vbox2[dim1] = vbox1[dim2] + 1
+          return [vbox1, vbox2]
         }
       }
       return [] // never
@@ -535,8 +535,8 @@ const MMCQ = (() => {
         }
         // do the cut
         const vboxes = medianCutApply(histo, vbox)
-        const vbox1 = vboxes[ 0 ]
-        const vbox2 = vboxes[ 1 ]
+        const vbox1 = vboxes[0]
+        const vbox2 = vboxes[1]
 
         if (!vbox1) return
 

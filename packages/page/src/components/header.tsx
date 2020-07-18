@@ -15,7 +15,7 @@ export default function Header () {
   }))
 
   const showLogin = () => actors.user.SHOWLOGIN(undefined)
-  const hideLogin = () => actor({type: actor.types.user.HIDELOGIN, payload: undefined})
+  const hideLogin = () => actor({ type: actor.types.user.HIDELOGIN, payload: undefined })
 
   const onLogin: h.JSX.GenericEventHandler<HTMLFormElement> = event => {
     const target = event.currentTarget
@@ -30,7 +30,7 @@ export default function Header () {
     <header class="nav absolute--tl flex">
       <WeatherWidget />
       <div class="flex-grow" />
-      { logged
+      {logged
         ? <Avatar class="mg--5" user={user} />
         : <Avatar class="mg--5" user={user} onClick={showLogin} />
       }
