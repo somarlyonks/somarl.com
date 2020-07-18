@@ -1,8 +1,8 @@
 /// <reference types='folans.d.ts' />
 
 interface IF {
-    callees?: string[] // composed
-    partially?: boolean // curried
+  callees?: string[] // composed
+  partially?: boolean // curried
 }
 
 declare type valueof<T> = T[keyof T]

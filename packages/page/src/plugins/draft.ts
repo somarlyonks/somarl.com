@@ -10,7 +10,7 @@ class AliasAbastract <T> {
 
   public constructor (
     public sourceType: S
-  ) {}
+  ) { }
 
   public alias (sourceName: S, aliasName: S) {
     this.aliasMap[aliasName] = sourceName
@@ -111,7 +111,7 @@ export class Plugin extends AliasAbastract<PluginAction> {
     return action.exec(action.parse(options))
   }
 
-  public emit (content: S ) {
+  public emit (content: S) {
     this.manager.emit(content)
   }
 
@@ -167,7 +167,7 @@ export class PluginAction extends AliasAbastract<PluginActionOption> {
     this.plugin.assert(segments.length % 2 === 0, `action ${this.name} options error`)
 
     const groups: L<PluginActionOption> = []
-    for (let i = 0; i < segments.length; ) {
+    for (let i = 0; i < segments.length;) {
       const option = new PluginActionOption(segments[i++])
       option.value = segments[i++]
       groups.push(option)
@@ -209,5 +209,5 @@ export class PluginActionOption <T = A> {
     public name: S,
     public description?: S,
     public defaultValue?: T
-  ) {}
+  ) { }
 }

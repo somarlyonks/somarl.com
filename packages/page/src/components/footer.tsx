@@ -16,7 +16,7 @@ export default function Footer () {
     binksName: '',
     binksCopyright: '',
   })
-  const deriveState = (prcd: Partial<IFooterState>) => setState(prev => ({...prev, ...prcd}))
+  const deriveState = (prcd: Partial<IFooterState>) => setState(prev => ({ ...prev, ...prcd }))
 
   useEffect(() => {
     Api.getBinks().then(resp => {
@@ -26,13 +26,13 @@ export default function Footer () {
           binksCopyright: resp.body.copyright,
         })
       }
-      deriveState({toggled: localStorage.getItem('footerToggled') === 'true'})
+      deriveState({ toggled: localStorage.getItem('footerToggled') === 'true' })
     })
   }, [])
 
   function toggle () {
     localStorage.setItem('footerToggled', `${!state.toggled}`)
-    setState((prev: IFooterState) => ({...prev, toggled: !prev.toggled}))
+    setState((prev: IFooterState) => ({ ...prev, toggled: !prev.toggled }))
   }
 
   const em = bem('footer')
