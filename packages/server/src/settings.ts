@@ -25,6 +25,9 @@ const QINIU_ACCESS_KEY = 'R2VkFTTK6oT8CbhadlMT9Fkh6TrEotAfDA_SItaQ'
 const MAILER_USERNAME = 'dobby@somarl.com'
 
 
+// TODO: @sy check env attendance
+
+
 export default class S {
   public static ENV = process.env.SOMARL_ENV || 'dev'
   public static DEV = S.ENV === 'dev'
@@ -78,6 +81,8 @@ export default class S {
 
   public static MAILER_USERNAME = process.env.MAILER_USERNAME || MAILER_USERNAME
   public static MAILER_PASSWORD = process.env.MAILER_PASSWORD
+
+  public static USER_PASSWORD_SALT = process.env.USER_PASSWORD_SALT!
 }
 
 

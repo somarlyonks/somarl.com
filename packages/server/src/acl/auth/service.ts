@@ -5,11 +5,12 @@ import { JwtService } from '@nestjs/jwt'
 import { Strategy } from 'passport-local'
 import { ExtractJwt, Strategy as StrategyJwt } from 'passport-jwt'
 
-import { User, UserService } from '../../graphql'
-import SETTINGS from '../../settings'
-
 import { IAuthService, IStrategy } from './specs'
+
+import { User, UserService } from '../../graphql'
 import { NewUserInput } from '../../graphql/user/dto'
+import SETTINGS from '../../settings'
+import { phkdf2Password } from '../../helpers'
 
 
 @Injectable()
@@ -18,21 +19,20 @@ export default class AuthService implements IAuthService {
   public constructor (
     private readonly userService: UserService,
     private readonly jwtService: JwtService
-  ) {}
+  ) { }
 
   public async validateEmailAndPassword (email: S, password: S) {
     const user = await this.userService.findOneByEmail(email)
     if (!user) throw new UnauthorizedException('Not registered.')
-    if (user.password !== password) throw new UnauthorizedException('Password wrong.')
+    if (user.password !== phkdf2Password(password)) throw new UnauthorizedException('Password wrong.')
 
     return user
   }
 
   public async validateUserId (id: S) {
     try {
-      return this.userService.findOneById(id)
-    } catch (error) { // FIXME: NotFoundException is not caughtable here
-      console.info(error)
+      return await this.userService.findOneById(id)
+    } catch (error) {
       if (error instanceof NotFoundException) throw new UnauthorizedException('User not found')
       throw error
     }
@@ -66,7 +66,7 @@ export default class AuthService implements IAuthService {
 export class LocalStratgy extends PassportStrategy(Strategy, 'local') implements IStrategy {
 
   public constructor (private readonly authService: AuthService) {
-    super({usernameField: 'email'})
+    super({ usernameField: 'email' })
   }
 
   public async validate (email: S, password: S) {

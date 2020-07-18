@@ -6,6 +6,7 @@ import { IUserService } from './specs'
 import UserRepo from './repo'
 import { NewUserInput } from './dto'
 import { DEFAULT_AVATAR } from './consts'
+import { phkdf2Password } from '../../helpers'
 import { capitalize, now } from '../../helpers/Adapter'
 
 
@@ -24,6 +25,7 @@ export default class UserService implements IUserService {
     const userData = {
       ...data,
       nickname,
+      password: phkdf2Password(data.password),
       avatar: DEFAULT_AVATAR,
       accessLevel: 0,
     }
