@@ -4,7 +4,7 @@
 
 export * from './binks'
 export * from './compose'
-export * from './consts'
+export * as CONSTS from './consts'
 export * from './datetime'
 export * from './graphql'
 export * from './is'

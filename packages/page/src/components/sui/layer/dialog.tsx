@@ -1,4 +1,5 @@
-import { h, Ref } from 'preact'
+
+import { h, Ref, ComponentChildren } from 'preact' // lgtm [js/unused-local-variable]
 import { useRef } from 'preact/hooks'
 import { forwardRef } from 'preact/compat'
 
@@ -14,7 +15,7 @@ interface IDialogLayerProps {
 }
 
 interface IDialogProps {
-  children: h.JSX.Element | L<h.JSX.Element>
+  children: ComponentChildren
   visible: boolean
   class?: S
   onConfirm?: F0<void>
@@ -50,8 +51,8 @@ export function Dialog ({
   children,
   class: className = '',
   visible,
-  onCancel = () => {},
-  onConfirm = () => {},
+  onCancel,
+  onConfirm,
   showButtons = true,
   title = '',
   form,
