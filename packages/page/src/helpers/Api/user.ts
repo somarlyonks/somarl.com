@@ -24,17 +24,27 @@ interface ILoginResp {
 }
 
 
-export async function login (username?: S, token?: S) {
+export async function sign (email: S, password: S) {
+  const r = await req.POST<ILoginResp>('auth/sign', {
+    json: { email, password },
+  })
+
+  if (!isResponseOK(r)) throw new Error(r.body && r.body.message)
+  return localize(r.body.user, r.body.token)
+}
+
+
+export async function login (email: S, password: S) {
   const loggedUser = await logged()
   if (loggedUser) return loggedUser
 
-  if (!username || !token) throw new Error('Login without token!')
+  if (!email || !password) throw new Error('Login without token!')
 
   const r2 = await req.POST<ILoginResp>('auth/login', {
-    json: { username, token },
+    json: { email, password },
   })
 
-  if (!isResponseOK(r2)) throw new Error(r2.body && r2.body.error)
+  if (!isResponseOK(r2)) throw new Error(r2.body && r2.body.message)
   return localize(r2.body.user, r2.body.token)
 }
 
@@ -50,7 +60,7 @@ export async function logged () {
 }
 
 
-export async function logout () {
+export async function logout () { // FIXME:
   const user = boot()
   if (!user || !user.token) return
   const r = await req.POST('auth/logout')

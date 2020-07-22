@@ -1,3 +1,4 @@
+
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect } from 'preact/hooks'
 
@@ -22,7 +23,7 @@ export default function App () {
       payload: setColor(pColor),
     })
 
-    Promise.all([pColor])
+    Promise.all([pColor, Api.logged()])
       .then(() => setter('ready'))
       .catch(err => setter(err.message))
   }, [])

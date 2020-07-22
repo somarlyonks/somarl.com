@@ -11,6 +11,7 @@ export const joinApiUrl = (endpoint: S) => API_SERVER!.endsWith('/') || endpoint
 
 interface IApiError {
   error?: A // TODO: @sy error specs in pipe
+  message: S
 }
 
 export interface IApiResponseSuccess <T = {}> {
@@ -103,12 +104,12 @@ async function fetchServerJson <TResponse = A> (endpoint: S, { method, body, hea
   const status = resp.status as HTTPStatusCodes
 
   const result: ApiResponse = { status } as ApiResponse
+  const contentType = resp.headers.get('Content-Type')
+  result.body = contentType && contentType.includes('text/html')
+    ? await resp.text()
+    : await resp.json()
 
   if (isResponseOK(result)) {
-    const contentType = resp.headers.get('Content-Type')
-    result.body = contentType && contentType.includes('text/html')
-      ? await resp.text()
-      : await resp.json()
   } else {
     console.warn('Request to', resp.url, 'failed with status code', status)
   }

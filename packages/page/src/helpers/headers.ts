@@ -1,5 +1,8 @@
+
+import { LS } from 'src/redux/helpers'
+
 export const authHeader = (token?: S) => {
-  token = token || JSON.parse(localStorage.getItem('user') || '{}').token
+  token = token || (LS.GET('user') || {}).token
 
   if (token) return { Authorization: `Bearer ${token}` }
   return {}

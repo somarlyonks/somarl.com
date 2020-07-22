@@ -5,12 +5,12 @@ import { JwtService } from '@nestjs/jwt'
 import { Strategy } from 'passport-local'
 import { ExtractJwt, Strategy as StrategyJwt } from 'passport-jwt'
 
-import { IAuthService, IStrategy } from './specs'
+import { IAuthService, IStrategy, ISafeUser } from './specs'
 
 import { User, UserService } from '../../graphql'
 import { NewUserInput } from '../../graphql/user/dto'
 import SETTINGS from '../../settings'
-import { phkdf2Password } from '../../helpers'
+import { phkdf2Password, CONSTS } from '../../helpers'
 
 
 @Injectable()
@@ -23,8 +23,8 @@ export default class AuthService implements IAuthService {
 
   public async validateEmailAndPassword (email: S, password: S) {
     const user = await this.userService.findOneByEmail(email)
-    if (!user) throw new UnauthorizedException('Not registered.')
-    if (user.password !== phkdf2Password(password)) throw new UnauthorizedException('Password wrong.')
+    if (!user) throw new UnauthorizedException(CONSTS.ERRORS.auth.NOT_REGISTERED)
+    if (user.password !== phkdf2Password(password)) throw new UnauthorizedException(CONSTS.ERRORS.auth.PASSWORD_WRONG)
 
     return user
   }
@@ -33,12 +33,13 @@ export default class AuthService implements IAuthService {
     try {
       return await this.userService.findOneById(id)
     } catch (error) {
-      if (error instanceof NotFoundException) throw new UnauthorizedException('User not found')
+      if (error instanceof NotFoundException) throw new UnauthorizedException(CONSTS.ERRORS.auth.USER_NOT_FOUND)
       throw error
     }
   }
 
   public async signUp (userData: NewUserInput) {
+    userData.password = phkdf2Password(userData.password)
     const user = await this.userService.create(userData)
     return this.login(user)
   }
@@ -47,7 +48,7 @@ export default class AuthService implements IAuthService {
     await this.userService.seen(user.id)
     const token = this.generateToken(user.id)
 
-    return { user, token }
+    return { user: this.safeUser(user), token }
   }
 
   public async logout (user: User) {
@@ -57,6 +58,17 @@ export default class AuthService implements IAuthService {
   private generateToken (id: S) {
     const payload: IJwtPayload = { id }
     return this.jwtService.sign(payload)
+  }
+
+  // tslint:disable-next-line: prefer-function-over-method
+  private safeUser (user: User): ISafeUser {
+    return {
+      nickname: user.nickname,
+      email: user.email,
+      avatar: user.avatar,
+      created: user.created,
+      lastseen: user.lastseen!,
+    }
   }
 
 }

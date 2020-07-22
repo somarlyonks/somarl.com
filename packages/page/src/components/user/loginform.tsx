@@ -5,15 +5,25 @@ import { TextField, Form } from 'src/components/sui/form'
 import { randomString } from 'src/helpers'
 
 
+interface IFormData {
+  email: S
+  password: S
+}
+
 interface IProps {
   id?: S
   onSubmit?: h.JSX.GenericEventHandler<HTMLFormElement>
+  formData?: IFormData
 }
 
 
 export default function LoginForm ({
   id,
   onSubmit: propOnSubmit,
+  formData = {
+    email: '',
+    password: '',
+  },
 }: IProps) {
   id = id || `form-register-${randomString()}`
 
@@ -32,8 +42,8 @@ export default function LoginForm ({
 
   return (
     <Form id={id} onSubmit={onSubmit}>
-      <TextField label="Email" name="email" type="email" maxLength={50} />
-      <TextField label="Password" name="password" type="password" validate={validatePassword} />
+      <TextField value={formData.email} label="Email" name="email" type="email" maxLength={50} />
+      <TextField value={formData.password} label="Password" name="password" type="password" validate={validatePassword} />
     </Form>
   )
 }
