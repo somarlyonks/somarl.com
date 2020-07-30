@@ -9,6 +9,9 @@
     justify-content: space-between;
     align-items: center;
   }
+  &__content {
+    overflow: hidden;
+  }
   &__button-group {
     button:not(:last-of-type) {
       margin-right: 10px;

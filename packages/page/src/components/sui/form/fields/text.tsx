@@ -2,16 +2,13 @@ import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect, useRef } from 'preact/hooks'
 
 import { randomString, isPromise, bem, isValidEmail } from 'src/helpers'
+import { IFieldProps } from '../shared'
 
 
 type ITextFieldValidator = F1<S, S | P<S>>
-interface IProps {
+interface IProps extends IFieldProps {
   type?: 'text' | 'password' | 'email'
-  name?: S
-  label?: S
-  value?: S
   placeholder?: S
-  onInput?: h.JSX.GenericEventHandler<HTMLInputElement>
   required?: boolean
   disabled?: boolean
   validate?: ITextFieldValidator
