@@ -1,0 +1,72 @@
+
+@import '../../helpers/variables';
+@import '../../helpers/mixins';
+@import '../../helpers/animations';
+
+
+.slide-wrapper {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+  animation-fill-mode: both;
+  transition-property: left;
+  width: 300%;
+  & > * {
+    width: 100%;
+  }
+
+  &.animation-at--left {left: -200%;}
+  &.animation-at--middle {left: -100%;}
+  &.animation-at--right {left: 0;}
+
+  &.animation--left {
+    &.animation-at--middle {animation-name: middleToLeft;}
+    &.animation-at--right {animation-name: middleFromRight;}
+  }
+  &.animation--right {
+    &.animation-at--middle {animation-name: middleToRight;}
+    &.animation-at--left {animation-name: middleFromLeft;}
+  }
+
+  @include keyframes(middleToLeft) {
+    0% {
+      left: -100%;
+      opacity: 1;
+    }
+    100% {
+      left: -200%;
+      opacity: 0;
+    }
+  }
+  @include keyframes(middleFromRight) {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    100% {
+      left: -100%;
+      opacity: 1;
+    }
+  }
+
+  @include keyframes(middleToRight) {
+    0% {
+      left: -100%;
+      opacity: 1;
+    }
+    100% {
+      left: 0;
+      opacity: 0;
+    }
+  }
+  @include keyframes(middleFromLeft) {
+    0% {
+      left: -200%;
+      opacity: 0;
+    }
+    100% {
+      left: -100%;
+      opacity: 1;
+    }
+  }
+  position: relative;
+}
