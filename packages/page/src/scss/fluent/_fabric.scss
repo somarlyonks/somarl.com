@@ -1,3 +1,6 @@
+@import '../helpers/variables';
+
+
 .fabric-wrapper {
   display: flex;
   height: 100%;
@@ -12,4 +15,8 @@
   border: 0;
   font-size: 100%;
   font: inherit;
+}
+
+.fabric-scarlet {
+  color: $fabricScarlet;
 }

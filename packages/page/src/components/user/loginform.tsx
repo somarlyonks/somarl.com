@@ -1,7 +1,7 @@
 
 import { h } from 'preact'
 
-import { TextField, Form } from 'src/components/sui/form'
+import { TextField, Form, IFormProps } from 'src/components/sui/form'
 import { randomString } from 'src/helpers'
 
 
@@ -10,9 +10,7 @@ interface IFormData {
   password: S
 }
 
-interface IProps {
-  id?: S
-  onSubmit?: h.JSX.GenericEventHandler<HTMLFormElement>
+interface IProps extends IFormProps {
   formData?: IFormData
 }
 
@@ -20,6 +18,7 @@ interface IProps {
 export default function LoginForm ({
   id,
   onSubmit: propOnSubmit,
+  onInput: propOnInput,
   formData = {
     email: '',
     password: '',
@@ -40,10 +39,15 @@ export default function LoginForm ({
     if (propOnSubmit) propOnSubmit.bind(target)(event)
   }
 
+  const onInput: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
+    const target = event.currentTarget
+    if (propOnInput) propOnInput.bind(target)(event)
+  }
+
   return (
-    <Form id={id} onSubmit={onSubmit}>
-      <TextField value={formData.email} label="Email" name="email" type="email" maxLength={50} />
-      <TextField value={formData.password} label="Password" name="password" type="password" validate={validatePassword} />
+    <Form id={id} formData={formData} onSubmit={onSubmit} onInput={onInput}>
+      <TextField label="Email" name="email" type="email" maxLength={50} />
+      <TextField label="Password" name="password" type="password" validate={validatePassword} />
     </Form>
   )
 }

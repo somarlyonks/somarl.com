@@ -1,7 +1,8 @@
+
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 
 
-interface IFabricProps {
+interface IProps {
   class?: S
   children: A
   clearfix?: boolean
@@ -11,7 +12,7 @@ export default function Fabric ({
   class: className = '',
   children,
   clearfix = false,
-}: IFabricProps) {
+}: IProps) {
   if (clearfix) return (
     <div class={`fabric-wrapper ${className}`}>
       {...children}
