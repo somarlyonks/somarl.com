@@ -71,7 +71,7 @@ export default function Login () {
   const onCancel = () => {
     if (loginStep === CONSTS.ERRORS.auth.NOT_REGISTERED) {
       slideGo('right', () => {
-        console.info('1111', setLoginStep('Login'))
+        setLoginStep('Login')
       })
     } else {
       hideLogin()
