@@ -41,6 +41,7 @@ export default class AuthService implements IAuthService {
   public async signUp (userData: NewUserInput) {
     userData.password = phkdf2Password(userData.password)
     const user = await this.userService.create(userData)
+    // TODO: send email to user
     return this.login(user)
   }
 
@@ -52,7 +53,7 @@ export default class AuthService implements IAuthService {
   }
 
   public async logout (user: User) {
-    this.generateToken(user.id)
+    this.userService.seen(user.id)
   }
 
   private generateToken (id: S) {
