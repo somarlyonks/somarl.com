@@ -1,7 +1,7 @@
 import { Module, DynamicModule, Inject, Global, Logger } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { Database } from 'arangojs'
-import { LoadBalancingStrategy } from 'arangojs/lib/cjs/connection'
+import { LoadBalancingStrategy } from 'arangojs/connection'
 
 import { ARANGO_CONNECTION_NAME, DEFAULT_CONNECTION_NAME } from './consts'
 import { getClientToken, getDbToken } from './helpers'

@@ -1,27 +1,28 @@
 
 import { Database, aql } from 'arangojs'
-import { QueryOptions } from 'arangojs/lib/cjs/database'
-import { ArrayCursor } from 'arangojs/lib/cjs/cursor'
-import { AqlQuery } from 'arangojs/lib/cjs/aql-query'
+import { QueryOptions } from 'arangojs/database'
+import { ArrayCursor } from 'arangojs/cursor'
+import { AqlQuery } from 'arangojs/aql'
 import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
 
 import Entity, { IEntity } from './entity'
-import { IRepo, IShimDocCollection } from './specs'
+import { IRepo, IArangoDocuemnt } from './specs'
 import { now } from '../helpers/Adapter'
+import { DocumentCollection } from 'arangojs/collection'
 
 
-class Q <TModel> {
+class Q <TModel extends O> {
 
-  protected readonly collection: IShimDocCollection
+  protected readonly collection: DocumentCollection
   protected dsl: S
   protected queryOptions: QueryOptions
-  protected queryset?: ArrayCursor
+  protected queryset?: ArrayCursor<IArangoDocuemnt<TModel>>
 
   public constructor (
     protected readonly resourceName: S,
     protected readonly db: Database
   ) {
-    this.collection = this.db.collection(this.resourceName) as IShimDocCollection
+    this.collection = this.db.collection(this.resourceName)
     this.queryOptions = {}
     this.dsl = ''
   }
@@ -49,15 +50,15 @@ class Q <TModel> {
 }
 
 
-abstract class AbsRepo <TModel> {
+abstract class AbsRepo <TModel extends O> {
 
-  protected readonly collection: IShimDocCollection
+  protected readonly collection: DocumentCollection<TModel & {created: S}>
 
   public constructor (
     @Inject('RESOURCE_NAME') protected readonly resourceName: S,
     @Inject('RESOURCE_DB') protected readonly db: Database
   ) {
-    this.collection = this.db.collection(this.resourceName) as IShimDocCollection
+    this.collection = this.db.collection(this.resourceName)
   }
 
   /**
@@ -81,7 +82,7 @@ abstract class AbsRepo <TModel> {
     const _data = {
       ...data,
       created: now(),
-    }
+    } as A
     try {
       const r = await this.collection.save(_data)
       return Entity({..._data, ...r}) as unknown as P<IEntity<TModel>>
@@ -102,7 +103,7 @@ abstract class AbsRepo <TModel> {
   protected async $lookupById (id: S): P<IEntity<TModel>> {
     const document = await this.collection.document({_key: id}, true)
     if (!document) throw new NotFoundException(id)
-    return Entity(document as A) as A
+    return Entity(document)
   }
 
   protected async $deleteByKey (key: S) {
@@ -114,7 +115,7 @@ abstract class AbsRepo <TModel> {
   }
 
   protected async $deleteByKeys (keys: L<S>) {
-    return this.collection.remove(keys.map(_key => ({_key})))
+    return this.collection.removeAll(keys.map(_key => ({_key})))
   }
 
   protected async $page (skip: N, take: N): P<L<IEntity<TModel>>> {
@@ -122,7 +123,7 @@ abstract class AbsRepo <TModel> {
       FOR d IN ${this.collection}
       LIMIT ${skip}, ${take}
       RETURN d
-    `, {batchSize: take})
+    `, {batchSize: take}) as ArrayCursor<IArangoDocuemnt<TModel>>
     const ds = await cursor.all()
     return ds.map(Entity)
   }
@@ -149,14 +150,14 @@ abstract class AbsRepo <TModel> {
   protected async $update (id: S, data: Partial<ModelData<TModel>>, options: {returnNew: boolean, rev?: string} = {
     returnNew: false,
   }): P<IEntity<TModel> | void> {
-    const r = await this.collection.update({_key: id}, data, options)
-    if (options.returnNew) return Entity(r.new) as A
+    const r = await this.collection.update({_key: id}, data as A, options)
+    if (options.returnNew) return Entity(r.new!) as A
   }
 
 }
 
 
-export default abstract class Repo <TModel> extends AbsRepo<TModel> implements IRepo<TModel> {
+export default abstract class Repo <TModel extends O> extends AbsRepo<TModel> implements IRepo<TModel> {
 
   public async create (data: ModelData<TModel>) {
     return this.postCreate(await this.$create(await this.preCreate(data)))
