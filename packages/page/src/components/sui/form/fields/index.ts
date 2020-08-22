@@ -1,3 +1,3 @@
 
 export { default as TextField } from './text'
-export { IFieldProps } from '../shared'
+export type { IFieldProps } from '../shared'
