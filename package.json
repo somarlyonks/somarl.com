@@ -67,7 +67,7 @@
     "html-webpack-plugin": "4.3.0",
     "husky": "4.2.5",
     "if-env": "1.0.4",
-    "jest": "26.4.1",
+    "jest": "26.4.2",
     "lerna": "3.22.1",
     "node-sass-chokidar": "1.5.0",
     "nodemon": "2.0.4",
