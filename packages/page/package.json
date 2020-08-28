@@ -26,7 +26,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
     "@storybook/preact": "6.0.19",
-    "mini-css-extract-plugin": "0.10.0",
+    "mini-css-extract-plugin": "0.11.0",
     "node-sass-chokidar": "1.5.0",
     "npm-run-all": "4.1.5",
     "ts-node": "9.0.0"
