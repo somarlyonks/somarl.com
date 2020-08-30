@@ -64,7 +64,7 @@
     "fork-ts-checker-webpack-plugin": "5.1.0",
     "fs-extra": "9.0.1",
     "gulp": "4.0.2",
-    "html-webpack-plugin": "4.3.0",
+    "html-webpack-plugin": "4.4.1",
     "husky": "4.2.5",
     "if-env": "1.0.4",
     "jest": "26.4.2",
