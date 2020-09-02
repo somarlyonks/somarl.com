@@ -3,14 +3,16 @@ type IModifier = S | { [k: string]: A } | undefined | false
 
 type IModifiers = L<IModifier>
 
-declare function ElementBuilder (modifiers: IModifiers): S
-declare function ElementBuilder (element: S, modifiers: IModifiers): S
+interface IElementBuilder {
+  (modifiers: IModifiers): S
+  (element: S, modifiers: IModifiers): S
+}
 
 
-export function bem (block: S): typeof ElementBuilder
+export function bem (block: S): IElementBuilder
 export function bem (block: S, modifiers?: IModifiers): S
 export function bem (block: S, element: S, modifiers?: IModifiers): S
-export function bem (block: S, element?: S | IModifiers, modifiers: IModifiers = []): S | typeof ElementBuilder {
+export function bem (block: S, element?: S | IModifiers, modifiers: IModifiers = []): S | IElementBuilder {
   function elementBuilder (_modifiers: IModifiers): S
   function elementBuilder (_element: S, _modifiers: IModifiers): S
   function elementBuilder (_element: S | IModifiers, _modifiers?: IModifiers): S {
