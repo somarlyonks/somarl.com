@@ -1,4 +1,4 @@
-import redux, { IStore, IReducers, IActions, IBoundActions, IMiddleware } from '../framework'
+import redux, { IStore, IReducers, IActions, IBoundActions } from '../lib'
 import {
   createContext,
   promiseMiddleware, errorMiddleware, LoggerMiddleware
@@ -10,7 +10,7 @@ import sFetch, { IFetchState, IFetchAction } from './fetch'
 import sLocal, { ILocalState, ILocalAction } from './local'
 import sQiniu, { IQiniuState, IQiniuAction } from './qiniu'
 import sUser, { IUserState, IUserAction, ANONYMOUS_USER } from './user'
-import { applyMiddleware } from '../framework/middleware'
+import { applyMiddleware } from '../lib/middleware'
 
 
 export interface IImplState {
@@ -82,7 +82,7 @@ const store = redux.createStore<IImplState, IImplAction>(
   redux.combineReducers(reducers), {
     preloadedState,
     enhancer: applyMiddleware(
-      promiseMiddleware as IMiddleware<IImplState, IImplAction>,
+      promiseMiddleware,
       LoggerMiddleware.configure({
         ignores: [
           ActionTypes.fetch.SET_PROGRESS,

@@ -7,13 +7,12 @@ export interface IAction<TType extends S = S, TPayload = A> {
 
 export type IListener = F0<void>
 
-export type IDispatcher <TAction extends IAction = IAction> = F1<TAction, TAction>
+export type IDispatcher <TAction extends IAction = IAction> = F1<TAction, TAction | P<TAction | void>>
 
 export interface IStore <TState, TAction extends IAction> {
   dispatch: IDispatcher<TAction>
   subscribe (listener: IListener): F0<void>
   getState (): TState | undefined
-  replaceReducer (nextReducer: IReducer<TState, TAction>): void
 }
 
 export interface IStoreFactoryAttach <TState> {
@@ -59,6 +58,6 @@ export interface IMiddlewareAPI <TState, TAction extends IAction> {
   getState (): TState | undefined
 }
 
-export interface IMiddleware <TState, TAction extends IAction> {
-  (api: IMiddlewareAPI<TState, TAction>): (next: IDispatcher<TAction>) => IDispatcher<TAction>
+export interface IMiddleware {
+  <TState, TAction extends IAction> (api: IMiddlewareAPI<TState, TAction>): (next: IDispatcher<TAction>) => IDispatcher<TAction>
 }

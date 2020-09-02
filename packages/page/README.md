@@ -12,13 +12,13 @@ Data control with a self implemented dialect of redux.js, you may take it as jus
 .
 └── src
      ├── redux
-     │    ├── framework
+     │    ├── lib
      │    ├── middleware
      │    └── store
      └...
 ```
 
-Implemented in src/redux/framework, differenciate from the official redux.js API:
+Implemented in src/redux/lib, differenciate from the official redux.js API:
 
 - It doesn't have to support "observable" since I don't use Cycle.js or RxJS.
 - It doesn't have to check every reducer to combine and ask them to behave in specific ways.

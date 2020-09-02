@@ -1,6 +1,6 @@
 import { createContext, Context as IContext } from 'preact'
 import { useContext, useMemo, useReducer, useRef, useLayoutEffect, useEffect } from 'preact/hooks'
-import { IStore, IAction, IDispatcher } from '../framework'
+import { IStore, IAction, IDispatcher } from '../lib'
 import shallowEqual from '../../helpers/shallowEqual'
 
 
