@@ -1,5 +1,5 @@
 import store, { ActionTypes, actions } from '../redux/store'
-import redux, { IAction } from '../redux/framework'
+import redux, { IAction } from '../redux/lib'
 
 
 it('inited the store properly', () => {

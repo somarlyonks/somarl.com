@@ -1,5 +1,5 @@
 import { registerActions } from '../helpers'
-import { IAction } from '../framework'
+import { IAction } from '../lib'
 
 
 export type ILocalState = N

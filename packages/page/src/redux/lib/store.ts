@@ -17,7 +17,6 @@ export function createStore<TState, TAction extends IAction> (
     return enhancer(createStore)(reducer, { preloadedState })
   }
 
-  let currentReducer = reducer
   let currentState = preloadedState
   let currentListeners: L<IListener> = []
   let nextListeners = currentListeners
@@ -61,7 +60,7 @@ export function createStore<TState, TAction extends IAction> (
 
     try {
       isDispatching = true
-      currentState = currentReducer(currentState!, action)
+      currentState = reducer(currentState!, action)
     } finally {
       isDispatching = false
     }
@@ -75,17 +74,11 @@ export function createStore<TState, TAction extends IAction> (
     return action
   }
 
-  function replaceReducer (nextReducer: F) {
-    currentReducer = nextReducer
-    dispatch({ type: ActionTypes.REPLACE } as TAction)
-  }
-
   dispatch({ type: ActionTypes.INIT } as TAction)
 
   return {
     dispatch,
     subscribe,
     getState,
-    replaceReducer,
   }
 }

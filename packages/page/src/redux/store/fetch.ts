@@ -1,4 +1,4 @@
-import redux, { IAction, IReducers } from '../framework'
+import redux, { IAction, IReducers } from '../lib'
 import { registerActions } from '../helpers'
 
 

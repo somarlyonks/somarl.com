@@ -1,5 +1,5 @@
 
-import { h } from 'preact' // lgtm [js/unused-local-variable]
+import { h, Fragment } from 'preact' // lgtm [js/unused-local-variable]
 import { useState } from 'preact/hooks'
 
 import { Avatar, Dialog, LoginForm, useSlide } from 'src/components/sui'
@@ -85,7 +85,7 @@ export default function Login () {
   }
 
   return (
-    <div style="z-index: 1;">
+    <>
       <Avatar class="mg--5" user={user} onClick={showLogin} />
       <Dialog visible={loginVisible} title={loginStep} onCancel={onCancel} onConfirm={onConfirm} form="login-form">
         <Slide {...slideProps} width="20rem">
@@ -98,6 +98,6 @@ export default function Login () {
           <p class="mg-t--0 mg-b--2em fabric-scarlet">{info}</p>
         )}
       </Dialog>
-    </div>
+    </>
   )
 }

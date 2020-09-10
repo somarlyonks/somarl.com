@@ -4,7 +4,7 @@
  *   with definitely typed actions and payloads.
  */
 
-import redux, { IAction, IReducers } from '../framework'
+import redux, { IAction, IReducers } from '../lib'
 import { registerActions } from '../helpers'
 
 

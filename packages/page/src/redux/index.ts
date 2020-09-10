@@ -1,5 +1,5 @@
 export { default } from './store'
-export * from './framework'
+export * from './lib'
 export * from './helpers'
 export * from './store'
 export * from './hooks'

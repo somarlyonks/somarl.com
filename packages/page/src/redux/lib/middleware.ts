@@ -1,10 +1,10 @@
 
 import { compose } from 'src/helpers/func'
-import { IStoreFactory, IEnhancer, IAction, IStore, IMiddleware, IMiddlewareAPI } from './shared'
+import { IStoreFactory, IEnhancer, IAction, IStore, IMiddleware } from './shared'
 
 
 export function applyMiddleware <TState, TAction extends IAction> (
-  ...middlewares: L<IMiddleware<TState, TAction>>
+  ...middlewares: L<IMiddleware>
 ): IEnhancer {
   return (createStore: IStoreFactory) => ((reducer, attach = {}) => {
     const store = createStore(reducer, attach) as unknown as IStore<TState, TAction>
@@ -12,7 +12,7 @@ export function applyMiddleware <TState, TAction extends IAction> (
     let dispatch: F = () => {
       throw new Error('Dispatching while constructing your middleware is not allowed. ')
     }
-    const middlewareAPI: IMiddlewareAPI<TState, TAction> = {
+    const middlewareAPI = {
       getState: store.getState,
       dispatch: (action: TAction) => dispatch(action),
     }
