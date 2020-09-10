@@ -3,6 +3,8 @@
  */
 
 import { useEffect, useRef, useState, useCallback } from 'preact/hooks'
+import { once } from 'src/helpers'
+
 
 const eventPopstate = 'popstate'
 const eventPushState = 'pushState'
@@ -40,28 +42,21 @@ export const useLocation: F1<{base?: S}, [S, (to: S, options?: {replace?: boolea
 }
 
 /** @see https://stackoverflow.com/a/4585031 */
-const patchHistoryEvents = (() => {
-  let patched = false
-  return () => {
-    if (patched) return
+const patchHistoryEvents = once(() => {
+  [eventPushState, eventReplaceState].map(type => {
+    const original = history[type]
 
-    [eventPushState, eventReplaceState].map(type => {
-      const original = history[type]
+    history[type] = function () {
+      // tslint:disable-next-line: no-invalid-this
+      const result = original.apply(this, arguments)
+      const event: A = new Event(type)
+      event.arguments = arguments
 
-      history[type] = function () {
-        // tslint:disable-next-line: no-invalid-this
-        const result = original.apply(this, arguments)
-        const event: A = new Event(type)
-        event.arguments = arguments
-
-        dispatchEvent(event)
-        return result
-      }
-    })
-
-    patched = true
-  }
-})()
+      dispatchEvent(event)
+      return result
+    }
+  })
+})
 
 const currentPathname = (base: S, path = location.pathname) =>
   !path.indexOf(base) ? path.slice(base.length) || '/' : path
