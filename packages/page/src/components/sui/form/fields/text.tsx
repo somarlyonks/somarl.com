@@ -71,7 +71,7 @@ export default function TextField ({
     setState(prev => ({...prev, value: newValue}))
 
     target.setCustomValidity('')
-    if (propOnInput) propOnInput.bind(event.currentTarget)(event)
+    if (propOnInput) propOnInput.call(target, event)
   }
 
   useEffect(() => {
