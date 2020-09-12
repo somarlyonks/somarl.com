@@ -61,7 +61,7 @@
     "dotenv-expand": "5.1.0",
     "file-loader": "6.1.0",
     "folans.d.ts": "2.0.0",
-    "fork-ts-checker-webpack-plugin": "5.1.0",
+    "fork-ts-checker-webpack-plugin": "5.2.0",
     "fs-extra": "9.0.1",
     "gulp": "4.0.2",
     "html-webpack-plugin": "4.4.1",
