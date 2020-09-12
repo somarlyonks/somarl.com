@@ -1,13 +1,12 @@
-
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect } from 'preact/hooks'
 
-import Footer from './components/footer'
-import Header from './components/header'
-import Main from './components/main'
-import { Progress, Domino } from './components/sui'
-import Api from './helpers/Api'
-import store, { StoreContext, actor } from './redux'
+import Footer from './footer'
+import Header from './header'
+import Main from './main'
+import { Progress, Domino } from 'src/components/sui'
+import Api from 'src/helpers/Api'
+import store, { StoreContext, actor } from 'src/redux'
 
 
 export default function App () {
