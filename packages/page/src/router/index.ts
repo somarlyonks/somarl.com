@@ -2,8 +2,9 @@
 import { h, createContext, isValidElement, cloneElement, ComponentChildren, toChildArray } from 'preact'
 import { useRef, useLayoutEffect, useContext, useCallback } from 'preact/hooks'
 
-import { useLocation as _useLocation } from './useLocation'
+import { useLocation as _useLocation } from './hooks'
 import { makeMatcher } from './matcher'
+import { isFunction } from 'src/helpers'
 
 
 interface IRouterBuildOptions {
@@ -88,7 +89,7 @@ export const Route = ({ path, match, component, children }: IRouteProps) => {
   if (component) return h(component, { params })
 
   // support render prop or plain children
-  return typeof children === 'function' ? children(params) : children
+  return isFunction(children) ? children(params) : children
 }
 
 export const Link = (props: ILinkProps) => {
@@ -122,7 +123,7 @@ export const Link = (props: ILinkProps) => {
   return cloneElement(jsx, extraProps)
 }
 
-export const Switch = ({ children, location }: {children: ComponentChildren, location: S}) => {
+export const Switch = ({ children, location }: {children: ComponentChildren, location?: S}) => {
   const { matcher } = useRouter()
   const [originalLocation] = useLocation()
 

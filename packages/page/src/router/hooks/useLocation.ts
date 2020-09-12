@@ -9,7 +9,7 @@ import { once } from 'src/helpers'
 const eventPopstate = 'popstate'
 const eventPushState = 'pushState'
 const eventReplaceState = 'replaceState'
-export const events = [eventPopstate, eventPushState, eventReplaceState]
+const events = [eventPopstate, eventPushState, eventReplaceState]
 
 export const useLocation: F1<{base?: S}, [S, (to: S, options?: {replace?: boolean}) => void]> = ({ base = '' } = {}) => {
   const [path, update] = useState(currentPathname(base))
@@ -34,7 +34,10 @@ export const useLocation: F1<{base?: S}, [S, (to: S, options?: {replace?: boolea
   }, [base])
 
   const navigate = useCallback(
-    (to: S, { replace = false } = {}) => history[replace ? eventReplaceState : eventPushState](0, '0', base + to),
+    (to: S, { replace = false } = {}) => history[replace ? eventReplaceState : eventPushState]({
+      url: base + to,
+      options: {replace},
+    }, '', base + to),
     [base]
   )
 
