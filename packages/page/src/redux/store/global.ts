@@ -20,6 +20,7 @@ export interface IGlobalState {
   errMsgs: L<S>
   themeColor: S
   terminalState: GTermianlState
+  terminalOutput: S
   richOutput: S
 }
 
@@ -37,6 +38,7 @@ export type IGlobalAction = IAction<'READY', S>
                           | IAction<'RESOLVE_ERROR', S>
                           | IAction<'SET_THEMECOLOR', S>
                           | IAction<'SET_TERMINALSTATE', GTermianlState>
+                          | IAction<'SET_TERMINALOUTPUT', S>
                           | IAction<'SET_RICHOUTPUT', S>
 
 /**
@@ -49,6 +51,7 @@ const actionTypes = [ 'READY'
                     , 'RESOLVE_ERROR'
                     , 'SET_THEMECOLOR'
                     , 'SET_TERMINALSTATE'
+                    , 'SET_TERMINALOUTPUT'
                     , 'SET_RICHOUTPUT'] as const
 
 const ActionTypes = registerActions(actionTypes, 'global')
@@ -82,6 +85,11 @@ const reducers: IReducers<IGlobalState, Resolved<IGlobalAction>> = {
 
   terminalState (state, action) {
     if (action.type === ActionTypes.SET_TERMINALSTATE) return action.payload
+    return state
+  },
+
+  terminalOutput (state, action) {
+    if (action.type === ActionTypes.SET_TERMINALOUTPUT) return action.payload
     return state
   },
 
