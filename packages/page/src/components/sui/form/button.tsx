@@ -41,7 +41,7 @@ export default function Button ({
     <button
       type={type}
       name={name}
-      class={`fabric-btn ${className} ` + bem('fabric-btn', [{primary, borderless, icon}])}
+      class={`fabric-btn ${className} ` + bem('fabric-btn', '', {primary, borderless, icon: !!icon})}
       style={style}
       disabled={disabled || loading}
       form={form}

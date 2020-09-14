@@ -30,7 +30,7 @@ export default function PanelLeft () {
   }))
 
   return (
-    <section class={`col-md flex-verticle ${bem('panel-left', [terminalState])}`}>
+    <section class={`col-md flex-verticle ${bem('panel-left', '', [terminalState])}`}>
       <div class="terminal-hang" />
       <Output />
     </section>
