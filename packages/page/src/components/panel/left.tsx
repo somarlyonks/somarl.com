@@ -1,14 +1,11 @@
 
 import { h } from 'preact' // lgtm [js/unused-local-variable]
-import { useEffect } from 'preact/hooks'
 
-import { actor, useRedux } from 'src/redux'
-import Sysh from 'src/helpers/sysh'
 
-import Terminal from '../terminal/terminal'
+import { useRedux } from 'src/redux'
+
 import { bem } from 'src/helpers'
 import { useSearchParam } from 'src/router/hooks'
-import { useLocation } from 'src/router'
 
 
 function Output () {
@@ -27,44 +24,7 @@ function Output () {
 }
 
 
-function T () {
-  const [, navigate] = useLocation()
-  const parseInput = (input: string) => Sysh.parse(input)
-  const execCommand = (input: string) => Sysh.exec(input)
-  const setTerminaloutput = (payload: S) => actor({
-    type: actor.types.global.SET_TERMINALOUTPUT,
-    payload,
-  })
-
-  const handleInputChange = (input: string) => {
-    setTerminaloutput('...')
-    parseInput(input).then(
-      output => setTerminaloutput(output)
-    )
-  }
-
-  const handleInputted = (input: string) => {
-    setTerminaloutput('processing...')
-    execCommand(input)
-    navigate(`?sh=${input}`)
-  }
-
-  return (
-    <Terminal
-      onChange={handleInputChange}
-      onEmit={handleInputted}
-    />
-  )
-}
-
-
 export default function PanelLeft () {
-  useEffect(() => {
-    Sysh.register(result => actor({
-      type: actor.types.global.SET_RICHOUTPUT,
-      payload: result,
-    }))
-  }, [])
   const { terminalState } = useRedux(s => ({
     terminalState: s.global.terminalState,
   }))
@@ -72,7 +32,6 @@ export default function PanelLeft () {
   return (
     <section class={`col-md flex-verticle ${bem('panel-left', [terminalState])}`}>
       <div class="terminal-hang" />
-      <T />
       <Output />
     </section>
   )
