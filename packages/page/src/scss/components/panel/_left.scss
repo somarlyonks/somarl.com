@@ -9,7 +9,7 @@
   }
   &--output {
     .terminal-hang {
-      height: 0px;
+      height: 50px;
     }
     .terminal-out {
       margin-bottom: 100px;
@@ -19,7 +19,7 @@
 
 .terminal-hang {
   width: 100%;
-  height: 200px;
+  height: 250px;
   transition: height $terminalTransitionTime;
   transform: translateZ(0);
 }

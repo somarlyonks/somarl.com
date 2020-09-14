@@ -38,7 +38,7 @@ export default function Footer () {
   const em = bem('footer')
 
   return (
-    <footer class={em([state.toggled && 'toggled'])}>
+    <footer class={em('', [state.toggled && 'toggled'])}>
       <div class="absolute footer__widget" onClick={toggle} />
       <span class={em('image-info', [state.binksCopyright ? 'adequate' : 'simple'])}>
         <span class="footer__image-info-name">"{state.binksName || 'Failed to load image'}"</span>

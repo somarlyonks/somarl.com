@@ -5,18 +5,36 @@
   50% { color: rgba($inputColor, 0) }
 }
 
+
+@each $size, $width in $grid-breakpoints {
+  @if $size != "xs" {
+    @media (min-width: $width) {
+      .terminal-input {
+        width: calc(#{map-get($container-max-widths, $size) / 2} - 30px);
+        left: calc((100vw - #{map-get($container-max-widths, $size)}) / 2 + 15px);
+      }
+    }
+  }
+}
+
 .terminal-input {
   z-index: $zTermianal;
   display: inline-block;
-  position: relative;
+  position: absolute;
   @include inputBoxShadow($shadowColor);
-  transition: box-shadow 135ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    box-shadow 135ms cubic-bezier(0.4, 0, 0.2, 1),
+    top $terminalTransitionTime;
+  top: 200px;
+  &--output {
+    top: 0;
+  }
   &:focus-within {
     @include inputFocusBoxShadow($shadowColor);
   }
   input {
     width: 100%;
-    line-height: 50px;
+    line-height: $navHeight;
     border: 0;
     outline: 0;
     border-left: 0.4rem solid transparent;
@@ -50,7 +68,7 @@
     animation: blink 1s step-end infinite;
   }
 
-  &__support_contrast {
+  &__support-contrast {
     color: rgba($inpurContrastColor, 0.8);
     z-index: 11;
   }

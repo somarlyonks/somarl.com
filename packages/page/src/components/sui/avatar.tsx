@@ -24,7 +24,7 @@ export default function avatar ({
   const em = bem('avatar')
 
   return (
-    <div class={`${className} ${em([shape, size])}`} onClick={onClick}>
+    <div class={`${className} ${em('', [shape, size])}`} onClick={onClick}>
       <img src={qUrl(imgKey)} alt="" />
     </div>
   )

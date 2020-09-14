@@ -50,6 +50,7 @@ const preloadedState: IImplState = {
     errMsgs: [],
     themeColor: 'lightCoral',
     terminalState: 'blur',
+    terminalOutput: '',
     richOutput: '',
   },
   fetch: {

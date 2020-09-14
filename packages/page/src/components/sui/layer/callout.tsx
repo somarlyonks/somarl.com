@@ -225,7 +225,7 @@ export function Callout ({
 
       <CalloutLayer
         ref={$callout}
-        class={bem('callout', [position])}
+        class={bem('callout', '', [position])}
         visible={visible}
         left={x}
         top={y}

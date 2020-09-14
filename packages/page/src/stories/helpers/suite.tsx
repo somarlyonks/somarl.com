@@ -15,7 +15,7 @@ export const Suite = ({
   fixme = false,
 }: ISuiteProps) => {
   return (
-    <div class={bem('story-suite', '', [{fixme}])}>
+    <div class={bem('story-suite', '', {fixme})}>
       <h2 class="story-suite__caption">{caption}</h2>
       <div class="story-suite__content flex">{...children}</div>
     </div>

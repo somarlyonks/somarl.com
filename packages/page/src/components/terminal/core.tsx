@@ -2,8 +2,8 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
 
-import store, { ActionTypes, useRedux } from '../../redux'
-import { GTermianlState } from '../../redux/store/global'
+import { actor, useRedux } from 'src/redux'
+import { GTermianlState } from 'src/redux/store/global'
 
 
 export interface ITerminalInputProps {
@@ -13,20 +13,20 @@ export interface ITerminalInputProps {
 }
 
 interface ITerminalInputStates {
-  text: string
+  text: S
   supportDisplay: boolean
-  caretText: string
-  fakeContrastText: string
+  caretText: S
+  fakeContrastText: S
 }
 
 interface ISupportInputProps {
-  readonly className: string
-  readonly supportText: string
+  readonly class: S
+  readonly supportText: S
   readonly display: boolean
 }
 
 
-const SupportInput = ({className, supportText, display}: ISupportInputProps) => (
+const SupportInput = ({class: className, supportText, display}: ISupportInputProps) => (
   <input
     type="text"
     className={className}
@@ -36,8 +36,8 @@ const SupportInput = ({className, supportText, display}: ISupportInputProps) => 
   />
 )
 
-const setTerminalState = (payload: GTermianlState) => store.dispatch({
-  type: ActionTypes.global.SET_TERMINALSTATE,
+const setTerminalState = (payload: GTermianlState) => actor({
+  type: actor.types.global.SET_TERMINALSTATE,
   payload,
 })
 
@@ -102,16 +102,17 @@ export default function TerminalInput (props: ITerminalInputProps) {
     }
   }
 
-  const { borderLeftColor } = useRedux(s => ({
+  const { borderLeftColor, terminalState } = useRedux(s => ({
     borderLeftColor: s.global.themeColor,
+    terminalState: s.global.terminalState,
   }))
 
   return (
-    <div className="terminal-input">
+    <div class={`terminal-input terminal-input--${terminalState}`}>
       <input
         type="text"
         style={{borderLeftColor}}
-        className="terminal-input__input"
+        class="terminal-input__input"
         onFocus={onFocus}
         onBlur={onBlur}
         onInput={onChange}
@@ -119,12 +120,12 @@ export default function TerminalInput (props: ITerminalInputProps) {
         onMouseUp={jumpTo}
       />
       <SupportInput
-        className="terminal-input__support"
+        class="terminal-input__support"
         supportText={state.caretText}
         display={state.supportDisplay}
       />
       <SupportInput
-        className="terminal-input__support terminal-input__support_contrast"
+        class="terminal-input__support terminal-input__support-contrast"
         supportText={state.fakeContrastText}
         display={state.supportDisplay}
       />
