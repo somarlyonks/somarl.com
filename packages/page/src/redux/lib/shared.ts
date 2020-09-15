@@ -51,7 +51,7 @@ export type IStoreFactory = <
   attach?: IStoreFactoryAttach<TState>
 ) => IStore<TState, TAction>
 
-export type IEnhancer = (next: IStoreFactory) => IStoreFactory
+export type IEnhancer = F1<IStoreFactory, IStoreFactory>
 
 export interface IMiddlewareAPI <TState, TAction extends IAction> {
   dispatch: IDispatcher<TAction>
@@ -59,5 +59,5 @@ export interface IMiddlewareAPI <TState, TAction extends IAction> {
 }
 
 export interface IMiddleware {
-  <TState, TAction extends IAction> (api: IMiddlewareAPI<TState, TAction>): (next: IDispatcher<TAction>) => IDispatcher<TAction>
+  <TState, TAction extends IAction> (api: IMiddlewareAPI<TState, TAction>): F1<IDispatcher<TAction>, IDispatcher<TAction>>
 }

@@ -1,17 +1,10 @@
 
-import { h, createContext, isValidElement, cloneElement, ComponentChildren, toChildArray } from 'preact'
-import { useRef, useLayoutEffect, useContext, useCallback } from 'preact/hooks'
+import { h, isValidElement, cloneElement, ComponentChildren, toChildArray } from 'preact'
+import { useLayoutEffect, useCallback } from 'preact/hooks'
 
-import { useLocation as _useLocation } from './hooks'
-import { makeMatcher } from './matcher'
 import { isFunction } from 'src/helpers'
+import { useRedux } from 'src/redux'
 
-
-interface IRouterBuildOptions {
-  hook?: typeof _useLocation
-  base?: S
-  matcher?: R<typeof makeMatcher>
-}
 
 interface INavigateOptions {
   to?: S
@@ -21,8 +14,7 @@ interface INavigateOptions {
 
 interface IRouteProps {
   path: S
-  match?: [boolean, F0<void>]
-  component?: S
+  match?: [boolean, Record<S, S>]
   children: ComponentChildren
 }
 
@@ -31,21 +23,11 @@ interface ILinkProps extends INavigateOptions {
   onClick?: h.JSX.MouseEventHandler<Element>
 }
 
-
-const RouterCtx = createContext<{v?: R<typeof buildRouter>}>({})
-
-const buildRouter = ({
-  hook = _useLocation,
-  base = '',
-  matcher = makeMatcher(),
-}: IRouterBuildOptions = {}) => ({ hook, base, matcher })
-
 export const useRouter = () => {
-  const globalRef = useContext(RouterCtx)
-
-  // either obtain the router from the outer context (provided by the
-  // `<Router /> component) or create an implicit one on demand.
-  return globalRef.v || (globalRef.v = buildRouter())
+  const { router } = useRedux(state => ({
+    router: state.router,
+  }))
+  return router
 }
 
 export const useLocation = () => {
@@ -59,25 +41,12 @@ export const useRoute = (pattern: S) => {
 }
 
 const useNavigate = (options: INavigateOptions) => {
-  const navRef = useRef<F0<void>>()
   const [, navigate] = useLocation()
 
-  navRef.current = () => navigate(options.to || options.href, options)
-  return navRef
+  return useCallback(() => navigate(options.to || options.href, options), [])
 }
 
-export const Router = (props: IRouterBuildOptions & {children: ComponentChildren}) => {
-  const ref = useRef()
-
-  const value = ref.current || (ref.current = { v: buildRouter(props) })
-
-  return h(RouterCtx.Provider, {
-    value,
-    children: props.children,
-  } as A)
-}
-
-export const Route = ({ path, match, component, children }: IRouteProps) => {
+export const Route = ({ path, match, children }: IRouteProps) => {
   const useRouteMatch = useRoute(path)
 
   // `props.match` is present - Route is controlled by the Switch
@@ -85,15 +54,12 @@ export const Route = ({ path, match, component, children }: IRouteProps) => {
 
   if (!matches) return null
 
-  // React-Router style `component` prop
-  if (component) return h(component, { params })
-
   // support render prop or plain children
   return isFunction(children) ? children(params) : children
 }
 
 export const Link = (props: ILinkProps) => {
-  const navRef = useNavigate(props)
+  const navigate = useNavigate(props)
   const { base } = useRouter()
 
   const { to, href = to, children, onClick } = props
@@ -109,10 +75,9 @@ export const Link = (props: ILinkProps) => {
       return
 
     event.preventDefault()
-    navRef.current()
+    navigate()
     if (onClick) onClick.call(event.currentTarget, event)
   },
-    // navRef is a ref so it never changes
     [onClick]
   )
 
@@ -142,8 +107,8 @@ export const Switch = ({ children, location }: {children: ComponentChildren, loc
 }
 
 export const Redirect = (props: INavigateOptions) => {
-  const navRef = useNavigate(props)
-  useLayoutEffect(() => navRef.current(), [])
+  const navigate = useNavigate(props)
+  useLayoutEffect(() => navigate(), [])
 
   return null
 }

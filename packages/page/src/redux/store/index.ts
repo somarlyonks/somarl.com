@@ -9,6 +9,7 @@ import sGlobal, { IGlobalState, IGlobalAction } from './global'
 import sFetch, { IFetchState, IFetchAction } from './fetch'
 import sLocal, { ILocalState, ILocalAction } from './local'
 import sQiniu, { IQiniuState, IQiniuAction } from './qiniu'
+import sRouter, { IRouterState, IRouterAction, buildRouter } from './router'
 import sUser, { IUserState, IUserAction, ANONYMOUS_USER } from './user'
 import { applyMiddleware } from '../lib/middleware'
 
@@ -18,6 +19,7 @@ export interface IImplState {
   fetch: IFetchState
   local: ILocalState
   qiniu: IQiniuState
+  router: IRouterState
   user: IUserState
 }
 
@@ -26,6 +28,7 @@ export interface IImplActions extends IActions<IImplState> {
   fetch: IFetchAction
   local: ILocalAction
   qiniu: IQiniuAction
+  router: IRouterAction
   user: IUserAction
 }
 
@@ -33,6 +36,7 @@ export type IImplAction = IGlobalAction
                         | IFetchAction
                         | ILocalAction
                         | IQiniuAction
+                        | IRouterAction
                         | IUserAction
 
 export const ActionTypes = {
@@ -40,6 +44,7 @@ export const ActionTypes = {
   fetch: sFetch.ActionTypes,
   local: sLocal.ActionTypes,
   qiniu: sQiniu.ActionTypes,
+  router: sRouter.ActionTypes,
   user: sUser.ActionTypes,
 }
 
@@ -62,6 +67,7 @@ const preloadedState: IImplState = {
     syncToken: '',
     url: 'https://static.qotes.top/',
   },
+  router: buildRouter(),
   user: {
     loginVisible: false,
     isLoggedIn: false,
@@ -74,6 +80,7 @@ const reducers = {
   fetch: sFetch.reducer,
   local: sLocal.reducer,
   qiniu: sQiniu.reducer,
+  router: sRouter.reducer,
   user: sUser.reducer,
 } as IReducers<IImplState, IImplAction>
 
