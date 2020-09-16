@@ -1,18 +1,20 @@
 
 import { h } from 'preact'
-import { useState } from 'preact/hooks'
+import { useEffect, useState, useRef } from 'preact/hooks'
 
 import { actor, useRedux } from 'src/redux'
 import { GTermianlState } from 'src/redux/store/global'
+import { bem } from 'src/helpers'
 
 
-export interface ITerminalInputProps {
+interface IProps {
+  readonly value?: S
   readonly onFocus?: () => void
-  readonly onChange?: (value: ITerminalInputStates['text']) => void
-  readonly onEmit?: (value: ITerminalInputStates['text']) => void
+  readonly onChange?: (value: IState['text']) => void
+  readonly onEmit?: (value: IState['text']) => void
 }
 
-interface ITerminalInputStates {
+interface IState {
   text: S
   supportDisplay: boolean
   caretText: S
@@ -41,14 +43,28 @@ const setTerminalState = (payload: GTermianlState) => actor({
   payload,
 })
 
-export default function TerminalInput (props: ITerminalInputProps) {
-  const [state, setState] = useState<ITerminalInputStates>({
+
+export default function TerminalInput (props: IProps) {
+  const [state, setState] = useState<IState>({
     text: '',
     supportDisplay: false,
     caretText: '█',
     fakeContrastText: '',
   })
-  const deriveState = (s: Partial<ITerminalInputStates>) => setState(prev => ({...prev, ...s}))
+  const deriveState = (s: Partial<IState>) => setState(prev => ({...prev, ...s}))
+
+  const $input = useRef<HTMLInputElement>()
+
+  useEffect(() => {
+    const { value } = props
+    if (value !== undefined) {
+      deriveState({text: value})
+      if ($input.current) {
+        $input.current.value = value
+        absJumpTo($input.current)
+      }
+    }
+  }, [props.value])
 
   const onFocus: h.JSX.FocusEventHandler<HTMLInputElement> = event => {
     if (props.onFocus) {
@@ -65,20 +81,23 @@ export default function TerminalInput (props: ITerminalInputProps) {
     setTerminalState('blur')
   }
 
-  const jumpTo = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
-    if (!event.target) return ''
-
-    const target = event.target as HTMLInputElement
+  const absJumpTo = (target: HTMLInputElement) => {
     const position = target.selectionStart || 0
     const prefix = Array<S>(position).fill(' ').join('')
     const text = target.value
     const caretText = prefix + '█'
     const fakeContrastText = prefix + (text[position!] || ' ')
-    const isFireOnChangeNeeded = props.onChange ? text !== state.text : true
+    const isFireOnChangeNeeded = !!props.onChange && text !== state.text
 
     deriveState({ text, caretText, fakeContrastText })
 
     return isFireOnChangeNeeded ? text : false
+  }
+
+  const jumpTo = (event: h.JSX.TargetedEvent<HTMLInputElement>) => {
+    if (!event.currentTarget) return ''
+
+    return absJumpTo(event.currentTarget)
   }
 
   const onChange: h.JSX.GenericEventHandler<HTMLInputElement> = event => {
@@ -95,7 +114,6 @@ export default function TerminalInput (props: ITerminalInputProps) {
 
     if (event.key === 'Enter') {
       target.blur()
-      setTerminalState('output')
       if (props.onEmit) {
         props.onEmit(target.value)
       }
@@ -108,8 +126,9 @@ export default function TerminalInput (props: ITerminalInputProps) {
   }))
 
   return (
-    <div class={`terminal-input terminal-input--${terminalState}`}>
+    <div class={bem('terminal-input', '', [terminalState])}>
       <input
+        ref={$input}
         type="text"
         style={{borderLeftColor}}
         class="terminal-input__input"

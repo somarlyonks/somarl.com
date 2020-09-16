@@ -6,11 +6,26 @@ import { actor } from 'src/redux'
 import Sysh from 'src/helpers/sysh'
 
 import Terminal from '../terminal/core'
-import { useLocation } from 'src/router'
+import { useLocation, useSearchParam } from 'src/router'
 
+
+const setTerminaloutput = (payload: S) => actor({
+  type: actor.types.global.SET_TERMINALOUTPUT,
+  payload,
+})
+
+const execCommand = (input: S) => {
+  actor({
+    type: actor.types.global.SET_TERMINALSTATE,
+    payload: 'output',
+  })
+  setTerminaloutput('processing...')
+  Sysh.exec(input).then(setTerminaloutput)
+}
 
 export default function SyshTerminal () {
   const [, navigate] = useLocation()
+  const cmd = useSearchParam('sh') || ''
 
   useEffect(() => {
     Sysh.register(result => actor({
@@ -19,28 +34,23 @@ export default function SyshTerminal () {
     }))
   }, [])
 
-  const parseInput = (input: string) => Sysh.parse(input)
-  const execCommand = (input: string) => Sysh.exec(input)
-  const setTerminaloutput = (payload: S) => actor({
-    type: actor.types.global.SET_TERMINALOUTPUT,
-    payload,
-  })
+  useEffect(() => {
+    if (cmd) execCommand(cmd)
+  }, [cmd])
 
-  const handleInputChange = (input: string) => {
+  const onChange = (input: S) => {
     setTerminaloutput('...')
-    parseInput(input).then(setTerminaloutput)
+    Sysh.parse(input).then(setTerminaloutput)
   }
-
-  const handleInputted = (input: string) => {
-    setTerminaloutput('processing...')
-    execCommand(input).then(setTerminaloutput)
+  const onEmit = (input: S) => {
     navigate(`?sh=${input}`)
   }
 
   return (
     <Terminal
-      onChange={handleInputChange}
-      onEmit={handleInputted}
+      value={cmd}
+      onChange={onChange}
+      onEmit={onEmit}
     />
   )
 }

@@ -4,6 +4,7 @@ import { useLayoutEffect, useCallback } from 'preact/hooks'
 
 import { isFunction } from 'src/helpers'
 import { useRedux } from 'src/redux'
+export { useSearchParam } from './hooks'
 
 
 interface INavigateOptions {
