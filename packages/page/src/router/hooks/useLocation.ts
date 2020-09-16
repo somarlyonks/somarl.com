@@ -3,7 +3,9 @@
  */
 
 import { useEffect, useRef, useState, useCallback } from 'preact/hooks'
-import { once } from 'src/helpers'
+import { once } from 'src/helpers/func'
+
+export type IUseLocation = F1<{base?: S}, [S, (to: S, options?: {replace?: boolean}) => void]>
 
 
 const eventPopstate = 'popstate'
@@ -11,7 +13,7 @@ const eventPushState = 'pushState'
 const eventReplaceState = 'replaceState'
 const events = [eventPopstate, eventPushState, eventReplaceState]
 
-export const useLocation: F1<{base?: S}, [S, (to: S, options?: {replace?: boolean}) => void]> = ({ base = '' } = {}) => {
+export const useLocation: IUseLocation = ({ base = '' } = {}) => {
   const [path, update] = useState(currentPathname(base))
   const prevPath = useRef(path)
 

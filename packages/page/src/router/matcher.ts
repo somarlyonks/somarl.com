@@ -1,10 +1,12 @@
 
-export function makeMatcher (makeRegexpFn: typeof pathToRegexp = pathToRegexp): F2<S, S, [boolean, null | {}]> {
+export type IMatcher = F2<S, S, [boolean, null | Record<S, S>]>
+
+
+export function makeMatcher (makeRegexpFn: typeof pathToRegexp = pathToRegexp): IMatcher {
   const cache: Record<S, R<typeof pathToRegexp>> = {}
 
   // obtains a cached regexp version of the pattern
-  const getRegexp = (pattern: S) =>
-    (cache[pattern]) || (cache[pattern] = makeRegexpFn(pattern))
+  const getRegexp = (pattern: S) => (cache[pattern]) || (cache[pattern] = makeRegexpFn(pattern))
 
   return (pattern: S, path: S) => {
     const { regexp, keys } = getRegexp(pattern || '')

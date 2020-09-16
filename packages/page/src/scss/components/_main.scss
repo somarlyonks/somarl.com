@@ -28,6 +28,7 @@ body::before {
   );
   opacity: 0.3;
   transition: opacity 1s ease-out;
+  pointer-events: none;
 }
 
 body:focus-within {
