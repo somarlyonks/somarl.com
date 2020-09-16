@@ -19,7 +19,7 @@ export default function Quote ({
   work,
 }: IProps) {
   if (inline) return (
-    <p><q cite={cite}>{quote}</q>{author ? <span>{author}</span> : null}{work ? <cite>{work}</cite> : null}</p>
+    <span><q cite={cite}>{quote}</q>{author ? <span>{author}</span> : null}{work ? <cite>{work}</cite> : null}</span>
   )
   return (
     <blockquote cite={cite}>
