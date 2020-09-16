@@ -2,6 +2,7 @@ import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect } from 'preact/hooks'
 
 import { Api, bem } from 'src/helpers'
+import { Quote } from 'src/components/sui'
 
 
 export interface IFooterState {
@@ -41,9 +42,7 @@ export default function Footer () {
     <footer class={em('', [state.toggled && 'toggled'])}>
       <div class="absolute footer__widget" onClick={toggle} />
       <span class={em('image-info', [state.binksCopyright ? 'adequate' : 'simple'])}>
-        <span class="footer__image-info-name">"{state.binksName || 'Failed to load image'}"</span>
-        <span class="footer__image-info-connect">&nbsp;-&nbsp;</span>
-        <span class="footer__image-info-copyright">{state.binksCopyright}</span>
+        <Quote inline quote={state.binksName || 'Failed to load image'} author={state.binksCopyright} />
       </span>
       <span class="footer__copyright">© 2020 Sy. All rights reserved.</span>
     </footer>

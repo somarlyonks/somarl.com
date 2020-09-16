@@ -8,6 +8,9 @@ declare module 'preact/src/jsx' {
     interface IntrinsicElements {
       animateTransform: A
     }
+    interface HTMLAttributes {
+      cite?: S
+    }
   }
 
 }

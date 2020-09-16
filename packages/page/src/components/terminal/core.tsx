@@ -115,7 +115,7 @@ export default function TerminalInput (props: IProps) {
     if (event.key === 'Enter') {
       target.blur()
       if (props.onEmit) {
-        props.onEmit(target.value)
+        props.onEmit(target.value.trim())
       }
     }
   }

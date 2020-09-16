@@ -1,5 +1,5 @@
 
-import { h, isValidElement, cloneElement, ComponentChildren, toChildArray } from 'preact'
+import { h, isValidElement, cloneElement, ComponentChildren, toChildArray, ComponentType } from 'preact'
 import { useLayoutEffect, useCallback } from 'preact/hooks'
 
 import { isFunction } from 'src/helpers'
@@ -16,7 +16,8 @@ interface INavigateOptions {
 interface IRouteProps {
   path: S
   match?: [boolean, Record<S, S>]
-  children: ComponentChildren
+  component?: ComponentType
+  children?: ComponentChildren
 }
 
 interface ILinkProps extends INavigateOptions {
@@ -47,7 +48,7 @@ const useNavigate = (options: INavigateOptions) => {
   return useCallback(() => navigate(options.to || options.href, options), [])
 }
 
-export const Route = ({ path, match, children }: IRouteProps) => {
+export const Route = ({ path, match, component, children }: IRouteProps) => {
   const useRouteMatch = useRoute(path)
 
   // `props.match` is present - Route is controlled by the Switch
@@ -55,7 +56,7 @@ export const Route = ({ path, match, children }: IRouteProps) => {
 
   if (!matches) return null
 
-  // support render prop or plain children
+  if (component) return h(component, params)
   return isFunction(children) ? children(params) : children
 }
 

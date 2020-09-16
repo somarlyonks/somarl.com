@@ -20,9 +20,7 @@ export default function Main () {
           </div>
         </Route>
 
-        <Route path="/:missing*">
-          <F0F />
-        </Route>
+        <Route path="/:missing*" component={F0F} />
       </Switch>
     </main>
   )

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'preact/hooks'
 
 import { bem } from 'src/helpers'
 import Fabric from './fabric'
+import Quote from './quote'
 
 
 interface IDominoProps {
@@ -32,8 +33,8 @@ export default function domino ({ ready }: IDominoProps) {
       <p class="domino-description">
         {
           loadingTooSlow
-            ? 'This is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning. - Churchill'
-            : `Everything will be okay in the end. If it's not okay, it's not the end. - John Lennon`
+            ? <Quote inline quote="This is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning." author="Churchill" />
+            : <Quote inline quote="Everything will be okay in the end. If it's not okay, it's not the end." author="John Lennon" />
         }
       </p>
     </Fabric>

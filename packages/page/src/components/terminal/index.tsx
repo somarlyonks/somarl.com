@@ -44,6 +44,8 @@ export default function SyshTerminal () {
   }
   const onEmit = (input: S) => {
     navigate(`?sh=${input}`)
+    // doesn't route if the input is not changed
+    if (cmd === input) execCommand(input)
   }
 
   return (
