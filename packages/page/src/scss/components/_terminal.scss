@@ -1,10 +1,10 @@
 @import '../helpers/variables';
 @import '../helpers/mixins';
 
+
 @keyframes blink {
   50% { color: rgba($inputColor, 0) }
 }
-
 
 @each $size, $width in $grid-breakpoints {
   @if $size != "xs" {
@@ -16,6 +16,7 @@
     }
   }
 }
+
 
 .terminal-input {
   z-index: $zTermianal;

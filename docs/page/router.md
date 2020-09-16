@@ -13,6 +13,7 @@ Route accepts pattern with dynamic segments.
 <Route path="/user/:name">
   {({name}) => <Avatar name={name} />}
 </Router>
+<Route path="/user/:name" component={Avatar} />
 ```
 
 ### Switch
