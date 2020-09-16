@@ -1,0 +1,15 @@
+
+p {
+  q + span {
+    &::before {
+      content: " - ";
+    }
+    & + cite {
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}
+
+// TODO: @sy blockquote style
