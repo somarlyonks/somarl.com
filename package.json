@@ -38,8 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.11.1",
-    "@commitlint/cli": "11.0.0",
-    "@commitlint/config-conventional": "11.0.0",
+    "@somarlyonks/commitlint": "1.0.0",
     "@somarlyonks/tslint": "1.0.0",
     "@types/dotenv": "6.1.1",
     "@types/fs-extra": "9.0.1",
@@ -101,21 +100,8 @@
   },
   "commitlint": {
     "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "scope-enum": [
-        2,
-        "always",
-        [
-          "pkg",
-          "plan",
-          "page",
-          "pipe",
-          "server"
-        ]
-      ]
-    }
+      "@somarlyonks/commitlint"
+    ]
   },
   "eslintIgnore": [
     "build/*",

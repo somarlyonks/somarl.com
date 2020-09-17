@@ -2948,6 +2948,15 @@
   dependencies:
     conventional-changelog-conventionalcommits "^4.3.1"
 
+"@commitlint/config-lerna-scopes@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.npmjs.org/@commitlint/config-lerna-scopes/-/config-lerna-scopes-11.0.0.tgz#4152287c5d13ea844160507523b2f98b015adf4a"
+  integrity sha512-/PjLKefMlnG+Sk27MY3MZo+T/9/PrgDcLk1YCSPVHNkXibXiS2Hb5NEMuNHzPxwts4IvJo0WIOb0YOBx5GBsdA==
+  dependencies:
+    import-from "3.0.0"
+    resolve-pkg "2.0.0"
+    semver "7.3.2"
+
 "@commitlint/ensure@^11.0.0":
   version "11.0.0"
   resolved "https://registry.npmjs.org/@commitlint/ensure/-/ensure-11.0.0.tgz#3e796b968ab5b72bc6f8a6040076406306c987fb"
@@ -4632,7 +4641,16 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@somarlyonks/tslint@^1.0.0":
+"@somarlyonks/commitlint@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@somarlyonks/commitlint/-/commitlint-1.0.0.tgz#022b9ef869ea24906f5c4beb8e0b6989a4464731"
+  integrity sha512-QbQ3hWbIL2tDdRNzINEBRXnpg+RAitXRqhqZjmNMsxo7lQfjrWR73WzkzdY23rrJdr+BgXxjbk1zURxWyUWpjw==
+  dependencies:
+    "@commitlint/cli" "11.0.0"
+    "@commitlint/config-conventional" "11.0.0"
+    "@commitlint/config-lerna-scopes" "11.0.0"
+
+"@somarlyonks/tslint@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@somarlyonks/tslint/-/tslint-1.0.0.tgz#dd9bfa6820f992191c019f40661627146d5e14e3"
   integrity sha512-EIGZdh8anMsQWlpD9wWJByBAQL1rF1mDP6lja69j46iRMn+MMP64ojwQ82HCUuhxVYw6EgIXqH9i8WvuWikBmg==
@@ -17297,6 +17315,13 @@ resolve-options@^1.1.0:
   integrity sha1-MrueOcBtZzONyTeMDW1gdFZq0TE=
   dependencies:
     value-or-function "^3.0.0"
+
+resolve-pkg@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/resolve-pkg/-/resolve-pkg-2.0.0.tgz#ac06991418a7623edc119084edc98b0e6bf05a41"
+  integrity sha512-+1lzwXehGCXSeryaISr6WujZzowloigEofRB+dj75y9RRa/obVcYgbHJd53tdYw8pvZj8GojXaaENws8Ktw/hQ==
+  dependencies:
+    resolve-from "^5.0.0"
 
 resolve-url@^0.2.1:
   version "0.2.1"
