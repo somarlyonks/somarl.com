@@ -1,3 +1,3 @@
 import gulp from 'gulp'
 
-gulp.task('default', () => console.info('defualt'))
+gulp.task('default', async () => console.info('defualt'))
