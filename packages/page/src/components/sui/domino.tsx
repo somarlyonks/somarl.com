@@ -1,7 +1,7 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect } from 'preact/hooks'
 
-import { bem } from 'src/helpers'
+import { useBem } from 'src/helpers'
 import Fabric from './fabric'
 import Quote from './quote'
 
@@ -20,7 +20,7 @@ export default function domino ({ ready }: IDominoProps) {
   }, [])
 
   return (
-    <Fabric class={'absolute--full ' + bem('domino-container', '', {ready})}>
+    <Fabric class={'absolute--full ' + useBem('domino-container', '', {ready})}>
       <ul class="dominos" aria-busy="true" aria-label="Loading">
         <li class="domino" />
         <li class="domino" />

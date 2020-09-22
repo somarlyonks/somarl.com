@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import { createPortal } from 'preact/compat'
 
-import { bem } from 'src/helpers'
+import { useBem } from 'src/helpers'
 
 
 interface ILayerProps {
@@ -22,7 +22,7 @@ export function Layer ({
 }: ILayerProps) {
   const [{ $el }, setState] = useState<ILayerState>({
   })
-  const className = bem('layer', '', [type])
+  const className = useBem('layer', '', [type])
   useEffect(() => {
     const layerHost = document.createElement('div')
     layerHost.className = className

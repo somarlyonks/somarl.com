@@ -24,9 +24,9 @@ export default function Quote ({
   return (
     <blockquote cite={cite}>
       <p>{quote}</p>
-      {author || work ? (
+      {author ? (
         <footer>
-          {author ? <span>{author}</span> : null}
+          <span>{author}</span>
           {work ? <cite>{work}</cite> : null}
         </footer>
       ) : null}

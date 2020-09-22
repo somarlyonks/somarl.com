@@ -4655,6 +4655,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@somarlyonks/bem@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@somarlyonks/bem/-/bem-1.0.0.tgz#251e8264ba9c99f063408cc972e057908fd841fc"
+  integrity sha512-7IqM9As2P+PLNWdA/3e2R//hdtToFZloTrQNJKgzFlZ7MCs+/cEnjTC/iJYDcJkGH9K+yXDiafrJz69g3risLg==
+
 "@somarlyonks/commitlint@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@somarlyonks/commitlint/-/commitlint-1.0.0.tgz#022b9ef869ea24906f5c4beb8e0b6989a4464731"

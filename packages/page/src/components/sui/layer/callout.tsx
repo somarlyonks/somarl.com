@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { useState, useRef, useEffect, PropRef } from 'preact/hooks'
 import { forwardRef, Ref } from 'preact/compat'
 
-import { bem, getAbsolutePivot, ISimplePosition, IOffsetPosition, IPosition, simplePositionMap } from 'src/helpers'
+import { useBem, getAbsolutePivot, ISimplePosition, IOffsetPosition, IPosition, simplePositionMap } from 'src/helpers'
 import { Layer } from './layer'
 
 
@@ -225,7 +225,7 @@ export function Callout ({
 
       <CalloutLayer
         ref={$callout}
-        class={bem('callout', '', [position])}
+        class={useBem('callout', '', [position])}
         visible={visible}
         left={x}
         top={y}
