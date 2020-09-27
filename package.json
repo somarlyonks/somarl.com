@@ -48,7 +48,7 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/node-fetch": "2.5.7",
     "@types/node-sass": "4.11.1",
-    "autoprefixer": "9.8.6",
+    "autoprefixer": "10.0.1",
     "babel-jest": "26.3.0",
     "babel-loader": "8.1.0",
     "babel-preset-react-app": "9.1.2",
