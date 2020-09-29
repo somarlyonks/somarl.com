@@ -20,7 +20,7 @@
     "@somarl.com/pipe": "0.1.0",
     "bootstrap": "4.5.2",
     "object-assign": "4.1.1",
-    "preact": "10.5.2",
+    "preact": "10.5.3",
     "promise": "8.1.0"
   },
   "devDependencies": {
