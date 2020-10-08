@@ -7,14 +7,17 @@ export class Document <TSchema extends O = {}> extends Model {
   @Field()
   public name!: S
 
-  @Field({ nullable: true })
+  @Field({nullable: true})
   public description?: S
 
   @Field()
   public image?: S
 
+  @Field({nullable: true})
+  public content?: S
+
   @Field(type => JSONScalarType)
-  public data?: TSchema
+  public meta?: TSchema
 }
 
 

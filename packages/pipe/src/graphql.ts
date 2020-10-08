@@ -6,6 +6,13 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface NewDoctypeInput {
+    key: string;
+    name: string;
+    image: string;
+    schema: JSON;
+}
+
 export interface NewImageInput {
     key: string;
     name: string;
@@ -31,6 +38,15 @@ export interface IModel {
     created: DateString;
 }
 
+export interface Doctype extends IModel {
+    id: string;
+    created: DateString;
+    name: string;
+    description?: string;
+    image: string;
+    schema: JSON;
+}
+
 export interface Image extends IModel {
     id: string;
     created: DateString;
@@ -43,6 +59,8 @@ export interface Image extends IModel {
 export interface IMutation {
     addImage(newImageData: NewImageInput): Image | Promise<Image>;
     removeImage(id: string): boolean | Promise<boolean>;
+    addDoctype(newDoctypeData: NewDoctypeInput): Doctype | Promise<Doctype>;
+    removeDoctype(id: string): boolean | Promise<boolean>;
     addRecipe(newRecipeData: NewRecipeInput): Recipe | Promise<Recipe>;
     removeRecipe(id: string): boolean | Promise<boolean>;
     createUser(newUserData: NewUserInput): User | Promise<User>;
@@ -51,6 +69,8 @@ export interface IMutation {
 export interface IQuery {
     image(id: string): Image | Promise<Image>;
     images(skip?: number, take?: number): Image[] | Promise<Image[]>;
+    doctype(id: string): Doctype | Promise<Doctype>;
+    doctypes(skip?: number, take?: number): Doctype[] | Promise<Doctype[]>;
     recipe(id: string): Recipe | Promise<Recipe>;
     recipes(skip?: number, take?: number): Recipe[] | Promise<Recipe[]>;
     user(id: string): User | Promise<User>;
