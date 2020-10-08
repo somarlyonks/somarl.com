@@ -37,7 +37,9 @@ export default function QiniuInput ({
   const $input = useRef<HTMLInputElement>()
   const [loading, showLoading, hideLoading] = useBoolState(false)
 
-  const onClick: h.JSX.MouseEventHandler<HTMLElement> = event => $input.current!.click()
+  const onClick: h.JSX.MouseEventHandler<HTMLElement> = event => {
+    if ($input.current) $input.current.click()
+  }
   const onChange: h.JSX.GenericEventHandler<HTMLInputElement> = async event => {
     const file = ((event.target as HTMLInputElement).files || [])[0]
     showLoading()
