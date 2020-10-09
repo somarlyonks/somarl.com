@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 
 import DoctypeModule from './doctype/module'
 import DocumentModule from './document/module'
+import EdgeModule from './edge/module'
 import ImageModule from './image/module'
 import RecipeModule from './recipe/module'
 import UserModule from './user/module'
@@ -13,6 +14,7 @@ import UserModule from './user/module'
   imports: [
     DoctypeModule,
     DocumentModule,
+    EdgeModule,
     ImageModule,
     RecipeModule,
     UserModule,

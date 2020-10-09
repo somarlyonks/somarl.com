@@ -14,6 +14,16 @@ type Doctype implements IModel {
   schema: JSON!
 }
 
+type Document implements IModel {
+  id: ID!
+  created: DateString!
+  name: String!
+  description: String
+  image: String!
+  content: String
+  meta: JSON!
+}
+
 type Image implements IModel {
   id: ID!
   created: DateString!
@@ -34,14 +44,14 @@ scalar JSON
 type Mutation {
   addImage(newImageData: NewImageInput!): Image!
   removeImage(id: String!): Boolean!
-  addDoctype(newDoctypeData: NewDoctypeInput!): Doctype!
+  addDoctype(newDoctypeData: NewDocumentInput!): Document!
   removeDoctype(id: String!): Boolean!
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
   removeRecipe(id: String!): Boolean!
   createUser(newUserData: NewUserInput!): User!
 }
 
-input NewDoctypeInput {
+input NewDocumentInput {
   key: String!
   name: String!
   image: String!
@@ -71,8 +81,8 @@ input NewUserInput {
 type Query {
   image(id: String!): Image!
   images(skip: Int = 0, take: Int = 10): [Image!]!
-  doctype(id: String!): Doctype!
-  doctypes(skip: Int = 0, take: Int = 10): [Doctype!]!
+  doctype(id: String!): Document!
+  doctypes(skip: Int = 0, take: Int = 10): [Document!]!
   recipe(id: String!): Recipe!
   recipes(skip: Int = 0, take: Int = 10): [Recipe!]!
   user(id: String!): User!

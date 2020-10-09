@@ -1,19 +1,13 @@
+
 import { Field, ObjectType } from '@nestjs/graphql'
 import { Relation } from '../shared'
 
 
-/**
- * @description User -> Has -> Document
- *              User -> Has -> Tag
- *              Tag -> Has -> Tag
- *              Tag -> Has -> Document
- *              Document -> Has -> History
- * @todo split
- */
 @ObjectType()
 export class Has extends Relation {
   //
 }
+
 
 type ILogEvent = 'Create'
                | 'View'
@@ -28,4 +22,10 @@ export class Log extends Relation {
 
   @Field(type => Number)
   public level!: N
+}
+
+
+@ObjectType()
+export class History extends Relation {
+  //
 }
