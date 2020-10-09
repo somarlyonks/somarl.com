@@ -1,7 +1,9 @@
+
 import { createContext, Context as IContext } from 'preact'
-import { useContext, useMemo, useReducer, useRef, useLayoutEffect, useEffect } from 'preact/hooks'
+import { useContext, useMemo, useRef, useLayoutEffect, useEffect } from 'preact/hooks'
 import { IStore, IAction, IDispatcher } from '../lib'
 import shallowEqual from '../../helpers/shallowEqual'
+import { useRerender } from 'src/helpers'
 
 
 const useIsomorphicLayoutEffect = window ? useLayoutEffect : useEffect
@@ -47,7 +49,7 @@ export function create<
     const state = _store.getState()!
     const derivedState = memoizedMapState(state)
 
-    const [, forceUpdate] = useReducer(x => x + 1, 0)
+    const rerender = useRerender()
 
     const lastStateRef = useRef(derivedState)
     const memoizedMapStateRef = useRef(memoizedMapState)
@@ -65,9 +67,7 @@ export function create<
 
         const newDerivedState = memoizedMapStateRef.current(_store.getState()!)
 
-        if (!shallowEqual(newDerivedState, lastStateRef.current)) {
-          (forceUpdate as F0<void>)()
-        }
+        if (!shallowEqual(newDerivedState, lastStateRef.current)) rerender()
       }
 
       checkForUpdates()

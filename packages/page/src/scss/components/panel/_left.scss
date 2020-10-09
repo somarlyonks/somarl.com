@@ -1,5 +1,6 @@
 @import '../../helpers/variables';
 
+
 .panel-left {
   height: 100vh;
   &--blur {
@@ -19,7 +20,7 @@
 
 .terminal-hang {
   width: 100%;
-  height: 250px;
+  height: calc(20vh + 50px);
   transition: height $terminalTransitionTime;
   transform: translateZ(0);
 }
@@ -27,7 +28,7 @@
 .terminal-out {
   color: white;
   background-color: $sectionBackgroundColor;
-  margin: 50px 0 200px;
+  margin: 50px 0 20vh;
   padding: 0 15px;
   transition:
     margin $terminalTransitionTime,

@@ -1,6 +1,6 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 
-import { qUrl, bem } from 'src/helpers'
+import { qUrl, useBem } from 'src/helpers'
 import { IUserState } from 'src/redux/store/user'
 
 
@@ -21,10 +21,9 @@ export default function avatar ({
   onClick,
 }: IProps) {
   const imgKey = user.avatar
-  const em = bem('avatar')
 
   return (
-    <div class={`${className} ${em('', [shape, size])}`} onClick={onClick}>
+    <div class={`${className} ${useBem('avatar', '', [shape, size])}`} onClick={onClick}>
       <img src={qUrl(imgKey)} alt="" />
     </div>
   )

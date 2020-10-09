@@ -70,38 +70,39 @@ You should define api in sub-directories of `packages/server/src` just like the 
 
 ### Vertices
 
-```text
-type > tag
-   \   ^
-    \ / \
-     v   \
-   doc < user
-```
+Doctype
+
+Document
+
+Tag
+
+User
 
 ### Edges
 
 has
 
 ```text
-type >has> tag
-type >has> doc
-doc  >has> doc
+doctype >has> tag
+doctype >has> document
 
-tag  >has> tag
+tag >has> tag
+tag >has> document
 
+user >has> doctype
 user >has> tag
-user >has> doc
+user >has> document
 ```
 
 acl(access control)
 
 ```text
-user >acl> doc
+user >acl> document
 ```
 
 log
 
 ```text
-user >log> doc
+user >log> document
 user >log> user
 ```

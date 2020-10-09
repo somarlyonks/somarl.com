@@ -71,7 +71,7 @@ export default class ArangoCoreModule {
     const dbProvider = {
       provide: getDbToken(options.connectionName),
       useFactory (client: Database) {
-        return client.useDatabase(options.dbName)
+        return client.database(options.dbName)
       },
       inject: [
         getClientToken(options.connectionName),

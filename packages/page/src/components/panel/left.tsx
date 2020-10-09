@@ -4,7 +4,7 @@ import { h } from 'preact' // lgtm [js/unused-local-variable]
 
 import { useRedux } from 'src/redux'
 
-import { bem } from 'src/helpers'
+import { useBem } from 'src/helpers'
 
 
 function Output () {
@@ -27,7 +27,7 @@ export default function PanelLeft () {
   }))
 
   return (
-    <section class={`col-md flex-verticle ${bem('panel-left', '', [terminalState])}`}>
+    <section class={`col-md flex-verticle ${useBem('panel-left', '', [terminalState])}`}>
       <div class="terminal-hang" />
       <Output />
     </section>

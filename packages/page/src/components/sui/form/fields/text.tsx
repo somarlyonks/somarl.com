@@ -1,7 +1,7 @@
 import { h } from 'preact' // lgtm [js/unused-local-variable]
 import { useState, useEffect, useRef } from 'preact/hooks'
 
-import { randomString, isPromise, bem, isValidEmail } from 'src/helpers'
+import { randomString, isPromise, useBem, isValidEmail } from 'src/helpers'
 import { IFieldProps } from '../shared'
 
 
@@ -83,7 +83,7 @@ export default function TextField ({
   ]
 
   return (
-    <div class={bem('text-field', '', { disabled, invalid: !!errMsg })}>
+    <div class={useBem('text-field', '', { disabled, invalid: !!errMsg })}>
       {!!label && <label id={lableId} for={inputId}>{label}</label>}
       <div class="text-field__input-container">
         <input

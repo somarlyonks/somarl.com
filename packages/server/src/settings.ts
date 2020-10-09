@@ -41,9 +41,17 @@ export default class S {
   public static DB_HOST = process.env.DB_HOST || `localhost`
 
   public static BUILTIN_COLLECTIONS = [
+    // Vertices
     'recipe',
     'user',
     'image',
+    'doctype',
+    'document',
+    'version',
+    // edge
+    'has',
+    'history',
+    'log',
   ]
 
   public static ARANGO_VERSION = parseInt(process.env.ARANGO_VERSION || ARANGO_VERSION, 10)

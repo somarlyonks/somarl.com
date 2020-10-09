@@ -2,7 +2,7 @@ import { h } from 'preact'
 
 import * as Icons from '../../icons'
 import Fabric from '../fabric'
-import { bem } from 'src/helpers'
+import { useBem } from 'src/helpers'
 
 
 interface IButtonProps {
@@ -41,7 +41,7 @@ export default function Button ({
     <button
       type={type}
       name={name}
-      class={`fabric-btn ${className} ` + bem('fabric-btn', '', {primary, borderless, icon: !!icon})}
+      class={`fabric-btn ${className} ` + useBem('fabric-btn', '', {primary, borderless, icon: !!icon})}
       style={style}
       disabled={disabled || loading}
       form={form}

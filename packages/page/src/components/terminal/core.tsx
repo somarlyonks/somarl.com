@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'preact/hooks'
 
 import { actor, useRedux } from 'src/redux'
 import { GTermianlState } from 'src/redux/store/global'
-import { bem } from 'src/helpers'
+import { useBem } from 'src/helpers'
 
 
 interface IProps {
@@ -126,7 +126,7 @@ export default function TerminalInput (props: IProps) {
   }))
 
   return (
-    <div class={bem('terminal-input', '', [terminalState])}>
+    <div class={useBem('terminal-input', '', [terminalState])}>
       <input
         ref={$input}
         type="text"

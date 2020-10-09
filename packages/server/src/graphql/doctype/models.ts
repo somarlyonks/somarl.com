@@ -1,9 +1,10 @@
+
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Model, JSONScalarType } from '../shared'
+import { Model, JSONScalarType, ISchema } from '../shared'
 
 
 @ObjectType()
-export class Doctype <TSchema extends O = {}> extends Model {
+export class Doctype <TSchema extends ISchema = {}> extends Model {
   @Field()
   public name!: S
 
@@ -14,8 +15,5 @@ export class Doctype <TSchema extends O = {}> extends Model {
   public image!: S
 
   @Field(type => JSONScalarType)
-  public schema!: TSchema // TODO: @sy schema type transformer
-
-  @Field(type => [String])
-  public permissions!: L<S>
+  public schema!: TSchema
 }

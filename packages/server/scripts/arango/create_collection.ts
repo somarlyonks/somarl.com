@@ -9,9 +9,8 @@ export async function createCollection (collectionName: string) {
     chalk.blue(collectionName)
   )
 
-  const db = new Database(S.ARANGO_URI)
+  const db = new Database(S.ARANGO_URI, S.DB)
   await db.login(S.ARANGO_USERNAME, S.ARANGO_PASSWORD)
-  db.useDatabase(S.DB)
   const collection = db.collection(collectionName)
 
   try {

@@ -3,6 +3,7 @@ import { Request } from 'express'
 
 import { QiniuService } from '../services'
 import ImageService from '../../graphql/image/service'
+import { JSONResp } from '../../shared'
 
 
 @Controller('qiniu')
@@ -14,7 +15,9 @@ export default class QiniuController {
 
   @Post('token')
   public async token (@Req() req: Request) {
-    return { token: this.qiniuService.getUploadToken(req.body.userId, !!req.body.sync) }
+    return JSONResp.success({
+      token: this.qiniuService.getUploadToken(req.body.userId, !!req.body.sync),
+    })
   }
 
   @Post('upload_callback')

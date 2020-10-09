@@ -26,7 +26,10 @@
   transition:
     box-shadow 135ms cubic-bezier(0.4, 0, 0.2, 1),
     top $terminalTransitionTime;
-  top: 200px;
+  top: 30vh;
+  &--focus {
+    top: 20vh;
+  }
   &--output {
     top: 0;
   }
