@@ -22,9 +22,9 @@ export class Document <TSchema extends O = {}> extends Model {
 
 
 @ObjectType()
-export class History <TSchema extends O = {}> extends Model {
+export class Version <TSchema extends O = {}> extends Model {
   @Field()
-  public version!: N
+  public number!: N
 
   @Field(type => JSONScalarType)
   public data!: Document<TSchema>
