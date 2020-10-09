@@ -4666,10 +4666,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@somarlyonks/bem@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@somarlyonks/bem/-/bem-1.0.0.tgz#251e8264ba9c99f063408cc972e057908fd841fc"
-  integrity sha512-7IqM9As2P+PLNWdA/3e2R//hdtToFZloTrQNJKgzFlZ7MCs+/cEnjTC/iJYDcJkGH9K+yXDiafrJz69g3risLg==
+"@somarlyonks/bem@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@somarlyonks/bem/-/bem-1.0.1.tgz#0e33044f14c7f601f50d6f88e47770772e00238e"
+  integrity sha512-lqVVlxcn/w7Jb4rNDLGfiGI0WsOOSS7318/Jc4nTT4kdTXH3QXSSrhmIyK8Mmn+2sN7LCIYzN0IagSueUqUP1A==
 
 "@somarlyonks/commitlint@1.0.0":
   version "1.0.0"

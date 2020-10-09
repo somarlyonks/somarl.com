@@ -19,10 +19,7 @@ export function useBem (block: S, element: S, modifiers: IModifiers = [], inputs
     inputs = Array.isArray(modifiers) ? modifiers : Object.values(modifiers)
   }
 
-  return useMemo(() => {
-    console.info('recalc class')
-    return bem(block, element, modifiers)
-  }, inputs)
+  return useMemo(() => bem(block, element, modifiers), inputs)
 }
 
 
