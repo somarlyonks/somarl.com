@@ -44,11 +44,19 @@ scalar JSON
 type Mutation {
   addImage(newImageData: NewImageInput!): Image!
   removeImage(id: String!): Boolean!
-  addDoctype(newDoctypeData: NewDocumentInput!): Document!
+  addDoctype(newDoctypeData: NewDoctypeInput!): Doctype!
   removeDoctype(id: String!): Boolean!
+  addDocument(newDocumentData: NewDocumentInput!): Document!
+  removeDocument(id: String!): Boolean!
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
   removeRecipe(id: String!): Boolean!
   createUser(newUserData: NewUserInput!): User!
+}
+
+input NewDoctypeInput {
+  name: String!
+  image: String!
+  schema: JSON!
 }
 
 input NewDocumentInput {
@@ -81,8 +89,10 @@ input NewUserInput {
 type Query {
   image(id: String!): Image!
   images(skip: Int = 0, take: Int = 10): [Image!]!
-  doctype(id: String!): Document!
-  doctypes(skip: Int = 0, take: Int = 10): [Document!]!
+  doctype(id: String!): Doctype!
+  doctypes(skip: Int = 0, take: Int = 10): [Doctype!]!
+  document(id: String!): Document!
+  documents(skip: Int = 0, take: Int = 10): [Document!]!
   recipe(id: String!): Recipe!
   recipes(skip: Int = 0, take: Int = 10): [Recipe!]!
   user(id: String!): User!

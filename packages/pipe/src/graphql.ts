@@ -6,6 +6,13 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface NewDoctypeInput {
+    key: string;
+    name: string;
+    image: string;
+    schema: JSON;
+}
+
 export interface NewDocumentInput {
     key: string;
     name: string;
@@ -69,8 +76,10 @@ export interface Image extends IModel {
 export interface IMutation {
     addImage(newImageData: NewImageInput): Image | Promise<Image>;
     removeImage(id: string): boolean | Promise<boolean>;
-    addDoctype(newDoctypeData: NewDocumentInput): Document | Promise<Document>;
+    addDoctype(newDoctypeData: NewDoctypeInput): Doctype | Promise<Doctype>;
     removeDoctype(id: string): boolean | Promise<boolean>;
+    addDocument(newDoctypeData: NewDocumentInput): Document | Promise<Document>;
+    removeDocument(id: string): boolean | Promise<boolean>;
     addRecipe(newRecipeData: NewRecipeInput): Recipe | Promise<Recipe>;
     removeRecipe(id: string): boolean | Promise<boolean>;
     createUser(newUserData: NewUserInput): User | Promise<User>;
@@ -79,8 +88,10 @@ export interface IMutation {
 export interface IQuery {
     image(id: string): Image | Promise<Image>;
     images(skip?: number, take?: number): Image[] | Promise<Image[]>;
-    doctype(id: string): Document | Promise<Document>;
-    doctypes(skip?: number, take?: number): Document[] | Promise<Document[]>;
+    doctype(id: string): Doctype | Promise<Doctype>;
+    doctypes(skip?: number, take?: number): Doctype[] | Promise<Doctype[]>;
+    document(id: string): Document | Promise<Document>;
+    documents(skip?: number, take?: number): Document[] | Promise<Document[]>;
     recipe(id: string): Recipe | Promise<Recipe>;
     recipes(skip?: number, take?: number): Recipe[] | Promise<Recipe[]>;
     user(id: string): User | Promise<User>;
