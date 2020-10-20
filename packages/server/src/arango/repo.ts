@@ -8,12 +8,12 @@ import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs
 import Entity, { IEntity } from './entity'
 import { IRepo, IArangoDocuemnt } from './specs'
 import { now } from '../helpers/Adapter'
-import { DocumentCollection } from 'arangojs/collection'
+import { Collection } from 'arangojs/collection'
 
 
 class Q <TModel extends O> {
 
-  protected readonly collection: DocumentCollection
+  protected readonly collection: Collection
   protected dsl: S
   protected queryOptions: QueryOptions
   protected queryset?: ArrayCursor<IArangoDocuemnt<TModel>>
@@ -22,7 +22,7 @@ class Q <TModel extends O> {
     protected readonly resourceName: S,
     protected readonly db: Database
   ) {
-    this.collection = this.db.collection(this.resourceName)
+    this.collection = this.db.collection(this.resourceName) as Collection<TModel>
     this.queryOptions = {}
     this.dsl = ''
   }
@@ -52,13 +52,13 @@ class Q <TModel extends O> {
 
 abstract class AbsRepo <TModel extends O> {
 
-  protected readonly collection: DocumentCollection<TModel & {created: S}>
+  protected readonly collection: Collection<TModel & {created: S}>
 
   public constructor (
     @Inject('RESOURCE_NAME') protected readonly resourceName: S,
     @Inject('RESOURCE_DB') protected readonly db: Database
   ) {
-    this.collection = this.db.collection(this.resourceName)
+    this.collection = this.db.collection(this.resourceName) as Collection<TModel>
   }
 
   /**

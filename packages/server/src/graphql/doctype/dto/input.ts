@@ -9,10 +9,6 @@ import { JSONScalarType } from '../../shared'
 export class NewDoctypeInput {
   @Field()
   @MaxLength(30)
-  public key!: S
-
-  @Field()
-  @MaxLength(30)
   public name!: S
 
   @Field()
