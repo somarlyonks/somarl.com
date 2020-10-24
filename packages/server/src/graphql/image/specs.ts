@@ -11,7 +11,7 @@ export interface IImageRepo extends IRepo<Image> {
 
 export interface IImageService {
   create (data: NewImageInput): P<Image>
-  findOneById (id: S): P<Dehydrated<Image> | void>
+  findOneById (id: S): P<DehydratedDocument<Image> | void>
   findAll (args: ImagesArgs): P<L<Image>>
   removeById (id: S): P<boolean>
 }

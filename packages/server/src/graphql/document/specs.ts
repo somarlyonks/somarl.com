@@ -11,7 +11,7 @@ export interface IDocumentRepo extends IRepo<Document> {
 
 export interface IDocumentService {
   create (data: NewDocumentInput): P<Document>
-  findOneById (id: S): P<Dehydrated<Document> | void>
+  findOneById (id: S): P<DehydratedDocument<Document> | void>
   findAll (args: DocumentArgs): P<L<Document>>
   removeById (id: S): P<boolean>
 }

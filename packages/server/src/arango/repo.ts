@@ -5,7 +5,7 @@ import { ArrayCursor } from 'arangojs/cursor'
 import { AqlQuery } from 'arangojs/aql'
 import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
 
-import Entity, { IEntity } from './entity'
+import { Entity, IEntity } from './entity'
 import { IRepo, IArangoDocuemnt } from './specs'
 import { now } from '../helpers/Adapter'
 import { Collection } from 'arangojs/collection'
@@ -167,8 +167,8 @@ export default abstract class Repo <TModel extends O> extends AbsRepo<TModel> im
     return this.$lookupById(id).then(d => d.dehydrate())
   }
 
-  public async get (query: AqlQuery): P<Dehydrated<TModel>> | never
-  public async get (query: AqlQuery, _acceptVoid: A): P<Dehydrated<TModel> | void>
+  public async get (query: AqlQuery): P<DehydratedDocument<TModel>> | never
+  public async get (query: AqlQuery, _acceptVoid: A): P<DehydratedDocument<TModel> | void>
   public async get (query: AqlQuery, _acceptVoid?: A) {
     const strict = arguments.length === 1
     const entity = await this.$get(query, strict)
