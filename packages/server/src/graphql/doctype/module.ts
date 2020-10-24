@@ -1,5 +1,6 @@
 
 import { ResourceModule } from '../shared'
+import EdgeModule from '../edge/module'
 
 import { RESOURCE_NAME } from './consts'
 import { DoctypeRepo } from './repos'
@@ -8,6 +9,9 @@ import DoctypeService from './service'
 
 
 @ResourceModule(RESOURCE_NAME, {
+  imports: [
+    EdgeModule,
+  ],
   providers: [
     DoctypeRepo,
     DoctypeResolver,

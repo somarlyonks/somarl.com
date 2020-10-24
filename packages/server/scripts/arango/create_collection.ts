@@ -1,8 +1,8 @@
-import { Database } from 'arangojs'
+import { Database, CollectionType } from 'arangojs'
 import S from '../../src/settings'
 import chalk from 'chalk'
 
-export async function createCollection (collectionName: string) {
+export async function createCollection (collectionName: string, collectionType?: CollectionType) {
   if (!collectionName) return 0b101
   console.info(
     chalk.yellowBright('Creating collection with name:'),
@@ -14,7 +14,9 @@ export async function createCollection (collectionName: string) {
   const collection = db.collection(collectionName)
 
   try {
-    await collection.create()
+    await collection.create({
+      type: collectionType,
+    })
     console.info(
       chalk.green('Collection'),
       chalk.blue(collectionName),
@@ -41,8 +43,18 @@ function getArg (tag: string, fallback: string = ''): string {
  */
 async function main () {
   const collectionName = getArg('-c', getArg('--collection'))
+  const collectionArg = getArg('-t', getArg('--type', 'document'))
+  if (collectionArg !== 'edge' && collectionArg !== 'document') {
+    chalk.red('type has to be \'edge\' or \'document\'')
+    process.exit(1)
+  }
+  const collectionType = {
+    edge: CollectionType.EDGE_COLLECTION,
+    document: CollectionType.DOCUMENT_COLLECTION,
+  }[collectionArg]
+
   if (collectionName) {
-    process.exit(await createCollection(collectionName))
+    process.exit(await createCollection(collectionName, collectionType))
   }
 
   process.exit(1)

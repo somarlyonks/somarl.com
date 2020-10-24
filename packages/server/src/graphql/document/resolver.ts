@@ -10,31 +10,31 @@ import DocumentService from './service'
 @Resolver(() => Document)
 export default class DocumentResolver {
   public constructor (
-    private readonly doctypeService: DocumentService
+    private readonly documentService: DocumentService
   ) {}
 
   @Query(returns => Document)
-  public async doctype (@Args('id') id: S) {
-    const dcotype = this.doctypeService.findOneById(id)
-    if (!await dcotype) throw new NotFoundException(id)
+  public async document (@Args('id') id: S) {
+    const document = this.documentService.findOneById(id)
+    if (!await document) throw new NotFoundException(id)
 
-    return dcotype
+    return document
   }
 
   @Query(returns => [Document])
-  public doctypes (@Args() doctypesArgs: DocumentArgs) {
-    return this.doctypeService.findAll(doctypesArgs)
+  public documents (@Args() documentArgs: DocumentArgs) {
+    return this.documentService.findAll(documentArgs)
   }
 
   @Mutation(returns => Document)
-  public async addDoctype (
-    @Args('newDoctypeData') newDoctypeData: NewDocumentInput
+  public async addDocument (
+    @Args('newDocumentData') newDocumentData: NewDocumentInput
   ) {
-    return this.doctypeService.create(newDoctypeData)
+    return this.documentService.create(newDocumentData)
   }
 
   @Mutation(returns => Boolean)
-  public async removeDoctype (@Args('id') id: S) {
-    return this.doctypeService.removeById(id)
+  public async removeDocument (@Args('id') id: S) {
+    return this.documentService.removeById(id)
   }
 }

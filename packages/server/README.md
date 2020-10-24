@@ -106,3 +106,25 @@ log
 user >log> document
 user >log> user
 ```
+
+## Private documents
+
+Private documents can be published, but public card cannot be hidden any more since document might be quoted.
+
+## Relations between documents
+
+- fork: create a new document with a particular doctype
+  - The resource will be recorded as edges but not necessary to be displayed in front end.
+  - Once forked, the new document will never care about updatings of the resource.
+- quote: soft link to the document
+
+They can happen both between user's own documents and users'.
+
+## Document merging
+
+Happens when
+
+- fork: select a target doctype or create a copy of the related doctype
+- migrate: when the doctype is modified
+
+Always merge the new datas with the latest schema of the corresponding doctype.

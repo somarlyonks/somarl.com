@@ -5,15 +5,15 @@ import { ArrayCursor } from 'arangojs/cursor'
 import { AqlQuery } from 'arangojs/aql'
 import { Inject, NotFoundException, InternalServerErrorException } from '@nestjs/common'
 
-import Entity, { IEntity } from './entity'
+import { Entity, IEntity } from './entity'
 import { IRepo, IArangoDocuemnt } from './specs'
 import { now } from '../helpers/Adapter'
-import { DocumentCollection } from 'arangojs/collection'
+import { Collection } from 'arangojs/collection'
 
 
 class Q <TModel extends O> {
 
-  protected readonly collection: DocumentCollection
+  protected readonly collection: Collection
   protected dsl: S
   protected queryOptions: QueryOptions
   protected queryset?: ArrayCursor<IArangoDocuemnt<TModel>>
@@ -22,7 +22,7 @@ class Q <TModel extends O> {
     protected readonly resourceName: S,
     protected readonly db: Database
   ) {
-    this.collection = this.db.collection(this.resourceName)
+    this.collection = this.db.collection(this.resourceName) as Collection<TModel>
     this.queryOptions = {}
     this.dsl = ''
   }
@@ -52,13 +52,13 @@ class Q <TModel extends O> {
 
 abstract class AbsRepo <TModel extends O> {
 
-  protected readonly collection: DocumentCollection<TModel & {created: S}>
+  protected readonly collection: Collection<TModel & {created: S}>
 
   public constructor (
     @Inject('RESOURCE_NAME') protected readonly resourceName: S,
     @Inject('RESOURCE_DB') protected readonly db: Database
   ) {
-    this.collection = this.db.collection(this.resourceName)
+    this.collection = this.db.collection(this.resourceName) as Collection<TModel>
   }
 
   /**
@@ -167,8 +167,8 @@ export default abstract class Repo <TModel extends O> extends AbsRepo<TModel> im
     return this.$lookupById(id).then(d => d.dehydrate())
   }
 
-  public async get (query: AqlQuery): P<Dehydrated<TModel>> | never
-  public async get (query: AqlQuery, _acceptVoid: A): P<Dehydrated<TModel> | void>
+  public async get (query: AqlQuery): P<DehydratedDocument<TModel>> | never
+  public async get (query: AqlQuery, _acceptVoid: A): P<DehydratedDocument<TModel> | void>
   public async get (query: AqlQuery, _acceptVoid?: A) {
     const strict = arguments.length === 1
     const entity = await this.$get(query, strict)
