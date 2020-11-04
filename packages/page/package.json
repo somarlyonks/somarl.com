@@ -23,7 +23,7 @@
     "preact": "10.5.5"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "7.12.1",
+    "@babel/plugin-transform-react-jsx": "7.12.5",
     "@storybook/preact": "6.0.28",
     "mini-css-extract-plugin": "1.2.1",
     "node-sass-chokidar": "1.5.0",
