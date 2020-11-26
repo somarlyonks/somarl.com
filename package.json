@@ -37,7 +37,7 @@
     "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
   "devDependencies": {
-    "@babel/core": "7.12.7",
+    "@babel/core": "7.12.9",
     "@somarlyonks/commitlint": "1.0.0",
     "@somarlyonks/tslint": "1.0.0",
     "@types/dotenv": "6.1.1",
@@ -50,7 +50,7 @@
     "@types/node-sass": "4.11.1",
     "autoprefixer": "10.0.2",
     "babel-jest": "26.6.3",
-    "babel-loader": "8.2.1",
+    "babel-loader": "8.2.2",
     "babel-preset-react-app": "10.0.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "chalk": "4.1.0",
