@@ -37,7 +37,7 @@
     "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
   "devDependencies": {
-    "@babel/core": "7.12.9",
+    "@babel/core": "7.12.10",
     "@somarlyonks/commitlint": "1.0.0",
     "@somarlyonks/tslint": "1.0.0",
     "@types/dotenv": "6.1.1",
