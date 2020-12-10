@@ -9,7 +9,7 @@ const progressThreads = new Threads<ProgressThread>()
 // tslint:disable: no-magic-numbers
 const TRICKLE_SPEED = 200
 
-class ProgressThread extends Thread {
+class ProgressThread extends Thread<ProgressThread> {
 
   private progress: N = 0
 
@@ -23,13 +23,13 @@ class ProgressThread extends Thread {
   ]
 
   public constructor (start = true) {
-    super(progressThreads)
-    if (start) this.start()
+    super(progressThreads, start)
   }
 
   public start () {
     this.setProgress(0)
     const worker = () => setTimeout(() => {
+      if (this.progress > 100) return
       this.trickle()
       worker()
     }, TRICKLE_SPEED)
@@ -40,7 +40,7 @@ class ProgressThread extends Thread {
     this.trickle(30 + 50 * Math.random())
     setTimeout(() => {
       this.setProgress(+Infinity)
-      progressThreads.kill(this.pid)
+      this.suicide()
     }, TRICKLE_SPEED)
   }
 
@@ -54,7 +54,7 @@ class ProgressThread extends Thread {
   private setProgress (progress: N) {
     this.progress = clamp(progress, 0, 100)
 
-    progressThreads.run(this, thread => store.dispatch({
+    this.requestFrame(thread => store.dispatch({
       type: ActionTypes.fetch.SET_PROGRESS,
       payload: thread.progress,
     }))
@@ -87,7 +87,7 @@ export default function Progress () {
       <div
         class="progress-peg absolute"
         style={{
-          'box-shadow': `20px 0 60px 2px ${color}, 20px 0 30px 0 ${color}`,
+          boxShadow: `20px 0 60px 2px ${color}, 20px 0 30px 0 ${color}`,
         }}
       />
     </div>
