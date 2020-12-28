@@ -2788,7 +2788,16 @@
     unixify "1.0.0"
     valid-url "1.0.9"
 
-"@graphql-tools/merge@6.2.5", "@graphql-tools/merge@^6.2.5":
+"@graphql-tools/merge@6.2.6":
+  version "6.2.6"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-6.2.6.tgz#f10b8958523687440536ecf166f2959d2f094d0f"
+  integrity sha512-G6x0QlIzFHoJ3dyF9a4gxmBtaEYJ+EoAAGqXHsE/drRr58K1jscQdfKZdF1wZWZgxkgakHqgt1+oFMeQg/O6ug==
+  dependencies:
+    "@graphql-tools/schema" "^7.0.0"
+    "@graphql-tools/utils" "^7.0.0"
+    tslib "~2.0.1"
+
+"@graphql-tools/merge@^6.2.5":
   version "6.2.5"
   resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-6.2.5.tgz#a03d6711f2a468b8de97c0fe9092469280ca66c9"
   integrity sha512-T2UEm7L5MeS1ggbGKBkdV9kTqLqSHQM13RrjPzIAYzkFL/mK837sf+oq8h2+R8B+senuHX8akUhMTcU85kcMvw==
@@ -3878,12 +3887,12 @@
     tslib "2.0.3"
     uuid "8.3.2"
 
-"@nestjs/graphql@7.9.1":
-  version "7.9.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/graphql/-/graphql-7.9.1.tgz#eb97f5fdfefe24142463e2f142bbafd2b0a0e397"
-  integrity sha512-r1SwcOIvmSXm6n28VkzXMOW3VkF7szBdJLo9aZfYo1XiostFDwiRIisaQtIpDgijeSHOwIINEJve+ZRuLex4Yg==
+"@nestjs/graphql@7.9.2":
+  version "7.9.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/graphql/-/graphql-7.9.2.tgz#6e0ae4c85f7ffd5b673cca4bc51cc6f3fa13aa3e"
+  integrity sha512-aICB2juAMuwKr1Tooi8H5J42uSbXAXW5WZcxKSCs8ijKx+fTRHmE+OGhzzrHGLAOP77kdE/oezAi0TGxtsGqMg==
   dependencies:
-    "@graphql-tools/merge" "6.2.5"
+    "@graphql-tools/merge" "6.2.6"
     "@graphql-tools/schema" "6.2.4"
     "@graphql-tools/utils" "6.2.4"
     "@nestjs/mapped-types" "0.1.1"
@@ -3895,7 +3904,7 @@
     lodash "4.17.20"
     normalize-path "3.0.0"
     tslib "2.0.3"
-    uuid "8.3.1"
+    uuid "8.3.2"
   optionalDependencies:
     "@apollo/gateway" "^0.17.0"
     apollo-server-testing "^2.16.1"
@@ -19612,11 +19621,6 @@ utility@^1.16.1:
 utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
-
-uuid@8.3.1:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
-  integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
 
 uuid@8.3.2, uuid@^8.0.0, uuid@^8.3.0:
   version "8.3.2"
