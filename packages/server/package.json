@@ -28,7 +28,7 @@
     "class-transformer": "0.3.2",
     "class-validator": "0.13.1",
     "dotenv": "8.2.0",
-    "graphql": "14.7.0",
+    "graphql": "15.5.0",
     "graphql-tools": "7.0.2",
     "handlebars": "4.7.6",
     "local": "0.3.3",
