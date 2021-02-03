@@ -3,7 +3,7 @@
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware')
 const ignoredFiles = require('react-dev-utils/ignoredFiles')
-const config = require('./webpack.config.dev')
+const config = require('./webpack.config')('development')
 const paths = require('./paths')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
@@ -34,7 +34,7 @@ module.exports = function () {
       app.use(errorOverlayMiddleware())
       // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
       // https://github.com/facebook/create-react-app/issues/8499#issuecomment-589561657
-      app.use(noopServiceWorkerMiddleware(paths.publicUrl))
+      app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath))
     },
   }
 }

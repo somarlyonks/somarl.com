@@ -65,12 +65,16 @@ measureFileSizesBeforeBuild(paths.appBuild)
 function build (previousFileSizes) {
   console.log('Creating an optimized production build...')
 
-  const compiler = webpack(config)
+  const compiler = webpack(config('production'))
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) return reject(err)
 
-      const messages = formatWebpackMessages(stats.toJson({}, true))
+      const rawMessages = stats.toJson({}, true)
+      const messages = formatWebpackMessages({
+        errors: rawMessages.errors.map((e) => e.message),
+        warnings: rawMessages.warnings.map((e) => e.message),
+      })
       if (messages.errors.length) {
         // Only keep the first error
         messages.errors.length = 1
