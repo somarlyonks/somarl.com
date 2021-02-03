@@ -17,6 +17,7 @@ const paths = require('./paths')
 const getClientEnvironment = require('./env')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -24,8 +25,6 @@ const publicPath = paths.publicUrlOrPath
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
-// `publicUrl` is just like `publicPath`, but we will provide it to our app
-// as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 const publicUrl = publicPath.slice(0, -1)
 // Get environment variables to inject into our app.
@@ -47,7 +46,6 @@ module.exports = function (webpackEnv) {
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
         // css is located in `static/css`, use '../../' to locate index.html folder
-        // in production `paths.publicUrlOrPath` can be a relative path
         options: paths.publicUrlOrPath.startsWith('.')
           ? {publicPath: '../../'}
           : {},
@@ -77,7 +75,7 @@ module.exports = function (webpackEnv) {
   }
 
   return {
-    mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
+    mode: isEnvProduction ? 'production' : 'development',
     bail: isEnvProduction,
     devtool: isEnvProduction
       ? shouldUseSourceMap && 'source-map'
@@ -100,7 +98,7 @@ module.exports = function (webpackEnv) {
         : info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
       globalObject: 'this',
     },
-    optimization: {
+    optimization: isEnvDevelopment ? undefined : {
       minimize: isEnvProduction,
       minimizer: [
         new TerserPlugin({
@@ -250,16 +248,17 @@ module.exports = function (webpackEnv) {
       )),
       // It is absolutely essential that NODE_ENV was set to production here for speed.
       new webpack.DefinePlugin(env.stringified), // lgtm [js/build-artifact-leak]
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+      }),
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       isEnvDevelopment && new CaseSensitivePathsPlugin(),
+      isEnvDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isEnvProduction && new MiniCssExtractPlugin({
         filename: 'static/css/[name].[contenthash:8].css',
         chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       }),
-      // Generate a manifest file which contains a mapping of all asset filenames
-      // to their corresponding output file so that tools can pick it up without
-      // having to parse `index.html`.
-      new WebpackManifestPlugin({
+      isEnvProduction && new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
         publicPath: paths.publicUrlOrPath,
         generate: (seed, files, entrypoints) => ({

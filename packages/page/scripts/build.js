@@ -13,7 +13,7 @@ require('../config/env')
 const chalk = require('chalk')
 const fs = require('fs-extra')
 const webpack = require('webpack')
-const config = require('../config/webpack.config.prod')
+const config = require('../config/webpack.config')('production')
 const paths = require('../config/paths')
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles')
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages')
@@ -65,7 +65,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
 function build (previousFileSizes) {
   console.log('Creating an optimized production build...')
 
-  const compiler = webpack(config('production'))
+  const compiler = webpack(config)
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) return reject(err)

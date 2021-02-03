@@ -21,7 +21,7 @@ module.exports = function () {
     contentBase: paths.appPublic,
     watchContentBase: true,
     hot: true,
-    publicPath: config.output.publicPath,
+    publicPath: config.output.publicPath.slice(0, -1),
     quiet: true,
     watchOptions: {
       ignored: ignoredFiles(paths.appSrc),
