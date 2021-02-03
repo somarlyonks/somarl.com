@@ -2,36 +2,41 @@
 
 const path = require('path')
 const fs = require('fs')
-const url = require('url')
+const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath')
 
-// Make sure any symlinks in the project folder are resolved:
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+const appPackageJson = resolveApp('package.json')
 
-const envPublicUrl = process.env.PUBLIC_URL
+const moduleFileExtensions = [
+  'mjs',
+  'js',
+  'ts',
+  'tsx',
+  'json',
+  'jsx',
+];
 
-function ensureSlash (path, needsSlash) {
-  const hasSlash = path.endsWith('/')
-  if (hasSlash && !needsSlash) return path.substr(path, path.length - 1)
-  if (!hasSlash && needsSlash) return `${path}/` // lgtm [js/trivial-conditional]
-  return path
+// Resolve file paths in the same order as webpack
+const resolveModule = (resolveFn, filePath) => {
+  const extension = moduleFileExtensions.find(extension =>
+    fs.existsSync(resolveFn(`${filePath}.${extension}`))
+  )
+
+  if (extension) return resolveFn(`${filePath}.${extension}`)
+
+  return resolveFn(`${filePath}.js`)
 }
 
-const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage || ''
-
-function getServedPath (appPackageJson) {
-  const publicUrl = getPublicUrl(appPackageJson)
-  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/')
-  return ensureSlash(servedUrl, true)
-}
+const appTsConfig = resolveApp(process.env.NODE_ENV === 'development' ? 'tsconfig.json' : 'tsconfig.prod.json')
 
 module.exports = {
   dotenv: resolveApp('.env'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.tsx'),
-  appPackageJson: resolveApp('package.json'),
+  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appPackageJson,
   appSrc: resolveApp('src'),
   appScss: resolveApp('src/scss/index.scss'),
   appScssEnv: resolveApp('src/scss/_env.scss'),
@@ -39,11 +44,13 @@ module.exports = {
   appStoryScss: resolveApp('src/stories/scss/index.scss'),
   appStoryCss: resolveApp('src/story-css/index.css'),
   yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveApp('src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
-  appTsConfig: resolveApp('tsconfig.json'),
-  appTsProdConfig: resolveApp('tsconfig.prod.json'),
-  appTsLint: resolveApp('tslint.json'),
-  publicUrl: getPublicUrl(resolveApp('package.json')),
-  servedPath: getServedPath(resolveApp('package.json')),
+  appTsConfig,
+  swSrc: resolveModule(resolveApp, 'src/service-worker'),
+  publicUrlOrPath: getPublicUrlOrPath(
+    process.env.NODE_ENV === 'development',
+    require(appPackageJson).homepage,
+    process.env.PUBLIC_URL
+  ),
+  moduleFileExtensions,
 }
