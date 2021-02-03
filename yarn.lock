@@ -14397,9 +14397,9 @@ optimism@^0.14.0:
     "@wry/context" "^0.5.2"
     "@wry/trie" "^0.2.1"
 
-optimize-css-assets-webpack-plugin@^5.0.4:
+optimize-css-assets-webpack-plugin@5.0.4:
   version "5.0.4"
-  resolved "https://registry.npmjs.org/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.4.tgz#85883c6528aaa02e30bbad9908c92926bb52dc90"
+  resolved "https://registry.yarnpkg.com/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.4.tgz#85883c6528aaa02e30bbad9908c92926bb52dc90"
   integrity sha512-wqd6FdI2a5/FdoiCNNkEvLeA//lHHfG24Ln2Xm2qqdIk4aOlsR18jwpyOihqQ8849W3qu2DX8fOYxpvTMj+93A==
   dependencies:
     cssnano "^4.1.10"
@@ -15473,9 +15473,9 @@ postcss-reduce-transforms@^4.0.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-safe-parser@^5.0.2:
+postcss-safe-parser@5.0.2:
   version "5.0.2"
-  resolved "https://registry.npmjs.org/postcss-safe-parser/-/postcss-safe-parser-5.0.2.tgz#459dd27df6bc2ba64608824ba39e45dacf5e852d"
+  resolved "https://registry.yarnpkg.com/postcss-safe-parser/-/postcss-safe-parser-5.0.2.tgz#459dd27df6bc2ba64608824ba39e45dacf5e852d"
   integrity sha512-jDUfCPJbKOABhwpUKcqCVbbXiloe/QXMcbJ6Iipf3sDIihEzTqRCeMBfRaOHxhBuTYqtASrI1KJWxzztZU4qUQ==
   dependencies:
     postcss "^8.1.0"
@@ -15528,6 +15528,15 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0:
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz#443f6a20ced6481a2bda4fa8532a6e55d789a2cb"
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
 
+postcss@8.2.4, postcss@^8.1.0, postcss@^8.1.4:
+  version "8.2.4"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-8.2.4.tgz#20a98a39cf303d15129c2865a9ec37eda0031d04"
+  integrity sha512-kRFftRoExRVXZlwUuay9iC824qmXPcQQVzAjbCCgjpXnkdMCJYBu2gTwAaFBzv8ewND6O8xFb3aELmEkh9zTzg==
+  dependencies:
+    colorette "^1.2.1"
+    nanoid "^3.1.20"
+    source-map "^0.6.1"
+
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.32, postcss@^7.0.5, postcss@^7.0.6:
   version "7.0.35"
   resolved "https://registry.npmjs.org/postcss/-/postcss-7.0.35.tgz#d2be00b998f7f211d8a276974079f2e92b970e24"
@@ -15536,15 +15545,6 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.2
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
-
-postcss@^8.1.0, postcss@^8.1.4, postcss@^8.2.4:
-  version "8.2.4"
-  resolved "https://registry.npmjs.org/postcss/-/postcss-8.2.4.tgz#20a98a39cf303d15129c2865a9ec37eda0031d04"
-  integrity sha512-kRFftRoExRVXZlwUuay9iC824qmXPcQQVzAjbCCgjpXnkdMCJYBu2gTwAaFBzv8ewND6O8xFb3aELmEkh9zTzg==
-  dependencies:
-    colorette "^1.2.1"
-    nanoid "^3.1.20"
-    source-map "^0.6.1"
 
 preact@10.5.12:
   version "10.5.12"
@@ -18260,6 +18260,18 @@ terminal-link@^2.0.0:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
 
+terser-webpack-plugin@5.1.1, terser-webpack-plugin@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.npmjs.org/terser-webpack-plugin/-/terser-webpack-plugin-5.1.1.tgz#7effadee06f7ecfa093dbbd3e9ab23f5f3ed8673"
+  integrity sha512-5XNNXZiR8YO6X6KhSGXfY0QrGrCRlSwAEjIIrlRQR4W8nP69TaJUlh3bkuac6zzgspiGPfKEHcY295MMVExl5Q==
+  dependencies:
+    jest-worker "^26.6.2"
+    p-limit "^3.1.0"
+    schema-utils "^3.0.0"
+    serialize-javascript "^5.0.1"
+    source-map "^0.6.1"
+    terser "^5.5.1"
+
 terser-webpack-plugin@^1.4.3:
   version "1.4.5"
   resolved "https://registry.npmjs.org/terser-webpack-plugin/-/terser-webpack-plugin-1.4.5.tgz#a217aefaea330e734ffacb6120ec1fa312d6040b"
@@ -18289,18 +18301,6 @@ terser-webpack-plugin@^3.0.0:
     source-map "^0.6.1"
     terser "^4.8.0"
     webpack-sources "^1.4.3"
-
-terser-webpack-plugin@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.npmjs.org/terser-webpack-plugin/-/terser-webpack-plugin-5.1.1.tgz#7effadee06f7ecfa093dbbd3e9ab23f5f3ed8673"
-  integrity sha512-5XNNXZiR8YO6X6KhSGXfY0QrGrCRlSwAEjIIrlRQR4W8nP69TaJUlh3bkuac6zzgspiGPfKEHcY295MMVExl5Q==
-  dependencies:
-    jest-worker "^26.6.2"
-    p-limit "^3.1.0"
-    schema-utils "^3.0.0"
-    serialize-javascript "^5.0.1"
-    source-map "^0.6.1"
-    terser "^5.5.1"
 
 terser@^4.1.2, terser@^4.6.3, terser@^4.8.0:
   version "4.8.0"
@@ -19927,9 +19927,9 @@ workbox-sw@^6.1.0:
   resolved "https://registry.npmjs.org/workbox-sw/-/workbox-sw-6.1.0.tgz#dfaca1029264af71f13a90fdfb16cf8d64ed0537"
   integrity sha512-e2jnIWSmNrpO9Psy4D6euDdRUW8FTXAdMxOj5O02gxa01fri1kfTSM9irDnTGKUiSGc+hlycsvzGdr8bnvzDiA==
 
-workbox-webpack-plugin@^6.1.0:
+workbox-webpack-plugin@6.1.0:
   version "6.1.0"
-  resolved "https://registry.npmjs.org/workbox-webpack-plugin/-/workbox-webpack-plugin-6.1.0.tgz#7090533aed07d000181f5686b5cc5f8c5fe36e06"
+  resolved "https://registry.yarnpkg.com/workbox-webpack-plugin/-/workbox-webpack-plugin-6.1.0.tgz#7090533aed07d000181f5686b5cc5f8c5fe36e06"
   integrity sha512-uRmImfQghNmNF/iyPJ+MS0o2Z9E6kExZRSZIDOhnf1v+Mw1ixxx3n9fuTvTuCDvrUksaXcVEkvhagr12kfkEYA==
   dependencies:
     fast-json-stable-stringify "^2.1.0"
