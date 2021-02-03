@@ -1,3 +1,4 @@
+
 $SMALL_SIZE: $navHeight;
 $SIZE: $navHeight * 4;
 $TRANSITION_TIME: 0.5s;
@@ -8,6 +9,7 @@ $TRANSITION_TIME: 0.5s;
   width: $SMALL_SIZE;
   height: $SMALL_SIZE;
   align-self: flex-start;
+  z-index: $zNavWidget;
   transition:
     width $TRANSITION_TIME,
     height $TRANSITION_TIME;
