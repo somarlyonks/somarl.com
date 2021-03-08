@@ -25,7 +25,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "7.12.17",
     "@storybook/preact": "6.1.20",
-    "autoprefixer": "10.2.4",
+    "autoprefixer": "10.2.5",
     "babel-jest": "26.6.3",
     "babel-loader": "8.2.2",
     "babel-preset-react-app": "10.0.0",
