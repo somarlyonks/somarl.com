@@ -20,7 +20,7 @@
     "@somarl.com/pipe": "0.1.0",
     "@somarlyonks/bem": "1.0.1",
     "bootstrap": "4.6.0",
-    "preact": "10.5.12"
+    "preact": "10.5.13"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "7.12.17",
