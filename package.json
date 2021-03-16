@@ -45,7 +45,7 @@
     "@types/graphql": "14.2.3",
     "@types/gulp": "4.0.8",
     "@types/jest": "26.0.20",
-    "@types/jsonwebtoken": "8.5.0",
+    "@types/jsonwebtoken": "8.5.1",
     "@types/node-fetch": "2.5.8",
     "@types/node-sass": "4.11.1",
     "chalk": "4.1.0",
