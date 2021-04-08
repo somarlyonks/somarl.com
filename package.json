@@ -46,7 +46,7 @@
     "@types/gulp": "4.0.8",
     "@types/jest": "26.0.22",
     "@types/jsonwebtoken": "8.5.1",
-    "@types/node-fetch": "2.5.9",
+    "@types/node-fetch": "2.5.10",
     "@types/node-sass": "4.11.1",
     "chalk": "4.1.0",
     "concurrently": "6.0.1",
