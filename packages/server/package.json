@@ -23,7 +23,7 @@
     "@somarl.com/pipe": "0.1.0",
     "apollo-server": "2.22.2",
     "apollo-server-express": "2.22.2",
-    "arangojs": "7.3.0",
+    "arangojs": "7.4.0",
     "chalk": "4.1.0",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.1",
