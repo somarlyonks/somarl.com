@@ -41,7 +41,7 @@
     "@somarlyonks/commitlint": "1.0.0",
     "@somarlyonks/tslint": "1.0.0",
     "@types/dotenv": "6.1.1",
-    "@types/fs-extra": "9.0.10",
+    "@types/fs-extra": "9.0.11",
     "@types/graphql": "14.2.3",
     "@types/gulp": "4.0.8",
     "@types/jest": "26.0.22",
