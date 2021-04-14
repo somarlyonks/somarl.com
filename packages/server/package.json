@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@nestjs-modules/mailer": "1.5.1",
+    "@nestjs-modules/mailer": "1.6.0",
     "@nestjs/common": "7.6.15",
     "@nestjs/core": "7.6.15",
     "@nestjs/graphql": "7.10.3",
