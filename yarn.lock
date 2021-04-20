@@ -3449,10 +3449,10 @@
     "@commitlint/config-conventional" "11.0.0"
     "@commitlint/config-lerna-scopes" "11.0.0"
 
-"@somarlyonks/tslint@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@somarlyonks/tslint/-/tslint-1.0.0.tgz#dd9bfa6820f992191c019f40661627146d5e14e3"
-  integrity sha512-EIGZdh8anMsQWlpD9wWJByBAQL1rF1mDP6lja69j46iRMn+MMP64ojwQ82HCUuhxVYw6EgIXqH9i8WvuWikBmg==
+"@somarlyonks/tslint@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@somarlyonks/tslint/-/tslint-1.0.1.tgz#6dccc1f45536044f5e8cb3d482d2b819f2a4e1fe"
+  integrity sha512-oGflR0l0AgYBfjlGsfXTxn0sjVXn9TsOvzpmCNCnT60W3wlfvLmhF2+HBBJ+HEYvb6+bVUEackq08DAmj7KIIA==
   dependencies:
     tslint "6.1.3"
     tslint-react "5.0.0"
