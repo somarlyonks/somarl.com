@@ -43,7 +43,7 @@
     "postcss-loader": "5.3.0",
     "postcss-safe-parser": "5.0.2",
     "react-dev-utils": "11.0.4",
-    "source-map-loader": "2.0.2",
+    "source-map-loader": "3.0.0",
     "style-loader": "2.0.0",
     "terser-webpack-plugin": "5.1.2",
     "ts-node": "9.1.1",
