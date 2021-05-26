@@ -16046,10 +16046,25 @@ q@^1.1.2, q@^1.5.1:
   resolved "https://registry.npmjs.org/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qiniu@*, qiniu@7.3.2:
+qiniu@*:
   version "7.3.2"
   resolved "https://registry.npmjs.org/qiniu/-/qiniu-7.3.2.tgz#2655ffc65396272b4b1aaa8588aa7b1cc167d3cb"
   integrity sha512-rn9I+/DaQKWh7/+9uVdR/kIVRT0yS7tne5LDQQQ2MtGFN5MgIjyoznztxVRuzs4ZWXdy7Qw/bYHYQcW5jB2xJA==
+  dependencies:
+    agentkeepalive "^4.0.2"
+    block-stream2 "^2.0.0"
+    crc32 "^0.2.2"
+    destroy "^1.0.4"
+    encodeurl "^1.0.1"
+    formstream "^1.1.0"
+    mime "^2.4.4"
+    tunnel-agent "^0.6.0"
+    urllib "^2.34.1"
+
+qiniu@7.3.3:
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/qiniu/-/qiniu-7.3.3.tgz#8e59cc3aaca2eaecc4f5e9090c39f2364a5db3eb"
+  integrity sha512-uQ3LWieyfLaww5iIUdwE9pW19k1XCST31s7xLHUga62Wc7iZ3pt/7p6rfSAk8HuJZ51GSsnDS2cLI/3wOsUPxw==
   dependencies:
     agentkeepalive "^4.0.2"
     block-stream2 "^2.0.0"
