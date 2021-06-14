@@ -41,7 +41,7 @@
     "postcss": "8.3.2",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-loader": "6.1.0",
-    "postcss-safe-parser": "5.0.2",
+    "postcss-safe-parser": "6.0.0",
     "react-dev-utils": "11.0.4",
     "source-map-loader": "3.0.0",
     "style-loader": "2.0.0",
