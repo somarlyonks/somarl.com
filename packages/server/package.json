@@ -18,7 +18,7 @@
     "@nestjs/core": "7.6.18",
     "@nestjs/graphql": "7.11.0",
     "@nestjs/jwt": "7.2.0",
-    "@nestjs/passport": "7.1.5",
+    "@nestjs/passport": "7.1.6",
     "@nestjs/platform-express": "7.6.18",
     "@somarl.com/pipe": "0.1.0",
     "apollo-server": "2.25.1",
