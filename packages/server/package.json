@@ -48,6 +48,6 @@
     "@types/qiniu": "7.0.1",
     "if-env": "1.0.4",
     "nodemon": "2.0.9",
-    "ts-node": "10.0.0"
+    "ts-node": "10.1.0"
   }
 }
