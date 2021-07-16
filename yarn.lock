@@ -3118,23 +3118,23 @@
     handlebars "^4.7.6"
     pug "^3.0.1"
 
-"@nestjs/common@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.0.0.tgz#b87499cb6cd9ff0313a247da70ea5c5a16011fd7"
-  integrity sha512-qztj56rJRFnNPfz/ddCu2TkSwEHTpm0wi9xydyEfHk8b7QM10ZwkHoM2Of/qWxDkh3qDu8fscdxo7w1ix+EKFA==
+"@nestjs/common@8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.0.4.tgz#00e801dfcfad4c4e0445b925a61cf6047285acb6"
+  integrity sha512-qgQTHH+0y64btdnqSuQSo8Ou7Okb6+8l2StjDOlzaPK36Ln1uBLoa6jQnwqxlAHUHqEocmraL1V5+wnSYz2CRA==
   dependencies:
     axios "0.21.1"
     iterare "1.2.1"
     tslib "2.3.0"
     uuid "8.3.2"
 
-"@nestjs/core@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.0.0.tgz#db609c46cb7482279bac9b1aef7bce343df38bad"
-  integrity sha512-DGlqMoPvWZmPPTXX2B2ln5l9WHMCfCPkF+/PoSmnDLuuVo/QlKBAlDbZELVRuELShpXVXiJlcManFQ579dxhOA==
+"@nestjs/core@8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.0.4.tgz#fcef4fa0f62f8b205f6e741bf6cd2da01c94d98a"
+  integrity sha512-1clCaGtVZTE7/tEvVj1FLwgFTHIlaCvwfPSMgxhGalTrx+cM8MoqEGLWklqS5bS+YfQscI1+Gn3OLdWlRcGbRQ==
   dependencies:
     "@nuxtjs/opencollective" "0.3.2"
-    fast-safe-stringify "2.0.7"
+    fast-safe-stringify "2.0.8"
     iterare "1.2.1"
     object-hash "2.2.0"
     path-to-regexp "3.2.0"
@@ -3180,10 +3180,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-7.1.6.tgz#608bb265dfd85602aa74bbceacc012ffb2e9d25d"
   integrity sha512-iHD/4D01CsKKWg7kUzo4yGNS4m90z1an0eUz+6nBlE5VeEOuCzhGFoBKAt0OKLJLOTEsJKuj4C2b5QfjqXVTyQ==
 
-"@nestjs/platform-express@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.0.0.tgz#76099221413d2ced0afc9ce81083b68742ea9016"
-  integrity sha512-EwVwoKmoAPlLPz9GROjZ1LJLmav8QdET97K6zlPPtFNPzE7hx3lyt3eMlUyR9FXvlGBko3b0vnsaitmr0JleUg==
+"@nestjs/platform-express@8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.0.4.tgz#506e58fa5b888be3d5006b069ab7099048ad93f0"
+  integrity sha512-qndJl/PsXArtuc/aguFrGrF9EIzyPX9kthKTAPXlqjtBMuApXupghG9T+QowSlPIppp52wRG6WAdJt0IQA9o/A==
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
@@ -9691,7 +9691,12 @@ fast-levenshtein@~2.0.6:
   resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fast-safe-stringify@2.0.7, fast-safe-stringify@^2.0.7:
+fast-safe-stringify@2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.8.tgz#dc2af48c46cf712b683e849b2bbd446b32de936f"
+  integrity sha512-lXatBjf3WPjmWD6DpIZxkeSsCOwqI0maYMpgDlx8g4U2qi4lbjA9oH/HD2a87G+KfsUmo5WbJFmqBZlPxtptag==
+
+fast-safe-stringify@^2.0.7:
   version "2.0.7"
   resolved "https://registry.npmjs.org/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
   integrity sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
