@@ -6511,6 +6511,11 @@ before-after-hook@^2.1.0:
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.1.1.tgz#99ae36992b5cfab4a83f6bee74ab27835f28f405"
   integrity sha512-5ekuQOvO04MDj7kYZJaMab2S8SPjGJbotVNyv7QYFCOAwrGZs/YnoDNlh1U+m5hl7H2D/+n0taaAV/tfyd3KMA==
 
+before@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/before/-/before-0.0.1.tgz#d21270e98747e9097253441e868adb325ae72dda"
+  integrity sha1-0hJw6YdH6QlyU0QehorbMlrnLdo=
+
 better-opn@^2.0.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/better-opn/-/better-opn-2.1.1.tgz#94a55b4695dc79288f31d7d0e5f658320759f7c6"
@@ -16438,12 +16443,13 @@ qiniu@*:
     tunnel-agent "^0.6.0"
     urllib "^2.34.1"
 
-qiniu@7.3.3:
-  version "7.3.3"
-  resolved "https://registry.yarnpkg.com/qiniu/-/qiniu-7.3.3.tgz#8e59cc3aaca2eaecc4f5e9090c39f2364a5db3eb"
-  integrity sha512-uQ3LWieyfLaww5iIUdwE9pW19k1XCST31s7xLHUga62Wc7iZ3pt/7p6rfSAk8HuJZ51GSsnDS2cLI/3wOsUPxw==
+qiniu@7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/qiniu/-/qiniu-7.4.0.tgz#a82828025863b7c9d2b7e4baeebe9ed23ff4260b"
+  integrity sha512-q4BXwglXY0Z2WS2TvRtQX2BJvgE0GUnASD7bm5m1RWcXfcL+OBMKJdN4kUe3H2PFfHL1B3srtR+FmJatFCOktA==
   dependencies:
     agentkeepalive "^4.0.2"
+    before "^0.0.1"
     block-stream2 "^2.0.0"
     crc32 "^0.2.2"
     destroy "^1.0.4"
