@@ -23,6 +23,6 @@
     "@types/react": "17.0.15",
     "next-transpile-modules": "8.0.0",
     "raw-loader": "4.0.2",
-    "sass": "1.36.0"
+    "sass": "1.37.5"
   }
 }
