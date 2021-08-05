@@ -2,7 +2,6 @@
   "extends": "../tsconfig.common.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "forceConsistentCasingInFileNames": true,
     "module": "esnext", // prod: commonjs
     "moduleResolution": "node",
     "target": "es5",

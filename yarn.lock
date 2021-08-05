@@ -1183,10 +1183,10 @@
   resolved "https://registry.npmjs.org/@commitlint/types/-/types-11.0.0.tgz#719cf05fcc1abb6533610a2e0f5dd1e61eac14fe"
   integrity sha512-VoNqai1vR5anRF5Tuh/+SWDFk7xi7oMwHrHrbm1BprYXjB2RJsWLhUrStMssDxEl5lW/z3EUdg8RvH/IUBccSQ==
 
-"@csszen/components.button@0.1.0":
-  version "0.1.0"
-  resolved "https://node.bit.dev/@csszen/components.button/-/@csszen-components.button-0.1.0.tgz#c279a630048ecdd33e1ee4c2ac419d2a30ef0019"
-  integrity sha1-wnmmMASOzdM+HuTCrEGdKjDvABk=
+"@csszen/components.button@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/components.button/-/@csszen-components.button-0.2.0.tgz#f40149b2e62ae6f6a9048fbde98a5f7fd27c902d"
+  integrity sha1-9AFJsuYq5vapBI+96Ypff9J8kC0=
   dependencies:
     "@csszen/components.flexmini" "0.1.0"
     "@csszen/hooks.usebem" "0.1.1"
@@ -1198,6 +1198,23 @@
   integrity sha1-Q5pFanMWH+noI47rFjloZQg+vCU=
   dependencies:
     "@csszen/hooks.usebem" "0.1.1"
+    core-js "^3.0.0"
+
+"@csszen/components.fof@1.1.0":
+  version "1.1.0"
+  resolved "https://node.bit.dev/@csszen/components.fof/-/@csszen-components.fof-1.1.0.tgz#512c9c21a001e968e460fe5633ee5fba3db33fdb"
+  integrity sha1-USycIaAB6WjkYP5WM+5fuj2zP9s=
+  dependencies:
+    "@csszen/components.button" "0.2.0"
+    "@csszen/components.flexmini" "0.1.0"
+    "@csszen/components.quote" "0.1.1"
+    core-js "^3.0.0"
+
+"@csszen/components.quote@0.1.1":
+  version "0.1.1"
+  resolved "https://node.bit.dev/@csszen/components.quote/-/@csszen-components.quote-0.1.1.tgz#9ca0803cc5ba88199c405d4c4e28528ac2183b68"
+  integrity sha1-nKCAPMW6iBmcQF1MTihSisIYO2g=
+  dependencies:
     core-js "^3.0.0"
 
 "@csszen/hooks.usebem@0.1.1":
