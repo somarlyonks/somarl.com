@@ -1,8 +1,3 @@
 {
   "files": [],
-  "references": [
-    { "path": "pipe" },
-    { "path": "page" },
-    { "path": "server" }
-  ]
 }

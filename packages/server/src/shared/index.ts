@@ -1,5 +1,0 @@
-export * from './controllers'
-export * from './modules'
-export * from './services'
-export * from './guards'
-export * from './decorators'
