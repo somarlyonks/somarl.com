@@ -1,9 +1,18 @@
 somarl.com:
+  pkg:
+    [ ] vercel deploy ingore configuration
+    [ ] ci monorepo source code detect
+
   www:
     [x] init
 
   blog:
-    [ ] init
+    [x] init
+    [ ] toc
+    [ ] tag
+    [ ] build RSS
+    [ ] analytics
 
   moment:
-    [ ] moment
+    [x] mongo server
+    [ ] init

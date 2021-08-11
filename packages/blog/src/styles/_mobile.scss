@@ -1,0 +1,34 @@
+@import "variables";
+
+$mobileThreshold: 767px;
+
+@media (max-width: $mobileThreshold) {
+  p,
+  a {
+    font-weight: 300;
+  }
+}
+
+@media (max-width: $mobileThreshold) {
+  article,
+  header + article {
+    padding: 1em;
+    table {
+      display: table;
+    }
+  }
+  header {
+    > div {
+      width: 100%;
+    }
+    nav {
+      margin: auto 0.5ch;
+    }
+  }
+  header,
+  footer {
+    > div {
+      padding: 0px 16px;
+    }
+  }
+}

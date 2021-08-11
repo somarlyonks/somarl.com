@@ -17,18 +17,12 @@
     "**/tsconfig.tsbuildinfo": true,
     "**/*.log": true,
     "*.husky": true,
-    "packages/page/build/dist": true,
-    "packages/page/src/css": true,
-    "packages/page/src/story-css": true,
-    "packages/pipe/build": true,
-    "packages/server/build": true,
+    "**/.next": true,
     "scripts/frp/frpc": true,
-    "scripts/frp/frps": true
+    "scripts/frp/frps": true,
+    // "packages/www": true,
   },
-  "search.exclude": {
-    "packages/page/build": true,
-    "packages/page/src/story-css": true
-  },
+  "search.exclude": {},
   "files.associations": {
     "tslint.json": "jsonc"
   },

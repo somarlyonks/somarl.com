@@ -1,0 +1,174 @@
+$footerTextColor: #555;
+$footerTextHoverColor: #000;
+$navHeight: 60px;
+$layoutWidth: 700px;
+
+@mixin hoverUnderline($color: currentColor) {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $color;
+    transform-origin: bottom left;
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+@mixin imgSize($size) {
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+}
+
+main {
+  > header {
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    height: $navHeight;
+    border-bottom: 1px solid hsl(0, 0%, 95%);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $zNav;
+
+    > div {
+      justify-content: flex-start !important;
+    }
+
+    nav {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: auto 1ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      will-change: opacity;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+    }
+
+    img[role="button"] {
+      @include imgSize(2.5rem);
+    }
+  }
+  > footer {
+    width: 100%;
+    border-top: 1px solid hsl(0, 0%, 95%);
+    height: 200px;
+    z-index: calc(#{$zNav} - 1);
+    font-size: 1.2em;
+    &,
+    a {
+      color: $footerTextColor;
+    }
+    a {
+      line-height: 1;
+      display: flex;
+      &:hover {
+        color: $footerTextHoverColor;
+      }
+    }
+
+    nav {
+      margin-right: 50px;
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 8px 0;
+        a:not([role="button"]) {
+          @include hoverUnderline($footerTextHoverColor);
+        }
+
+        a[role="button"] {
+          margin-left: 1ch;
+          svg {
+            width: 1em;
+            height: 1em;
+          }
+        }
+      }
+    }
+
+    img[role="button"] {
+      @include imgSize(3.5rem);
+      margin: 10px 0;
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 12px;
+      span {
+        margin: 0 0.25ch;
+      }
+    }
+
+    a[href*="vercel"] svg {
+      margin-right: 1px;
+    }
+  }
+
+  > header,
+  > footer {
+    padding: 10px 10vw;
+    background-color: rgba(#fff, 0.9);
+    box-sizing: border-box;
+    > div {
+      max-width: $layoutWidth;
+      padding: 0 32px;
+      margin: auto;
+    }
+    padding: 10px 0px;
+  }
+}
+
+article {
+  box-sizing: border-box;
+}
+
+article,
+footer > div {
+  max-width: $layoutWidth;
+  margin: auto;
+}
+
+header + article {
+  padding: calc(#{$navHeight} + 2em) 0 6em;
+}
+
+article > section[role="figure"] {
+  margin: 1em -1em;
+  padding: 1em;
+  border-radius: 1em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  figure {
+    &,
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  &:hover {
+    background-color: var(--color-bg-tertiary);
+  }
+  h2 {
+    margin-top: 0.5em;
+  }
+}

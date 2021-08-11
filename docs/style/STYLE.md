@@ -42,7 +42,7 @@ const arr = [
 ]
 ```
 
-Leading comma like Haskell is also accepted is necessary:
+Leading comma like Haskell is also accepted on necessary:
 
 ```ts
 const arr = [ 1
@@ -56,22 +56,6 @@ export type IGlobalAction = IAction<'INCREMENT', N>
                           | IAction<'SET_THEMECOLOR', S>
                           | IAction<'SET_TERMINALSTATE', GTermianlState>
                           | IAction<'SET_RICHOUTPUT', S>
-```
-
-### jsDoc
-
-Only add informations can't be inferred from typescript intellies(e.g. setState). Compressing one line comments into a single line is accepted.
-
-Example:
-
-```tsx
-export default class ComponentA extends React.Component<IComponentAProps, {}> {
-  /** @setState */
-  private readonly afterProcess (v: string) {
-    // operations
-    this.setState({isClean: false})
-  }
-}
 ```
 
 ## LOG
