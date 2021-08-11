@@ -14,6 +14,7 @@ body {
   font-size: calc(10px + 0.33vw);
   -webkit-font-smoothing: antialiased;
   padding: $PagePadding;
+  margin: 0;
   color: $TextColor;
   overflow-x: hidden;
 }
@@ -44,6 +45,7 @@ p {
     vertical-align: middle;
     width: 1em;
     height: 1em;
+    margin-right: 0.5ch;
   }
 }
 

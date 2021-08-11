@@ -12,7 +12,7 @@ interface IProps {
     }>
 }
 
-export default function Home ({works}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Works ({works}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head title="Works | Yang" />
