@@ -1,6 +1,6 @@
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 import Link from 'next/link'
-import Head from 'src/components/head'
+import Head from '../components/head'
 import styles from './works.module.scss'
 
 
@@ -12,7 +12,7 @@ interface IProps {
     }>
 }
 
-export default function Home ({works}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Works ({works}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head title="Works | Yang" />

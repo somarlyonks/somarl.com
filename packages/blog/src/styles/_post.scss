@@ -1,0 +1,244 @@
+header + article {
+  font-size: calc(14px + 0.33vw);
+  line-height: 1.5;
+  word-wrap: break-word;
+  position: relative;
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :nth-last-child(2) {
+    margin-bottom: 0 !important;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h1,
+  h2 {
+    margin-bottom: 0.3em;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin-top: 1.5rem;
+    a[role="button"] {
+      float: left;
+      margin-left: -1.25rem;
+      padding-right: 0.25rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      will-change: opacity;
+      svg {
+        vertical-align: middle;
+      }
+    }
+    &:hover {
+      a[role="button"] {
+        opacity: 1;
+      }
+    }
+  }
+  [id] {
+    scroll-margin-top: calc(2ex + #{$navHeight});
+  }
+
+  p,
+  pre,
+  blockquote,
+  figure,
+  ul,
+  ol,
+  table {
+    margin: 0 0 1em 0;
+  }
+
+  p {
+    font-size: 1em;
+    a {
+      svg {
+        height: 1.2em;
+        vertical-align: sub;
+      }
+    }
+    del {
+      opacity: 0.5;
+    }
+  }
+
+  pre {
+    padding: 1em;
+    overflow: auto;
+    border-radius: 0.5em;
+  }
+  p code {
+    border-radius: 0.25em;
+    padding: 0.075em 0.4em;
+  }
+  pre,
+  p code {
+    background-color: var(--color-bg-tertiary);
+    font-size: 0.85em;
+  }
+  pre,
+  code {
+    font-family: CamingoCode, monospace;
+  }
+
+  ul,
+  ol {
+    margin-top: 0;
+    padding-left: 1.5em;
+  }
+  ul {
+    list-style-type: disc;
+    ul {
+      list-style-type: circle;
+      margin-bottom: 0;
+      ul {
+        list-style-type: square;
+      }
+    }
+    &[role="listbox"] {
+      list-style-type: none;
+      padding-left: 0;
+    }
+  }
+  input[type="checkbox"] {
+    margin: 0 0.5ch 0 0;
+  }
+  li p {
+    margin-block-end: 0;
+  }
+
+  figure {
+    text-align: center;
+  }
+  figcaption {
+    font-size: 0.85em;
+    opacity: 0.5;
+  }
+
+  blockquote {
+    padding: 1em 1em 1em calc(1em + 1ch);
+    background-color: var(--color-bg-tertiary);
+    font-size: 0.85em;
+    border-radius: 0.5em;
+
+    p {
+      margin-bottom: 0.5em;
+      &:first-of-type {
+        position: relative;
+        &::before {
+          content: "“";
+          position: absolute;
+          top: 0;
+          right: 100%;
+        }
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+        &::after {
+          content: "”";
+        }
+      }
+      &:first-of-type::before,
+      &:last-of-type::after {
+        font-size: 1.2em;
+        font-weight: 700;
+      }
+    }
+
+    footer {
+      text-align: right;
+      margin-top: 0.4em;
+
+      &::before {
+        content: " - ";
+      }
+      cite::before {
+        content: ", ";
+      }
+    }
+
+    h1 ~ p,
+    blockquote ~ p {
+      &::before,
+      &::after {
+        content: "" !important;
+      }
+    }
+  }
+
+  table {
+    white-space: nowrap;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    max-width: 100%;
+    width: 100%;
+    display: block;
+
+    thead tr {
+      position: sticky;
+      top: $navHeight;
+      z-index: 1;
+      background-color: var(--theme-bg-tertiary);
+    }
+    tbody tr:nth-child(2n) {
+      background-color: var(--color-bg-tertiary);
+    }
+    td {
+      padding: 0.2em 0.4em;
+      overflow: auto;
+    }
+    th {
+      padding: 0.25em 0.4em;
+    }
+  }
+
+  time {
+    position: absolute;
+    bottom: 2em;
+  }
+
+  hr {
+    margin: 1.5em 0;
+    border: none;
+    border-top: 1px solid var(--color-fg);
+    border-bottom: 1px solid var(--color-fg);
+    color: var(--color-fg);
+    overflow: visible;
+    text-align: center;
+    height: 1px;
+    &::after {
+      background: var(--color-bg);
+      content: "§";
+      padding: 0 0.5ch;
+      transform: translateY(-50%);
+      display: inline-block;
+      position: relative;
+      top: 50%;
+    }
+  }
+
+  abbr {
+    font-variant-caps: all-small-caps;
+    font-feature-settings: "c2sc", "smcp";
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  #toc,
+  #toc + ul {
+    display: none;
+  }
+}
