@@ -1,12 +1,12 @@
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 import Link from 'next/link'
-import Head from 'src/components/Head'
-import Footer from 'src/components/Footer'
-import PostTime from 'src/components/post/PostTime'
+import Head from '../components/Head'
+import Footer from '../components/Footer'
+import PostTime from '../components/post/PostTime'
 
 import matter from 'gray-matter'
 import {readFileSync} from 'fs'
-import {postFilesSync} from 'src/libs/mdx'
+import {postFilesSync} from '../libs/mdx'
 
 
 interface IProps {

@@ -1,18 +1,18 @@
 import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
 import {MDXRemote} from 'next-mdx-remote'
 
-import {postComponents, PostLayout, PostTime} from 'src/components/post'
-import useInterSectionObserver from 'src/libs/useInterSectionObserver'
+import {postComponents, PostLayout, PostTime} from '../../components/post'
+import useInterSectionObserver from '../../libs/useInterSectionObserver'
 
 import type {ParsedUrlQuery} from 'querystring'
-import {postFileSlugsSync, serializePost, searchMDXComponentInSource} from 'src/libs/mdx'
+import {postFileSlugsSync, serializePost, searchMDXComponentInSource} from '../../libs/mdx'
 import dynamic from 'next/dynamic'
 
 
 const DYNAMIC_COMPONENT_NAMES = ['NextJS', 'MDXIcon']
 const dynamicComponents = {
-    NextJS: dynamic(() => import(`src/components/icons/NextJS`)),
-    MDXIcon: dynamic(() => import(`src/components/icons/MDXIcon`)),
+    NextJS: dynamic(() => import(`../../components/icons/NextJS`)),
+    MDXIcon: dynamic(() => import(`../../components/icons/MDXIcon`)),
 }
 
 interface IProps {

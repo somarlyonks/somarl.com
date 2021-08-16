@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import Head from 'src/components/head'
-import Javascript from 'src/components/icons/js'
-import choice from 'src/libs/choice'
+import Head from '../components/head'
+import Javascript from '../components/icons/js'
+import choice from '../libs/choice'
 
 import avatar0 from 'public/images/pangurban.jpg'
 import avatar1 from 'public/images/boy.jpg'

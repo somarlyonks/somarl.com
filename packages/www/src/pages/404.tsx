@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import FOF from '@csszen/components.fof'
 
-import Head from 'src/components/head'
+import Head from '../components/head'
 
 
 export default function CountentNotFound () {

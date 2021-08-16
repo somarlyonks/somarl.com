@@ -1,4 +1,4 @@
-import {formatDatetime} from 'src/libs/i18n'
+import {formatDatetime} from '../../libs/i18n'
 
 
 interface IProps {

@@ -1,6 +1,6 @@
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 import Link from 'next/link'
-import Head from 'src/components/head'
+import Head from '../components/head'
 import styles from './works.module.scss'
 
 

@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Flex from '@csszen/components.flexmini'
 
-import Vercel from 'src/components/icons/Vercel'
-import OcticonGithub from 'src/components/icons/OcticonGithub'
-import OcticonRSS from 'src/components/icons/OcticonRSS'
+import Vercel from './icons/Vercel'
+import OcticonGithub from './icons/OcticonGithub'
+import OcticonRSS from './icons/OcticonRSS'
 
 
 export default function Footer ({slug}: {slug?: string}) {
