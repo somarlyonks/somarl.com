@@ -23,11 +23,11 @@ $mobileThreshold: 767px;
   }
   article {
     padding: 1em;
-    table {
-      display: table;
-    }
   }
   header + article {
     padding: 2em 1em 6em;
+    table {
+      display: table;
+    }
   }
 }
