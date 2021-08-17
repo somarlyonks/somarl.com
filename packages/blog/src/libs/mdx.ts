@@ -7,6 +7,7 @@ import remarkAutolinkHeadings from 'remark-autolink-headings'
 import remarkToc from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import remarkShiki from '@stefanprobst/remark-shiki'
+import {getHighlighter} from 'shiki'
 
 
 export const POSTS_PATH = path.join(process.cwd(), 'posts')
@@ -50,6 +51,7 @@ type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
 
 export const serializePost = async (slug: string) => {
     const file = readFileSync(postSlugToPath(slug))
+    const highlighter = await getHighlighter({theme: 'github-light'})
 
     const {content, data} = matter(file)
 
@@ -67,7 +69,8 @@ export const serializePost = async (slug: string) => {
                 }],
                 remarkToc,
                 remarkUnwrapImages,
-                [remarkShiki, {theme: 'github-light'}],
+                // @ts-ignore
+                [remarkShiki, {highlighter}],
             ],
             rehypePlugins: [],
         },
