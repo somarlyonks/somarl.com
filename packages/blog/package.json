@@ -27,10 +27,10 @@
     "@stefanprobst/remark-shiki": "1.1.1",
     "gray-matter": "4.0.3",
     "next-mdx-remote": "3.0.4",
-    "remark-autolink-headings": "6.1.0",
-    "remark-slug": "6.1.0",
-    "remark-toc": "7.2.0",
-    "remark-unwrap-images": "2.1.0",
+    "remark-autolink-headings": "7.0.1",
+    "remark-slug": "7.0.0",
+    "remark-toc": "8.0.0",
+    "remark-unwrap-images": "3.0.0",
     "shiki": "0.9.6"
   }
 }
