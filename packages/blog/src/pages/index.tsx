@@ -1,7 +1,7 @@
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 import Link from 'next/link'
-import Head from '../components/head'
-import Footer from '../components/footer'
+import Head from '../components/Head'
+import Footer from '../components/Footer'
 import PostTime from '../components/post/PostTime'
 
 import matter from 'gray-matter'
