@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import Document, {Html, Head, NextScript} from 'next/document'
-import {DocumentContext} from 'next/dist/next-server/lib/document-context'
-import {AMP_RENDER_TARGET} from 'next/dist/next-server/lib/constants'
+import {DocumentContext} from 'next/dist/shared/lib/document-context'
+import {AMP_RENDER_TARGET} from 'next/dist/shared/lib/constants'
 
 
 export default class MyDocument extends Document {
@@ -25,5 +25,5 @@ const Main = () => {
 
     docComponentsRendered.Main = true
     if (inAmpMode) return <>{AMP_RENDER_TARGET}</>
-    return  <main id="__next" dangerouslySetInnerHTML={{__html: html}} />
+    return <main id="__next" dangerouslySetInnerHTML={{__html: html}} />
 }

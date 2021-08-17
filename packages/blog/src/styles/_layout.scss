@@ -61,6 +61,7 @@ main {
       @include imgSize(2.5rem);
     }
   }
+
   > footer {
     width: 100%;
     border-top: 1px solid hsl(0, 0%, 95%);
@@ -159,15 +160,14 @@ article > section[role="figure"] {
   border-radius: 1em;
   transition: all 0.2s ease;
   cursor: pointer;
+
   figure {
     &,
     :last-child {
       margin-bottom: 0;
     }
   }
-  &:hover {
-    background-color: var(--color-bg-tertiary);
-  }
+
   h2 {
     margin-top: 0.5em;
   }

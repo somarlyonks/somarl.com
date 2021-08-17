@@ -10,25 +10,24 @@ $mobileThreshold: 767px;
 }
 
 @media (max-width: $mobileThreshold) {
-  article,
-  header + article {
+  main {
+    > header {
+      display: none;
+    }
+    > header,
+    > footer {
+      > div {
+        padding: 0px 16px;
+      }
+    }
+  }
+  article {
     padding: 1em;
     table {
       display: table;
     }
   }
-  header {
-    > div {
-      width: 100%;
-    }
-    nav {
-      margin: auto 0.5ch;
-    }
-  }
-  header,
-  footer {
-    > div {
-      padding: 0px 16px;
-    }
+  header + article {
+    padding: 2em 1em 6em;
   }
 }

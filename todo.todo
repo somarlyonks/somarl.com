@@ -1,7 +1,6 @@
 somarl.com:
   pkg:
-    [ ] vercel deploy ingore configuration
-    [ ] ci monorepo source code detect
+    [x] vercel deploy ingore configuration
 
   www:
     [x] init

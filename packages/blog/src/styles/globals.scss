@@ -117,11 +117,6 @@ article {
     text-underline-offset: -0.6ex;
     overflow-wrap: break-word;
 
-    &:hover {
-      text-decoration-thickness: 2ex;
-      text-underline-offset: -2.6ex;
-    }
-
     &[href*="learning-tribes"] {
       text-decoration-color: rgba($LTGreen, 0.5);
     }
