@@ -1,8 +1,8 @@
 import {ReactNode} from 'react'
 
-import Head from '../Head'
-import Header from '../Header'
-import Footer from '../Footer'
+import Head from '../head'
+import Header from '../header'
+import Footer from '../footer'
 
 
 interface IProps {

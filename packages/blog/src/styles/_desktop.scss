@@ -3,5 +3,18 @@
 $desktopThreshold: 1420px;
 
 @media (min-width: $desktopThreshold) {
-  //
+  article {
+    a:not([role="button"]) {
+      &:hover {
+        text-decoration-thickness: 2ex;
+        text-underline-offset: -2.6ex;
+      }
+    }
+
+    > section[role="figure"] {
+      &:hover {
+        background-color: var(--color-bg-tertiary);
+      }
+    }
+  }
 }
