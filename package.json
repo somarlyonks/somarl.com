@@ -30,14 +30,13 @@
     "commitlint": "commitlint",
     "husky": "husky install",
     "------": "---------------------------------------------------------------other-----------",
-    "frpc": "cd scripts/frp && sh frpc.sh && concurrently './frpc -c frpc.ini' 'tail -f frpc.log'",
+    "frpc": "cd scripts/frp && sh frpc.sh && ./frpc -c frpc.ini",
     "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
   "devDependencies": {
     "@somarlyonks/commitlint": "2.0.0",
     "@somarlyonks/tslint": "1.0.1",
     "@types/react": "17.0.15",
-    "concurrently": "6.2.0",
     "folans.d.ts": "2.0.0",
     "husky": "7.0.1",
     "lerna": "4.0.0",
