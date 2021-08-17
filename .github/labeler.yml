@@ -1,8 +1,10 @@
-page: packages/page/src/**/*
+www:
+  - packages/www/src/**/*
+  - packages/www/public/**/*
 
-blog: packages/blog/src/**/*
+blog: packages/blog/posts/**/*
 
-moment: packages/server/src/**/*
+moment: packages/moment/src/**/*
 
 chore:
   - "!packages/**/src/**/*"
