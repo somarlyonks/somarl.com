@@ -1,13 +1,8 @@
 somarl.com:
-  pkg:
-    [x] vercel deploy ingore configuration
-
   www:
     [x] init
 
   blog:
-    [x] init
-    [ ] toc
     [ ] tag
     [ ] build RSS
     [ ] analytics

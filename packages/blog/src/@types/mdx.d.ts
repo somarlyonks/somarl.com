@@ -11,3 +11,5 @@ interface IPostMeta extends Record<string, unknown> {
 declare module '*.mdx' {
     export const meta: IPostMeta
 }
+
+declare module 'remark-sectionize' {}

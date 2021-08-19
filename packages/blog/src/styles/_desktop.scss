@@ -2,6 +2,14 @@
 
 $desktopThreshold: 1420px;
 
+@media (max-width: #{$desktopThreshold - 1}) {
+  header + article {
+    #toc + section + section {
+      margin-top: 0 !important;
+    }
+  }
+}
+
 @media (min-width: $desktopThreshold) {
   article {
     a:not([role="button"]) {
@@ -14,6 +22,70 @@ $desktopThreshold: 1420px;
     > section[role="figure"] {
       &:hover {
         background-color: var(--color-bg-tertiary);
+      }
+    }
+  }
+
+  header + article {
+    #toc + section {
+      display: block;
+      position: sticky;
+    }
+    #toc + section {
+      width: calc(calc(100vw - 100%) / 2);
+      opacity: 0;
+      top: calc(1.5 * #{$navHeight});
+      margin-left: 100%;
+      margin-bottom: 0;
+
+      &,
+      & + section {
+        transition: margin 0.2s ease, opacity 0.35s ease-in;
+      }
+
+      ul {
+        white-space: nowrap;
+        &,
+        & ul {
+          padding: 0 1.5rem;
+          list-style-type: none;
+        }
+        a {
+          display: block;
+          text-decoration: none;
+          min-width: 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          transition: all 0.2s ease;
+          user-select: none;
+          opacity: 0.5;
+          &:hover {
+            color: var(--theme);
+            opacity: 1;
+          }
+        }
+        li.visible a {
+          opacity: 0.9;
+          transform: translate(0.5ch);
+        }
+      }
+    }
+    #toc {
+      padding-left: 0.67em;
+    }
+
+    #tocmark {
+      position: absolute;
+      overflow: visible;
+      pointer-events: none;
+      path {
+        transition: all 0.2s ease;
+        fill: transparent;
+        stroke: var(--theme);
+        stroke-width: 3px;
+        stroke-dasharray: 0 0 0 1000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
     }
   }

@@ -6,8 +6,13 @@ header + article {
   > :first-child {
     margin-top: 0;
   }
-  > :nth-last-child(2) {
-    margin-bottom: 0 !important;
+
+  > h1 + p,
+  > section {
+    margin-bottom: 2em;
+  }
+  > section:last-of-type {
+    margin-bottom: 0;
   }
 
   h1 {
@@ -27,7 +32,7 @@ header + article {
   h5,
   h6 {
     font-weight: 600;
-    margin-top: 1.5rem;
+    margin-top: 0;
     a[role="button"] {
       float: left;
       margin-left: -1.25rem;
@@ -46,7 +51,7 @@ header + article {
     }
   }
   [id] {
-    scroll-margin-top: calc(2ex + #{$navHeight});
+    scroll-margin-top: calc(1.5 * #{$navHeight});
   }
 
   p,
@@ -184,7 +189,7 @@ header + article {
     table-layout: fixed;
     max-width: 100%;
     width: 100%;
-    display: block;
+    display: table;
 
     thead tr {
       position: sticky;
@@ -237,7 +242,7 @@ header + article {
   }
 
   #toc,
-  #toc + ul {
+  #toc + section {
     display: none;
   }
 }

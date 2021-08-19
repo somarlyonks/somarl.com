@@ -5,6 +5,7 @@ import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import remarkAutolinkHeadings from 'remark-autolink-headings'
 import remarkToc from 'remark-toc'
+import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import remarkShiki from '@stefanprobst/remark-shiki'
 import {getHighlighter} from 'shiki'
@@ -69,6 +70,8 @@ export const serializePost = async (slug: string) => {
                 }],
                 remarkToc,
                 remarkUnwrapImages,
+                // @ts-ignore
+                remarkSectionize,
                 // @ts-ignore
                 [remarkShiki, {highlighter}],
             ],

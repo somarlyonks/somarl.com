@@ -135,10 +135,6 @@ time {
   opacity: 50%;
 }
 
-:target {
-  @include textHighlight(rgba($ThemeColor, 0.3));
-}
-
 @import "layout";
 @import "post";
 
