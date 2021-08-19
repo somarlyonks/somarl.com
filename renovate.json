@@ -3,6 +3,10 @@
     "config:base"
   ],
   "ignoreDeps": [
-    "typescript"
+    "typescript",
+    "remark-autolink-headings",
+    "remark-slug",
+    "remark-toc",
+    "remark-unwrap-images"
   ]
 }

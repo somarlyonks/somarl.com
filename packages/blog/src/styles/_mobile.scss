@@ -27,7 +27,17 @@ $mobileThreshold: 767px;
   header + article {
     padding: 2em 1em 6em;
     table {
-      display: table;
+      thead tr {
+        top: 0;
+      }
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      word-break: break-all;
     }
   }
 }

@@ -2,7 +2,11 @@ www:
   - packages/www/src/**/*
   - packages/www/public/**/*
 
-blog: packages/blog/posts/**/*
+blog:
+  - packages/blog/src/**/*
+  - packages/blog/public/**/*
+
+post: packages/blog/posts/**/*
 
 moment: packages/moment/src/**/*
 
