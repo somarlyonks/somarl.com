@@ -69,8 +69,6 @@ export default function useInuseInteractiveToc () {
 
             let pathStart = pathLength
             let pathEnd = 0
-            let lastPathStart
-            let lastPathEnd
 
             navItems.forEach(item => {
                 if (thisElIsVisible(item.listItem)) {
@@ -80,19 +78,14 @@ export default function useInuseInteractiveToc () {
             })
 
             if (someElsAreVisible() && pathStart < pathEnd) {
-                if (pathStart !== lastPathStart || pathEnd !== lastPathEnd) {
-                    const dashArray = `1 ${pathStart} ${pathEnd - pathStart} ${pathLength}`
+                const dashArray = `1 ${pathStart} ${pathEnd - pathStart} ${pathLength}`
 
-                    $svgPath.style.setProperty('stroke-dashoffset', '1')
-                    $svgPath.style.setProperty('stroke-dasharray', dashArray)
-                    $svgPath.style.setProperty('opacity', '1')
-                }
+                $svgPath.style.setProperty('stroke-dashoffset', '1')
+                $svgPath.style.setProperty('stroke-dasharray', dashArray)
+                $svgPath.style.setProperty('opacity', '1')
             } else {
                 $svgPath.style.setProperty('opacity', '0')
             }
-
-            lastPathStart = pathStart
-            lastPathEnd = pathEnd
         }
 
         drawPath()

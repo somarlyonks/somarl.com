@@ -3,7 +3,7 @@ import {MDXRemote} from 'next-mdx-remote'
 
 import {postComponents, PostLayout, PostTime} from '../../components/post'
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
-import useInuseInteractiveToc from '../../libs/useInteractiveToc'
+import useInteractiveToc from '../../libs/useInteractiveToc'
 
 import type {ParsedUrlQuery} from 'querystring'
 import {postFileSlugsSync, serializePost, searchMDXComponentInSource} from '../../libs/mdx'
@@ -39,7 +39,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents}
         threshold: Array.from(Array(10 + 1), (_, i) => i / 10),
     })
 
-    useInuseInteractiveToc()
+    useInteractiveToc()
 
     return (
         <PostLayout slug={slug} title={scope.title} description={scope.abstract}>
