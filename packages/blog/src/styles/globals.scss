@@ -44,6 +44,9 @@ h1 {
   font-size: 4.5em;
   font-weight: 500;
   margin-bottom: 0;
+  svg {
+    fill: var(--theme);
+  }
 }
 
 h2 {
@@ -102,6 +105,16 @@ img {
   cursor: pointer;
   svg {
     fill: currentColor;
+    height: 1em;
+  }
+}
+
+svg[role="note"] {
+  height: 1em;
+  vertical-align: sub;
+  margin: 0 0.25ch;
+  &:first-child {
+    margin-left: 0;
   }
 }
 
@@ -116,10 +129,6 @@ article {
     text-decoration-thickness: 0.6ex;
     text-underline-offset: -0.6ex;
     overflow-wrap: break-word;
-
-    &[href*="learning-tribes"] {
-      text-decoration-color: rgba($LTGreen, 0.5);
-    }
   }
 }
 
@@ -130,7 +139,7 @@ figure {
 }
 
 time {
-  display: block;
+  display: inline-block;
   font-size: 0.85em;
   opacity: 50%;
 }

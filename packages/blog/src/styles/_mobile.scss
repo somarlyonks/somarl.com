@@ -2,14 +2,25 @@
 
 $mobileThreshold: 767px;
 
+@media (min-width: #{$mobileThreshold + 1}) {
+  header + article {
+    div[role="contentinfo"] {
+      position: absolute;
+      bottom: 2em;
+      width: 100%;
+      time {
+        flex: 1;
+      }
+    }
+  }
+}
+
 @media (max-width: $mobileThreshold) {
   p,
   a {
     font-weight: 300;
   }
-}
 
-@media (max-width: $mobileThreshold) {
   main {
     > header {
       display: none;
@@ -38,6 +49,18 @@ $mobileThreshold: 767px;
     h5,
     h6 {
       word-break: break-all;
+    }
+
+    div[role="contentinfo"] {
+      flex-wrap: wrap;
+      time {
+        position: absolute;
+        bottom: 2em;
+        flex: 1;
+        ~ [role="button"] {
+          margin: 0 1ch 1ch 0;
+        }
+      }
     }
   }
 }

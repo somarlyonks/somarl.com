@@ -4,7 +4,6 @@
   ],
   "ignoreDeps": [
     "typescript",
-    "remark-autolink-headings",
     "remark-slug",
     "remark-toc",
     "remark-unwrap-images"

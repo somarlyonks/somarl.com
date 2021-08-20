@@ -98,10 +98,6 @@ main {
 
         a[role="button"] {
           margin-left: 1ch;
-          svg {
-            width: 1em;
-            height: 1em;
-          }
         }
       }
     }
@@ -170,5 +166,31 @@ article > section[role="figure"] {
 
   h2 {
     margin-top: 0.5em;
+  }
+}
+
+div[role="contentinfo"] {
+  display: flex;
+  align-items: center;
+}
+
+time {
+  ~ [role="button"] {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0.5ch;
+    padding: 0 0.5ch 0 0.25ch;
+    background-color: var(--theme-bg-tertiary);
+    border-radius: 0.25em;
+    color: inherit;
+    &:first-of-type {
+      margin-left: 1ch;
+    }
+    &:last-of-type {
+      margin-right: 0;
+    }
+    &:hover {
+      background-color: var(--theme-bg-secondary);
+    }
   }
 }

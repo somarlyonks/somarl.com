@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
-import remarkAutolinkHeadings from 'remark-autolink-headings'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkToc from 'remark-toc'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -15,14 +15,9 @@ export const POSTS_PATH = path.join(process.cwd(), 'posts')
 
 export const postFilenamesSync = () => readdirSync(POSTS_PATH).filter(filename => /\.mdx?$/.test(filename))
 
-export const postFileSlugsSync = () => postFilenamesSync().map(filename => filename.replace(/\.mdx?$/, ''))
+export const postSlugsSync = postFilenamesSync().map(filename => filename.replace(/\.mdx?$/, ''))
 
 export const postSlugToPath = (slug: string) => path.join(POSTS_PATH, `${slug}.mdx`)
-
-export const postFilesSync = postFilenamesSync().map(filename => ({
-    slug: filename.replace(/\.mdx?$/, ''),
-    path: path.join(POSTS_PATH, filename),
-}))
 
 export const HastLinkIcon = {
     type: 'element',
@@ -50,24 +45,48 @@ type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
     scope: TScope
 }
 
-export const serializePost = async (slug: string) => {
+export const readPost = (slug: string) => {
     const file = readFileSync(postSlugToPath(slug))
-    const highlighter = await getHighlighter({theme: 'github-light'})
+    const {content, data: {
+        title,
+        published,
+        abstract = '',
+        language,
+        tags = [], // optional
+    }} = matter(file)
 
-    const {content, data} = matter(file)
+    const scope = {
+        url: `/post/${slug}`,
+        title,
+        abstract,
+        published,
+        tags,
+        language,
+    } as IPostMeta
+
+    return {
+        content,
+        scope,
+    }
+}
+
+export const postsSync = postSlugsSync
+    .map(readPost)
+    .sort((l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()))
+
+export const tagMapSync = postsSync.reduce((r, post) =>
+    Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
+    {} as Record<string, IPostMeta[]>
+)
+
+export const serializePost = async (slug: string) => {
+    const {content, scope} = readPost(slug)
+    const highlighter = await getHighlighter({theme: 'github-light'})
 
     return serialize(content, {
         mdxOptions: {
             remarkPlugins: [
                 remarkSlug,
-                [remarkAutolinkHeadings, {
-                    content: HastLinkIcon,
-                    linkProperties: {
-                        ariaHidden: 'true',
-                        tabIndex: -1,
-                        role: 'button',
-                    },
-                }],
                 remarkToc,
                 remarkUnwrapImages,
                 // @ts-ignore
@@ -75,9 +94,19 @@ export const serializePost = async (slug: string) => {
                 // @ts-ignore
                 [remarkShiki, {highlighter}],
             ],
-            rehypePlugins: [],
+            rehypePlugins: [
+                // @ts-ignore
+                [rehypeAutolinkHeadings, {
+                    content: HastLinkIcon,
+                    properties: {
+                        ariaHidden: 'true',
+                        tabIndex: -1,
+                        role: 'button',
+                    },
+                }],
+            ],
         },
-        scope: data,
+        scope,
     }) as Promise<MDXRemoteSerializeResult<IPostMeta>>
 }
 
