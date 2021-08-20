@@ -1,11 +1,11 @@
 import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
 import {MDXRemote} from 'next-mdx-remote'
 
-import {postComponents, PostLayout, PostTime, PostTitle} from '../../components/post'
+import {postComponents, PostLayout, PostInfo, PostTitle} from '../../components/post'
 import useInteractiveToc from '../../libs/useInteractiveToc'
 
 import type {ParsedUrlQuery} from 'querystring'
-import {postFileSlugsSync, serializePost, searchMDXComponentInSource} from '../../libs/mdx'
+import {postSlugsSync, serializePost, searchMDXComponentInSource} from '../../libs/mdx'
 import dynamic from 'next/dynamic'
 
 
@@ -39,7 +39,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents}
             <article>
                 <PostTitle post={scope} />
                 <MDXRemote compiledSource={compiledSource} scope={scope} components={components} />
-                <PostTime post={scope} />
+                <PostInfo post={scope} />
             </article>
         </PostLayout>
     )
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({para
 
 export const getStaticPaths: GetStaticPaths<IStaticProps> = async ctx => {
     return {
-        paths: postFileSlugsSync().map(slug => ({
+        paths: postSlugsSync.map(slug => ({
             params: {
                 slug,
             },

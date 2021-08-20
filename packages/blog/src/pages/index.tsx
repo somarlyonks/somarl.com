@@ -2,38 +2,34 @@ import {GetStaticProps, InferGetStaticPropsType} from 'next'
 import Link from 'next/link'
 import Head from '../components/Head'
 import Footer from '../components/Footer'
-import PostTime from '../components/post/PostTime'
+import PostInfo from '../components/post/PostInfo'
 
-import matter from 'gray-matter'
-import {readFileSync} from 'fs'
-import {postFilesSync} from '../libs/mdx'
+import {postsSync} from '../libs/mdx'
 
 
 interface IProps {
-    blogs: IPostMeta[]
+    posts: IPostMeta[]
 }
 
-export default function Home ({blogs}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home ({posts}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
             <Head title="Blogs | Yang" description="I'm a Web developer at LearningTribes based in Shanghai." />
             <article>
                 <h1>Blogs</h1>
-                {
-                    blogs.map(blog => (
-                        <Link href={blog.url} key={blog.title}>
-                            <section role="figure">
-                                <figure>
-                                    <figcaption>
-                                        <PostTime post={blog} />
-                                        <h2><Link href={blog.url}>{blog.title}</Link></h2>
-                                        {blog.abstract && <p>{blog.abstract}</p>}
-                                    </figcaption>
-                                </figure>
-                            </section>
-                        </Link>
-                    ))
-                }
+                {posts.map(post => (
+                    <Link href={post.url} key={post.title}>
+                        <section role="figure">
+                            <figure>
+                                <figcaption>
+                                    <PostInfo post={post} />
+                                    <h2><Link href={post.url}>{post.title}</Link></h2>
+                                    {post.abstract && <p>{post.abstract}</p>}
+                                </figcaption>
+                            </figure>
+                        </section>
+                    </Link>
+                ))}
             </article>
             <Footer />
         </>
@@ -41,20 +37,11 @@ export default function Home ({blogs}: InferGetStaticPropsType<typeof getStaticP
 }
 
 export const getStaticProps: GetStaticProps<IProps, {}> = async () => {
-    const blogs = postFilesSync.map(({slug, path}) => {
-        const file = readFileSync(path)
-        const data = matter(file).data as IPostMeta
-        return ({
-            url: `/post/${slug}`,
-            title: data.title,
-            abstract: data.abstract,
-            published: data.published,
-        })
-    }).sort((l, r) => (new Date(r.published).valueOf() - new Date(l.published).valueOf()))
+    const posts = postsSync.map(post => post.scope)
 
     return {
         props: {
-            blogs,
+            posts,
         },
     }
 }

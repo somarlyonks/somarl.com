@@ -2,8 +2,15 @@
 
 interface IPostMeta extends Record<string, unknown> {
     title: string
-    abstract: string
     published: string
+    language: string
+
+    /** @optional */
+    abstract: string
+    /** @optional */
+    tags: string[]
+
+    /** @generated */
     url: string
 }
 
