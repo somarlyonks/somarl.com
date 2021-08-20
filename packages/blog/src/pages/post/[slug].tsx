@@ -33,7 +33,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents}
         .map(name => [name, dynamicComponents[name]]))
     )
     const $h1 = useInterSectionObserver(entry => {
-        const $nav = document.querySelector<HTMLDivElement>('main > header nav')
+        const $nav = document.querySelector<HTMLElement>('main > header nav')
         if ($nav) $nav.style.opacity = String(1 - entry.intersectionRatio)
     }, {
         threshold: Array.from(Array(10 + 1), (_, i) => i / 10),

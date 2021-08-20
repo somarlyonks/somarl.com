@@ -10,10 +10,10 @@ export default function useInterSectionObserver (
     useEffect(() => {
         if (!window.IntersectionObserver) return
 
-        const h1Observer = new IntersectionObserver(entries => entries.forEach(cb), options)
-        if ($el.current) h1Observer.observe($el.current)
+        const observer = new IntersectionObserver(entries => entries.forEach(cb), options)
+        if ($el.current) observer.observe($el.current)
 
-        return () => h1Observer.disconnect()
+        return () => observer.disconnect()
     }, [])
 
     return $el

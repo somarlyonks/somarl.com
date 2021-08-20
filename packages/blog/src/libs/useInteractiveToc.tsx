@@ -3,20 +3,13 @@ import {useEffect} from 'react'
 
 export default function useInuseInteractiveToc () {
     useEffect(() => {
-        const $tocTreeContainer = document.querySelector<HTMLUListElement>('#toc + ul')?.parentElement
-        if (!$tocTreeContainer) return
-
-        $tocTreeContainer.style.opacity = '1'
-        const firstSection = $tocTreeContainer.nextSibling as HTMLElement
-        firstSection.style.marginTop = `calc(1em - ${$tocTreeContainer.clientHeight}px)`
-    }, [])
-
-    useEffect(() => {
-        const elementsToObserve = document.querySelectorAll('article > section > [id]')
+        const elementsToObserve = document.querySelectorAll('article section > [id]')
         const visibleClass = 'visible'
         const $toc = document.getElementById('toc')
         const $tocTree = document.querySelector('#toc + ul')
-        if (!$toc || !$tocTree) return
+        const $tocTreeContainer = $tocTree?.parentElement
+        if (!$toc || !$tocTree || !$tocTreeContainer) return
+
         const $svg = document.getElementById('tocmark')
         const $svgPath = $svg?.querySelector<SVGPathElement>('path')
         if (!$svg || !$svgPath) return
@@ -27,7 +20,7 @@ export default function useInuseInteractiveToc () {
         const navItems = [...$tocTree.querySelectorAll('li')].map($li => {
             const $anchor = $li.querySelector('a')!
             const targetID = ($anchor.getAttribute('href') || '#').slice(1)
-            const target = document.getElementById(targetID)
+            const target = document.getElementById(targetID) || document.getElementById(decodeURIComponent(targetID))
 
             return {listItem: $li, $anchor, target, pathStart: Infinity, pathEnd: -Infinity}
         }).filter(item => item.target)
@@ -78,38 +71,42 @@ export default function useInuseInteractiveToc () {
             })
 
             if (someElsAreVisible() && pathStart < pathEnd) {
-                const dashArray = `1 ${pathStart} ${pathEnd - pathStart} ${pathLength}`
-
                 $svgPath.style.setProperty('stroke-dashoffset', '1')
-                $svgPath.style.setProperty('stroke-dasharray', dashArray)
+                $svgPath.style.setProperty('stroke-dasharray', `1 ${pathStart} ${pathEnd - pathStart} ${pathLength}`)
                 $svgPath.style.setProperty('opacity', '1')
             } else {
                 $svgPath.style.setProperty('opacity', '0')
             }
         }
 
-        drawPath()
+        function traceAnchorListItem ($anchor: Element | null) {
+            const parent = $anchor?.parentElement
+            if (!parent || parent.tagName === 'LI') return parent
+            return parent.parentElement
+        }
 
         const observer = new IntersectionObserver(entries => entries.forEach(entry => {
             const id = entry.target.querySelector('[id]')?.getAttribute('id')
-            const $anchor = document.querySelector(`li a[href="#${id}"]`)
+            const $anchor = document.querySelector(`li a[href="#${encodeURIComponent(String(id))}"]`)
 
-            if (!$anchor?.parentElement?.parentElement) return
+            const $li = traceAnchorListItem($anchor)
+            if (!$li) return
 
-            const listItem = $anchor.parentElement.parentElement
-
-            if (entry.isIntersecting) {
-                listItem.classList.add(visibleClass)
-            } else {
-                listItem.classList.remove(visibleClass)
-            }
+            if (entry.isIntersecting) $li.classList.add(visibleClass)
+            else $li.classList.remove(visibleClass)
 
             syncPath()
         }), {
-            rootMargin: '-100px',
+            rootMargin: '-100px 0px 0px 0px',
         })
 
+        drawPath()
+
         elementsToObserve.forEach(el => observer.observe(el.parentElement || el))
+
+        $tocTreeContainer.style.opacity = '1'
+        const $firstSection = $tocTreeContainer.nextSibling as HTMLElement
+        $firstSection.style.marginTop = `calc(0em - ${$tocTreeContainer.clientHeight}px)`
 
         return () => observer.disconnect()
     }, [])
