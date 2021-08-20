@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
-import remarkAutolinkHeadings from 'remark-autolink-headings'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkToc from 'remark-toc'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -60,14 +60,6 @@ export const serializePost = async (slug: string) => {
         mdxOptions: {
             remarkPlugins: [
                 remarkSlug,
-                [remarkAutolinkHeadings, {
-                    content: HastLinkIcon,
-                    linkProperties: {
-                        ariaHidden: 'true',
-                        tabIndex: -1,
-                        role: 'button',
-                    },
-                }],
                 remarkToc,
                 remarkUnwrapImages,
                 // @ts-ignore
@@ -75,7 +67,17 @@ export const serializePost = async (slug: string) => {
                 // @ts-ignore
                 [remarkShiki, {highlighter}],
             ],
-            rehypePlugins: [],
+            rehypePlugins: [
+                // @ts-ignore
+                [rehypeAutolinkHeadings, {
+                    content: HastLinkIcon,
+                    properties: {
+                        ariaHidden: 'true',
+                        tabIndex: -1,
+                        role: 'button',
+                    },
+                }],
+            ],
         },
         scope: data,
     }) as Promise<MDXRemoteSerializeResult<IPostMeta>>

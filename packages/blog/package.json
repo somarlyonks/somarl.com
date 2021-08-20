@@ -27,6 +27,7 @@
     "@stefanprobst/remark-shiki": "1.1.1",
     "gray-matter": "4.0.3",
     "next-mdx-remote": "3.0.4",
+    "rehype-autolink-headings": "6.0.0",
     "remark-autolink-headings": "6.1.0",
     "remark-sectionize": "1.1.1",
     "remark-slug": "6.1.0",
