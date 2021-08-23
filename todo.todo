@@ -6,7 +6,6 @@ somarl.com:
     [x] init
 
   blog:
-    [ ] build RSS
     [ ] analytics
 
   moment:
