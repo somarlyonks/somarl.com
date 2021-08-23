@@ -8,8 +8,10 @@ $mobileThreshold: 767px;
       position: absolute;
       bottom: 2em;
       width: 100%;
-      time {
-        flex: 1;
+      > section {
+        time {
+          flex: 1;
+        }
       }
     }
   }
@@ -34,7 +36,27 @@ $mobileThreshold: 767px;
   }
   article {
     padding: 1em;
+    > section[role="figure"] {
+      margin: 0;
+      padding: 0.5em 0;
+      figure {
+        border-radius: 1em;
+        background-color: var(--color-bg-tertiary);
+
+        img {
+          height: 55vw;
+          width: 100%;
+          border-top-left-radius: 1em;
+          border-top-right-radius: 1em;
+        }
+
+        figcaption {
+          padding: 1em;
+        }
+      }
+    }
   }
+
   header + article {
     padding: 2em 1em 6em;
     table {
@@ -53,11 +75,14 @@ $mobileThreshold: 767px;
 
     div[role="contentinfo"] {
       flex-wrap: wrap;
-      time {
-        position: absolute;
-        bottom: 2em;
-        flex: 1;
-        ~ [role="button"] {
+      > section {
+        margin-bottom: 0 !important;
+        time {
+          position: absolute;
+          bottom: 2em;
+          flex: 1;
+        }
+        [role="button"] {
           margin: 0 1ch 1ch 0;
         }
       }

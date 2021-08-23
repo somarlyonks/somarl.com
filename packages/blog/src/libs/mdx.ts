@@ -50,18 +50,20 @@ export const readPost = (slug: string) => {
     const {content, data: {
         title,
         published,
-        abstract = '',
         language,
-        tags = [], // optional
+        abstract = '',
+        tags = [],
+        cover = '',
     }} = matter(file)
 
     const scope = {
         url: `/post/${slug}`,
         title,
-        abstract,
         published,
-        tags,
         language,
+        abstract,
+        tags,
+        cover,
     } as IPostMeta
 
     return {

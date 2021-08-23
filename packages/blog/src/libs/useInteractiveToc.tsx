@@ -106,7 +106,7 @@ export default function useInuseInteractiveToc () {
 
         $tocTreeContainer.style.opacity = '1'
         const $firstSection = $tocTreeContainer.nextSibling as HTMLElement
-        $firstSection.style.marginTop = `calc(0em - ${$tocTreeContainer.clientHeight}px)`
+        $firstSection.style.marginTop = `-${$tocTreeContainer.clientHeight}px`
 
         return () => observer.disconnect()
     }, [])

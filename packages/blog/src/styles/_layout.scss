@@ -1,6 +1,5 @@
 $footerTextColor: #555;
 $footerTextHoverColor: #000;
-$navHeight: 60px;
 $layoutWidth: 700px;
 
 @mixin hoverUnderline($color: currentColor) {
@@ -39,6 +38,7 @@ main {
     left: 0;
     right: 0;
     z-index: $zNav;
+    opacity: 0;
 
     > div {
       justify-content: flex-start !important;
@@ -53,7 +53,6 @@ main {
       text-overflow: ellipsis;
       min-width: 0;
       will-change: opacity;
-      opacity: 0;
       transition: opacity 0.1s ease;
     }
 
@@ -147,7 +146,12 @@ footer > div {
 }
 
 header + article {
-  padding: calc(#{$navHeight} + 2em) 0 6em;
+  padding: $PostPaddingTop 0 6em;
+  div[role="contentinfo"] {
+    > section:first-of-type {
+      flex: 1;
+    }
+  }
 }
 
 article > section[role="figure"] {
@@ -162,6 +166,10 @@ article > section[role="figure"] {
     :last-child {
       margin-bottom: 0;
     }
+
+    img {
+      object-fit: cover;
+    }
   }
 
   h2 {
@@ -172,25 +180,28 @@ article > section[role="figure"] {
 div[role="contentinfo"] {
   display: flex;
   align-items: center;
-}
 
-time {
-  ~ [role="button"] {
-    display: inline-flex;
+  [role="button"] {
+    margin: 0 0 0 1ch;
+  }
+
+  > section {
+    h2 {
+      display: none;
+    }
+    display: flex;
     align-items: center;
-    margin: 0 0.5ch;
-    padding: 0 0.5ch 0 0.25ch;
-    background-color: var(--theme-bg-tertiary);
-    border-radius: 0.25em;
-    color: inherit;
-    &:first-of-type {
-      margin-left: 1ch;
-    }
-    &:last-of-type {
-      margin-right: 0;
-    }
-    &:hover {
-      background-color: var(--theme-bg-secondary);
+
+    [role="button"] {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 0.5ch 0 0.25ch;
+      background-color: var(--theme-bg-tertiary);
+      border-radius: 0.25em;
+      color: inherit;
+      &:hover {
+        background-color: var(--theme-bg-secondary);
+      }
     }
   }
 }

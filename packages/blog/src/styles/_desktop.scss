@@ -1,6 +1,7 @@
 @import "variables";
 
 $desktopThreshold: 1420px;
+$asideWidth: calc(calc(100vw - 100%) / 2);
 
 @media (max-width: #{$desktopThreshold - 1}) {
   header + article {
@@ -20,6 +21,9 @@ $desktopThreshold: 1420px;
     }
 
     > section[role="figure"] {
+      img {
+        display: none;
+      }
       &:hover {
         background-color: var(--color-bg-tertiary);
       }
@@ -32,7 +36,8 @@ $desktopThreshold: 1420px;
       position: sticky;
     }
     #toc + section {
-      width: calc(calc(100vw - 100%) / 2);
+      width: $asideWidth;
+      max-width: 24em;
       opacity: 0;
       top: calc(1.5 * #{$navHeight});
       margin-left: 100%;
@@ -40,7 +45,7 @@ $desktopThreshold: 1420px;
 
       &,
       & + section {
-        transition: margin 0.2s ease, opacity 0.35s ease-in;
+        transition: opacity 0.35s ease-in;
       }
 
       ul {
@@ -87,6 +92,50 @@ $desktopThreshold: 1420px;
         stroke-dasharray: 0 0 0 1000;
         stroke-linecap: round;
         stroke-linejoin: round;
+      }
+    }
+
+    section[role="banner"] {
+      figure {
+        margin-left: calc(-12em - 1ch);
+        img {
+          width: 100%;
+        }
+      }
+      ~ div[role="contentinfo"] {
+        position: absolute;
+        right: 100%;
+        top: $PostPaddingTop;
+        display: flex;
+        flex-wrap: wrap;
+        width: 12em;
+        justify-content: flex-start;
+        bottom: unset;
+        margin: 1ch;
+
+        > section {
+          border-top: 3px solid var(--color-fg);
+          flex-basis: 100%;
+          padding: 1ch 0 2ch;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          transition: margin 0.2s ease, opacity 0.35s ease-in;
+
+          h2 {
+            display: block;
+            font-size: 0.85em;
+            margin: 0.5ch 0;
+          }
+
+          [role="button"] {
+            margin: 0.5ch 0 0;
+          }
+
+          &:nth-of-type(2) {
+            opacity: 0;
+          }
+        }
       }
     }
   }

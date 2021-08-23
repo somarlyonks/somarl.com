@@ -6,6 +6,8 @@ $fontSansSerif: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, R
   Noto Color Emoji;
 
 $zNav: 8888;
+$navHeight: 60px;
+$PostPaddingTop: calc(#{$navHeight} + 2em);
 
 @mixin textHighlight($color) {
   text-decoration: underline;

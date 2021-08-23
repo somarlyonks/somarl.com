@@ -1,8 +1,7 @@
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
-import Link from 'next/link'
 import Head from '../components/Head'
 import Footer from '../components/Footer'
-import PostInfo from '../components/post/PostInfo'
+import PostList from '../components/PostList'
 
 import {postsSync} from '../libs/mdx'
 
@@ -17,19 +16,7 @@ export default function Home ({posts}: InferGetStaticPropsType<typeof getStaticP
             <Head title="Blogs | Yang" description="I'm a Web developer at LearningTribes based in Shanghai." />
             <article>
                 <h1>Blogs</h1>
-                {posts.map(post => (
-                    <Link href={post.url} key={post.title}>
-                        <section role="figure">
-                            <figure>
-                                <figcaption>
-                                    <PostInfo post={post} />
-                                    <h2><Link href={post.url}>{post.title}</Link></h2>
-                                    {post.abstract && <p>{post.abstract}</p>}
-                                </figcaption>
-                            </figure>
-                        </section>
-                    </Link>
-                ))}
+                <PostList posts={posts} />
             </article>
             <Footer />
         </>
