@@ -1,10 +1,11 @@
 somarl.com:
+  pkg:
+    [ ] AWS S3
+
   www:
     [x] init
 
   blog:
-    [ ] tag
-    [ ] build RSS
     [ ] analytics
 
   moment:

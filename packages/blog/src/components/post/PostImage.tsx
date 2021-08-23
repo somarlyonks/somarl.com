@@ -1,7 +1,7 @@
 interface IProps {
     src: string
-    title: string
-    alt: string
+    title?: string
+    alt?: string
 }
 
 export default function PostImage ({src, alt, title}: IProps) {

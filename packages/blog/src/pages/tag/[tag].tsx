@@ -1,8 +1,7 @@
 import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
-import Link from 'next/link'
 import Head from '../../components/Head'
 import Footer from '../../components/Footer'
-import PostInfo from '../../components/post/PostInfo'
+import PostList from '../../components/PostList'
 import HashTag from '../../components/icons/HashTag'
 
 import type {ParsedUrlQuery} from 'querystring'
@@ -25,19 +24,7 @@ export default function Tag ({posts, tag}: InferGetStaticPropsType<typeof getSta
             <article>
                 <h1><HashTag />{tag}</h1>
                 <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} tagged as <cite>{tag}</cite></p>
-                {posts.map(blog => (
-                    <Link href={blog.url} key={blog.title}>
-                        <section role="figure">
-                            <figure>
-                                <figcaption>
-                                    <PostInfo post={blog} />
-                                    <h2><Link href={blog.url}>{blog.title}</Link></h2>
-                                    {blog.abstract && <p>{blog.abstract}</p>}
-                                </figcaption>
-                            </figure>
-                        </section>
-                    </Link>
-                ))}
+                <PostList posts={posts} />
             </article>
             <Footer />
         </>

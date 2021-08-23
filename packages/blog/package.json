@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "prebuild": "npm run build-rss",
-    "build-rss": "echo 0",
+    "build-rss": "node scripts/rss.js",
     "start": "next start",
     "lint": "tslint --fix -p tsconfig.json",
     "test": "next build",
@@ -28,11 +28,11 @@
     "gray-matter": "4.0.3",
     "next-mdx-remote": "3.0.4",
     "rehype-autolink-headings": "6.0.0",
-    "remark-autolink-headings": "6.1.0",
     "remark-sectionize": "1.1.1",
     "remark-slug": "6.1.0",
     "remark-toc": "7.2.0",
     "remark-unwrap-images": "2.1.0",
+    "rss": "1.2.2",
     "shiki": "0.9.7"
   }
 }
