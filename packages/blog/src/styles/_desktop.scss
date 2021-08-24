@@ -8,6 +8,12 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     #toc + section + section {
       margin-top: 0 !important;
     }
+
+    div[role="contentinfo"] {
+      > section {
+        margin-bottom: 0 !important;
+      }
+    }
   }
 }
 
@@ -21,9 +27,6 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     }
 
     > section[role="figure"] {
-      img {
-        display: none;
-      }
       &:hover {
         background-color: var(--color-bg-tertiary);
       }
@@ -81,6 +84,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     }
 
     #tocmark {
+      display: block;
       position: absolute;
       overflow: visible;
       pointer-events: none;

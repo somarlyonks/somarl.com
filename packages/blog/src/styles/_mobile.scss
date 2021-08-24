@@ -8,10 +8,15 @@ $mobileThreshold: 767px;
       position: absolute;
       bottom: 2em;
       width: 100%;
-      > section {
-        time {
-          flex: 1;
-        }
+    }
+  }
+  article {
+    > section[role="figure"] {
+      img {
+        display: none;
+      }
+      &:hover {
+        background-color: var(--color-bg-tertiary);
       }
     }
   }
@@ -76,8 +81,7 @@ $mobileThreshold: 767px;
     div[role="contentinfo"] {
       flex-wrap: wrap;
       > section {
-        margin-bottom: 0 !important;
-        time {
+        &:first-of-type {
           position: absolute;
           bottom: 2em;
           flex: 1;
