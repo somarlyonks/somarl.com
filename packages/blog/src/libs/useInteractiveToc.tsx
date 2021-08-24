@@ -104,10 +104,6 @@ export default function useInuseInteractiveToc () {
 
         elementsToObserve.forEach(el => observer.observe(el.parentElement || el))
 
-        $tocTreeContainer.style.opacity = '1'
-        const $firstSection = $tocTreeContainer.nextSibling as HTMLElement
-        $firstSection.style.marginTop = `-${$tocTreeContainer.clientHeight}px`
-
         return () => observer.disconnect()
     }, [])
 }
