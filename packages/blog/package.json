@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@mdx-js/loader": "1.6.22",
-    "@stefanprobst/remark-shiki": "1.1.1",
     "gray-matter": "4.0.3",
     "next-mdx-remote": "3.0.4",
     "rehype-autolink-headings": "6.1.0",
@@ -33,6 +32,7 @@
     "remark-toc": "7.2.0",
     "remark-unwrap-images": "2.1.0",
     "rss": "1.2.2",
-    "shiki": "0.9.7"
+    "shiki": "0.9.7",
+    "unist-util-visit": "4.0.0"
   }
 }

@@ -24,10 +24,10 @@ fs.readdirSync(POSTS_PATH).filter(filename => /\.mdx?$/.test(filename)).forEach(
     const {data: {
         title,
         published,
-        language,
+        // language,
         abstract = '',
         tags = [],
-        cover = '',
+        // cover = '',
     }} = matter(file)
 
     feed.item({

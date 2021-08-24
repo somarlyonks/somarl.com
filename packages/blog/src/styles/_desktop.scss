@@ -5,8 +5,10 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
 
 @media (max-width: #{$desktopThreshold - 1}) {
   header + article {
-    #toc + section + section {
-      margin-top: 0 !important;
+    div[role="contentinfo"] {
+      > section {
+        margin-bottom: 0 !important;
+      }
     }
   }
 }
@@ -21,9 +23,6 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     }
 
     > section[role="figure"] {
-      img {
-        display: none;
-      }
       &:hover {
         background-color: var(--color-bg-tertiary);
       }
@@ -34,11 +33,10 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     #toc + section {
       display: block;
       position: sticky;
-    }
-    #toc + section {
+      height: 0;
+      float: left;
       width: $asideWidth;
       max-width: 24em;
-      opacity: 0;
       top: calc(1.5 * #{$navHeight});
       margin-left: 100%;
       margin-bottom: 0;
@@ -81,6 +79,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     }
 
     #tocmark {
+      display: block;
       position: absolute;
       overflow: visible;
       pointer-events: none;
@@ -120,7 +119,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          transition: margin 0.2s ease, opacity 0.35s ease-in;
+          transition: opacity 0.35s ease-in;
 
           h2 {
             display: block;
