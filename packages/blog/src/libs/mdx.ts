@@ -7,8 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkToc from 'remark-toc'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import remarkShiki from '@stefanprobst/remark-shiki'
-import {getHighlighter} from 'shiki'
+import remarkShiki from '../libs/remark-shiki'
 
 
 export const POSTS_PATH = path.join(process.cwd(), 'posts')
@@ -83,7 +82,6 @@ export const tagMapSync = postsSync.reduce((r, post) =>
 
 export const serializePost = async (slug: string) => {
     const {content, scope} = readPost(slug)
-    const highlighter = await getHighlighter({theme: 'github-light'})
 
     return serialize(content, {
         mdxOptions: {
@@ -93,8 +91,7 @@ export const serializePost = async (slug: string) => {
                 remarkUnwrapImages,
                 // @ts-ignore
                 remarkSectionize,
-                // @ts-ignore
-                [remarkShiki, {highlighter}],
+                [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
                 // @ts-ignore

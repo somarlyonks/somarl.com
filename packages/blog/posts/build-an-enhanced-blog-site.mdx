@@ -117,9 +117,9 @@ Both code block and inline code use the background color as Github markdown code
 
 The issue was about how to implement syntax highlighting. There are choices like `highlightjs` and `prism` but I chose a syntax highlighter called ["shiki"](https://github.com/shikijs/shiki).
 
-The reason is simple, it does syntax parsing and apply TextMate rules like text editors(VS Code, for example), that's what I call "highlighting". A simple thing explains what does it mean - it highlights `mdx` files without any extra configurations.
+The reason is simple, it does syntax parsing and apply [TextMate grammar](https://macromates.com/manual/en/language_grammars) like text editors(VS Code, for example), that's what I call "highlighting". A simple thing explains what does it mean - it highlights `mdx` files without any extra configurations.
 
-The only thing I needed to do is to find a proper remark plugin, it turned out to be [@stefanprobst/remark-shiki](https://github.com/stefanprobst/remark-shiki).
+The only thing I needed to do is to find a proper remark plugin, it turned out to be [@stefanprobst/remark-shiki](https://github.com/stefanprobst/remark-shiki) with a little patches.
 
 ### Code block
 
@@ -351,7 +351,6 @@ There are things confirmed to do
 
 And there are features worth considering
 
-- preferred light/dark theme
 - full text search
 - post series
 - locale and translation

@@ -1,9 +1,54 @@
-// theme light
-article {
-  --color-fg: #121314;
-  --color-bg: #fff;
+// To convert color:
+// [rgb to hsl](https://www.rapidtables.com/convert/color/rgb-to-hsl.html)
+// [rgba to rgb](https://borderleft.com/toolbox/rgba/)
+// theme-bg-secondary: rgba($theme, 0.5);
+// theme-bg-tertiary: rgba($theme, 0.15);
+
+html {
+  $white: #fff;
+  $black: #121314;
+
+  // #33bbff
+  // rgb(51, 187, 255)
+  $theme-light: hsl(200, 100%, 60%);
+
+  // #0088cc
+  // rgb(0, 136, 204)
+  $theme-dark: hsl(200, 100%, 40%);
+
+  --color-fg: #{$black};
+  --color-bg: #{$white};
+  --color-bg-transparent: #{rgba($white, 0.9)};
+  --color-bg-secondary: #f2f2f2;
   --color-bg-tertiary: #f6f8fa;
-  --theme: #00a1f1;
-  --theme-bg-secondary: rgb(163, 207, 245);
-  --theme-bg-tertiary: rgb(236, 245, 253);
+  --theme: #{$theme-light};
+  --theme-bg-secondary: #99ddff;
+  --theme-bg-tertiary: #e0f5ff;
+
+  .scheme {
+    &--dark {
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+    --color-fg: #c9d1d9;
+    --color-bg: #{$black};
+    --color-bg-transparent: #{rgba($black, 0.9)};
+    --color-bg-secondary: #232425;
+    --color-bg-tertiary: #333537;
+    --theme: #{$theme-dark};
+    --theme-bg-secondary: #094e70;
+    --theme-bg-tertiary: #0f2530;
+
+    .scheme {
+      &--dark {
+        display: block;
+      }
+      &--light {
+        display: none;
+      }
+    }
+  }
 }

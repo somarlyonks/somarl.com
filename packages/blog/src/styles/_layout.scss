@@ -1,6 +1,5 @@
-$footerTextColor: #555;
-$footerTextHoverColor: #000;
 $layoutWidth: 700px;
+$colorHairline: var(--color-bg-secondary);
 
 @mixin hoverUnderline($color: currentColor) {
   position: relative;
@@ -33,7 +32,7 @@ main {
     justify-content: flex-start;
     position: fixed;
     height: $navHeight;
-    border-bottom: 1px solid hsl(0, 0%, 95%);
+    border-bottom: 1px solid $colorHairline;
     top: 0;
     left: 0;
     right: 0;
@@ -63,19 +62,20 @@ main {
 
   > footer {
     width: 100%;
-    border-top: 1px solid hsl(0, 0%, 95%);
+    border-top: 1px solid $colorHairline;
     height: 200px;
     z-index: calc(#{$zNav} - 1);
     font-size: 1.2em;
     &,
     a {
-      color: $footerTextColor;
+      color: var(--color-fg);
+      opacity: 0.8;
     }
     a {
       line-height: 1;
       display: flex;
       &:hover {
-        color: $footerTextHoverColor;
+        opacity: 1;
       }
     }
 
@@ -91,8 +91,11 @@ main {
         justify-content: flex-start;
         align-items: center;
         margin: 8px 0;
+        span {
+          opacity: 0.8;
+        }
         a:not([role="button"]) {
-          @include hoverUnderline($footerTextHoverColor);
+          @include hoverUnderline(var(--color-fg));
         }
 
         a[role="button"] {
@@ -124,7 +127,7 @@ main {
   > header,
   > footer {
     padding: 10px 10vw;
-    background-color: rgba(#fff, 0.9);
+    background-color: var(--color-bg-transparent);
     box-sizing: border-box;
     > div {
       max-width: $layoutWidth;

@@ -19,6 +19,8 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 
 body {
@@ -125,7 +127,7 @@ article {
 article {
   a:not([role="button"]) {
     color: var(--color-fg);
-    @include textHighlight(rgba($ThemeColor, 0.5));
+    @include textHighlight(var(--theme-bg-secondary));
     text-decoration-thickness: 0.6ex;
     text-underline-offset: -0.6ex;
     overflow-wrap: break-word;
