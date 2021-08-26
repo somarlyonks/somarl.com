@@ -21,8 +21,7 @@ export default function PostInfo ({post}: IProps) {
                         <Link href={`/tag/${tag}`} key={tag}><a role="button"><HashTag />{tag}</a></Link>
                     ))}
                 </section>
-            )
-            }
+            )}
         </div>
     )
 }

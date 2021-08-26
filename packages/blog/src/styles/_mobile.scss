@@ -23,6 +23,10 @@ $mobileThreshold: 767px;
 }
 
 @media (max-width: $mobileThreshold) {
+  h1 {
+    font-size: 3.5em;
+  }
+
   p,
   a {
     font-weight: 300;
