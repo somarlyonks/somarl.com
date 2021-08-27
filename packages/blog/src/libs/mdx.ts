@@ -62,7 +62,7 @@ export const readPost = (slug: string) => {
         language,
         abstract,
         tags,
-        cover,
+        cover: (cover && !cover.src) ? {src: cover} : cover,
     } as IPostMeta
 
     return {

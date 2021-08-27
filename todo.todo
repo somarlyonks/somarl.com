@@ -6,7 +6,7 @@ somarl.com:
     [x] init
 
   blog:
-    [ ] analytics
+    [x] init
 
   moment:
     [x] mongo server

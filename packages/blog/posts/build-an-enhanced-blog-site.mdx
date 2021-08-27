@@ -2,7 +2,10 @@
 title: Build an Enhanced Blog Site
 abstract: Hi there. I guess this might be the first post of this site(except some archives picked from my former blogs). It took a few days to build this site and I can't wait to share the joy I had walking through it.
 published: '2021-08-09T09:24:02.009'
-cover: /images/build-an-enhanced-blog-site/cover.jpg
+cover:
+  src: /images/build-an-enhanced-blog-site/cover.jpg
+  work: Trace of Existence
+  date: '2016'
 language: en
 tags:
   - Next.js
@@ -268,8 +271,8 @@ article {
         text-align: center;
     }
     figcaption {
-        font-size: 0.85em;
-        opacity: 50%;
+        font-size: smaller;
+        opacity: 0.5;
     }
 }
 ```
@@ -344,9 +347,6 @@ That's all about typography by now.
 
 There are things confirmed to do
 
-- language categoried
-- post last modified time track
-- post viewing track and analysis
 - AWS S3 for attached static files
 
 And there are features worth considering
@@ -354,5 +354,6 @@ And there are features worth considering
 - full text search
 - post series
 - locale and translation
+- post viewing track and analysis
 
 Some of them are definitely to be implemented in the coming weeks and this post will be updated as things are done.

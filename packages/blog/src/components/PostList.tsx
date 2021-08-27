@@ -13,7 +13,7 @@ export default function PostList ({posts}: IProps) {
                 <Link href={post.url} key={post.title}>
                     <section role="figure">
                         <figure>
-                            {!!post.cover && <img src={post.cover} alt="cover" title={post.title} />}
+                            {!!post.cover && <img src={post.cover.src} alt="cover" title={post.title} />}
                             <figcaption>
                                 <PostInfo post={post} />
                                 <h2><Link href={post.url}>{post.title}</Link></h2>

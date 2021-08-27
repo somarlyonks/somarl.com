@@ -14,6 +14,14 @@ export default function PostInfo ({post}: IProps) {
                 <h2>Published</h2>
                 <PostTime post={post} />
             </section>
+            {!!post.cover?.work && (
+                <section>
+                    <h2>Cover</h2>
+                    <span>{post.cover.work}</span>
+                    {post.cover.author && <small>{post.cover.author}</small>}
+                    {post.cover.date && <small>{post.cover.date}</small>}
+                </section>
+            )}
             {!!post.tags.length && (
                 <section>
                     <h2>Tags</h2>

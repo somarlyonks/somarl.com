@@ -43,7 +43,14 @@ export default function PostTitle ({post}: IProps) {
             <section role={post.cover ? 'banner' : ''}>
                 <h1 ref={$h1}>{post.title}</h1>
                 {!!post.abstract && <p>{post.abstract}</p>}
-                {!!post.cover && <figure><img ref={$img} src={post.cover} alt="cover" title={post.title} onLoad={moveInfoSection} /></figure>}
+                {!!post.cover && (
+                    <figure>
+                        <img ref={$img} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
+                        {post.cover.work && (
+                            <figcaption><cite>{post.cover.work}</cite>{post.cover.author && <> - {post.cover.author}</>}</figcaption>
+                        )}
+                    </figure>
+                )}
             </section>
             <svg id="tocmark" xmlns="http://www.w3.org/2000/svg"><path /></svg>
         </>

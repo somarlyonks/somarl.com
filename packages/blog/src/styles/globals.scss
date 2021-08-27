@@ -142,8 +142,12 @@ figure {
 
 time {
   display: inline-block;
-  font-size: 0.85em;
-  opacity: 50%;
+}
+
+time,
+small {
+  font-size: smaller;
+  opacity: 0.5;
 }
 
 @import "layout";
