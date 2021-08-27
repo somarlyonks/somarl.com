@@ -88,7 +88,7 @@ header + article {
   pre,
   p code {
     background-color: var(--color-bg-tertiary);
-    font-size: 0.85em;
+    font-size: smaller;
   }
   pre,
   code {
@@ -125,14 +125,14 @@ header + article {
     text-align: center;
   }
   figcaption {
-    font-size: 0.85em;
+    font-size: smaller;
     opacity: 0.5;
   }
 
   blockquote {
     padding: 1em 1em 1em calc(1em + 1ch);
     background-color: var(--color-bg-tertiary);
-    font-size: 0.85em;
+    font-size: smaller;
     border-radius: 0.5em;
 
     p {

@@ -8,6 +8,12 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     div[role="contentinfo"] {
       > section {
         margin-bottom: 0 !important;
+        &:nth-of-type(2) {
+          display: none;
+        }
+        &:last-of-type {
+          display: block;
+        }
       }
     }
   }
@@ -100,6 +106,9 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
         img {
           width: 100%;
         }
+        figcaption {
+          display: none;
+        }
       }
       ~ div[role="contentinfo"] {
         position: absolute;
@@ -120,10 +129,11 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
           flex-direction: column;
           align-items: flex-start;
           transition: opacity 0.35s ease-in;
+          margin-bottom: 2em;
 
           h2 {
             display: block;
-            font-size: 0.85em;
+            font-size: 1em;
             margin: 0.5ch 0;
           }
 

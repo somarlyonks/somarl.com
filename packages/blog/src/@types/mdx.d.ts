@@ -9,7 +9,16 @@ interface IPostMeta extends Record<string, unknown> {
     abstract: string
     /** @optional */
     tags: string[]
-    cover: string
+    /** @optional */
+    cover: {
+        src: string
+        /** @optional */
+        work: string
+        /** @optional */
+        author: string
+        /** @optional */
+        date: string
+    }
 
     /** @generated */
     url: string
