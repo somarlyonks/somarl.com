@@ -1,0 +1,157 @@
+@import "variables";
+@import "theme";
+
+@font-face {
+  font-family: DejaVu Sans;
+  src: url(../../public/fonts/DejaVuSans.woff2) format("woff2"), url(../../public/fonts/DejaVuSans.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: CamingoCode;
+  src: url(../../public/fonts/CamingoCode-Regular-webfont.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+body {
+  font-family: DejaVu Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: calc(10px + 0.33vw);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  color: var(--color-fg);
+  overflow-x: hidden;
+  > main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    > article {
+      flex: 1;
+      width: 100%;
+    }
+  }
+}
+
+h1 {
+  font-size: 4.5em;
+  font-weight: 500;
+  margin-bottom: 0;
+  svg {
+    fill: var(--theme);
+  }
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.4;
+
+  a {
+    font-weight: 400;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font-family: $fontSansSerif;
+}
+
+span {
+  q + span {
+    &::before {
+      content: " - ";
+    }
+    & + cite {
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+sub {
+  font-weight: 300;
+}
+
+img {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+[role="button"] {
+  cursor: pointer;
+  svg {
+    fill: currentColor;
+    height: 1em;
+  }
+}
+
+svg[role="note"] {
+  height: 1em;
+  vertical-align: sub;
+  margin: 0 0.25ch;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+article {
+  overflow-x: visible;
+}
+
+article {
+  a:not([role="button"]) {
+    color: var(--color-fg);
+    @include textHighlight(var(--theme-bg-secondary));
+    text-decoration-thickness: 0.6ex;
+    text-underline-offset: -0.6ex;
+    overflow-wrap: break-word;
+  }
+}
+
+figure {
+  margin-block-start: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+time {
+  display: inline-block;
+}
+
+time,
+small {
+  font-size: smaller;
+  opacity: 0.5;
+}
+
+@import "layout";
+@import "post";
+
+@import "mobile";
+@import "desktop";

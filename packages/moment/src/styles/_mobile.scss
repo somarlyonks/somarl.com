@@ -1,0 +1,62 @@
+@import "variables";
+
+$mobileThreshold: 767px;
+
+@media (min-width: #{$mobileThreshold + 1}) {
+  article {
+    > section[role="figure"] {
+      img {
+        display: none;
+      }
+      &:hover {
+        background-color: var(--color-bg-tertiary);
+      }
+    }
+  }
+}
+
+@media (max-width: $mobileThreshold) {
+  h1 {
+    font-size: 3.5em;
+  }
+
+  p,
+  a {
+    font-weight: 300;
+  }
+
+  main {
+    > header {
+      display: none;
+    }
+    > header,
+    > footer {
+      > div {
+        padding: 0px 16px;
+      }
+    }
+  }
+
+  article {
+    padding: 1em 1em 4em;
+    > section[role="figure"] {
+      margin: 0;
+      padding: 0.5em 0;
+      figure {
+        border-radius: 1em;
+        background-color: var(--color-bg-tertiary);
+
+        img {
+          height: 55vw;
+          width: 100%;
+          border-top-left-radius: 1em;
+          border-top-right-radius: 1em;
+        }
+
+        figcaption {
+          padding: 1em;
+        }
+      }
+    }
+  }
+}
