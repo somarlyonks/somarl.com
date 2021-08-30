@@ -1,0 +1,27 @@
+{
+  "name": "@somarl.com/moment",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tslint --fix -p tsconfig.json",
+    "test": "next build",
+    "ci": "next build"
+  },
+  "dependencies": {
+    "@csszen/components.button": "0.2.0",
+    "@csszen/components.copy": "0.1.0",
+    "@csszen/components.flexmini": "0.1.0",
+    "@csszen/components.fof": "1.1.0",
+    "@csszen/hooks.usebem": "0.1.1",
+    "next": "11.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.848.0"
+  }
+}
