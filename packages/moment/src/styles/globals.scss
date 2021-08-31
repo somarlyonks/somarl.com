@@ -110,6 +110,9 @@ img {
     height: 1em;
   }
 }
+[role="input"] {
+  cursor: pointer;
+}
 
 svg[role="note"] {
   height: 1em;

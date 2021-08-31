@@ -471,6 +471,13 @@
   dependencies:
     core-js "^3.0.0"
 
+"@csszen/icons.github@^1.0.0":
+  version "1.0.0"
+  resolved "https://node.bit.dev/@csszen/icons.github/-/@csszen-icons.github-1.0.0.tgz#f4532e13459d685b8d6f84776a57518ccdc8ef87"
+  integrity sha1-9FMuE0WdaFuNb4R3aldRjM3I74c=
+  dependencies:
+    core-js "^3.0.0"
+
 "@csszen/icons.octiconcheck@1.0.0":
   version "1.0.0"
   resolved "https://node.bit.dev/@csszen/icons.octiconcheck/-/@csszen-icons.octiconcheck-1.0.0.tgz#e9ddc4cd2fbfdf5db17946789d0c8d2e289ea6be"

@@ -3,7 +3,7 @@ import CONFIG from './config'
 
 
 export async function createPresignedPost (Fields?: Record<string, string>, accessKey?: string) {
-    const secretAccessKey = CONFIG.S3_SCERET_ACCESS_KEY || accessKey
+    const secretAccessKey = CONFIG.S3_SECRET_ACCESS_KEY || accessKey
     if (!secretAccessKey) return
 
     const s3 = new S3({
@@ -26,7 +26,7 @@ export async function createPresignedPost (Fields?: Record<string, string>, acce
 }
 
 export async function upload (fileName: string, fileBuffer: Buffer, accessKey?: string) {
-    const secretAccessKey = CONFIG.S3_SCERET_ACCESS_KEY || accessKey
+    const secretAccessKey = CONFIG.S3_SECRET_ACCESS_KEY || accessKey
     if (!secretAccessKey) return
 
     const s3 = new S3({

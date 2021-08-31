@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Flex from '@csszen/components.flexmini'
 
 import Vercel from './icons/Vercel'
-import OcticonGithub from './icons/OcticonGithub'
+import OcticonGithub from '@csszen/icons.github'
 import OcticonRSS from './icons/OcticonRSS'
 
 

@@ -2,7 +2,7 @@
 class Config {
     public get S3_ACCESS_KEY_ID () {return readEssentialValue('S3_ACCESS_KEY_ID')}
 
-    public get S3_SCERET_ACCESS_KEY () {return readOptionalValue('S3_SCERET_ACCESS_KEY')}
+    public get S3_SECRET_ACCESS_KEY () {return readOptionalValue('S3_SECRET_ACCESS_KEY')}
 
     public get S3_REGION () {return readOptionalValue('S3_REGION')}
 
