@@ -1,0 +1,54 @@
+.article {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3em;
+  h1 {
+    margin-bottom: 0.44em;
+  }
+}
+
+.main {
+  align-items: stretch;
+  border: 1px solid;
+  border-radius: 1em;
+  min-height: 40vw;
+  &:hover {
+    label svg {
+      transform: scale(1.2);
+    }
+  }
+
+  label {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg,
+    img {
+      width: 3em;
+      height: 3em;
+      fill: currentColor;
+      transition: all 0.2s ease;
+    }
+    img {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.footer {
+  margin-top: 2em;
+  justify-content: space-between;
+
+  svg {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  a[aria-disabled="true"] {
+    svg {
+      fill: #22863a;
+    }
+  }
+}

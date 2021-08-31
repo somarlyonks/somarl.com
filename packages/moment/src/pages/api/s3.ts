@@ -5,7 +5,8 @@ import {createPresignedPost} from '../../libs/s3'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const r = await createPresignedPost(
-        Object.fromEntries(Object.entries(req.query).map(([k, v]) => [k, v.toString()]))
+        {key: req.query.key.toString()},
+        req.query.accesskey.toString()
     )
 
     return res.status(HTTPStatusCodes.OK).json(r)

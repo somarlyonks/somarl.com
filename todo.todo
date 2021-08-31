@@ -1,13 +1,17 @@
 somarl.com:
   pkg:
-    [ ] AWS S3
+    [x] AWS S3
 
   www:
     [x] init
 
   blog:
     [x] init
+    [ ] full-text search?
+    [ ] post series?
+    [ ] locale and translation?
 
   moment:
+    [x] init
     [x] mongo server
-    [ ] init
+    [ ] mongo interface
