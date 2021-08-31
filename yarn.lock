@@ -421,14 +421,14 @@
     "@csszen/hooks.usebem" "0.1.1"
     core-js "^3.0.0"
 
-"@csszen/components.copy@0.1.0":
-  version "0.1.0"
-  resolved "https://node.bit.dev/@csszen/components.copy/-/@csszen-components.copy-0.1.0.tgz#86066caf9553dd8a91e9d304d9511cc5e4d63d0c"
-  integrity sha1-hgZsr5VT3YqR6dME2VEcxeTWPQw=
+"@csszen/components.copy@0.1.1":
+  version "0.1.1"
+  resolved "https://node.bit.dev/@csszen/components.copy/-/@csszen-components.copy-0.1.1.tgz#ba680b8b653d5f2f9eaab4d4690145a85de0d7f2"
+  integrity sha1-umgLi2U9Xy+eqrTUaQFFqF3g1/I=
   dependencies:
     "@csszen/hooks.useclipboard" "0.0.1"
     "@csszen/icons.octiconcheck" "1.0.0"
-    "@csszen/icons.octiconclippy" "1.0.0"
+    "@csszen/icons.octiconclippy" "1.0.1"
     core-js "^3.0.0"
 
 "@csszen/components.flexmini@0.1.0":
@@ -478,10 +478,10 @@
   dependencies:
     core-js "^3.0.0"
 
-"@csszen/icons.octiconclippy@1.0.0":
-  version "1.0.0"
-  resolved "https://node.bit.dev/@csszen/icons.octiconclippy/-/@csszen-icons.octiconclippy-1.0.0.tgz#27d7934fdfa02d6b90049896df6efeb336a556bf"
-  integrity sha1-J9eTT9+gLWuQBJiW327+szalVr8=
+"@csszen/icons.octiconclippy@1.0.1":
+  version "1.0.1"
+  resolved "https://node.bit.dev/@csszen/icons.octiconclippy/-/@csszen-icons.octiconclippy-1.0.1.tgz#6e54c265876b55d98de66e22c3f2ac0fea28041f"
+  integrity sha1-blTCZYdrVdmN5m4iw/KsD+ooBB8=
   dependencies:
     core-js "^3.0.0"
 
@@ -1799,10 +1799,10 @@ available-typed-arrays@^1.0.2:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.4.tgz#9e0ae84ecff20caae6a94a1c3bc39b955649b7a9"
   integrity sha512-SA5mXJWrId1TaQjfxUYghbqQ/hYioKmLJvPJyDuYRtXXenFNMjj4hSSt1Cf1xsuXSXrtxrVC5Ot4eU6cOtBDdA==
 
-aws-sdk@^2.848.0:
-  version "2.978.0"
-  resolved "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.978.0.tgz#aba16756aab7e46d476d8f160a10a05ef3712afd"
-  integrity sha512-UO1HP2b9FFtPhc5KbzEJ9oMBdzCmVv9nQTb+yIEh6SajcaErmK/ryleLOuPq9EsirE6wgb6mtf2qodRFucUA3g==
+aws-sdk@2.979.0:
+  version "2.979.0"
+  resolved "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.979.0.tgz#d0104fec763cc3eafb123e709f94866790109da4"
+  integrity sha512-pKKhpYZwmihCvuH3757WHY8JQI9g2wvtF3s0aiyH2xCUmX/6uekhExz/utD4uqZP3m3PwKZPGQkQkH30DtHrPw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"

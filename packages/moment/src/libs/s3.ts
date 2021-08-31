@@ -2,15 +2,18 @@ import {S3} from 'aws-sdk'
 import CONFIG from './config'
 
 
-const s3 = new S3({
-    region: CONFIG.S3_REGION,
-    credentials: {
-        accessKeyId: CONFIG.S3_ACCESS_KEY_ID,
-        secretAccessKey: CONFIG.S3_SCERET_ACCESS_KEY,
-    },
-})
+export async function createPresignedPost (Fields?: Record<string, string>, accessKey?: string) {
+    const secretAccessKey = CONFIG.S3_SCERET_ACCESS_KEY || accessKey
+    if (!secretAccessKey) return
 
-export async function createPresignedPost (Fields?: Record<string, string>) {
+    const s3 = new S3({
+        region: CONFIG.S3_REGION,
+        credentials: {
+            accessKeyId: CONFIG.S3_ACCESS_KEY_ID,
+            secretAccessKey,
+        },
+    })
+
     return s3.createPresignedPost({
         Bucket: CONFIG.S3_BUCKET,
         Fields,
@@ -22,7 +25,18 @@ export async function createPresignedPost (Fields?: Record<string, string>) {
     })
 }
 
-export async function upload (fileName: string, fileBuffer: Buffer) {
+export async function upload (fileName: string, fileBuffer: Buffer, accessKey?: string) {
+    const secretAccessKey = CONFIG.S3_SCERET_ACCESS_KEY || accessKey
+    if (!secretAccessKey) return
+
+    const s3 = new S3({
+        region: CONFIG.S3_REGION,
+        credentials: {
+            accessKeyId: CONFIG.S3_ACCESS_KEY_ID,
+            secretAccessKey,
+        },
+    })
+
     const params: S3.PutObjectRequest = {
         Bucket: CONFIG.S3_BUCKET,
         Key: fileName,
