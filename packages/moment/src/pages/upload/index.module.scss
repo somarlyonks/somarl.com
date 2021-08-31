@@ -9,9 +9,9 @@
 
 .main {
   align-items: stretch;
-  border: 1px solid;
+  border: 1px solid var(--color-fg);
   border-radius: 1em;
-  min-height: 40vw;
+  min-height: 30vw;
   &:hover {
     label svg {
       transform: scale(1.2);

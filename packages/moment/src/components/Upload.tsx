@@ -22,7 +22,7 @@ export default function Upload ({onUpload, onError, onStart, onFinish}: IProps) 
         if (onStart) onStart()
         try {
             const filename = `${uuid()}/${encodeURIComponent(file.name)}`
-            const r = await fetch(`/api/s3?key=${filename}&accesskey=${localStorage.getItem('S3_SCERET_ACCESS_KEY')}`)
+            const r = await fetch(`/api/s3?key=${filename}&accesskey=${encodeURIComponent(localStorage.getItem('S3_SECRET_ACCESS_KEY') || '')}`)
             const {url, fields}: S3.PresignedPost = await r.json()
             const formData = new FormData()
             Object.entries(Object.assign(fields, {file})).forEach(([k, v]) => formData.append(k, v))
@@ -46,7 +46,7 @@ export default function Upload ({onUpload, onError, onStart, onFinish}: IProps) 
 
     return (
         <label role="input">
-            <input hidden type="file" onChange={handleUpload} disabled={uploading} />
+            <input hidden type="file" onInput={handleUpload} disabled={uploading} />
             {uploading ? <img src="/images/upload.gif" /> : <IconUpload />}
         </label>
     )
