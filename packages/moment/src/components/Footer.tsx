@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import Flex from '@csszen/components.flexmini'
+import OcticonGithub from '@csszen/icons.github'
 
 import Vercel from './icons/Vercel'
-import OcticonGithub from './icons/OcticonGithub'
-import OcticonRSS from './icons/OcticonRSS'
 
 
 export default function Footer ({slug}: {slug?: string}) {
@@ -13,11 +12,11 @@ export default function Footer ({slug}: {slug?: string}) {
                 <nav>
                     <ul>
                         <li><Link href="https://www.somarl.com"><a>About</a></Link></li>
-                        <li><Link href="/"><a>Blogs</a></Link></li>
-                        <li><Link href="https://moment.somarl.com"><a>Moments</a></Link></li>
+                        <li><Link href="https://blog.somarl.com"><a>Blogs</a></Link></li>
+                        <li><Link href="/"><a>Moments</a></Link></li>
                         {slug
                             ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
-                            : <li><span>Source</span><Link href={`https://github.com/somarlyonks/somarl.com/tree/master/packages/blog`}><a role="button" target="_blank"><OcticonGithub /></a></Link><Link href="/rss.xml"><a role="button" target="_blank"><OcticonRSS /></a></Link></li>
+                            : <li><span>Source</span><Link href={`https://github.com/somarlyonks/somarl.com/tree/master/packages/blog`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
                         }
                     </ul>
                 </nav>
