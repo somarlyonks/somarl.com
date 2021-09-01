@@ -1,4 +1,3 @@
-
 class Config {
     public get S3_ACCESS_KEY_ID () {return readEssentialValue('S3_ACCESS_KEY_ID')}
 

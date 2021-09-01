@@ -16,7 +16,7 @@ export default function Footer ({slug}: {slug?: string}) {
                         <li><Link href="/"><a>Moments</a></Link></li>
                         {slug
                             ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
-                            : <li><span>Source</span><Link href={`https://github.com/somarlyonks/somarl.com/tree/master/packages/blog`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
+                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/moment"><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
                         }
                     </ul>
                 </nav>

@@ -492,6 +492,13 @@
   dependencies:
     core-js "^3.0.0"
 
+"@csszen/icons.octiconrss@1.0.0":
+  version "1.0.0"
+  resolved "https://node.bit.dev/@csszen/icons.octiconrss/-/@csszen-icons.octiconrss-1.0.0.tgz#56f77bc7a85c31b52bbd4f968d5a48e98dbdc2f1"
+  integrity sha1-Vvd7x6hcMbUrvU+WjVpI6Y29wvE=
+  dependencies:
+    core-js "^3.0.0"
+
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.npmjs.org/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"
