@@ -26,7 +26,7 @@ export default function Upload () {
 
                 {!!src && (
                     <Flex className={styles.footer}>
-                        <a href={src} target="_blank">{src}</a>
+                        <a href={src} target="_blank" rel="noopener">{src}</a>
                         <Copy content={src} />
                     </Flex>
                 )}

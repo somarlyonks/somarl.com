@@ -3,7 +3,7 @@ import Flex from '@csszen/components.flexmini'
 
 import Vercel from './icons/Vercel'
 import OcticonGithub from '@csszen/icons.github'
-import OcticonRSS from './icons/OcticonRSS'
+import OcticonRSS from '@csszen/icons.octiconrss'
 
 
 export default function Footer ({slug}: {slug?: string}) {
@@ -17,7 +17,7 @@ export default function Footer ({slug}: {slug?: string}) {
                         <li><Link href="https://moment.somarl.com"><a>Moments</a></Link></li>
                         {slug
                             ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
-                            : <li><span>Source</span><Link href={`https://github.com/somarlyonks/somarl.com/tree/master/packages/blog`}><a role="button" target="_blank"><OcticonGithub /></a></Link><Link href="/rss.xml"><a role="button" target="_blank"><OcticonRSS /></a></Link></li>
+                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/blog"><a role="button" target="_blank"><OcticonGithub /></a></Link><Link href="/rss.xml"><a role="button" target="_blank"><OcticonRSS /></a></Link></li>
                         }
                     </ul>
                 </nav>
