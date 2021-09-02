@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import Document, {Html, Head, NextScript} from 'next/document'
-import {DocumentContext} from 'next/dist/shared/lib/document-context'
-import {AMP_RENDER_TARGET} from 'next/dist/shared/lib/constants'
+import {BODY_RENDER_TARGET} from 'next/dist/shared/lib/constants'
+import {HtmlContext} from 'next/dist/shared/lib/utils'
 
 
 export default class MyDocument extends Document {
@@ -19,11 +19,11 @@ export default class MyDocument extends Document {
 }
 
 const Main = () => {
-    const {inAmpMode, html, docComponentsRendered} = useContext(
-        DocumentContext
+    const {inAmpMode, docComponentsRendered} = useContext(
+        HtmlContext
     )
 
     docComponentsRendered.Main = true
-    if (inAmpMode) return <>{AMP_RENDER_TARGET}</>
-    return <main id="__next" dangerouslySetInnerHTML={{__html: html}} />
+    if (inAmpMode) return <>{BODY_RENDER_TARGET}</>
+    return <main role="main" id="__next">{BODY_RENDER_TARGET}</main>
 }
