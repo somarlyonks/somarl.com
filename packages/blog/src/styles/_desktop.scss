@@ -8,12 +8,6 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     div[role="contentinfo"] {
       > section {
         margin-bottom: 0 !important;
-        &:nth-of-type(2) {
-          display: none;
-        }
-        &:last-of-type {
-          display: block;
-        }
       }
     }
   }

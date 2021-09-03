@@ -189,11 +189,18 @@ div[role="contentinfo"] {
   }
 
   > section {
+    display: flex;
+    align-items: center;
+    &:nth-of-type(2) {
+      display: none;
+    }
+    &:last-of-type {
+      display: block;
+    }
+
     h2 {
       display: none;
     }
-    display: flex;
-    align-items: center;
 
     [role="button"] {
       display: inline-flex;
