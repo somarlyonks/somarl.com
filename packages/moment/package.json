@@ -18,11 +18,13 @@
     "@csszen/components.fof": "1.1.0",
     "@csszen/hooks.usebem": "0.1.1",
     "@csszen/icons.github": "1.0.0",
+    "livephotoskit": "1.5.6",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "aws-sdk": "2.979.0"
+    "aws-sdk": "2.979.0",
+    "mongo": "0.1.0"
   }
 }

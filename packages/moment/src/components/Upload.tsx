@@ -1,18 +1,18 @@
-import {useState, ChangeEventHandler} from 'react'
+import {useState, ChangeEventHandler, forwardRef} from 'react'
 import type {S3} from 'aws-sdk'
 
 import uuid from '../libs/uuid'
 import IconUpload from './icons/Upload'
 
 
-interface IProps {
+export interface IProps {
     onStart?: () => void
     onFinish?: () => void
     onUpload: F1<string>
     onError?: F1<Response>
 }
 
-export default function Upload ({onUpload, onError, onStart, onFinish}: IProps) {
+export default forwardRef<HTMLInputElement, IProps>(function Upload ({onUpload, onError, onStart, onFinish}, ref) {
     const [uploading, setUploading] = useState(false)
     const handleUpload: ChangeEventHandler<HTMLInputElement> = async event => {
         const [file] = event.target.files || []
@@ -46,8 +46,8 @@ export default function Upload ({onUpload, onError, onStart, onFinish}: IProps) 
 
     return (
         <label role="input">
-            <input hidden type="file" onInput={handleUpload} disabled={uploading} />
+            <input hidden type="file" onInput={handleUpload} disabled={uploading} ref={ref} />
             {uploading ? <img src="/images/upload.gif" /> : <IconUpload />}
         </label>
     )
-}
+})

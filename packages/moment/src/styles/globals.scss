@@ -21,6 +21,7 @@ html {
   scroll-behavior: smooth;
   background-color: var(--color-bg);
   color: var(--color-fg);
+  overflow-y: overlay;
 }
 
 body {
@@ -158,3 +159,5 @@ small {
 
 @import "mobile";
 @import "desktop";
+
+@import "components";

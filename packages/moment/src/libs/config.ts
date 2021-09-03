@@ -1,11 +1,12 @@
 class Config {
     public get S3_ACCESS_KEY_ID () {return readEssentialValue('S3_ACCESS_KEY_ID')}
-
     public get S3_SECRET_ACCESS_KEY () {return readOptionalValue('S3_SECRET_ACCESS_KEY')}
-
     public get S3_REGION () {return readOptionalValue('S3_REGION')}
-
     public get S3_BUCKET () {return readEssentialValue('S3_BUCKET')}
+
+    public get MONGO_USERNAME () {return readEssentialValue('MONGO_USERNAME')}
+    public get MONGO_PASSWORD () {return readEssentialValue('MONGO_PASSWORD')}
+    public get MONGO_HOST () {return readEssentialValue('MONGO_HOST')}
 }
 
 function readOptionalValue (key: string): string | undefined

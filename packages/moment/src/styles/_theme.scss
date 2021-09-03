@@ -10,8 +10,11 @@ html {
   // #33bbff
   // rgb(51, 187, 255)
   $theme: hsl(200, 100%, 60%);
+  $themeDanger: red;
 
   --color-fg: #{$fg};
+  --color-fg-secondary: #{rgba($fg, 0.5)};
+  --color-fg-tertiary: #{rgba($fg, 0.15)};
   --color-bg: #{$bg};
   --color-bg-transparent: #{rgba($bg, 0.9)};
   --color-bg-secondary: #f2f2f2;
@@ -19,6 +22,9 @@ html {
   --theme: #{$theme};
   --theme-bg-secondary: #{rgba($theme, 0.5)};
   --theme-bg-tertiary: #e0f5ff;
+  --theme-danger: #{$themeDanger};
+  --theme-danger-secondary: #{rgba($themeDanger, 0.5)};
+  --theme-danger-tertiary: #{rgba($themeDanger, 0.15)};
 
   .scheme {
     &--dark {
@@ -36,6 +42,8 @@ html {
     color-scheme: dark;
 
     --color-fg: #{$fg};
+    --color-fg-secondary: #{rgba($fg, 0.5)};
+    --color-fg-tertiary: #{rgba($fg, 0.15)};
     --color-bg: #{$bg};
     --color-bg-transparent: #{rgba($bg, 0.9)};
     --color-bg-secondary: #232425;
