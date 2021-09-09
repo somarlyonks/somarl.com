@@ -16,3 +16,8 @@ $PostPaddingTop: calc(#{$navHeight} + 2em);
   text-decoration-skip-ink: none;
   text-underline-offset: -2.6ex;
 }
+
+@mixin inputBoxShadow($color1, $color2) {
+  // 0.08, 0.15
+  box-shadow: 0 1px 1px 0 $color1, 0 1px 3px 1px $color2;
+}

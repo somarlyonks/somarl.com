@@ -1,35 +1,24 @@
-import {useState} from 'react'
-
-import Copy from '@csszen/components.copy'
-import Flex from '@csszen/components.flexmini'
 import Head from '../../components/Head'
 import Footer from '../../components/Footer'
-import Uploader from '../../components/Upload'
 import styles from './index.module.scss'
 
+import {TextField, SelectField, UploadField} from '../../components/form'
+
+
+const MOMENT_TYPES = ['quote', 'picture', 'video']
 
 export default function Upload () {
-    const [src, setSrc] = useState('')
-
-    const handleStartUpload = () => setSrc('')
-    const handleUpload = (url: string) => setSrc(url)
-
     return (
         <>
             <Head title="Upload | Yang" description="I'm a Web developer at LearningTribes based in Shanghai." />
             <article className={styles.article}>
                 <h1>Upload</h1>
 
-                <Flex className={styles.main} verticle grow>
-                    <Uploader onUpload={handleUpload} onStart={handleStartUpload} />
-                </Flex>
-
-                {!!src && (
-                    <Flex className={styles.footer}>
-                        <a href={src} target="_blank" rel="noopener">{src}</a>
-                        <Copy content={src} />
-                    </Flex>
-                )}
+                <form>
+                    <TextField name="abstract" label="abstract" required />
+                    <SelectField name="type" label="type" options={MOMENT_TYPES.map(key => ({key, name: key}))} />
+                    <UploadField name="upload" label="upload" onUpload={console.info} />
+                </form>
             </article>
             <Footer />
         </>

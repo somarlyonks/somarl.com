@@ -127,6 +127,16 @@ header + article {
   figcaption {
     font-size: smaller;
     opacity: 0.5;
+    > span {
+      &:not(:last-of-type)::after {
+        content: ".";
+      }
+      + span {
+        &::before {
+          content: " ";
+        }
+      }
+    }
   }
 
   blockquote {

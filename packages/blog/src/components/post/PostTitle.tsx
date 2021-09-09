@@ -19,13 +19,12 @@ export default function PostTitle ({post}: IProps) {
         const $alignSection = document.querySelector('article > section:nth-of-type(2)')
         if (!$alignSection) return
 
-        const $contentInfoSections = document.querySelectorAll<HTMLElement>('div[role="contentinfo"] > section')
-        const $contentInfoSection1 = $contentInfoSections[0]
-        const $contentInfoSection2 = $contentInfoSections[1]
-        if ($contentInfoSection1 && $contentInfoSection2) {
-            $contentInfoSection1.style.marginBottom = `calc(${$alignSection.getBoundingClientRect().top - $contentInfoSection1.getBoundingClientRect().bottom}px)`
-            $contentInfoSection2.style.opacity = '1'
-        }
+        document.querySelectorAll<HTMLElement>('div[role="contentinfo"] > section').forEach(($contentInfoSection, i) => {
+            if (!i) {
+                $contentInfoSection.style.marginBottom = `calc(${$alignSection.getBoundingClientRect().top - $contentInfoSection.getBoundingClientRect().bottom}px)`
+            }
+            $contentInfoSection.style.opacity = '1'
+        })
     }
 
     const $img = useRef<HTMLImageElement>(null)
@@ -47,7 +46,12 @@ export default function PostTitle ({post}: IProps) {
                     <figure>
                         <img ref={$img} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
                         {post.cover.work && (
-                            <figcaption><cite>{post.cover.work}</cite>{post.cover.author && <> - {post.cover.author}</>}</figcaption>
+                            <figcaption>
+                                {post.cover.author && <span>{post.cover.author}</span>}
+                                <span><cite>{post.cover.work}</cite></span>
+                                {post.cover.date && <span>{post.cover.date}</span>}
+                                {post.cover.material && <span>{post.cover.material}</span>}
+                            </figcaption>
                         )}
                     </figure>
                 )}

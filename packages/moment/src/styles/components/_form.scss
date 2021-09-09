@@ -1,0 +1,153 @@
+form {
+  .field {
+    cursor: text;
+    margin-bottom: 1em;
+
+    > label {
+      font-size: 1.2em;
+      font-weight: 600;
+      color: var(--color-fg);
+      margin: 0px;
+      display: block;
+      padding: 0.8em 0;
+      overflow-wrap: break-word;
+    }
+
+    &__container {
+      margin: 0px;
+      padding: 0px;
+      height: 2rem;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      border: 1px solid var(--color-fg-secondary);
+      border-image: initial;
+      border-radius: 2px;
+      background: #fff;
+      &:hover {
+        border-color: var(--color-fg);
+      }
+      > * {
+        font-weight: 400;
+        margin: 0;
+        padding: 0 8px;
+        color: var(--color-fg);
+        width: 100%;
+        min-width: 0px;
+        text-overflow: ellipsis;
+        border: none;
+        border-radius: 0px;
+        border-width: initial;
+        border-style: none;
+        border-color: initial;
+        border-image: initial;
+        background: none transparent;
+        outline: 0px;
+        &::placeholder {
+          color: var(--color-fg-tertiary);
+        }
+      }
+    }
+
+    &__description {
+      color: var(--color-fg-secondary);
+      font-size: 12px;
+      padding-top: 3px;
+    }
+
+    &__error-message {
+      color: var(--theme-danger);
+      font-size: 12px;
+      padding-top: 5px;
+    }
+
+    &--invalid {
+      .field__container {
+        border-color: var(--theme-danger);
+        @include inputBoxShadow(var(--theme-danger-secondary), var(--theme-danger-tertiary));
+      }
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.5;
+      .field__container {
+        background: var(--color-bg-secondary);
+        border-color: var(--color-fg-tertiary);
+        box-shadow: none;
+      }
+    }
+
+    &__container {
+      transition: box-shadow 0.3s ease-in-out;
+      &:focus-within {
+        border-color: var(--theme);
+        @include inputBoxShadow(var(--theme-bg-tertiary), var(--theme-bg-tertiary));
+      }
+    }
+  }
+
+  .field-upload {
+    .field {
+      &__container {
+        position: relative;
+        align-items: stretch;
+        border: 1px solid var(--color-fg);
+        border-radius: 2px;
+        min-height: 30vw;
+
+        label {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1;
+
+          svg,
+          img {
+            width: 3em;
+            height: 3em;
+            fill: currentColor;
+            transition: all 0.2s ease;
+          }
+          img {
+            transform: scale(1.2);
+          }
+
+          &:hover {
+            svg {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+
+      &__info {
+        padding: 0;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: absolute;
+        bottom: 0;
+
+        > div {
+          height: auto;
+          box-sizing: border-box;
+          padding: 10px;
+          z-index: 2;
+        }
+
+        svg {
+          width: 1.5em;
+          height: 1.5em;
+        }
+
+        a[aria-disabled="true"] {
+          svg {
+            fill: #22863a;
+          }
+        }
+      }
+    }
+  }
+}
