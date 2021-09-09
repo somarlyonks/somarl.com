@@ -7,6 +7,7 @@ somarl.com:
 
   blog:
     [x] init
+    [ ] publish time locale
     [ ] full-text search?
     [ ] post series?
     [ ] locale and translation?

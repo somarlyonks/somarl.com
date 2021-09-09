@@ -18,6 +18,8 @@ interface IPostMeta extends Record<string, unknown> {
         author: string
         /** @optional */
         date: string
+        /** @optional */
+        material: string
     }
 
     /** @generated */

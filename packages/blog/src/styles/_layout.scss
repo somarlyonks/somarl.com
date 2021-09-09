@@ -191,11 +191,8 @@ div[role="contentinfo"] {
   > section {
     display: flex;
     align-items: center;
-    &:nth-of-type(2) {
+    &[role="note"] {
       display: none;
-    }
-    &:last-of-type {
-      display: block;
     }
 
     h2 {

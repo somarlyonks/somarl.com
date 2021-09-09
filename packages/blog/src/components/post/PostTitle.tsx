@@ -46,7 +46,12 @@ export default function PostTitle ({post}: IProps) {
                     <figure>
                         <img ref={$img} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
                         {post.cover.work && (
-                            <figcaption><cite>{post.cover.work}</cite>{post.cover.author && <> - {post.cover.author}</>}</figcaption>
+                            <figcaption>
+                                {post.cover.author && <span>{post.cover.author}</span>}
+                                <span><cite>{post.cover.work}</cite></span>
+                                {post.cover.date && <span>{post.cover.date}</span>}
+                                {post.cover.material && <span>{post.cover.material}</span>}
+                            </figcaption>
                         )}
                     </figure>
                 )}
