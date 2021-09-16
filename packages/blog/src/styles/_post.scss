@@ -188,6 +188,11 @@ header + article {
         content: "" !important;
       }
     }
+
+    h2 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
   }
 
   table {
@@ -239,8 +244,6 @@ header + article {
   }
 
   abbr {
-    font-variant-caps: all-small-caps;
-    font-feature-settings: "c2sc", "smcp";
     letter-spacing: 0.01em;
     text-decoration: none;
   }
