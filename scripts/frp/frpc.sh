@@ -4,7 +4,7 @@ if [ -x "frpc" ]; then
   echo "frpc exists."
 else
   mkdir upstream
-  wget -O- https://github.com/fatedier/frp/releases/download/v0.29.0/frp_0.29.0_linux_amd64.tar.gz |
+  wget -O- https://github.com/fatedier/frp/releases/download/v0.37.1/frp_0.37.1_darwin_arm64.tar.gz |
     tar xvzf - -C upstream --strip-components=1
   mv upstream/frpc frpc
   rm -r upstream
