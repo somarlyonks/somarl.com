@@ -68,7 +68,7 @@ $mobileThreshold: 767px;
   }
 
   header + article {
-    padding: 2em 1em 6em;
+    padding: 2em 1em 4em;
     table {
       thead tr {
         top: 0;
@@ -93,6 +93,13 @@ $mobileThreshold: 767px;
         }
         [role="button"] {
           margin: 0 1ch 1ch 0;
+        }
+        &:last-of-type {
+          overflow-x: scroll;
+          overflow-x: overlay;
+          &::-webkit-scrollbar {
+            background-color: transparent;
+          }
         }
       }
     }
