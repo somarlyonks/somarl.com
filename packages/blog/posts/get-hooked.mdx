@@ -22,7 +22,7 @@ tags:
 
 16.8之前的React对比Vue没有任何优势，我那时候和当时的同事聊天说过，React的SFC(stateless functional component)真的太好用了，写静态网站简直就是享受，而class component就是个蹩脚的Vue。Algebra Effects让React向后兼容的纯函数组件成为可能，hooks的出现从根本上改变了形势。从此`props => view`的UI逻辑真正变成了`props => (state, effect) => view`，实现了从面向对象到ReactiveX都没能解决的问题。React的设计一直都很稳定，与其说是终于实现了纯函数组件，倒不如说终于可以不再使用class component这个临时的解决方案了，从fiber到reconciliation，React一直在把渲染逻辑抽象出来分层，这也是如此巨大的变动依然能向后兼容的原因，甚至React原本的代码并没有进行大量修改。这一点从Vue3.0的更新就看得出来，Vue往另一条路上越走越远了，我可以很明确地说我讨厌config这个API。
 
-hooks让state和effect相关的逻辑能抽象出来，更易复用，同时让代码的可读性得到极大提升。声明式代码的优势，expression相对statement的优势，我只能说“懂的都懂”。你不需要去填充框架作者预设的slot来实现自己的业务逻辑，而是利用框架的运行机制设计自己的业务逻辑。无论是类继承还是Vue的mixin，我相信没人会真的认为好用，认为是合理的UI逻辑抽象复用范式。更可贵的是，你不需要的学习艰涩的reactive programming或者函数式编程的知识，一样可以写纯函数组件，因为这些东西学起来真的很挠心，不在了解过Monad的前提下写个一两年代码你永远也体会不到函数式抽象的真正意义和难点在哪里。
+hooks让state和effect相关的逻辑能抽象出来，更易复用，同时让代码的可读性得到极大提升。声明式代码的优势，expression相对statement的优势，我只能说“懂的都懂”。你不需要去填充框架作者预设的slot来实现自己的业务逻辑，而是利用框架的运行机制设计自己的业务逻辑。无论是类继承还是Vue的mixin，我相信没人会真的认为好用，认为是合理的UI逻辑抽象复用范式。更可贵的是，你不需要学习艰涩的reactive programming或者函数式编程的知识，一样可以写纯函数组件，因为这些东西学起来真的很挠心，不在了解过Monad的前提下写个一两年代码你永远也体会不到函数式抽象的真正意义和难点在哪里。
 
 ## hooks带来了什么问题
 
