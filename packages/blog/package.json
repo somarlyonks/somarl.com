@@ -35,6 +35,6 @@
     "remark-unwrap-images": "2.1.0",
     "rss": "1.2.2",
     "shiki": "0.9.10",
-    "unist-util-visit": "4.0.0"
+    "unist-util-visit": "4.1.0"
   }
 }
