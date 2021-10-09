@@ -28,6 +28,8 @@ header + article {
   h6 {
     font-weight: 600;
     margin-top: 0;
+    word-wrap: break-word;
+    hyphens: auto;
     a[role="button"] {
       float: left;
       margin-left: -1.25rem;
