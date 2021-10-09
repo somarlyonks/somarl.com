@@ -2,6 +2,7 @@ import PostImage from './PostImage'
 import PostLi from './PostLi'
 import PostLink from './PostLink'
 import PostUl from './PostUl'
+import PostFigure from './PostFigure'
 
 export {default as PostInfo} from './PostInfo'
 export {default as PostLayout} from './PostLayout'
@@ -12,4 +13,5 @@ export const postComponents = {
     img: PostImage,
     li: PostLi,
     ul: PostUl,
+    PostFigure,
 }
