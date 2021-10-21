@@ -42,7 +42,7 @@
     "@somarlyonks/tslint": "1.0.1",
     "@types/react": "17.0.15",
     "folans.d.ts": "2.0.0",
-    "husky": "7.0.2",
+    "husky": "7.0.4",
     "lerna": "4.0.0",
     "next-transpile-modules": "8.0.0",
     "raw-loader": "4.0.2",
