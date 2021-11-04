@@ -247,6 +247,11 @@ header + article {
     text-decoration: none;
   }
 
+  iframe {
+    display: block;
+    margin: 0 auto 1em;
+  }
+
   #tocmark,
   #toc,
   #toc + section {

@@ -24,7 +24,7 @@ export default function Home ({posts}: InferGetStaticPropsType<typeof getStaticP
 }
 
 export const getStaticProps: GetStaticProps<IProps, {}> = async () => {
-    const posts = postsSync.map(post => post.scope)
+    const posts = postsSync().map(post => post.scope)
 
     return {
         props: {

@@ -71,11 +71,11 @@ export const readPost = (slug: string) => {
     }
 }
 
-export const postsSync = postSlugsSync
+export const postsSync = () => postSlugsSync
     .map(readPost)
     .sort((l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()))
 
-export const tagMapSync = postsSync.reduce((r, post) =>
+export const tagMapSync = postsSync().reduce((r, post) =>
     Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
     {} as Record<string, IPostMeta[]>
 )
