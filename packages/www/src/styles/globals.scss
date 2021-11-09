@@ -54,18 +54,7 @@ a {
   color: $TextColor;
   position: relative;
   white-space: nowrap;
-  text-decoration-color: rgba(#00a1f1, 0.5);
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 61.8%;
-    left: -0.1em;
-    right: -0.1em;
-    bottom: 0;
-    transition: top 200ms ease-in-out;
-  }
-  &::after,
+  @include textHighlight(rgba(#00a1f1, 0.5));
   &::selection {
     background-color: rgba(#00a1f1, 0.5);
   }
@@ -73,8 +62,7 @@ a {
     top: 0;
   }
   &[href*="learning-tribes"] {
-    text-decoration-color: rgba($LTGreen, 0.5);
-    &::after,
+    @include textHighlight(rgba($LTGreen, 0.5));
     &::selection {
       background-color: rgba($LTGreen, 0.5);
     }

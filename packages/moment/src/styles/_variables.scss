@@ -9,12 +9,11 @@ $navHeight: 60px;
 $PostPaddingTop: calc(#{$navHeight} + 2em);
 
 @mixin textHighlight($color) {
-  text-decoration: underline;
-  text-decoration-thickness: 2ex;
-  text-decoration-color: $color;
-  -webkit-text-decoration-skip: none;
-  text-decoration-skip-ink: none;
-  text-underline-offset: -2.6ex;
+  box-shadow: inset 0 -0.4em 0 $color;
+  transition: box-shadow 200ms ease-in-out;
+  &:hover {
+    box-shadow: inset 0 -1.1em 0 $color;
+  }
 }
 
 @mixin inputBoxShadow($color1, $color2) {

@@ -3,16 +3,7 @@
 $mobileThreshold: 767px;
 
 @media (min-width: #{$mobileThreshold + 1}) {
-  article {
-    > section[role="figure"] {
-      img {
-        display: none;
-      }
-      &:hover {
-        background-color: var(--color-bg-tertiary);
-      }
-    }
-  }
+  //
 }
 
 @media (max-width: $mobileThreshold) {

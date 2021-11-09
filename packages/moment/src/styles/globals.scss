@@ -132,8 +132,6 @@ article {
   a:not([role="button"]) {
     color: var(--color-fg);
     @include textHighlight(var(--theme-bg-secondary));
-    text-decoration-thickness: 0.6ex;
-    text-underline-offset: -0.6ex;
     overflow-wrap: break-word;
   }
 }
