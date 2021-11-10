@@ -1,3 +1,11 @@
 $TextColor: #121314;
 $LTGreen: #16a085;
 $PagePadding: 5vh 10vw;
+
+@mixin textHighlight($color) {
+  box-shadow: inset 0 -0.4em 0 $color;
+  transition: box-shadow 200ms ease-in-out;
+  &:hover {
+    box-shadow: inset 0 -1.1em 0 $color;
+  }
+}

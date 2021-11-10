@@ -15,13 +15,6 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
 
 @media (min-width: $desktopThreshold) {
   article {
-    a:not([role="button"]) {
-      &:hover {
-        text-decoration-thickness: 2ex;
-        text-underline-offset: -2.6ex;
-      }
-    }
-
     > section[role="figure"] {
       &:hover {
         background-color: var(--color-bg-tertiary);
@@ -45,7 +38,9 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
       & + section {
         transition: opacity 0.35s ease-in;
       }
-
+    }
+    #toc + section,
+    #tocmark + section {
       ul {
         white-space: nowrap;
         margin: 0;
@@ -56,7 +51,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
         }
         a {
           display: block;
-          text-decoration: none;
+          box-shadow: none;
           min-width: 0;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -74,6 +69,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
         }
       }
     }
+
     #toc {
       padding-left: 0.67em;
     }
