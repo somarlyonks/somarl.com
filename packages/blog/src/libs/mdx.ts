@@ -55,6 +55,8 @@ export const readPost = (slug: string) => {
         cover = '',
     }} = matter(file)
 
+    if (!title) throw new Error('Broken post')
+
     const scope = {
         url: `/post/${slug}`,
         title,
@@ -71,8 +73,15 @@ export const readPost = (slug: string) => {
     }
 }
 
-export const postsSync = () => postSlugsSync
-    .map(readPost)
+const readPosts = (slugs: string[]) => slugs.reduce((r, slug) => {
+    try {
+        return r.concat(readPost(slug))
+    } catch (err) {
+        return r
+    }
+}, [] as Array<R<typeof readPost>>)
+
+export const postsSync = () => readPosts(postSlugsSync)
     .sort((l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()))
 
 export const tagMapSync = postsSync().reduce((r, post) =>
