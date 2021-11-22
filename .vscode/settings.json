@@ -18,6 +18,7 @@
     "**/*.log": true,
     "*.husky": true,
     "**/.next": true,
+    "yarn.lock": true,
     "scripts/frp/frpc": true,
     "scripts/frp/frps": true,
     // "packages/www": true,

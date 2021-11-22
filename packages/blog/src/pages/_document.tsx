@@ -1,7 +1,4 @@
-import {useContext} from 'react'
-import Document, {Html, Head, NextScript} from 'next/document'
-import {BODY_RENDER_TARGET} from 'next/dist/shared/lib/constants'
-import {HtmlContext} from 'next/dist/shared/lib/utils'
+import Document, {Html, Head, Main, NextScript} from 'next/document'
 
 
 export default class MyDocument extends Document {
@@ -16,14 +13,4 @@ export default class MyDocument extends Document {
             </Html>
         )
     }
-}
-
-const Main = () => {
-    const {inAmpMode, docComponentsRendered} = useContext(
-        HtmlContext
-    )
-
-    docComponentsRendered.Main = true
-    if (inAmpMode) return <>{BODY_RENDER_TARGET}</>
-    return <main role="main" id="__next">{BODY_RENDER_TARGET}</main>
 }
