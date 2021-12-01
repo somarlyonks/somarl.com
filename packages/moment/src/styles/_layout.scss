@@ -93,6 +93,7 @@ $colorHairline: var(--color-bg-secondary);
         margin: 8px 0;
         span {
           opacity: 0.8;
+          line-height: 1;
         }
         a:not([role="button"]) {
           @include hoverUnderline(var(--color-fg));
