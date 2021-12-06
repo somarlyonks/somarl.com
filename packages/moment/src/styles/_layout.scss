@@ -26,7 +26,7 @@ $colorHairline: var(--color-bg-secondary);
   border-radius: 100%;
 }
 
-main {
+#__next {
   > header {
     display: flex;
     justify-content: flex-start;
@@ -93,6 +93,7 @@ main {
         margin: 8px 0;
         span {
           opacity: 0.8;
+          line-height: 1;
         }
         a:not([role="button"]) {
           @include hoverUnderline(var(--color-fg));
@@ -140,12 +141,6 @@ main {
 
 article {
   box-sizing: border-box;
-}
-
-article,
-footer > div {
-  max-width: $layoutWidth;
-  margin: auto;
 }
 
 article > section[role="figure"] {

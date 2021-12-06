@@ -1,5 +1,3 @@
-/// <reference types="@mdx-js/loader" />
-
 interface IPostMeta extends Record<string, unknown> {
     title: string
     published: string

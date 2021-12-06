@@ -6,5 +6,4 @@ const withTM = require('next-transpile-modules')([
 
 module.exports = withTM({
     webpack5: true,
-    pageExtensions: ['ts', 'tsx', 'mdx'],
 })

@@ -32,7 +32,7 @@ body {
   margin: 0;
   color: var(--color-fg);
   overflow-x: hidden;
-  > main {
+  > #__next {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
