@@ -143,12 +143,6 @@ article {
   box-sizing: border-box;
 }
 
-article,
-footer > div {
-  max-width: $layoutWidth;
-  margin: auto;
-}
-
 header + article {
   padding: $PostPaddingTop 0 6em;
   div[role="contentinfo"] {

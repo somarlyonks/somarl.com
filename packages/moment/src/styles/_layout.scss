@@ -143,12 +143,6 @@ article {
   box-sizing: border-box;
 }
 
-article,
-footer > div {
-  max-width: $layoutWidth;
-  margin: auto;
-}
-
 article > section[role="figure"] {
   margin: 1em -1em;
   padding: 1em;
