@@ -38,6 +38,7 @@ $colorHairline: var(--color-bg-secondary);
     right: 0;
     z-index: $zNav;
     opacity: 0;
+    backdrop-filter: blur(0.5rem) saturate(2);
 
     > div {
       justify-content: flex-start !important;
@@ -131,11 +132,15 @@ $colorHairline: var(--color-bg-secondary);
     background-color: var(--color-bg-transparent);
     box-sizing: border-box;
     > div {
-      max-width: $layoutWidth;
       padding: 0 32px;
-      margin: auto;
     }
     padding: 10px 0px;
+  }
+  > article,
+  > header > div,
+  > footer > div {
+    max-width: $layoutWidth;
+    margin: auto;
   }
 }
 

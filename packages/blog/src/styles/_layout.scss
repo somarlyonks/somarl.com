@@ -131,11 +131,15 @@ $colorHairline: var(--color-bg-secondary);
     background-color: var(--color-bg-transparent);
     box-sizing: border-box;
     > div {
-      max-width: $layoutWidth;
       padding: 0 32px;
-      margin: auto;
     }
     padding: 10px 0px;
+  }
+  > article,
+  > header > div,
+  > footer > div {
+    max-width: $layoutWidth;
+    margin: auto;
   }
 }
 
