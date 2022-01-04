@@ -23,7 +23,7 @@ export default function CustomHead ({title, description, children}: IProps) {
             {description && <meta name="description" content={description} />}
             <meta name="robots" content="all" />
             <meta name="msapplication-TileColor" content="#00a1f1" />
-            <meta name="theme-color" content="#00a1f1" />
+            <meta name="theme-color" content="#ffffff" />
 
             <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet" />
 
