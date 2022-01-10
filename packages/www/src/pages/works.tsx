@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<IProps, {}> = async () => {
         {name: 'Nippon Colors', url: 'https://qotes.github.io/Colors/', description: '🌸 A set of Japanese traditional colors.'},
         {name: 'CSS ZEN garden', url: 'https://czg.vercel.app', description: '💅 A CSS theming template.'},
         {name: 'Arakneed', url: 'https://github.com/arakneed/crawler', description: '🕷 A common use targeted concurrent crawler.'},
-        {name: 'Apple Music Analyser', url: 'https://github.com/somarlyonks/apple-music-analyser', description: '🎵 A data visualization of personal Apple Music activities.'},
+        {name: 'Apple Music Analyser', url: 'https://ama.somarl.com', description: '🎵 A data visualization of personal Apple Music activities.'},
     ]
 
     return {
