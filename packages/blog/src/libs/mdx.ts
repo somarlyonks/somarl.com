@@ -5,6 +5,7 @@ import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkToc from 'remark-toc'
+import remarkFootnotes from 'remark-footnotes'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import remarkShiki from '../libs/remark-shiki'
@@ -77,6 +78,7 @@ const readPosts = (slugs: string[]) => slugs.reduce((r, slug) => {
     try {
         return r.concat(readPost(slug))
     } catch (err) {
+        console.error(err)
         return r
     }
 }, [] as Array<R<typeof readPost>>)
@@ -100,6 +102,7 @@ export const serializePost = async (slug: string) => {
                 remarkUnwrapImages,
                 // @ts-ignore
                 remarkSectionize,
+                remarkFootnotes,
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
