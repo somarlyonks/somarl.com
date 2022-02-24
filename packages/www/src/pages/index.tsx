@@ -15,7 +15,7 @@ export default function Index () {
             <Head title="Yang" description="I'm a Web developer at LearningTribes based in Shanghai." />
             <article>
                 <Avatars />
-                <h1>Hi<span className="m-hidden"> there</span><AH text=" 👋" /></h1>
+                <h1>Hi<span className="m-hidden"> there</span><AH text=" " /><AH className="wave" text="👋" /></h1>
                 <p>I'm Yang. Or <ruby>盛<rp>(</rp><rt>shèng</rt><rp>)</rp>阳<rp>(</rp><rt>yáng</rt><rp>)</rp></ruby>, in Chinese.</p>
                 <p>I'm a Web developer at <a href="https://learning-tribes.com" target="_blank">@Learning Tribes</a> based in Shanghai.</p>
                 <p>I speak <AH text="🀄️ " />Chinese, <AH text="🔤 " />English, <AH text="🌸 " />Japanese, <AH text="🐍 " />Python, <Javascript />Javascript, <AH text="🦀 " />Rust...</p>
@@ -41,6 +41,9 @@ function Avatars () {
     )
 }
 
-function AH ({text}: {text: string}) {
-    return (<span aria-hidden>{text}</span>)
+function AH ({text, className}: {
+    text: string
+    className?: string
+}) {
+    return (<span className={className} aria-hidden>{text}</span>)
 }
