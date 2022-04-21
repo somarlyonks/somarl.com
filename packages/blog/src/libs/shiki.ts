@@ -2,6 +2,7 @@ import {HighlighterOptions, Lang, Highlighter, getHighlighter as getShikiHighlig
 import type {Plugin} from 'unified'
 import type {Node as MdastNode} from 'unist'
 import {visit} from 'unist-util-visit'
+import {raw} from 'hast-util-raw'
 
 
 type ISchemedThemeOptions = (Omit<HighlighterOptions, 'theme'> & {
@@ -17,7 +18,7 @@ interface ICodeNode extends MdastNode {
     // meta
 }
 
-const attacher: Plugin<[IOptions?]> = options => {
+export const remarkShiki: Plugin<[IOptions?]> = options => {
     function isSchemedOptions (highlighterOptions: IOptions): highlighterOptions is ISchemedThemeOptions {
         return Reflect.has(highlighterOptions, 'darkTheme') && Reflect.has(highlighterOptions, 'lightTheme')
     }
@@ -26,8 +27,9 @@ const attacher: Plugin<[IOptions?]> = options => {
 
     function highlight (highlighter: Highlighter, input: string, lang?: string, scheme?: 'light' | 'dark') {
         const loadedLanguages = highlighter.getLoadedLanguages()
-        const highlightLang = loadedLanguages.includes(lang as Lang) ? lang : undefined
-        const code = highlighter.codeToHtml(input, highlightLang)
+        const code = highlighter.codeToHtml(input, {
+            lang: loadedLanguages.includes(lang as Lang) ? lang : undefined,
+        })
         return code.replace(resultPattern, `<pre class="scheme--${scheme}">`)
     }
 
@@ -54,8 +56,25 @@ const attacher: Plugin<[IOptions?]> = options => {
         visit(tree, 'code', (node: ICodeNode, index, parent) => {
             node.value = highlighter(node.value, node.lang)
             node.type = 'html'
+            node.data = {
+                from: 'remarkShiki',
+            }
         })
     }
 }
 
-export default attacher
+
+/**
+ * @description Remember that this deals with all **raw** mdast nodes,
+ * it works just because it's the only remark plugin returns raw nodes
+ */
+export const rehypeShiki: Plugin<[IOptions?]> = () => {
+    return async tree => {
+        visit(tree, 'raw', (node: ICodeNode, index, parent) => {
+            const newNode = raw(node)
+            for (const key in newNode) {
+                node[key] = newNode[key]
+            }
+        })
+    }
+}

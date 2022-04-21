@@ -8,7 +8,7 @@ import remarkToc from 'remark-toc'
 import remarkFootnotes from 'remark-footnotes'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import remarkShiki from '../libs/remark-shiki'
+import {remarkShiki, rehypeShiki} from './shiki'
 
 
 export const POSTS_PATH = path.join(process.cwd(), 'posts')
@@ -106,6 +106,7 @@ export const serializePost = async (slug: string) => {
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
+                [rehypeShiki],
                 // @ts-ignore
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
@@ -122,5 +123,5 @@ export const serializePost = async (slug: string) => {
 }
 
 export const searchMDXComponentInSource = (source: string, components: string[]) => Object.fromEntries(
-    components.map(component => [component, new RegExp(`mdxType:"${component}"`).test(source)])
+    components.map(component => [component, new RegExp(`_jsx\\(${component},`).test(source)])
 )
