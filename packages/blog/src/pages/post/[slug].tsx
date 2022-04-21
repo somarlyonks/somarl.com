@@ -27,7 +27,7 @@ interface IStaticProps extends ParsedUrlQuery {
 }
 
 export default function PostPage ({slug, compiledSource, scope, extraComponents}: InferGetStaticPropsType<typeof getStaticProps>) {
-    const components = Object.assign({}, postComponents, Object.fromEntries(DYNAMIC_COMPONENT_NAMES
+    const components: ANY = Object.assign({}, postComponents, Object.fromEntries(DYNAMIC_COMPONENT_NAMES
         .filter(name => extraComponents[name])
         .map(name => [name, dynamicComponents[name]]))
     )

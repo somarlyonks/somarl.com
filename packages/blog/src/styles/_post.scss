@@ -257,4 +257,35 @@ header + article {
   #toc + section {
     display: none;
   }
+
+  .footnotes {
+    margin-top: 2.5em;
+    font-size: smaller;
+    opacity: 0.5;
+    .data-footnote-backref {
+      color: var(--theme);
+      box-shadow: none;
+    }
+  }
+
+  sub, sup {
+    font-size: small;
+    line-height: 0;
+  }
+
+  a[data-footnote-ref] {
+    color: var(--theme);
+    &, &:hover {
+      box-shadow: none;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
 }

@@ -5,7 +5,6 @@
 Fonts LICENSES:
 
 - DejaVu Sans: [DejaVu Fonts Free License](https://dejavu-fonts.github.io/License.html)
-- Inter: [Open Font License](https://fonts.google.com/specimen/Inter#license)
 
 Some of the code is from:
 

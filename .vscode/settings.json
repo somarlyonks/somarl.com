@@ -27,4 +27,8 @@
   "files.associations": {
     "tslint.json": "jsonc"
   },
+  "editor.unicodeHighlight.allowedLocales": {
+    "zh-hans": true,
+    "zh-hant": true
+  }
 }
