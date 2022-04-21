@@ -5,7 +5,7 @@ import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkToc from 'remark-toc'
-import remarkFootnotes from 'remark-footnotes'
+import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import {remarkShiki, rehypeShiki} from './shiki'
@@ -102,7 +102,7 @@ export const serializePost = async (slug: string) => {
                 remarkUnwrapImages,
                 // @ts-ignore
                 remarkSectionize,
-                remarkFootnotes,
+                remarkGFM,
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
