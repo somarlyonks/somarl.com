@@ -17,7 +17,17 @@ const feed = new RSS({
     pubDate: new Date().toUTCString(),
 })
 
-fs.readdirSync(POSTS_PATH).filter(filename => /\.mdx?$/.test(filename)).forEach(filename => {
+function collectPostInDirectory (directoryPath, pathPrefix = '') {
+    return fs.readdirSync(directoryPath).reduce((r, fileName) => {
+        const filePath = path.join(directoryPath, fileName)
+        const fileSlug = path.join(pathPrefix, fileName)
+        if (fs.statSync(filePath).isDirectory()) return r.concat(collectPostInDirectory(filePath, fileSlug))
+        if (/\.mdx?$/.test(fileName)) return r.concat([fileSlug])
+        return r
+    }, [])
+}
+
+collectPostInDirectory(POSTS_PATH).forEach(filename => {
     const slug = filename.replace(/\.mdx?$/, '')
     const filepath = path.join(POSTS_PATH, filename)
     const file = fs.readFileSync(filepath)

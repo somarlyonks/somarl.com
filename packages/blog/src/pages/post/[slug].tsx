@@ -1,11 +1,11 @@
 import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
 import {MDXRemote} from 'next-mdx-remote'
 
-import {postComponents, PostLayout, PostInfo, PostTitle} from '../../components/post'
+import {postComponents, PostLayout, PostInfo, PostTitle, PostCollection} from '../../components/post'
 import useInteractiveToc from '../../libs/useInteractiveToc'
 
 import type {ParsedUrlQuery} from 'querystring'
-import {postSlugsSync, serializePost, searchMDXComponentInSource} from '../../libs/mdx'
+import {postSlugsSync, serializePost, searchMDXComponentInSource, collectionMapSync} from '../../libs/mdx'
 import dynamic from 'next/dynamic'
 
 
@@ -19,6 +19,7 @@ interface IProps {
     slug: string
     compiledSource: string
     scope: IPostMeta
+    collection?: IPostMeta[]
     extraComponents: Record<string, boolean>
 }
 
@@ -26,7 +27,7 @@ interface IStaticProps extends ParsedUrlQuery {
     slug: string
 }
 
-export default function PostPage ({slug, compiledSource, scope, extraComponents}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function PostPage ({slug, compiledSource, scope, extraComponents, collection}: InferGetStaticPropsType<typeof getStaticProps>) {
     const components: ANY = Object.assign({}, postComponents, Object.fromEntries(DYNAMIC_COMPONENT_NAMES
         .filter(name => extraComponents[name])
         .map(name => [name, dynamicComponents[name]]))
@@ -39,6 +40,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents}
             <article>
                 <PostTitle post={scope} />
                 <MDXRemote compiledSource={compiledSource} scope={scope} components={components} />
+                {!!(scope.collection && collection) && <PostCollection post={scope} collection={collection} />}
                 <PostInfo post={scope} />
             </article>
         </PostLayout>
@@ -48,12 +50,14 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents}
 export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({params: {slug} = {slug: ''}}) => {
     const {compiledSource, scope} = await serializePost(slug)
     const extraComponents = searchMDXComponentInSource(compiledSource, DYNAMIC_COMPONENT_NAMES)
+    const collection = collectionMapSync[scope.collection] || null
 
     return {
         props: {
             slug,
             compiledSource,
             scope,
+            collection,
             extraComponents,
         },
     }

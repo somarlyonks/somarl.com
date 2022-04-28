@@ -182,9 +182,9 @@ header + article {
 
     h1 ~ p,
     blockquote ~ p {
-      &::before,
-      &::after {
-        content: "" !important;
+      &:first-of-type::before,
+      &:last-of-type::after {
+        content: "";
       }
     }
 
@@ -268,14 +268,16 @@ header + article {
     }
   }
 
-  sub, sup {
+  sub,
+  sup {
     font-size: small;
     line-height: 0;
   }
 
   a[data-footnote-ref] {
     color: var(--theme);
-    &, &:hover {
+    &,
+    &:hover {
       box-shadow: none;
     }
     &:hover {
@@ -286,6 +288,26 @@ header + article {
     }
     &::after {
       content: "]";
+    }
+  }
+
+  .post-collection {
+    padding: 1em;
+    background: var(--color-bg-tertiary);
+    border-radius: 0.5em;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+
+      li:not(.current) {
+        opacity: 0.5;
+        transition: opacity 0.2s ease;
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 }
