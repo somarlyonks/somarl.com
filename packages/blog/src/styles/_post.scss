@@ -62,6 +62,10 @@ header + article {
     margin: 0 0 1em 0;
   }
 
+  p:empty {
+    padding-bottom: 1em;
+  }
+
   p {
     font-size: 1em;
     a {

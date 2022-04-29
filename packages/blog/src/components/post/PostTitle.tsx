@@ -41,7 +41,7 @@ export default function PostTitle ({post}: IProps) {
         <>
             <section role={post.cover ? 'banner' : ''}>
                 <h1 ref={$h1}>{post.title}</h1>
-                {!!post.abstract && <p>{post.abstract}</p>}
+                <p>{post.abstract}</p>
                 {!!post.cover && (
                     <figure>
                         <img ref={$img} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
