@@ -19,12 +19,12 @@ export default function PostCollection ({post, collection}: IProps) {
                 <Link href={`/collection/${post.collection}`}><a><strong>{post.collection}</strong></a></Link>
             </p>
             <ul>
-                {collection.slice(postIndex || postIndex - 1, postIndex + (postIndex ? 3 : 2)).map(collectionPost => (
+                {collection.slice(postIndex && postIndex - 1, postIndex + (postIndex ? 2 : 3)).map(collectionPost => (
                     <li className={collectionPost.url === post.url ? 'current' : ''} key={collectionPost.url}>
                         <Link href={collectionPost.url}>{collectionPost.title}</Link>
                     </li>
                 ))}
-                {!!(collection.length - postIndex > 2) && (<li><small>...</small></li>)}
+                {!!(collection.length - postIndex > (postIndex ? 2 : 3)) && (<li><small>...</small></li>)}
             </ul>
         </section>
     )

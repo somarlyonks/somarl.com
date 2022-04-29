@@ -106,7 +106,7 @@ export const tagMapSync = postsSync().reduce((r, post) =>
 export const collectionMapSync = postsSync().reduce((r, post) => {
     const {collection} = post.scope
     if (!collection) return r
-    return Object.assign(r, {[collection]: (r[collection] || []).concat(post.scope)})
+    return Object.assign(r, {[collection]: [post.scope].concat(r[collection] || [])})
 }, {} as Record<string, IPostMeta[]>)
 
 export const serializePost = async (slug: string) => {
