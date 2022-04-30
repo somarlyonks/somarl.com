@@ -18,12 +18,13 @@
     "**/*.log": true,
     "*.husky": true,
     "**/.next": true,
-    "yarn.lock": true,
     "scripts/frp/frpc": true,
     "scripts/frp/frps": true,
     // "packages/www": true,
   },
-  "search.exclude": {},
+  "search.exclude": {
+    "yarn.lock": true,
+  },
   "files.associations": {
     "tslint.json": "jsonc"
   },

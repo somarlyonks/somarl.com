@@ -8,6 +8,8 @@ interface IPostMeta extends Record<string, unknown> {
     /** @optional */
     tags: string[]
     /** @optional */
+    collection: string
+    /** @optional */
     cover: {
         src: string
         /** @optional */

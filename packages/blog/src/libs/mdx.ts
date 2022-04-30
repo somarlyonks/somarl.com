@@ -1,4 +1,4 @@
-import {readdirSync, readFileSync} from 'fs'
+import {readdirSync, readFileSync, statSync} from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
@@ -11,13 +11,23 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import {remarkShiki, rehypeShiki} from './shiki'
 
 
-export const POSTS_PATH = path.join(process.cwd(), 'posts')
+const POSTS_ROOT = path.join(process.cwd(), 'posts')
 
-export const postFilenamesSync = () => readdirSync(POSTS_PATH).filter(filename => /\.mdx?$/.test(filename))
+function collectPostInDirectory (directoryPath: string, pathPrefix = ''): string[] {
+    return readdirSync(directoryPath).reduce((r, fileName) => {
+        const filePath = path.join(directoryPath, fileName)
+        const fileSlug = path.join(pathPrefix, fileName)
+        if (statSync(filePath).isDirectory()) return r.concat(collectPostInDirectory(filePath, fileSlug))
+        if (/\.mdx?$/.test(fileName)) return r.concat([fileSlug])
+        return r
+    }, [] as string[])
+}
+
+export const postFilenamesSync = () => collectPostInDirectory(POSTS_ROOT)
 
 export const postSlugsSync = postFilenamesSync().map(filename => filename.replace(/\.mdx?$/, ''))
 
-export const postSlugToPath = (slug: string) => path.join(POSTS_PATH, `${slug}.mdx`)
+const postSlugToPath = (slug: string) => path.join(POSTS_ROOT, `${slug}.mdx`)
 
 export const HastLinkIcon = {
     type: 'element',
@@ -53,6 +63,7 @@ export const readPost = (slug: string) => {
         language,
         abstract = '',
         tags = [],
+        collection = '',
         cover = '',
     }} = matter(file)
 
@@ -65,6 +76,7 @@ export const readPost = (slug: string) => {
         language,
         abstract,
         tags,
+        collection,
         cover: (cover && !cover.src) ? {src: cover} : cover,
     } as IPostMeta
 
@@ -90,6 +102,12 @@ export const tagMapSync = postsSync().reduce((r, post) =>
     Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
     {} as Record<string, IPostMeta[]>
 )
+
+export const collectionMapSync = postsSync().reduce((r, post) => {
+    const {collection} = post.scope
+    if (!collection) return r
+    return Object.assign(r, {[collection]: [post.scope].concat(r[collection] || [])})
+}, {} as Record<string, IPostMeta[]>)
 
 export const serializePost = async (slug: string) => {
     const {content, scope} = readPost(slug)
