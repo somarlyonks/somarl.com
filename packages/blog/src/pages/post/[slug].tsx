@@ -9,11 +9,11 @@ import {postSlugsSync, serializePost, searchMDXComponentInSource, collectionMapS
 import dynamic from 'next/dynamic'
 
 
-const DYNAMIC_COMPONENT_NAMES = ['NextJS', 'MDXIcon']
 const dynamicComponents = {
     NextJS: dynamic(() => import(`../../components/icons/NextJS`)),
     MDXIcon: dynamic(() => import(`../../components/icons/MDXIcon`)),
 }
+const DYNAMIC_COMPONENT_NAMES = Array.from(Object.keys(dynamicComponents))
 
 interface IProps {
     slug: string
@@ -48,7 +48,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents,
 }
 
 export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({params: {slug} = {slug: ''}}) => {
-    const {compiledSource, scope} = await serializePost(slug)
+    const {compiledSource, scope} = await serializePost(decodeURIComponent(slug))
     const extraComponents = searchMDXComponentInSource(compiledSource, DYNAMIC_COMPONENT_NAMES)
     const collection = collectionMapSync[scope.collection] || null
 
@@ -64,8 +64,12 @@ export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({para
 }
 
 export const getStaticPaths: GetStaticPaths<IStaticProps> = async ctx => {
+    const slugs: string[] = postSlugsSync
+        .map(slug => [slug].concat(slug.includes('/') ? slug.replace(/\//g, encodeURIComponent('/')) : []))
+        .reduce((r, c) => r.concat(c))
+
     return {
-        paths: postSlugsSync.map(slug => ({
+        paths: slugs.map(slug => ({
             params: {
                 slug,
             },
