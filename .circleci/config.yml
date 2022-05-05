@@ -16,7 +16,6 @@ jobs:
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
       - run: yarn install --frozen-lockfile
-      - run: yarn bootstrap
       - save_cache:
           name: Cache Yarn Package
           key: yarn-packages-{{ checksum "yarn.lock" }}
@@ -24,10 +23,10 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Tsc build
-          command: npm run build
+          command: yarn run build
       - run:
           name: Jest test
-          command: npm run ci
+          command: yarn run ci
   # test:
   #   docker:
   #     - image: circleci/node:8-stretch-browsers
