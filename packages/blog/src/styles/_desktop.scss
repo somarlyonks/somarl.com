@@ -93,9 +93,6 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     section[role="banner"] {
       figure {
         margin-left: calc(-12em - 1ch);
-        img {
-          width: 100%;
-        }
         figcaption {
           display: none;
         }

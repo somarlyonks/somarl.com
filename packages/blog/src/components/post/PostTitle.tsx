@@ -1,4 +1,5 @@
-import {useRef, useEffect} from 'react'
+import Image from 'next/image'
+
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
 
 
@@ -27,16 +28,6 @@ export default function PostTitle ({post}: IProps) {
         })
     }
 
-    const $img = useRef<HTMLImageElement>(null)
-    useEffect(() => {
-        if (!post.cover) return
-
-        if ($img.current) {
-            $img.current.onload = moveInfoSection
-            if ($img.current.complete) moveInfoSection()
-        } else moveInfoSection()
-    }, [])
-
     return (
         <>
             <section role={post.cover ? 'banner' : ''}>
@@ -44,7 +35,7 @@ export default function PostTitle ({post}: IProps) {
                 <p>{post.abstract}</p>
                 {!!post.cover && (
                     <figure>
-                        <img ref={$img} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
+                        <Image priority layout="raw" width="1000" height="1000" onLoadingComplete={moveInfoSection} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
                         {post.cover.work && (
                             <figcaption>
                                 {post.cover.author && <span>{post.cover.author}</span>}
