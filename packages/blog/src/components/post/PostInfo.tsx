@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PostTime from './PostTime'
 import HashTag from '../icons/HashTag'
+import Photos from '../icons/Photos'
 
 
 interface IProps {
@@ -31,6 +32,13 @@ export default function PostInfo ({post}: IProps) {
                     ))}
                 </section>
             )}
+            {post.collection && (
+                <section>
+                    <h2>Collection</h2>
+                    <Link href={`/collection/${post.collection}`}><a role="button"><Photos />{post.collection}</a></Link>
+                </section>
+            )
+            }
         </div>
     )
 }
