@@ -180,14 +180,14 @@
     "@csszen/hooks.usebem" "0.1.1"
     core-js "^3.0.0"
 
-"@csszen/components.copy@0.1.1":
-  version "0.1.1"
-  resolved "https://node.bit.dev/@csszen/components.copy/-/@csszen-components.copy-0.1.1.tgz#ba680b8b653d5f2f9eaab4d4690145a85de0d7f2"
-  integrity sha1-umgLi2U9Xy+eqrTUaQFFqF3g1/I=
+"@csszen/components.copy@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/components.copy/-/@csszen-components.copy-0.2.0.tgz#b5d325900dc6e7c1e1d1cdba306e16c7896c6551"
+  integrity sha1-tdMlkA3G58Hh0c26MG4Wx4lsZVE=
   dependencies:
-    "@csszen/hooks.useclipboard" "0.0.1"
-    "@csszen/icons.octiconcheck" "1.0.0"
-    "@csszen/icons.octiconclippy" "1.0.1"
+    "@csszen/hooks.useclipboard" "0.1.0"
+    "@csszen/icons.octiconcheck" "1.1.0"
+    "@csszen/icons.octiconclippy" "1.1.0"
     core-js "^3.0.0"
 
 "@csszen/components.flexmini@0.1.0":
@@ -223,10 +223,10 @@
     "@somarlyonks/bem" "1.0.1"
     core-js "^3.0.0"
 
-"@csszen/hooks.useclipboard@0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/@csszen/hooks.useclipboard/-/@csszen-hooks.useclipboard-0.0.1.tgz#6fbc34f45be38737ea1cf4b85483242a7ed88005"
-  integrity sha1-b7w09FvjhzfqHPS4VIMkKn7YgAU=
+"@csszen/hooks.useclipboard@0.1.0":
+  version "0.1.0"
+  resolved "https://node.bit.dev/@csszen/hooks.useclipboard/-/@csszen-hooks.useclipboard-0.1.0.tgz#81ab2aaf96e655642f49e4d4fc89e9bbafa4e179"
+  integrity sha1-gasqr5bmVWQvSeTU/Inpu6+k4Xk=
   dependencies:
     core-js "^3.0.0"
 
@@ -237,17 +237,17 @@
   dependencies:
     core-js "^3.0.0"
 
-"@csszen/icons.octiconcheck@1.0.0":
-  version "1.0.0"
-  resolved "https://node.bit.dev/@csszen/icons.octiconcheck/-/@csszen-icons.octiconcheck-1.0.0.tgz#e9ddc4cd2fbfdf5db17946789d0c8d2e289ea6be"
-  integrity sha1-6d3EzS+/312xeUZ4nQyNLiiepr4=
+"@csszen/icons.octiconcheck@1.1.0":
+  version "1.1.0"
+  resolved "https://node.bit.dev/@csszen/icons.octiconcheck/-/@csszen-icons.octiconcheck-1.1.0.tgz#4ebee277a583e4b3f2a567042cb56981c9825d28"
+  integrity sha1-Tr7id6WD5LPypWcELLVpgcmCXSg=
   dependencies:
     core-js "^3.0.0"
 
-"@csszen/icons.octiconclippy@1.0.1":
-  version "1.0.1"
-  resolved "https://node.bit.dev/@csszen/icons.octiconclippy/-/@csszen-icons.octiconclippy-1.0.1.tgz#6e54c265876b55d98de66e22c3f2ac0fea28041f"
-  integrity sha1-blTCZYdrVdmN5m4iw/KsD+ooBB8=
+"@csszen/icons.octiconclippy@1.1.0":
+  version "1.1.0"
+  resolved "https://node.bit.dev/@csszen/icons.octiconclippy/-/@csszen-icons.octiconclippy-1.1.0.tgz#436910d07b62ee6c88ec9db4bd41f39f02af317a"
+  integrity sha1-Q2kQ0Hti7myI7J20vUHznwKvMXo=
   dependencies:
     core-js "^3.0.0"
 
