@@ -230,10 +230,10 @@
   dependencies:
     core-js "^3.0.0"
 
-"@csszen/icons.github@1.0.0":
-  version "1.0.0"
-  resolved "https://node.bit.dev/@csszen/icons.github/-/@csszen-icons.github-1.0.0.tgz#f4532e13459d685b8d6f84776a57518ccdc8ef87"
-  integrity sha1-9FMuE0WdaFuNb4R3aldRjM3I74c=
+"@csszen/icons.github@1.1.0":
+  version "1.1.0"
+  resolved "https://node.bit.dev/@csszen/icons.github/-/@csszen-icons.github-1.1.0.tgz#3b94de56aa91ec78256839abeff6fc05b08e06cc"
+  integrity sha1-O5TeVqqR7HglaDmr7/b8BbCOBsw=
   dependencies:
     core-js "^3.0.0"
 
