@@ -2,7 +2,7 @@ import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
 import Head from '../../components/Head'
 import Footer from '../../components/Footer'
 import PostList from '../../components/PostList'
-import Photos from '../../components/icons/Photos'
+import Book from '../../components/icons/Book'
 
 import type {ParsedUrlQuery} from 'querystring'
 import {collectionMapSync} from '../../libs/mdx'
@@ -22,7 +22,7 @@ export default function Collection ({posts, collection}: InferGetStaticPropsType
         <>
             <Head title={`${collection} | Yang`} description="I'm a Web developer at LearningTribes based in Shanghai." />
             <article>
-                <h1><Photos />{collection}</h1>
+                <h1><Book />{collection}</h1>
                 <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} in collection <cite>{collection}</cite></p>
                 <PostList posts={posts} />
             </article>
