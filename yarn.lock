@@ -251,10 +251,10 @@
   dependencies:
     core-js "^3.0.0"
 
-"@csszen/icons.octiconrss@1.0.0":
-  version "1.0.0"
-  resolved "https://node.bit.dev/@csszen/icons.octiconrss/-/@csszen-icons.octiconrss-1.0.0.tgz#56f77bc7a85c31b52bbd4f968d5a48e98dbdc2f1"
-  integrity sha1-Vvd7x6hcMbUrvU+WjVpI6Y29wvE=
+"@csszen/icons.octiconrss@1.1.0":
+  version "1.1.0"
+  resolved "https://node.bit.dev/@csszen/icons.octiconrss/-/@csszen-icons.octiconrss-1.1.0.tgz#6fc960e85ba58483daf1cd9405aa19a927f189db"
+  integrity sha1-b8lg6FulhIPa8c2UBaoZqSfxids=
   dependencies:
     core-js "^3.0.0"
 
