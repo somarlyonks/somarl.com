@@ -223,6 +223,14 @@
     "@somarlyonks/bem" "1.0.1"
     core-js "^3.0.0"
 
+"@csszen/hooks.usebem@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/hooks.usebem/-/@csszen-hooks.usebem-0.2.0.tgz#644d914e5f6e472c0d14734024e5160496b38d3a"
+  integrity sha1-ZE2RTl9uRywNFHNAJOUWBJazjTo=
+  dependencies:
+    "@somarlyonks/bem" "1.0.1"
+    core-js "^3.0.0"
+
 "@csszen/hooks.useclipboard@0.1.0":
   version "0.1.0"
   resolved "https://node.bit.dev/@csszen/hooks.useclipboard/-/@csszen-hooks.useclipboard-0.1.0.tgz#81ab2aaf96e655642f49e4d4fc89e9bbafa4e179"
