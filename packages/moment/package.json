@@ -15,7 +15,7 @@
     "@csszen/components.button": "0.2.0",
     "@csszen/components.copy": "0.2.0",
     "@csszen/components.flexmini": "0.1.0",
-    "@csszen/components.fof": "1.1.0",
+    "@csszen/components.fof": "1.3.0",
     "@csszen/hooks.usebem": "0.2.0",
     "@csszen/icons.github": "1.1.0",
     "livephotoskit": "1.5.6",

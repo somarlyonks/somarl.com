@@ -180,6 +180,15 @@
     "@csszen/hooks.usebem" "0.1.1"
     core-js "^3.0.0"
 
+"@csszen/components.button@0.3.0":
+  version "0.3.0"
+  resolved "https://node.bit.dev/@csszen/components.button/-/@csszen-components.button-0.3.0.tgz#c41d79755eb74c362bc64d1b0ed1295b3eb3b21a"
+  integrity sha1-xB15dV63TDYrxk0bDtEpWz6zsho=
+  dependencies:
+    "@csszen/components.flexmini" "0.2.0"
+    "@csszen/hooks.usebem" "0.2.0"
+    core-js "^3.0.0"
+
 "@csszen/components.copy@0.2.0":
   version "0.2.0"
   resolved "https://node.bit.dev/@csszen/components.copy/-/@csszen-components.copy-0.2.0.tgz#b5d325900dc6e7c1e1d1cdba306e16c7896c6551"
@@ -198,20 +207,28 @@
     "@csszen/hooks.usebem" "0.1.1"
     core-js "^3.0.0"
 
-"@csszen/components.fof@1.1.0":
-  version "1.1.0"
-  resolved "https://node.bit.dev/@csszen/components.fof/-/@csszen-components.fof-1.1.0.tgz#512c9c21a001e968e460fe5633ee5fba3db33fdb"
-  integrity sha1-USycIaAB6WjkYP5WM+5fuj2zP9s=
+"@csszen/components.flexmini@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/components.flexmini/-/@csszen-components.flexmini-0.2.0.tgz#19bf0c3ed35dc49877bda95af0d1a262e1b6a60d"
+  integrity sha1-Gb8MPtNdxJh3vala8NGiYuG2pg0=
   dependencies:
-    "@csszen/components.button" "0.2.0"
-    "@csszen/components.flexmini" "0.1.0"
-    "@csszen/components.quote" "0.1.1"
+    "@csszen/hooks.usebem" "0.2.0"
     core-js "^3.0.0"
 
-"@csszen/components.quote@0.1.1":
-  version "0.1.1"
-  resolved "https://node.bit.dev/@csszen/components.quote/-/@csszen-components.quote-0.1.1.tgz#9ca0803cc5ba88199c405d4c4e28528ac2183b68"
-  integrity sha1-nKCAPMW6iBmcQF1MTihSisIYO2g=
+"@csszen/components.fof@1.3.0":
+  version "1.3.0"
+  resolved "https://node.bit.dev/@csszen/components.fof/-/@csszen-components.fof-1.3.0.tgz#edac313cd5bbf7491c898298b13d0c3df8d531cb"
+  integrity sha1-7awxPNW790kciYKYsT0MPfjVMcs=
+  dependencies:
+    "@csszen/components.button" "0.3.0"
+    "@csszen/components.flexmini" "0.2.0"
+    "@csszen/components.quote" "0.2.0"
+    core-js "^3.0.0"
+
+"@csszen/components.quote@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/components.quote/-/@csszen-components.quote-0.2.0.tgz#a89678887896e083ac352811c90eefeb2d0f45eb"
+  integrity sha1-qJZ4iHiW4IOsNSgRyQ7v6y0PRes=
   dependencies:
     core-js "^3.0.0"
 
