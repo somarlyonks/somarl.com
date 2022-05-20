@@ -198,6 +198,14 @@
     "@csszen/hooks.usebem" "0.1.1"
     core-js "^3.0.0"
 
+"@csszen/components.flexmini@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/components.flexmini/-/@csszen-components.flexmini-0.2.0.tgz#19bf0c3ed35dc49877bda95af0d1a262e1b6a60d"
+  integrity sha1-Gb8MPtNdxJh3vala8NGiYuG2pg0=
+  dependencies:
+    "@csszen/hooks.usebem" "0.2.0"
+    core-js "^3.0.0"
+
 "@csszen/components.fof@1.1.0":
   version "1.1.0"
   resolved "https://node.bit.dev/@csszen/components.fof/-/@csszen-components.fof-1.1.0.tgz#512c9c21a001e968e460fe5633ee5fba3db33fdb"
@@ -219,6 +227,14 @@
   version "0.1.1"
   resolved "https://node.bit.dev/@csszen/hooks.usebem/-/@csszen-hooks.usebem-0.1.1.tgz#e86a3c5623d0c5238d97182ae854b6bb85e80e7b"
   integrity sha1-6Go8ViPQxSONlxgq6FS2u4XoDns=
+  dependencies:
+    "@somarlyonks/bem" "1.0.1"
+    core-js "^3.0.0"
+
+"@csszen/hooks.usebem@0.2.0":
+  version "0.2.0"
+  resolved "https://node.bit.dev/@csszen/hooks.usebem/-/@csszen-hooks.usebem-0.2.0.tgz#644d914e5f6e472c0d14734024e5160496b38d3a"
+  integrity sha1-ZE2RTl9uRywNFHNAJOUWBJazjTo=
   dependencies:
     "@somarlyonks/bem" "1.0.1"
     core-js "^3.0.0"
