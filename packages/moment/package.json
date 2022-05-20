@@ -12,7 +12,7 @@
     "ci": "next build"
   },
   "dependencies": {
-    "@csszen/components.button": "0.2.0",
+    "@csszen/components.button": "0.3.0",
     "@csszen/components.copy": "0.2.0",
     "@csszen/components.flexmini": "0.1.0",
     "@csszen/components.fof": "1.1.0",
