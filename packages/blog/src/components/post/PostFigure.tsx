@@ -1,3 +1,6 @@
+import Image from 'next/image'
+
+
 interface IProps {
     src: string
     work?: string
@@ -9,8 +12,8 @@ interface IProps {
 
 export default function PostFigure ({src, alt, work, author, date, material}: IProps) {
     return (
-        <figure>
-            <img src={src} alt={alt || work} title={work} />
+        <figure role="img">
+            <Image priority layout="raw" width="1000" height="1000" src={src} alt={alt} title={work} />
             {work && (
                 <figcaption>
                     {author && <span>{author}</span>}

@@ -124,21 +124,27 @@ header + article {
     margin-block-end: 0;
   }
 
-  figure {
+  figure[role="img"] {
     text-align: center;
-  }
-  figcaption {
-    font-size: smaller;
-    opacity: 0.5;
-    > span {
-      &:not(:last-of-type)::after {
-        content: ".";
-      }
-      + span {
-        &::before {
-          content: " ";
+    figcaption {
+      font-size: smaller;
+      opacity: 0.5;
+      > span {
+        &:not(:last-of-type)::after {
+          content: ".";
+        }
+        + span {
+          &::before {
+            content: " ";
+          }
         }
       }
+    }
+  }
+
+  figure[role="pre"] {
+    figcaption {
+      display: none;
     }
   }
 

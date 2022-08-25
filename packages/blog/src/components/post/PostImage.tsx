@@ -6,7 +6,7 @@ interface IProps {
 
 export default function PostImage ({src, alt, title}: IProps) {
     return (
-        <figure>
+        <figure role="img">
             <img src={src} alt={alt} title={title} />
             <figcaption>{title}</figcaption>
         </figure>

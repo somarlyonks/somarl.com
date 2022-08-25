@@ -41,7 +41,11 @@ export const remarkShiki: Plugin<[IOptions?]> = options => {
             return (input: string, lang?: string) => {
                 const lightCode = highlight(lightHighlighter, input, lang, 'light')
                 const darkCode = highlight(darkHighlighter, input, lang, 'dark')
-                return `<div>${lightCode}${darkCode}</div>`
+                return `<figure role="pre">
+    ${lightCode}
+    ${darkCode}
+    ${lang ? `<figcaption>${lang}</figcaption>` : ''}
+</figure>`
             }
         } else {
             const highlighter = await getShikiHighlighter({theme: highlighterOptions.theme})

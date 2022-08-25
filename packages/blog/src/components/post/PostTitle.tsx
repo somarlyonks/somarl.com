@@ -34,7 +34,7 @@ export default function PostTitle ({post}: IProps) {
                 <h1 ref={$h1}>{post.title}</h1>
                 <p>{post.abstract}</p>
                 {!!post.cover && (
-                    <figure>
+                    <figure role="img">
                         <Image priority layout="raw" width="1000" height="1000" onLoadingComplete={moveInfoSection} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
                         {post.cover.work && (
                             <figcaption>
