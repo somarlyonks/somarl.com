@@ -32,13 +32,12 @@ export default function PostInfo ({post}: IProps) {
                     ))}
                 </section>
             )}
-            {post.collection && (
+            {!!post.collection && (
                 <section>
                     <h2>Collection</h2>
                     <Link href={`/collection/${post.collection}`}><a role="button"><Book />{post.collection}</a></Link>
                 </section>
-            )
-            }
+            )}
         </div>
     )
 }

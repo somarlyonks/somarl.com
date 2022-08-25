@@ -35,6 +35,7 @@
     "frpc": "cd scripts/frp && sh frpc.sh && ./frpc -c frpc.ini",
     "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
   },
+  "dependencies": {},
   "devDependencies": {
     "@somarlyonks/commitlint": "2.0.0",
     "@somarlyonks/tslint": "1.0.1",

@@ -69,7 +69,7 @@ export const readPost = (slug: string) => {
 
     if (!title) throw new Error('Broken post')
 
-    const scope = {
+    const scope: IPostMeta = {
         url: `/post/${slug}`,
         title,
         published,
@@ -78,7 +78,7 @@ export const readPost = (slug: string) => {
         tags,
         collection,
         cover: (cover && !cover.src) ? {src: cover} : cover,
-    } as IPostMeta
+    }
 
     return {
         content,
@@ -93,7 +93,7 @@ const readPosts = (slugs: string[]) => slugs.reduce((r, slug) => {
         console.error(err)
         return r
     }
-}, [] as Array<R<typeof readPost>>)
+}, [] as Array<ReturnType<typeof readPost>>)
 
 export const postsSync = () => readPosts(postSlugsSync)
     .sort((l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()))
@@ -118,14 +118,12 @@ export const serializePost = async (slug: string) => {
                 remarkSlug,
                 remarkToc,
                 remarkUnwrapImages,
-                // @ts-ignore
                 remarkSectionize,
                 remarkGFM,
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
                 [rehypeShiki],
-                // @ts-ignore
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
                     properties: {

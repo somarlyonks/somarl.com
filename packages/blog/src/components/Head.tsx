@@ -3,7 +3,7 @@ import Head from 'next/head'
 import {ReactNode} from 'react'
 
 
-interface IProps {
+export interface IProps {
     title: string
     description?: string
     children?: ReactNode
