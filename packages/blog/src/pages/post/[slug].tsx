@@ -37,7 +37,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents,
 
     return (
         <PostLayout slug={slug} title={scope.title} description={scope.abstract}>
-            <article>
+            <article lang={scope.language || 'en'}>
                 <PostTitle post={scope} />
                 <MDXRemote compiledSource={compiledSource} scope={scope} components={components} />
                 {!!(scope.collection && collection) && <PostCollection post={scope} collection={collection} />}
