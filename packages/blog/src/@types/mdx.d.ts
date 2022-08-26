@@ -20,6 +20,8 @@ interface IPostMeta extends Record<string, unknown> {
         date: string
         /** @optional */
         material: string
+        /** @optional */
+        blurDataURL: string
     }
 
     /** @generated */

@@ -28,6 +28,7 @@
     "gray-matter": "4.0.3",
     "hast-util-raw": "7.2.2",
     "next-mdx-remote": "4.1.0",
+    "plaiceholder": "2.4.0",
     "rehype-autolink-headings": "6.1.1",
     "remark-gfm": "3.0.1",
     "remark-sectionize": "1.1.1",
@@ -35,6 +36,7 @@
     "remark-toc": "7.2.0",
     "remark-unwrap-images": "2.1.0",
     "rss": "1.2.2",
+    "sharp": "0.30.7",
     "shiki": "0.11.1",
     "unist-util-visit": "4.1.1"
   }

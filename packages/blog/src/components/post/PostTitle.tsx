@@ -35,7 +35,18 @@ export default function PostTitle ({post}: IProps) {
                 <p>{post.abstract}</p>
                 {!!post.cover && (
                     <figure role="img">
-                        <Image priority layout="raw" width="1000" height="1000" onLoadingComplete={moveInfoSection} src={post.cover.src} alt="cover" title={post.title} onLoad={moveInfoSection} />
+                        <Image priority
+                            layout="raw"
+                            width="1000"
+                            height="1000"
+                            alt="cover"
+                            title={post.title}
+                            {...post.cover}
+                            src={post.cover.src}
+                            placeholder="blur"
+                            onLoad={moveInfoSection}
+                            onLoadingComplete={moveInfoSection}
+                        />
                         {post.cover.work && (
                             <figcaption>
                                 {post.cover.author && <span>{post.cover.author}</span>}
