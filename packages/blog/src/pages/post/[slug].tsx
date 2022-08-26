@@ -28,18 +28,19 @@ interface IStaticProps extends ParsedUrlQuery {
 }
 
 export default function PostPage ({slug, compiledSource, scope, extraComponents, collection}: InferGetStaticPropsType<typeof getStaticProps>) {
-    const components: ANY = Object.assign({}, postComponents, Object.fromEntries(DYNAMIC_COMPONENT_NAMES
-        .filter(name => extraComponents[name])
-        .map(name => [name, dynamicComponents[name]]))
+    const dynamicComponentNames = DYNAMIC_COMPONENT_NAMES.filter(name => extraComponents[name])
+    const components: ANY = Object.assign({},
+        postComponents,
+        Object.fromEntries(dynamicComponentNames.map(name => [name, dynamicComponents[name]]))
     )
 
-    useInteractiveToc()
+    useInteractiveToc(!!dynamicComponentNames.length)
 
     return (
         <PostLayout slug={slug} title={scope.title} description={scope.abstract}>
             <article lang={scope.language || 'en'}>
                 <PostTitle post={scope} />
-                <MDXRemote compiledSource={compiledSource} scope={scope} components={components} />
+                <MDXRemote lazy={!!dynamicComponentNames.length} compiledSource={compiledSource} scope={scope} components={components} />
                 {!!(scope.collection && collection) && <PostCollection post={scope} collection={collection} />}
                 <PostInfo post={scope} />
             </article>

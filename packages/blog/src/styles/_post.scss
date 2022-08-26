@@ -1,4 +1,5 @@
-header + article {
+header + article,
+header + article > div {
   font-size: calc(14px + 0.33vw);
   line-height: 1.5;
   position: relative;
@@ -262,9 +263,10 @@ header + article {
     margin: 0 auto 1em;
   }
 
+  #tocanchor,
   #tocmark,
   #toc,
-  #toc + section {
+  #tocanchor + section {
     display: none;
   }
 

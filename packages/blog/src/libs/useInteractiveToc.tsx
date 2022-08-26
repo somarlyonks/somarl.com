@@ -1,28 +1,34 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
 
-export default function useInuseInteractiveToc () {
+export default function useInuseInteractiveToc (lazy: boolean) {
+    const [ready, setReady] = useState(false)
     useEffect(() => {
-        const elementsToObserve = document.querySelectorAll('article section > [id]')
+        if (!lazy) setReady(true)
+        else requestIdleCallback(() => setReady(true))
+    }, [])
+
+    useEffect(() => {
         const visibleClass = 'visible'
         const $toc = document.getElementById('toc')
-        const $tocTree = document.querySelector('#toc + ul')
-        const $tocTreeContainer = $tocTree?.parentElement
-        if (!$toc || !$tocTree || !$tocTreeContainer) return
+        const $tocTree = document.querySelector('#tocmark + ul')
+        if (!$toc || !$tocTree) return
 
         const $svg = document.getElementById('tocmark')
         const $svgPath = $svg?.querySelector<SVGPathElement>('path')
         if (!$svg || !$svgPath) return
 
-        $toc.parentNode?.parentNode?.insertBefore($toc, $toc.parentNode)
-        $tocTree.parentNode?.insertBefore($svg, $tocTree)
-
         const navItems = [...$tocTree.querySelectorAll('li')].map($li => {
             const $anchor = $li.querySelector('a')!
             const targetID = ($anchor.getAttribute('href') || '#').slice(1)
-            const target = document.getElementById(targetID) || document.getElementById(decodeURIComponent(targetID))
 
-            return {listItem: $li, $anchor, target, pathStart: Infinity, pathEnd: -Infinity}
+            return {
+                listItem: $li,
+                $anchor,
+                target: document.getElementById(targetID) || document.getElementById(decodeURIComponent(targetID)),
+                pathStart: Infinity,
+                pathEnd: -Infinity,
+            }
         }).filter(item => item.target)
 
         function drawPath () {
@@ -102,8 +108,9 @@ export default function useInuseInteractiveToc () {
 
         drawPath()
 
+        const elementsToObserve = document.querySelectorAll('article section > [id]')
         elementsToObserve.forEach(el => observer.observe(el.parentElement || el))
 
         return () => observer.disconnect()
-    }, [])
+    }, [ready])
 }

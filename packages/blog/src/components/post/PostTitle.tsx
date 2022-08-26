@@ -17,7 +17,8 @@ export default function PostTitle ({post}: IProps) {
     })
 
     const moveInfoSection = () => {
-        const $alignSection = document.querySelector('article > section:nth-of-type(2)')
+        const $alignSection = document.querySelector('article > section:nth-of-type(2)') ||
+            document.querySelector('article > div > section:nth-of-type(2)')
         if (!$alignSection) return
 
         document.querySelectorAll<HTMLElement>('div[role="contentinfo"] > section').forEach(($contentInfoSection, i) => {
@@ -30,7 +31,7 @@ export default function PostTitle ({post}: IProps) {
 
     return (
         <>
-            <section role={post.cover ? 'banner' : ''}>
+            <section role={post.cover ? 'banner' : undefined}>
                 <h1 ref={$h1}>{post.title}</h1>
                 <p>{post.abstract}</p>
                 {!!post.cover && (
@@ -58,7 +59,6 @@ export default function PostTitle ({post}: IProps) {
                     </figure>
                 )}
             </section>
-            <svg id="tocmark" xmlns="http://www.w3.org/2000/svg"><path /></svg>
         </>
     )
 }

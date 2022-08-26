@@ -4,11 +4,11 @@ import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import remarkToc from 'remark-toc'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import {remarkShiki, rehypeShiki} from './shiki'
+import {remarkToc} from './toc'
 
 
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
