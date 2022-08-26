@@ -128,7 +128,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
             margin: 0.5ch 0 0;
           }
 
-          &:nth-of-type(2) {
+          &:not(:first-child) {
             opacity: 0;
           }
         }
