@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PostTime from './PostTime'
 import HashTag from '../icons/HashTag'
+import Book from '../icons/Book'
 
 
 interface IProps {
@@ -29,6 +30,12 @@ export default function PostInfo ({post}: IProps) {
                     {post.tags.map(tag => (
                         <Link href={`/tag/${tag}`} key={tag}><a role="button"><HashTag />{tag}</a></Link>
                     ))}
+                </section>
+            )}
+            {!!post.collection && (
+                <section>
+                    <h2>Collection</h2>
+                    <Link href={`/collection/${post.collection}`}><a role="button"><Book />{post.collection}</a></Link>
                 </section>
             )}
         </div>

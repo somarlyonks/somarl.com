@@ -4,11 +4,13 @@ import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import remarkToc from 'remark-toc'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
+
+import {rehypePlaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
+import {remarkToc} from './toc'
 
 
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
@@ -55,7 +57,7 @@ type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
     scope: TScope
 }
 
-export const readPost = (slug: string) => {
+const readPost = (slug: string) => {
     const file = readFileSync(postSlugToPath(slug))
     const {content, data: {
         title,
@@ -69,7 +71,7 @@ export const readPost = (slug: string) => {
 
     if (!title) throw new Error('Broken post')
 
-    const scope = {
+    const scope: IPostMeta = {
         url: `/post/${slug}`,
         title,
         published,
@@ -78,7 +80,7 @@ export const readPost = (slug: string) => {
         tags,
         collection,
         cover: (cover && !cover.src) ? {src: cover} : cover,
-    } as IPostMeta
+    }
 
     return {
         content,
@@ -93,7 +95,7 @@ const readPosts = (slugs: string[]) => slugs.reduce((r, slug) => {
         console.error(err)
         return r
     }
-}, [] as Array<R<typeof readPost>>)
+}, [] as Array<ReturnType<typeof readPost>>)
 
 export const postsSync = () => readPosts(postSlugsSync)
     .sort((l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()))
@@ -118,14 +120,13 @@ export const serializePost = async (slug: string) => {
                 remarkSlug,
                 remarkToc,
                 remarkUnwrapImages,
-                // @ts-ignore
                 remarkSectionize,
                 remarkGFM,
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
-                [rehypeShiki],
-                // @ts-ignore
+                rehypeShiki,
+                rehypePlaiceholder,
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
                     properties: {

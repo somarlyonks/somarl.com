@@ -1,4 +1,5 @@
-header + article {
+header + article,
+header + article > div {
   font-size: calc(14px + 0.33vw);
   line-height: 1.5;
   position: relative;
@@ -124,21 +125,27 @@ header + article {
     margin-block-end: 0;
   }
 
-  figure {
+  figure[role="img"] {
     text-align: center;
-  }
-  figcaption {
-    font-size: smaller;
-    opacity: 0.5;
-    > span {
-      &:not(:last-of-type)::after {
-        content: ".";
-      }
-      + span {
-        &::before {
-          content: " ";
+    figcaption {
+      font-size: smaller;
+      opacity: 0.5;
+      > span {
+        &:not(:last-of-type)::after {
+          content: ".";
+        }
+        + span {
+          &::before {
+            content: " ";
+          }
         }
       }
+    }
+  }
+
+  figure[role="pre"] {
+    figcaption {
+      display: none;
     }
   }
 
@@ -256,9 +263,10 @@ header + article {
     margin: 0 auto 1em;
   }
 
+  #tocanchor,
   #tocmark,
   #toc,
-  #toc + section {
+  #tocanchor + section {
     display: none;
   }
 

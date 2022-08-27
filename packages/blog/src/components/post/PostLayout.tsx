@@ -1,15 +1,10 @@
-import {ReactNode} from 'react'
-
-import Head from '../Head'
+import Head, {IProps as IHeadProps} from '../Head'
 import Header from '../Header'
 import Footer from '../Footer'
 
 
-interface IProps {
+interface IProps extends IHeadProps {
     slug: string
-    title: string
-    description?: string
-    children?: ReactNode
 }
 
 export default function Layout ({slug, title, description, children}: IProps) {

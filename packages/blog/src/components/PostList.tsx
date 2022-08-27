@@ -13,7 +13,7 @@ export default function PostList ({posts}: IProps) {
             {posts.map((post, postIndex) => (
                 <Link href={post.url} key={post.title}>
                     <section role="figure">
-                        <figure>
+                        <figure role="img">
                             {!!post.cover && (
                                 <Image
                                     layout="raw" width="100vw" height="55vw" priority={postIndex < 5}

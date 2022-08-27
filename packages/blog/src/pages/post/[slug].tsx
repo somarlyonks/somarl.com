@@ -1,12 +1,12 @@
 import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
 import {MDXRemote} from 'next-mdx-remote'
+import type {ParsedUrlQuery} from 'querystring'
+import dynamic from 'next/dynamic'
+import {getPlaiceholder} from 'plaiceholder'
 
 import {postComponents, PostLayout, PostInfo, PostTitle, PostCollection} from '../../components/post'
 import useInteractiveToc from '../../libs/useInteractiveToc'
-
-import type {ParsedUrlQuery} from 'querystring'
 import {postSlugsSync, serializePost, searchMDXComponentInSource, collectionMapSync} from '../../libs/mdx'
-import dynamic from 'next/dynamic'
 
 
 const dynamicComponents = {
@@ -28,18 +28,19 @@ interface IStaticProps extends ParsedUrlQuery {
 }
 
 export default function PostPage ({slug, compiledSource, scope, extraComponents, collection}: InferGetStaticPropsType<typeof getStaticProps>) {
-    const components: ANY = Object.assign({}, postComponents, Object.fromEntries(DYNAMIC_COMPONENT_NAMES
-        .filter(name => extraComponents[name])
-        .map(name => [name, dynamicComponents[name]]))
+    const dynamicComponentNames = DYNAMIC_COMPONENT_NAMES.filter(name => extraComponents[name])
+    const components: ANY = Object.assign({},
+        postComponents,
+        Object.fromEntries(dynamicComponentNames.map(name => [name, dynamicComponents[name]]))
     )
 
-    useInteractiveToc()
+    useInteractiveToc(!!dynamicComponentNames.length)
 
     return (
         <PostLayout slug={slug} title={scope.title} description={scope.abstract}>
-            <article>
+            <article lang={scope.language || 'en'}>
                 <PostTitle post={scope} />
-                <MDXRemote compiledSource={compiledSource} scope={scope} components={components} />
+                <MDXRemote lazy={!!dynamicComponentNames.length} compiledSource={compiledSource} scope={scope} components={components} />
                 {!!(scope.collection && collection) && <PostCollection post={scope} collection={collection} />}
                 <PostInfo post={scope} />
             </article>
@@ -51,6 +52,15 @@ export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({para
     const {compiledSource, scope} = await serializePost(decodeURIComponent(slug))
     const extraComponents = searchMDXComponentInSource(compiledSource, DYNAMIC_COMPONENT_NAMES)
     const collection = collectionMapSync[scope.collection] || null
+
+    if (scope.cover) {
+        const {base64, img} = await getPlaiceholder(scope.cover.src)
+        scope.cover = {
+            ...scope.cover,
+            ...img,
+            blurDataURL: base64,
+        }
+    }
 
     return {
         props: {
