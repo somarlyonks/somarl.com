@@ -27,7 +27,7 @@ type PostFigureNode = {
 }
 
 async function editImageNode (node: ImageNode): Promise<void> {
-    const {base64, img} = await getPlaiceholder(node.properties.src)
+    const {base64, img} = await getPlaiceholder(decodeURI(node.properties.src))
 
     node.properties.width = img.width
     node.properties.height = img.height
@@ -40,7 +40,7 @@ async function editPostFigureNode (node: PostFigureNode): Promise<void> {
     const srcAttribute = node.attributes.find(({name}) => name === 'src')
 
     if (!srcAttribute) return
-    const {base64, img} = await getPlaiceholder(srcAttribute.value)
+    const {base64, img} = await getPlaiceholder(decodeURI(srcAttribute.value))
 
     node.attributes.push({
         type: 'mdxJsxAttribute',
