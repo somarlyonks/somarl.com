@@ -7,6 +7,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
+
+import {rehypePlaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
 import {remarkToc} from './toc'
 
@@ -55,7 +57,7 @@ type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
     scope: TScope
 }
 
-export const readPost = (slug: string) => {
+const readPost = (slug: string) => {
     const file = readFileSync(postSlugToPath(slug))
     const {content, data: {
         title,
@@ -123,7 +125,8 @@ export const serializePost = async (slug: string) => {
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
-                [rehypeShiki],
+                rehypeShiki,
+                rehypePlaiceholder,
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
                     properties: {
