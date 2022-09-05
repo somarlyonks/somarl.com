@@ -3,3 +3,20 @@
     line-height: 1.5;
   }
 }
+
+header + article[lang="en"] {
+  &,
+  & > div {
+    > section:first-of-type + {
+      p,
+      section p:first-of-type {
+        &::first-letter {
+          float: left;
+          font-size: 2.7em;
+          line-height: 1;
+          margin: 0em 0.1em 0 0;
+        }
+      }
+    }
+  }
+}
