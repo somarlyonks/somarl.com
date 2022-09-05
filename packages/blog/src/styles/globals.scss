@@ -120,6 +120,10 @@ img {
   &[src$=".svg"] {
     aspect-ratio: unset !important;
   }
+  &[role="favicon"] {
+    vertical-align: middle;
+    margin: 0 0.2em;
+  }
 }
 
 [role="button"] {
