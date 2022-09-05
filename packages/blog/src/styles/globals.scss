@@ -171,6 +171,10 @@ small {
   opacity: 0.5;
 }
 
+input:read-only {
+  pointer-events: none;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
