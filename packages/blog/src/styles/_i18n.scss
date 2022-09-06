@@ -1,21 +1,52 @@
-[lang="zh"] {
-  p {
-    line-height: 1.5;
+@mixin postLocale($lang) {
+  header + article[lang="#{$lang}"] {
+    &,
+    & > div {
+      @content;
+    }
   }
 }
 
-header + article[lang="en"] {
-  &,
-  & > div {
-    > section:first-of-type + {
-      p,
-      section p:first-of-type {
-        &::first-letter {
-          float: left;
-          font-size: 2.7em;
-          line-height: 1;
-          margin: 0em 0.1em 0 0;
-        }
+@include postLocale(zh) {
+  > section:first-of-type ~ {
+    p,
+    section > p,
+    section section > p {
+      line-height: 1.5;
+      text-indent: 2em;
+    }
+
+    section blockquote {
+      p {
+        line-height: 1.4;
+      }
+    }
+
+    section blockquote,
+    .flex-center {
+      p {
+        text-indent: initial;
+      }
+      h2 {
+        text-align: initial;
+      }
+    }
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
+
+@include postLocale(en) {
+  > section:first-of-type + {
+    p,
+    section p:first-of-type {
+      &::first-letter {
+        float: left;
+        font-size: 2.7em;
+        line-height: 1;
+        margin: 0em 0.1em 0 0;
       }
     }
   }
