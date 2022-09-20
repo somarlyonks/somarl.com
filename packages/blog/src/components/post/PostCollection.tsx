@@ -13,7 +13,7 @@ export default function PostCollection ({post, collection}: IProps) {
     const postIndex = collection.findIndex(p => p.url === post.url)
 
     return (
-        <section className="post-collection">
+        <div className="post-collection">
             <p>
                 <small>The {formatNth(postIndex + 1)} of {formatPlural(collection.length, 'post')} in collection </small>
                 <Link href={`/collection/${post.collection}`}><a><strong>{post.collection}</strong></a></Link>
@@ -26,6 +26,6 @@ export default function PostCollection ({post, collection}: IProps) {
                 ))}
                 {!!(collection.length - postIndex > (postIndex ? 2 : 3)) && (<li><small>...</small></li>)}
             </ul>
-        </section>
+        </div>
     )
 }

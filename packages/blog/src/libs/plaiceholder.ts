@@ -72,6 +72,7 @@ export const rehypePlaiceholder: Plugin = () => {
             img.tagName === 'img' &&
             img.properties &&
             typeof img.properties.src === 'string'
+            && !img.properties.src.endsWith('.svg')
         )
     }
 
