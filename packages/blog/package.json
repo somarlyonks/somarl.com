@@ -17,11 +17,12 @@
     "@csszen/hooks.usebem": "0.2.0",
     "@csszen/icons.github": "1.1.0",
     "@csszen/icons.octiconrss": "1.1.0",
-    "next": "12.1.5",
+    "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@plaiceholder/next": "2.5.0",
     "gray-matter": "4.0.3",
     "hast-util-raw": "7.2.2",
     "mdast-util-toc": "6.1.0",

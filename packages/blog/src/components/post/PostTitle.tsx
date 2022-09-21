@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/future/image'
 
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
 
@@ -37,7 +37,6 @@ export default function PostTitle ({post}: IProps) {
                 {!!post.cover && (
                     <figure role="img">
                         <Image priority
-                            layout="raw"
                             width="1000"
                             height="1000"
                             alt="cover"

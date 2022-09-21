@@ -1,7 +1,7 @@
 import {NextFetchEvent, NextRequest, NextResponse} from 'next/server'
 
 
-export default function middleware (req: NextRequest, ev: NextFetchEvent) {
+export function middleware (req: NextRequest, ev: NextFetchEvent) {
     const url = req.nextUrl.clone()
     const {pathname} = url
     const postSlug = pathname.replace(/^\/post\//, '')
@@ -10,4 +10,8 @@ export default function middleware (req: NextRequest, ev: NextFetchEvent) {
     }
 
     return NextResponse.rewrite(url)
+}
+
+export const config = {
+    matcher: ['/post/:path*'],
 }

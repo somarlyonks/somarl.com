@@ -19,7 +19,7 @@ export default function PostLink (props: IProps) {
     )) {
         const url = new URL(href)
         const favicon = `https://www.google.com/s2/favicons?domain=${url.hostname}`
-        return <><img role="favicon" src={favicon} /><Link href={props.href}><a name={name} {...props} /></Link></>
+        return <><img role="favicon" src={favicon} alt="" aria-hidden /><Link href={props.href}><a name={name} {...props} /></Link></>
     }
 
     return <Link href={props.href}><a name={name} {...props} /></Link>

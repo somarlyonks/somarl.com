@@ -5,7 +5,7 @@ import PostList from '../../components/PostList'
 import Book from '../../components/icons/Book'
 
 import type {ParsedUrlQuery} from 'querystring'
-import {collectionMapSync} from '../../libs/mdx'
+import {getCollectionMap} from '../../libs/mdx'
 
 
 interface IProps {
@@ -32,7 +32,8 @@ export default function Collection ({posts, collection}: InferGetStaticPropsType
 }
 
 export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({params: {collection} = {collection: ''}}) => {
-    const posts = collectionMapSync[collection]
+    const collectionMap = await getCollectionMap()
+    const posts = collectionMap[collection]
 
     return {
         props: {
@@ -43,8 +44,9 @@ export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({para
 }
 
 export const getStaticPaths: GetStaticPaths<IStaticProps> = async ctx => {
+    const collectionMap = await getCollectionMap()
     return {
-        paths: Object.keys(collectionMapSync).map(collection => ({
+        paths: Object.keys(collectionMap).map(collection => ({
             params: {
                 collection,
             },

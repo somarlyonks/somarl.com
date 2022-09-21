@@ -1,9 +1,10 @@
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
+
 import Head from '../components/Head'
 import Footer from '../components/Footer'
 import PostList from '../components/PostList'
 
-import {postsSync} from '../libs/mdx'
+import {getPosts} from '../libs/mdx'
 
 
 interface IProps {
@@ -24,7 +25,7 @@ export default function Home ({posts}: InferGetStaticPropsType<typeof getStaticP
 }
 
 export const getStaticProps: GetStaticProps<IProps, {}> = async () => {
-    const posts = postsSync().map(post => post.scope)
+    const posts = await getPosts().then(ps => ps.map(post => post.scope))
 
     return {
         props: {

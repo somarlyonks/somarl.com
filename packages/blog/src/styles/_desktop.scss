@@ -8,6 +8,10 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
     div[role="contentinfo"] {
       > section {
         margin-bottom: 0 !important;
+
+        &:first-of-type time:first-of-type::before {
+          content: "Published at ";
+        }
       }
     }
   }
