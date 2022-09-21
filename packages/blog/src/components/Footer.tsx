@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Flex from '@csszen/components.flexmini'
 
+import Flex from './Flex'
 import Vercel from './icons/Vercel'
 import OcticonGithub from '@csszen/icons.github'
 import OcticonRSS from '@csszen/icons.octiconrss'

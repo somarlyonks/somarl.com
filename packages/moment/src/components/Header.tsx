@@ -1,6 +1,7 @@
 import {ReactNode} from 'react'
 import Link from 'next/link'
-import Flex from '@csszen/components.flexmini'
+
+import Flex from './Flex'
 
 
 interface IProps {
