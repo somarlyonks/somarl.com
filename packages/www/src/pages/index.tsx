@@ -6,7 +6,6 @@ import Javascript from '../components/icons/js'
 import choice from '../libs/choice'
 
 import avatar0 from 'public/images/pangurban.jpg'
-import avatar1 from 'public/images/boy.jpg'
 
 
 export default function Index () {
@@ -36,7 +35,7 @@ export default function Index () {
 function Avatars () {
     return (
         <aside>
-            <Image layout="fill" src={choice([avatar0, avatar1])} />
+            <Image layout="fill" src={choice([avatar0])} />
         </aside>
     )
 }

@@ -1,9 +1,9 @@
 import {forwardRef, useState} from 'react'
 import Copy from '@csszen/components.copy'
-import Flex from '@csszen/components.flexmini'
 
 import {IFieldProps} from './shared'
 import field from './Field'
+import Flex from '../Flex'
 import Upload, {IProps as IUploadProps} from '../Upload'
 
 

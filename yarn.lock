@@ -171,15 +171,6 @@
   dependencies:
     chalk "^4.0.0"
 
-"@csszen/components.button@0.2.0":
-  version "0.2.0"
-  resolved "https://node.bit.dev/@csszen/components.button/-/@csszen-components.button-0.2.0.tgz#f40149b2e62ae6f6a9048fbde98a5f7fd27c902d"
-  integrity sha1-9AFJsuYq5vapBI+96Ypff9J8kC0=
-  dependencies:
-    "@csszen/components.flexmini" "0.1.0"
-    "@csszen/hooks.usebem" "0.1.1"
-    core-js "^3.0.0"
-
 "@csszen/components.copy@0.2.0":
   version "0.2.0"
   resolved "https://node.bit.dev/@csszen/components.copy/-/@csszen-components.copy-0.2.0.tgz#b5d325900dc6e7c1e1d1cdba306e16c7896c6551"
@@ -188,39 +179,6 @@
     "@csszen/hooks.useclipboard" "0.1.0"
     "@csszen/icons.octiconcheck" "1.1.0"
     "@csszen/icons.octiconclippy" "1.1.0"
-    core-js "^3.0.0"
-
-"@csszen/components.flexmini@0.1.0":
-  version "0.1.0"
-  resolved "https://node.bit.dev/@csszen/components.flexmini/-/@csszen-components.flexmini-0.1.0.tgz#439a456a73161fe9e8238eeb16396865083ebc25"
-  integrity sha1-Q5pFanMWH+noI47rFjloZQg+vCU=
-  dependencies:
-    "@csszen/hooks.usebem" "0.1.1"
-    core-js "^3.0.0"
-
-"@csszen/components.fof@1.1.0":
-  version "1.1.0"
-  resolved "https://node.bit.dev/@csszen/components.fof/-/@csszen-components.fof-1.1.0.tgz#512c9c21a001e968e460fe5633ee5fba3db33fdb"
-  integrity sha1-USycIaAB6WjkYP5WM+5fuj2zP9s=
-  dependencies:
-    "@csszen/components.button" "0.2.0"
-    "@csszen/components.flexmini" "0.1.0"
-    "@csszen/components.quote" "0.1.1"
-    core-js "^3.0.0"
-
-"@csszen/components.quote@0.1.1":
-  version "0.1.1"
-  resolved "https://node.bit.dev/@csszen/components.quote/-/@csszen-components.quote-0.1.1.tgz#9ca0803cc5ba88199c405d4c4e28528ac2183b68"
-  integrity sha1-nKCAPMW6iBmcQF1MTihSisIYO2g=
-  dependencies:
-    core-js "^3.0.0"
-
-"@csszen/hooks.usebem@0.1.1":
-  version "0.1.1"
-  resolved "https://node.bit.dev/@csszen/hooks.usebem/-/@csszen-hooks.usebem-0.1.1.tgz#e86a3c5623d0c5238d97182ae854b6bb85e80e7b"
-  integrity sha1-6Go8ViPQxSONlxgq6FS2u4XoDns=
-  dependencies:
-    "@somarlyonks/bem" "1.0.1"
     core-js "^3.0.0"
 
 "@csszen/hooks.usebem@0.2.0":

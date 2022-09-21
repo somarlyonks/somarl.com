@@ -1,0 +1,41 @@
+import {ReactNode} from 'react'
+import {useBem} from '@csszen/hooks.usebem'
+
+
+interface IFlexProps {
+    className?: string
+    children?: ReactNode
+    full?: boolean
+    central?: boolean
+    verticle?: boolean
+    grow?: boolean
+    shrink?: boolean
+    wrap?: boolean
+}
+
+export default function Flex ({
+    className = '',
+    children,
+    central,
+    full,
+    verticle,
+    grow,
+    shrink,
+    wrap,
+}: IFlexProps) {
+    const _className = useBem('flex', '', {full, verticle, grow, shrink, wrap}) + ` ${className}`
+
+    if (central) return (
+        <div className={_className}>
+            <div className="flex-container">
+                {children}
+            </div>
+        </div>
+    )
+
+    return (
+        <div className={_className}>
+            {children}
+        </div>
+    )
+}
