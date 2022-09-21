@@ -5,7 +5,7 @@ import PostList from '../../components/PostList'
 import HashTag from '../../components/icons/HashTag'
 
 import type {ParsedUrlQuery} from 'querystring'
-import {tagMapSync} from '../../libs/mdx'
+import {getTagMap} from '../../libs/mdx'
 
 
 interface IProps {
@@ -32,7 +32,8 @@ export default function Tag ({posts, tag}: InferGetStaticPropsType<typeof getSta
 }
 
 export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({params: {tag} = {tag: ''}}) => {
-    const posts = tagMapSync[tag]
+    const tagMap = await getTagMap()
+    const posts = tagMap[tag]
 
     return {
         props: {
@@ -43,8 +44,10 @@ export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({para
 }
 
 export const getStaticPaths: GetStaticPaths<IStaticProps> = async ctx => {
+    const tagMap = await getTagMap()
+
     return {
-        paths: Object.keys(tagMapSync).map(tag => ({
+        paths: Object.keys(tagMap).map(tag => ({
             params: {
                 tag,
             },

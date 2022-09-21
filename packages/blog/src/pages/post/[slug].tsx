@@ -2,11 +2,10 @@ import {GetStaticPaths, InferGetStaticPropsType, GetStaticProps} from 'next'
 import {MDXRemote} from 'next-mdx-remote'
 import type {ParsedUrlQuery} from 'querystring'
 import dynamic from 'next/dynamic'
-import {getPlaiceholder} from 'plaiceholder'
 
 import {postComponents, PostLayout, PostInfo, PostTitle, PostCollection} from '../../components/post'
 import useInteractiveToc from '../../libs/useInteractiveToc'
-import {postSlugsSync, serializePost, searchMDXComponentInSource, collectionMapSync} from '../../libs/mdx'
+import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '../../libs/mdx'
 
 
 const dynamicComponents = {
@@ -51,16 +50,8 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents,
 export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({params: {slug} = {slug: ''}}) => {
     const {compiledSource, scope} = await serializePost(decodeURIComponent(slug))
     const extraComponents = searchMDXComponentInSource(compiledSource, DYNAMIC_COMPONENT_NAMES)
-    const collection = collectionMapSync[scope.collection] || null
-
-    if (scope.cover) {
-        const {base64, img} = await getPlaiceholder(scope.cover.src)
-        scope.cover = {
-            ...scope.cover,
-            ...img,
-            blurDataURL: base64,
-        }
-    }
+    const collectionMap = await getCollectionMap()
+    const collection = collectionMap[scope.collection] || null
 
     return {
         props: {
@@ -74,7 +65,7 @@ export const getStaticProps: GetStaticProps<IProps, IStaticProps> = async ({para
 }
 
 export const getStaticPaths: GetStaticPaths<IStaticProps> = async ctx => {
-    const slugs: string[] = postSlugsSync
+    const slugs: string[] = (await getPostSlugs())
         .map(slug => [slug].concat(slug.includes('/') ? slug.replace(/\//g, encodeURIComponent('/')) : []))
         .reduce((r, c) => r.concat(c))
 

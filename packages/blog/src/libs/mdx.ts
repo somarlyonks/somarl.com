@@ -1,4 +1,5 @@
-import {readdirSync, readFileSync, statSync} from 'fs'
+import {readdir, readFile, stat} from 'fs'
+import {promisify} from 'util'
 import path from 'path'
 import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
@@ -7,6 +8,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
+import {getPlaiceholder} from 'plaiceholder'
 
 import {rehypePlaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
@@ -15,19 +17,23 @@ import {remarkToc} from './toc'
 
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
 
-function collectPostInDirectory (directoryPath: string, pathPrefix = ''): string[] {
-    return readdirSync(directoryPath).reduce((r, fileName) => {
+async function collectPostInDirectory (directoryPath: string, pathPrefix = ''): Promise<string[]> {
+    const fileNames = await promisify(readdir)(directoryPath)
+    const stepChildren = await Promise.all(fileNames.map(async fileName => {
         const filePath = path.join(directoryPath, fileName)
         const fileSlug = path.join(pathPrefix, fileName)
-        if (statSync(filePath).isDirectory()) return r.concat(collectPostInDirectory(filePath, fileSlug))
-        if (/\.mdx?$/.test(fileName)) return r.concat([fileSlug])
-        return r
-    }, [] as string[])
+
+        if ((await promisify(stat)(filePath)).isDirectory()) return collectPostInDirectory(filePath, fileSlug)
+        if (/\.mdx?$/.test(fileName)) return fileSlug
+        return
+    }))
+
+    return stepChildren.filter(Boolean).flat(Infinity).filter(Boolean) as string[]
 }
 
-export const postFilenamesSync = () => collectPostInDirectory(POSTS_ROOT)
+const getPostFilenames = async () => collectPostInDirectory(POSTS_ROOT)
 
-export const postSlugsSync = postFilenamesSync().map(filename => filename.replace(/\.mdx?$/, ''))
+export const getPostSlugs = async () => (await getPostFilenames()).map(filename => filename.replace(/\.mdx?$/, ''))
 
 const postSlugToPath = (slug: string) => path.join(POSTS_ROOT, `${slug}.mdx`)
 
@@ -57,8 +63,15 @@ type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
     scope: TScope
 }
 
-const readPost = (slug: string) => {
-    const file = readFileSync(postSlugToPath(slug))
+export const getPosts = async () => (await readPosts(await getPostSlugs())).sort(
+    (l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf())
+)
+
+const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPost))
+
+async function readPost (slug: string) {
+    const file = await promisify(readFile)(postSlugToPath(slug))
+
     const {content, data: {
         title,
         published,
@@ -71,7 +84,7 @@ const readPost = (slug: string) => {
 
     if (!title) throw new Error('Broken post')
 
-    const scope: IPostMeta = {
+    const scope = await editCover({
         url: `/post/${slug}`,
         title,
         published,
@@ -80,7 +93,7 @@ const readPost = (slug: string) => {
         tags,
         collection,
         cover: (cover && !cover.src) ? {src: cover} : cover,
-    }
+    })
 
     return {
         content,
@@ -88,31 +101,38 @@ const readPost = (slug: string) => {
     }
 }
 
-const readPosts = (slugs: string[]) => slugs.reduce((r, slug) => {
-    try {
-        return r.concat(readPost(slug))
-    } catch (err) {
-        console.error(err)
-        return r
+export async function editCover (post: IPostMeta) {
+    if (!post.cover) return post
+
+    const {src} = post.cover
+    if (!src) return post
+
+    const {base64, img} = await getPlaiceholder(decodeURI(src))
+
+    post.cover = {
+        ...post.cover,
+        width: img.width,
+        height: img.height,
+        blurDataURL: base64,
+        placeholder: 'blur',
     }
-}, [] as Array<ReturnType<typeof readPost>>)
 
-export const postsSync = () => readPosts(postSlugsSync)
-    .sort((l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()))
+    return post
+}
 
-export const tagMapSync = postsSync().reduce((r, post) =>
+export const getTagMap = async () => getPosts().then(posts => posts.reduce((r, post) =>
     Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
     {} as Record<string, IPostMeta[]>
-)
+))
 
-export const collectionMapSync = postsSync().reduce((r, post) => {
+export const getCollectionMap = async () => getPosts().then(posts => posts.reduce((r, post) => {
     const {collection} = post.scope
     if (!collection) return r
     return Object.assign(r, {[collection]: [post.scope].concat(r[collection] || [])})
-}, {} as Record<string, IPostMeta[]>)
+}, {} as Record<string, IPostMeta[]>))
 
-export const serializePost = async (slug: string) => {
-    const {content, scope} = readPost(slug)
+export async function serializePost (slug: string) {
+    const {content, scope} = await readPost(slug)
 
     return serialize(content, {
         mdxOptions: {

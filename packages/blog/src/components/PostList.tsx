@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import PostInfo from './post/PostInfo'
 
 
@@ -16,7 +16,9 @@ export default function PostList ({posts}: IProps) {
                         <figure role="img">
                             {!!post.cover && (
                                 <Image
-                                    layout="raw" width="100vw" height="55vw" priority={postIndex < 5}
+                                    style={{width: '100vw', height: '55vw'}}
+                                    priority={postIndex < 5}
+                                    {...post.cover}
                                     src={post.cover.src} alt="cover" title={post.title}
                                 />
                             )}

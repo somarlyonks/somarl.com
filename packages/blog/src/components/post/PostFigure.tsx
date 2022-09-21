@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/future/image'
 
 
 interface IProps {
@@ -10,10 +10,10 @@ interface IProps {
     material?: string
 }
 
-export default function PostFigure ({src, alt, work, author, date, material, ...props}: IProps) {
+export default function PostFigure ({src, alt = '', work, author, date, material, ...props}: IProps) {
     return (
         <figure role="img">
-            <Image layout="raw" width="1000" height="1000" {...props} src={src} alt={alt} title={work} />
+            <Image width="1000" height="1000" {...props} src={src} alt={alt} title={work} />
             {work && (
                 <figcaption>
                     {author && <span>{author}</span>}
