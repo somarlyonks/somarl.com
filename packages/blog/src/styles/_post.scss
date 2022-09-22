@@ -324,3 +324,14 @@ header + article > div {
     }
   }
 }
+
+.medium-zoom--opened {
+  header {
+    opacity: 0 !important;
+  }
+
+  .medium-zoom-image--opened,
+  .medium-zoom-overlay {
+    z-index: $zLightBox;
+  }
+}
