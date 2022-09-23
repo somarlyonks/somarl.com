@@ -3,15 +3,11 @@ somarl.com:
     [x] AWS S3
 
   www:
-    [x] init
+    [ ] contacts
 
   blog:
-    [x] init
-    [ ] full-text search?
-    [ ] post series?
-    [ ] locale and translation?
+    [ ] full-text search
 
   moment:
-    [x] init
     [x] mongo server
     [ ] mongo interface
