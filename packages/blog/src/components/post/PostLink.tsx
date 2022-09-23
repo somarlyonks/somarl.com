@@ -18,7 +18,7 @@ export default function PostLink (props: IProps) {
         typeof props.children === 'string' || (isValidElement(props.children) && props.children.type === 'em')
     )) {
         const url = new URL(href)
-        const favicon = `https://www.google.com/s2/favicons?domain=${url.hostname}`
+        const favicon = `https://unavatar.io/${url.hostname}`
         return <><img role="favicon" src={favicon} alt="" aria-hidden /><Link href={props.href}><a name={name} {...props} /></Link></>
     }
 
