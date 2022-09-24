@@ -4,7 +4,7 @@ import type {ParsedUrlQuery} from 'querystring'
 import dynamic from 'next/dynamic'
 
 import {postComponents, PostLayout, PostInfo, PostTitle, PostCollection} from '../../components/post'
-import Zoom from '../../components/Zoom'
+import Zoom from '../../components/post/scripts/Zoom'
 import useInteractiveToc from '../../libs/useInteractiveToc'
 import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '../../libs/mdx'
 
