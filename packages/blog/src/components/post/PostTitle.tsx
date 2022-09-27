@@ -18,7 +18,8 @@ export default function PostTitle ({post}: IProps) {
 
     const moveInfoSection = () => {
         const $alignSection = document.querySelector('article > section:nth-of-type(2)') ||
-            document.querySelector('article > div > section:nth-of-type(2)')
+            document.querySelector('article > div > #tocanchor + section:nth-of-type(2)') ||
+            document.querySelector('article > div > section:nth-of-type(1)')
         if (!$alignSection) return
 
         document.querySelectorAll<HTMLElement>('div[role="contentinfo"] > section').forEach(($contentInfoSection, i) => {
