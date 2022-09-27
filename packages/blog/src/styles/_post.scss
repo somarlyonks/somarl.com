@@ -120,6 +120,7 @@ header + article > div {
   }
   input[type="checkbox"] {
     margin: 0 0.5ch 0 0;
+    pointer-events: none;
   }
   li p {
     margin-block-end: 0;
