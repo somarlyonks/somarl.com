@@ -12,6 +12,7 @@ import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMa
 const dynamicComponents = {
     NextJS: dynamic(() => import(`../../components/icons/NextJS`)),
     MDXIcon: dynamic(() => import(`../../components/icons/MDXIcon`)),
+    IllustrationFlexWrapItems: dynamic(() => import(`../../components/post/illustrations/the-way-to-wrap-flex-items-is-grid`)),
 }
 const DYNAMIC_COMPONENT_NAMES = Array.from(Object.keys(dynamicComponents))
 
