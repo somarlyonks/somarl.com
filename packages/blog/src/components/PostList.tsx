@@ -16,7 +16,6 @@ export default function PostList ({posts}: IProps) {
                         <figure role="img">
                             {!!post.cover && (
                                 <Image
-                                    style={{width: '100vw', height: '55vw'}}
                                     priority={postIndex < 5}
                                     {...post.cover}
                                     src={post.cover.src} alt="cover" title={post.title}

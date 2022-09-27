@@ -9,7 +9,9 @@ export {default as PostLayout} from './PostLayout'
 export {default as PostTitle} from './PostTitle'
 export {default as PostCollection} from './PostCollection'
 
-import ImgShadow from '../styles/ImgShadow'
+import ImgShadow from './styles/ImgShadow'
+
+import IconAngry from '../icons/Angry'
 
 export const postComponents = {
     a: PostLink,
@@ -18,4 +20,5 @@ export const postComponents = {
     ul: PostUl,
     PostFigure,
     ImgShadow,
+    IconAngry,
 }

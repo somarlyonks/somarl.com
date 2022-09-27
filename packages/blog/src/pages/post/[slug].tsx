@@ -4,6 +4,7 @@ import type {ParsedUrlQuery} from 'querystring'
 import dynamic from 'next/dynamic'
 
 import {postComponents, PostLayout, PostInfo, PostTitle, PostCollection} from '../../components/post'
+import Zoom from '../../components/post/scripts/Zoom'
 import useInteractiveToc from '../../libs/useInteractiveToc'
 import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '../../libs/mdx'
 
@@ -11,6 +12,7 @@ import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMa
 const dynamicComponents = {
     NextJS: dynamic(() => import(`../../components/icons/NextJS`)),
     MDXIcon: dynamic(() => import(`../../components/icons/MDXIcon`)),
+    IllustrationFlexWrapItems: dynamic(() => import(`../../components/post/illustrations/the-way-to-wrap-flex-items-is-grid`)),
 }
 const DYNAMIC_COMPONENT_NAMES = Array.from(Object.keys(dynamicComponents))
 
@@ -37,6 +39,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents,
 
     return (
         <PostLayout slug={slug} title={scope.title} description={scope.abstract}>
+            <Zoom />
             <article lang={scope.language || 'en'}>
                 <PostTitle post={scope} />
                 <MDXRemote lazy={!!dynamicComponentNames.length} compiledSource={compiledSource} scope={scope} components={components} />
