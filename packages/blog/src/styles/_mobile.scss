@@ -26,6 +26,9 @@ $mobileThreshold: 767px;
   }
 
   #__next {
+    > article {
+      overflow-x: hidden;
+    }
     > header {
       display: none;
     }
