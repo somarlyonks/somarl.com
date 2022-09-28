@@ -25,7 +25,7 @@ But business is business, sometimes, thinking of reasonable circumstances is a s
 
 Before tackling it, I want to point it out that this issue turns out to be realistic as I recalled that years ago one of my colleagues had brought it out when we were talking about his technical interview. I believe it has been a *common case* of flex items, there is even an article on MDN about [*Mastering wrapping of flex items*](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items#single-dimensional_layout_explained).
 
-If something overlap, we have to wrap it. The problem is that `flex` can either wrap or auto-sizing(grow/shrink) the items as flex lines act like separated flex containers. When there are different numbers of items in rows, it either looks like this
+If something overlaps, we have to wrap it. The problem is that `flex` can either wrap or auto-sizing(grow/shrink) the items as flex lines act like separated flex containers. When there are different numbers of items in rows, it either looks like this
 
 ```scss
 .container {
@@ -138,7 +138,7 @@ The solution I adapted was a workaround
     grid-template-columns: repeat(auto-fill, minmax(1em, 1fr));
     .item:last-of-type {
         grid-column-end: none;
-        &:nth-child(n + 30) {
+        &:nth-child(n + 20) {
             grid-column-end: auto;
         }
     }
@@ -147,7 +147,7 @@ The solution I adapted was a workaround
 
 <IllustrationFlexWrapItems className="grid-auto-fit-end-auto" defaultItemCount={50} />
 
-If the last item has at least 30 siblings, stop it stay at the end of the row. I will never be proud of the solution, but probably a tolerance under 3.2% is bearable, can you spot it before I point it out? Try moving the slider around 30 and watch the end of the row.
+If the last item has at least 20 siblings, stop it stay at the end of the row. I will never be proud of the solution, but probably a tolerance under 5% is bearable, can you spot it before I point it out? Try moving the slider around 20 and watch the end of the row.
 
 ## Is Grid Winning?
 
