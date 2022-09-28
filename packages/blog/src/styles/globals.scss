@@ -133,6 +133,7 @@ img {
 [role="button"] {
   cursor: pointer;
   word-break: keep-all;
+  white-space: nowrap;
   svg {
     fill: currentColor;
     height: 1em;

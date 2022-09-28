@@ -6,11 +6,23 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
 @media (max-width: #{$desktopThreshold - 1}) {
   header + article {
     div[role="contentinfo"] {
+      flex-direction: column;
+      align-items: flex-start;
+
       > section {
+        flex-wrap: wrap;
         margin-bottom: 0 !important;
 
-        &:first-of-type time:first-of-type::before {
-          content: "Published at ";
+        &:first-of-type {
+          padding-bottom: 1ch;
+
+          time:first-of-type::before {
+            content: "Published at ";
+          }
+        }
+
+        [role="button"] {
+          margin: 0 1ch 1ch 0;
         }
       }
     }

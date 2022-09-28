@@ -16,7 +16,7 @@ export default function PostTitle ({post}: IProps) {
         rootMargin: '80px',
     })
 
-    const moveInfoSection = () => {
+    const moveInfoSection = () => requestIdleCallback(() => {
         const $alignSection = document.querySelector('article > section:nth-of-type(2)') ||
             document.querySelector('article > div > #tocanchor + section:nth-of-type(2)') ||
             document.querySelector('article > div > section:nth-of-type(1)')
@@ -28,7 +28,7 @@ export default function PostTitle ({post}: IProps) {
             }
             $contentInfoSection.style.opacity = '1'
         })
-    }
+    })
 
     return (
         <>

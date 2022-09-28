@@ -4,6 +4,8 @@ class Config {
     public get S3_REGION () {return readOptionalValue('S3_REGION')}
     public get S3_BUCKET () {return readEssentialValue('S3_BUCKET')}
 
+    public get TINIFY_API_KEY () {return readEssentialValue('TINIFY_API_KEY')}
+
     public get MONGO_USERNAME () {return readEssentialValue('MONGO_USERNAME')}
     public get MONGO_PASSWORD () {return readEssentialValue('MONGO_PASSWORD')}
     public get MONGO_HOST () {return readEssentialValue('MONGO_HOST')}

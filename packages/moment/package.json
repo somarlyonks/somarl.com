@@ -21,7 +21,10 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/formidable": "2.0.5",
     "aws-sdk": "2.979.0",
-    "mongo": "0.1.0"
+    "formidable": "2.0.1",
+    "mongo": "0.1.0",
+    "tinify": "1.6.1"
   }
 }

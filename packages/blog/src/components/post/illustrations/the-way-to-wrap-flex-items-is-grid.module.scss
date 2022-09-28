@@ -80,7 +80,7 @@
       grid-template-columns: repeat(auto-fit, minmax(1em, 1fr));
       li:last-of-type {
         grid-column-end: none;
-        &:nth-child(n + 30) {
+        &:nth-child(n + 20) {
           grid-column-end: auto;
         }
       }
