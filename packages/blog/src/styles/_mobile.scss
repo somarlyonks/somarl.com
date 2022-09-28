@@ -3,13 +3,6 @@
 $mobileThreshold: 767px;
 
 @media (min-width: #{$mobileThreshold + 1}) {
-  header + article {
-    div[role="contentinfo"] {
-      position: absolute;
-      bottom: 2em;
-      width: 100%;
-    }
-  }
   article {
     > section[role="figure"] {
       img {
@@ -81,27 +74,6 @@ $mobileThreshold: 767px;
     h5,
     h6 {
       word-break: break-all;
-    }
-
-    div[role="contentinfo"] {
-      flex-wrap: wrap;
-      > section {
-        &:first-of-type {
-          position: absolute;
-          bottom: 2.2em;
-          flex: 1;
-        }
-        [role="button"] {
-          margin: 0 1ch 1ch 0;
-        }
-        &:last-of-type {
-          overflow-x: scroll;
-          overflow-x: overlay;
-          &::-webkit-scrollbar {
-            background-color: transparent;
-          }
-        }
-      }
     }
   }
 }
