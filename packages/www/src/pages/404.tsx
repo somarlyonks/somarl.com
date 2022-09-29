@@ -6,15 +6,15 @@ import styles from './404.module.scss'
 export default function FOF () {
 
     return (
-        <div className={`${styles['f0f-container']} ${styles['flex']} ${styles['flex--full']}`}>
+        <div className={`${styles['f0f-container']} ${styles.flex} ${styles['flex--full']}`}>
             <div className={styles['flex-container']}>
                 <Head title="Content Not Found" />
 
-                <div className={`${styles['f0f-container__404']} ${styles['flex']}`}>
-                    <hgroup data-word="404">404<div className={`${styles['f0f-container__noise']} ${styles['flex']}`} /></hgroup>
+                <div className={`${styles['f0f-container__404']} ${styles.flex}`}>
+                    <hgroup data-word="404">404<div className={`${styles['f0f-container__noise']} ${styles.flex}`} /></hgroup>
                 </div>
-                <div className={styles['flex']}><Quote inline quote="远方除了遥远一无所有" author="海子" work="远方" /></div>
-                <div className={styles['flex']}>
+                <div className={styles.flex}><Quote inline quote="远方除了遥远一无所有" author="海子" work="远方" /></div>
+                <div className={styles.flex}>
                     <button onClick={navigateBack}>Back</button>
                     <span>/</span>
                     <a role="button" href="/"><button>Home</button></a>
