@@ -3859,10 +3859,10 @@ through2@^4.0.0:
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
 
-tinify@1.6.1:
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/tinify/-/tinify-1.6.1.tgz#b27a032c447ebddd4231007489069a434ef72b5e"
-  integrity sha512-9XITdFE+p3+W/7HDgDEfxETbAh0vDdul33qo81P0Q+TNR8l6TALDb52MMhs7fWz7i4Pp3y1VdVYEy4EyiF4gUw==
+tinify@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/tinify/-/tinify-1.7.1.tgz#657be3759f3fd2f61dd089f44f29a6c6f0b52203"
+  integrity sha512-IbZwiVG0iN/BwZB0XTA45uNyv3DxDByL9TK0jI++hyWtnV68BgNKl0r+iNLsIEDasN3IntHaeaQbiVfaQVnLdQ==
   dependencies:
     promise-nodeify ">= 0.1"
     proxying-agent ">= 2.1"

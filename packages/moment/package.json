@@ -25,6 +25,6 @@
     "aws-sdk": "2.979.0",
     "formidable": "2.0.1",
     "mongo": "0.1.0",
-    "tinify": "1.6.1"
+    "tinify": "1.7.1"
   }
 }
