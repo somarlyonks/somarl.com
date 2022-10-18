@@ -20,7 +20,7 @@ interface IStaticProps extends ParsedUrlQuery {
 export default function Tag ({posts, tag}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
-            <Head title={`${tag} | Yang`} description="I'm a Web developer at LearningTribes based in Shanghai." />
+            <Head title={`${tag} | Yang`} description="I'm a Web developer based in Shanghai." />
             <article>
                 <h1><HashTag />{tag}</h1>
                 <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} tagged as <cite>{tag}</cite></p>

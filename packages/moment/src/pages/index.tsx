@@ -6,7 +6,7 @@ export default function Home () {
 
     return (
         <>
-            <Head title="Moments | Yang" description="I'm a Web developer at LearningTribes based in Shanghai." />
+            <Head title="Moments | Yang" description="I'm a Web developer based in Shanghai." />
             <article>
                 <h1>Moments</h1>
             </article>
