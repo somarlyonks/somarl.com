@@ -14,7 +14,7 @@ interface IProps {
 export default function Home ({posts}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
-            <Head title="Blogs | Yang" description="I'm a Web developer at LearningTribes based in Shanghai." />
+            <Head title="Blogs | Yang" description="I'm a Web developer based in Shanghai." />
             <article>
                 <h1>Blogs</h1>
                 <PostList posts={posts} />

@@ -1,0 +1,8 @@
+{
+  "[mdx]": {
+    "editor.quickSuggestions": {
+      "other": "inline",
+    },
+    "editor.snippetSuggestions": "top"
+  }
+}

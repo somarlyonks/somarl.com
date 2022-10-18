@@ -20,7 +20,7 @@ interface IStaticProps extends ParsedUrlQuery {
 export default function Collection ({posts, collection}: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <>
-            <Head title={`${collection} | Yang`} description="I'm a Web developer at LearningTribes based in Shanghai." />
+            <Head title={`${collection} | Yang`} description="I'm a Web developer based in Shanghai." />
             <article>
                 <h1><Book />{collection}</h1>
                 <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} in collection <cite>{collection}</cite></p>

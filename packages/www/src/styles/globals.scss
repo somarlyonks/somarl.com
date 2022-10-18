@@ -61,10 +61,10 @@ a {
   &:hover::after {
     top: 0;
   }
-  &[href*="learning-tribes"] {
-    @include textHighlight(rgba($LTGreen, 0.5));
+  &[href*="www.sitel.com"] {
+    @include textHighlight(rgba($WorkTheme, 0.5));
     &::selection {
-      background-color: rgba($LTGreen, 0.5);
+      background-color: rgba($WorkTheme, 0.5);
     }
   }
 }
