@@ -13,7 +13,6 @@
     section > p,
     section section > p {
       line-height: 1.5;
-      text-indent: 2em;
     }
 
     section blockquote {
@@ -21,19 +20,5 @@
         line-height: 1.4;
       }
     }
-
-    section blockquote,
-    .flex-center {
-      p {
-        text-indent: initial;
-      }
-      h2 {
-        text-align: initial;
-      }
-    }
-  }
-
-  h2 {
-    text-align: center;
   }
 }
