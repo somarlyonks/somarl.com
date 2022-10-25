@@ -4,7 +4,6 @@ import type {ParsedUrlQuery} from 'querystring'
 import dynamic from 'next/dynamic'
 
 import {postComponents, PostLayout, PostInfo, PostTitle, PostCollection} from '../../components/post'
-import Zoom from '../../components/post/scripts/Zoom'
 import useInteractiveToc from '../../libs/useInteractiveToc'
 import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '../../libs/mdx'
 
@@ -38,8 +37,7 @@ export default function PostPage ({slug, compiledSource, scope, extraComponents,
     useInteractiveToc(!!dynamicComponentNames.length)
 
     return (
-        <PostLayout slug={slug} title={scope.title} description={scope.abstract}>
-            <Zoom />
+        <PostLayout slug={slug} scope={scope}>
             <article lang={scope.language || 'en'}>
                 <PostTitle post={scope} />
                 <MDXRemote lazy={!!dynamicComponentNames.length} compiledSource={compiledSource} scope={scope} components={components} />

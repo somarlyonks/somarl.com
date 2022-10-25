@@ -10,7 +10,7 @@ interface IPostMeta extends Record<string, unknown> {
     /** @optional */
     collection: string
     /** @optional */
-    cover: {
+    cover?: {
         src: string
         /** @optional */
         work: string
