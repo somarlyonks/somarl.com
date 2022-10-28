@@ -20,7 +20,7 @@ export default function Works ({works}: InferGetStaticPropsType<typeof getStatic
                 <h1>Works</h1>
                 {works.map(work => (
                     <section key={work.name}>
-                        <h2><a href={work.url} target="_blank">{work.name}</a></h2>
+                        <h2><a href={work.url} target="_blank" rel="noopener noreferrer">{work.name}</a></h2>
                         <p>{work.description}</p>
                     </section>
                 ))}
