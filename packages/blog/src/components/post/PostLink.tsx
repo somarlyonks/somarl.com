@@ -22,8 +22,8 @@ export default function PostLink (props: IProps) {
     )) {
         const url = new URL(href)
         const favicon = `https://unavatar.io/${url.hostname}`
-        return <><img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} /><Link href={props.href}><a name={name} {...props} /></Link></>
+        return <><img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} /><Link name={name} {...props} href={props.href} /></>
     }
 
-    return <Link href={props.href}><a name={name} {...props} /></Link>
+    return <Link name={name} {...props} href={props.href} />
 }

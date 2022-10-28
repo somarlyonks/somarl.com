@@ -1,4 +1,4 @@
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
 
@@ -31,34 +31,32 @@ export default function PostTitle ({post}: IProps) {
     })
 
     return (
-        <>
-            <section role={post.cover ? 'banner' : undefined}>
-                <h1 ref={$h1}>{post.title}</h1>
-                <p>{post.abstract}</p>
-                {!!post.cover && (
-                    <figure role="img">
-                        <Image priority
-                            width="1000"
-                            height="1000"
-                            alt="cover"
-                            title={post.title}
-                            {...post.cover}
-                            src={post.cover.src}
-                            placeholder="blur"
-                            onLoad={moveInfoSection}
-                            onLoadingComplete={moveInfoSection}
-                        />
-                        {post.cover.work && (
-                            <figcaption>
-                                {post.cover.author && <span>{post.cover.author}</span>}
-                                <span><cite>{post.cover.work}</cite></span>
-                                {post.cover.date && <span>{post.cover.date}</span>}
-                                {post.cover.material && <span>{post.cover.material}</span>}
-                            </figcaption>
-                        )}
-                    </figure>
-                )}
-            </section>
-        </>
+        <section role={post.cover ? 'banner' : undefined}>
+            <h1 ref={$h1}>{post.title}</h1>
+            <p>{post.abstract}</p>
+            {!!post.cover && (
+                <figure role="img">
+                    <Image priority
+                        width="1000"
+                        height="1000"
+                        alt="cover"
+                        title={post.title}
+                        {...post.cover}
+                        src={post.cover.src}
+                        placeholder="blur"
+                        onLoad={moveInfoSection}
+                        onLoadingComplete={moveInfoSection}
+                    />
+                    {post.cover.work && (
+                        <figcaption>
+                            {post.cover.author && <span>{post.cover.author}</span>}
+                            <span><cite>{post.cover.work}</cite></span>
+                            {post.cover.date && <span>{post.cover.date}</span>}
+                            {post.cover.material && <span>{post.cover.material}</span>}
+                        </figcaption>
+                    )}
+                </figure>
+            )}
+        </section>
     )
 }

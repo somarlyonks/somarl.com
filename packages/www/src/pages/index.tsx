@@ -35,7 +35,7 @@ export default function Index () {
 function Avatars () {
     return (
         <aside>
-            <Image layout="fill" src={choice([avatar0])} />
+            <Image alt="avatar" fill src={choice([avatar0])} />
         </aside>
     )
 }
