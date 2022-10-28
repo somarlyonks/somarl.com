@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import Button from '../../components/Button'
 import Flex from '../../components/Flex'
 import Head from '../../components/Head'
@@ -18,7 +20,7 @@ export default function FOF () {
             <Flex>
                 <Button borderless label="Back" onClick={navigateBack} />
                 <span>/</span>
-                <a href="/"><Button borderless label="Home" /></a>
+                <Link href="/"><Button borderless label="Home" /></Link>
             </Flex>
         </Flex>
     )
@@ -43,17 +45,17 @@ function Quote ({
     work?: string
 }) {
     if (inline) return (
-        <span role="quote"><q cite={cite}>{quote}</q>{author ? <span>{author}</span> : null}{work ? <cite>{work}</cite> : null}</span>
+        <span role="quote"><q cite={cite}>{quote}</q>{!!author && <span>{author}</span>}{!!work && <cite>{work}</cite>}</span>
     )
     return (
         <blockquote cite={cite}>
             <p>{quote}</p>
-            {author ? (
+            {!!author && (
                 <footer>
                     <span>{author}</span>
-                    {work ? <cite>{work}</cite> : null}
+                    {!!work && <cite>{work}</cite>}
                 </footer>
-            ) : null}
+            )}
         </blockquote>
     )
 }
