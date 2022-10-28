@@ -12,12 +12,12 @@ export default function Footer ({slug}: {slug?: string}) {
             <Flex grow>
                 <nav>
                     <ul>
-                        <li><Link href="https://www.somarl.com"><a>About</a></Link></li>
-                        <li><Link href="/"><a>Blogs</a></Link></li>
-                        <li><Link href="https://moment.somarl.com"><a>Moments</a></Link></li>
+                        <li><Link href="https://www.somarl.com">About</Link></li>
+                        <li><Link href="/">Blogs</Link></li>
+                        <li><Link href="https://moment.somarl.com">Moments</Link></li>
                         {slug
-                            ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
-                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/blog"><a role="button" target="_blank"><OcticonGithub /></a></Link><Link href="/rss.xml"><a role="button" target="_blank"><OcticonRSS /></a></Link></li>
+                            ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`} role="button" target="_blank"><OcticonGithub /></Link></li>
+                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/blog" role="button" target="_blank"><OcticonGithub /></Link><Link href="/rss.xml" role="button" target="_blank"><OcticonRSS /></Link></li>
                         }
                     </ul>
                 </nav>
@@ -29,7 +29,7 @@ export default function Footer ({slug}: {slug?: string}) {
                         <span>Hosted with</span>
                         <span style={{color: '#e25555'}}>&hearts;</span>
                         <span>by</span>
-                        <Link href="https://vercel.com/"><a role="button" target="_blank"><Vercel /></a></Link>
+                        <Link href="https://vercel.com/" role="button" target="_blank"><Vercel /></Link>
                     </Flex>
                 </aside>
             </Flex>

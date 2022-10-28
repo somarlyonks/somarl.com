@@ -28,14 +28,14 @@ export default function PostInfo ({post}: IProps) {
                 <section>
                     <h2>Tags</h2>
                     {post.tags.map(tag => (
-                        <Link href={`/tag/${tag}`} key={tag}><a role="button"><HashTag />{tag}</a></Link>
+                        <Link href={`/tag/${tag}`} key={tag} role="button"><HashTag />{tag}</Link>
                     ))}
                 </section>
             )}
             {!!post.collection && (
                 <section>
                     <h2>Collection</h2>
-                    <Link href={`/collection/${post.collection}`}><a role="button"><Book />{post.collection}</a></Link>
+                    <Link href={`/collection/${post.collection}`} role="button"><Book />{post.collection}</Link>
                 </section>
             )}
         </div>

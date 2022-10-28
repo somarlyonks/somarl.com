@@ -16,7 +16,7 @@ export default function PostCollection ({post, collection}: IProps) {
         <div className="post-collection">
             <p>
                 <small>The {formatNth(postIndex + 1)} of {formatPlural(collection.length, 'post')} in collection </small>
-                <Link href={`/collection/${post.collection}`}><a><strong>{post.collection}</strong></a></Link>
+                <Link href={`/collection/${post.collection}`}><strong>{post.collection}</strong></Link>
             </p>
             <ul>
                 {collection.slice(postIndex && postIndex - 1, postIndex + (postIndex ? 2 : 3)).map(collectionPost => (

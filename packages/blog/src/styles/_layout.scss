@@ -171,6 +171,7 @@ article > section[role="figure"] {
   border-radius: 1em;
   transition: all 0.2s ease;
   cursor: pointer;
+  position: relative;
 
   figure {
     &,
@@ -180,6 +181,25 @@ article > section[role="figure"] {
 
     img {
       object-fit: cover;
+    }
+
+    figcaption {
+      > * {
+        position: relative;
+        pointer-events: none;
+        z-index: 1;
+        a {
+          pointer-events: all;
+        }
+      }
+      > a[role="button"] {
+        position: absolute;
+        pointer-events: all;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
     }
   }
 

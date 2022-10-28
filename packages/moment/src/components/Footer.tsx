@@ -11,12 +11,12 @@ export default function Footer ({slug}: {slug?: string}) {
             <Flex grow>
                 <nav>
                     <ul>
-                        <li><Link href="https://www.somarl.com"><a>About</a></Link></li>
-                        <li><Link href="https://blog.somarl.com"><a>Blogs</a></Link></li>
-                        <li><Link href="/"><a>Moments</a></Link></li>
+                        <li><Link href="https://www.somarl.com">About</Link></li>
+                        <li><Link href="https://blog.somarl.com">Blogs</Link></li>
+                        <li><Link href="/">Moments</Link></li>
                         {slug
-                            ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`}><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
-                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/moment"><a role="button" target="_blank"><OcticonGithub /></a></Link></li>
+                            ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`} role="button" target="_blank"><OcticonGithub /></Link></li>
+                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/moment" role="button" target="_blank"><OcticonGithub /></Link></li>
                         }
                     </ul>
                 </nav>
@@ -28,7 +28,7 @@ export default function Footer ({slug}: {slug?: string}) {
                         <span>Hosted with</span>
                         <span style={{color: '#e25555'}}>&hearts;</span>
                         <span>by</span>
-                        <Link href="https://vercel.com/"><a role="button" target="_blank"><Vercel /></a></Link>
+                        <Link href="https://vercel.com/" role="button" target="_blank"><Vercel /></Link>
                     </Flex>
                 </aside>
             </Flex>
