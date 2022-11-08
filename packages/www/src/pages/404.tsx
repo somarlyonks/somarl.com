@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Head from '../components/head'
 
 import styles from './404.module.scss'
@@ -17,7 +18,7 @@ export default function FOF () {
                 <div className={styles.flex}>
                     <button onClick={navigateBack}>Back</button>
                     <span>/</span>
-                    <a role="button" href="/"><button>Home</button></a>
+                    <Link role="button" href="/"><button>Home</button></Link>
                 </div>
             </div>
         </div>
@@ -43,17 +44,17 @@ function Quote ({
     work?: string
 }) {
     if (inline) return (
-        <span role="quote"><q cite={cite}>{quote}</q>{author ? <span>{author}</span> : null}{work ? <cite>{work}</cite> : null}</span>
+        <span role="quote"><q cite={cite}>{quote}</q>{!!author && <span>{author}</span>}{!!work && <cite>{work}</cite>}</span>
     )
     return (
         <blockquote cite={cite}>
             <p>{quote}</p>
-            {author ? (
+            {!!author && (
                 <footer>
                     <span>{author}</span>
-                    {work ? <cite>{work}</cite> : null}
+                    {!!work && <cite>{work}</cite>}
                 </footer>
-            ) : null}
+            )}
         </blockquote>
     )
 }

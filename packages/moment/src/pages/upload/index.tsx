@@ -15,9 +15,9 @@ export default function Upload () {
                 <h1>Upload</h1>
 
                 <form>
+                    <UploadField name="upload" label="upload" onUpload={console.info} />
                     <TextField name="abstract" label="abstract" required />
                     <SelectField name="type" label="type" options={MOMENT_TYPES.map(key => ({key, name: key}))} />
-                    <UploadField name="upload" label="upload" onUpload={console.info} />
                 </form>
             </article>
             <Footer />

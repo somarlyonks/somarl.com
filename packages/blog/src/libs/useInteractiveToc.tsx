@@ -20,7 +20,7 @@ export default function useInteractiveToc (lazy: boolean) {
 
         const navItems = [...$tocTree.querySelectorAll('li')].map($li => {
             const $anchor = $li.querySelector('a')!
-            const targetID = ($anchor.getAttribute('href') || '#').slice(1)
+            const targetID = ($anchor.getAttribute('href') || '#').match(/#(.*)/)?.[1] || ''
 
             return {
                 listItem: $li,
@@ -29,7 +29,7 @@ export default function useInteractiveToc (lazy: boolean) {
                 pathStart: Infinity,
                 pathEnd: -Infinity,
             }
-        }).filter(item => item.target)
+        })
 
         function drawPath () {
             if (!$svgPath) return
@@ -93,7 +93,7 @@ export default function useInteractiveToc (lazy: boolean) {
 
         const observer = new IntersectionObserver(entries => entries.forEach(entry => {
             const id = entry.target.querySelector('[id]')?.getAttribute('id')
-            const $anchor = document.querySelector(`li a[href="#${encodeURIComponent(String(id))}"]`)
+            const $anchor = document.querySelector(`li a[href$="#${encodeURIComponent(String(id))}"]`)
 
             const $li = traceAnchorListItem($anchor)
             if (!$li) return

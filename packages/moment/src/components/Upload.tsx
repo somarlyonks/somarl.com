@@ -21,22 +21,31 @@ export default forwardRef<HTMLInputElement, IProps>(function Upload ({onUpload, 
         setUploading(true)
         if (onStart) onStart()
         try {
-            const filename = `${uuid()}/${encodeURIComponent(file.name)}`
-            const r = await fetch(`/api/s3?key=${filename}&accesskey=${encodeURIComponent(localStorage.getItem('S3_SECRET_ACCESS_KEY') || '')}`)
-            const {url, fields}: S3.PresignedPost = await r.json()
             const formData = new FormData()
-            Object.entries(Object.assign(fields, {file})).forEach(([k, v]) => formData.append(k, v))
+            const filename = `${uuid()}/${encodeURIComponent(file.name)}`
 
-            const r2 = await fetch(url, {
+            const isImage = file.type.startsWith('image/')
+            let url = '/api/tinify'
+            if (isImage) {
+                Object.entries(Object.assign({
+                    accesskey: localStorage.getItem('S3_SECRET_ACCESS_KEY') || '',
+                }, {file})).forEach(([k, v]) => formData.append(k, v))
+            } else {
+                const r: S3.PresignedPost = await fetch(`/api/s3?key=${filename}&accesskey=${encodeURIComponent(localStorage.getItem('S3_SECRET_ACCESS_KEY') || '')}`).then(r => r.json())
+                url = r.url
+                Object.entries(Object.assign(r.fields, {file})).forEach(([k, v]) => formData.append(k, v))
+            }
+
+            const r = await fetch(url, {
                 method: 'POST',
                 body: formData,
             })
 
-            if (r2.ok) {
-                if (onUpload) onUpload(`${url}/${filename}`)
+            if (r.ok) {
+                if (onUpload) onUpload(isImage ? (await r.json()).url : `${url}/${filename}`)
             } else {
-                if (onError) onError(r2)
-                else console.error(r2)
+                if (onError) onError(r)
+                else console.error(r)
             }
         } finally {
             setUploading(false)

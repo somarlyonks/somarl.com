@@ -34,19 +34,6 @@ body {
   color: var(--color-fg);
   overflow-x: hidden;
 
-  &::before {
-    content: "";
-    z-index: -1;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, var(--color-bg) 100%),
-      fixed 0 0/20px 20px radial-gradient(var(--theme-bg-secondary) 1px, transparent 0),
-      fixed 10px 10px/20px 20px radial-gradient(var(--theme-bg-tertiary) 1px, transparent 0);
-  }
-
   > #__next {
     display: flex;
     flex-direction: column;
