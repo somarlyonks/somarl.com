@@ -35,7 +35,7 @@
     "remark-toc": "7.2.0",
     "remark-unwrap-images": "2.1.0",
     "rss": "1.2.2",
-    "sharp": "0.31.2",
+    "sharp": "0.31.3",
     "shiki": "0.12.1",
     "unist-util-visit": "4.1.1"
   }
