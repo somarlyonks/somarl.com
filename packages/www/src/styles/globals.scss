@@ -115,7 +115,16 @@ footer {
 }
 
 aside {
-  display: none;
+  display: block;
+  position: relative;
+  float: right;
+  shape-outside: circle();
+  shape-margin: 1em;
+  width: $AsideSize;
+  height: $AsideSize;
+  img {
+    border-radius: 100%;
+  }
 }
 
 .wave {
