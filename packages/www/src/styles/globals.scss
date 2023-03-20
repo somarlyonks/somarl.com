@@ -61,7 +61,7 @@ a {
   &:hover::after {
     top: 0;
   }
-  &[href*="www.sitel.com"] {
+  &[href*="foundever.com"] {
     @include textHighlight(rgba($WorkTheme, 0.5));
     &::selection {
       background-color: rgba($WorkTheme, 0.5);
