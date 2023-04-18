@@ -30,7 +30,7 @@
     "plaiceholder": "2.5.0",
     "rehype-autolink-headings": "6.1.1",
     "remark-gfm": "3.0.1",
-    "remark-sectionize": "1.1.1",
+    "remark-sectionize": "2.0.0",
     "remark-slug": "6.1.0",
     "remark-toc": "7.2.0",
     "remark-unwrap-images": "2.1.0",
