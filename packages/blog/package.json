@@ -22,7 +22,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@plaiceholder/next": "2.5.0",
+    "@plaiceholder/next": "3.0.0",
     "gray-matter": "4.0.3",
     "hast-util-raw": "8.0.0",
     "mdast-util-toc": "6.1.1",
