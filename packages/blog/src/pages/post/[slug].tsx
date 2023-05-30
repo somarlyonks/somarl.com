@@ -13,7 +13,11 @@ const dynamicComponents = {
     MDXIcon: dynamic(() => import(`../../components/icons/MDXIcon`)),
     IllustrationFlexWrapItems: dynamic(() => import(`../../components/post/illustrations/the-way-to-wrap-flex-items-is-grid`)),
 }
-const DYNAMIC_COMPONENT_NAMES = Array.from(Object.keys(dynamicComponents))
+const DYNAMIC_COMPONENT_NAMES = [
+    'NextJS',
+    'MDXIcon',
+    'IllustrationFlexWrapItems',
+] as const
 
 interface IProps {
     slug: string

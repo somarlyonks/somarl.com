@@ -160,6 +160,6 @@ export async function serializePost (slug: string) {
     }) as Promise<MDXRemoteSerializeResult<IPostMeta>>
 }
 
-export const searchMDXComponentInSource = (source: string, components: string[]) => Object.fromEntries(
+export const searchMDXComponentInSource = (source: string, components: readonly string[]) => Object.fromEntries(
     components.map(component => [component, new RegExp(`_jsx\\(${component},`).test(source)])
 )
