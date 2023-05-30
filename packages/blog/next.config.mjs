@@ -1,6 +1,7 @@
-const {withPlaiceholder} = require("@plaiceholder/next")
+import withPlaiceholder from "@plaiceholder/next"
 
-module.exports = withPlaiceholder({
+
+export default withPlaiceholder({
     images: {
         domains: ['s3.us-east-2.amazonaws.com', 'picsum.photos'],
         deviceSizes: [1001, 10000],

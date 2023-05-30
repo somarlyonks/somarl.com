@@ -8,9 +8,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import {getPlaiceholder} from 'plaiceholder'
 
-import {rehypePlaiceholder} from './plaiceholder'
+import {rehypePlaiceholder, plaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
 import {remarkToc} from './toc'
 
@@ -107,13 +106,13 @@ export async function editCover (post: IPostMeta) {
     const {src} = post.cover
     if (!src) return post
 
-    const {base64, img} = await getPlaiceholder(decodeURI(src))
+    const {blurDataURL, width, height} = await plaiceholder(src)
 
     post.cover = {
         ...post.cover,
-        width: img.width,
-        height: img.height,
-        blurDataURL: base64,
+        width,
+        height,
+        blurDataURL,
         placeholder: 'blur',
     }
 
