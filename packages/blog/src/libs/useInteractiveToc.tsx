@@ -66,15 +66,12 @@ export default function useInteractiveToc (lazy: boolean) {
             const thisElIsVisible = ($li: HTMLLIElement) => $li.classList.contains(visibleClass)
             const pathLength = $svgPath.getTotalLength()
 
-            let pathStart = pathLength
-            let pathEnd = 0
-
-            navItems.forEach(item => {
-                if (thisElIsVisible(item.listItem)) {
-                    pathStart = Math.min(item.pathStart, pathStart)
-                    pathEnd = Math.max(item.pathEnd, pathEnd)
-                }
-            })
+            const [pathStart, pathEnd] = navItems.reduce(([start, end], item) =>
+                thisElIsVisible(item.listItem)
+                    ? [Math.min(item.pathStart, start), Math.max(item.pathEnd, end)]
+                    : [start, end]
+                , [pathLength, 0]
+            )
 
             if (someElsAreVisible() && pathStart < pathEnd) {
                 $svgPath.style.setProperty('stroke-dashoffset', '1')
