@@ -1,16 +1,15 @@
-import {readdir, readFile, stat} from 'fs'
-import {promisify} from 'util'
+import {readdir, readFile, stat} from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
+import {notFound} from 'next/navigation'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
-import {getPlaiceholder} from 'plaiceholder'
 
-import {rehypePlaiceholder} from './plaiceholder'
+import {rehypePlaiceholder, plaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
 import {remarkToc} from './toc'
 
@@ -18,12 +17,12 @@ import {remarkToc} from './toc'
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
 
 async function collectPostInDirectory (directoryPath: string, pathPrefix = ''): Promise<string[]> {
-    const fileNames = await promisify(readdir)(directoryPath)
+    const fileNames = await readdir(directoryPath)
     const stepChildren = await Promise.all(fileNames.map(async fileName => {
         const filePath = path.join(directoryPath, fileName)
         const fileSlug = path.join(pathPrefix, fileName)
 
-        if ((await promisify(stat)(filePath)).isDirectory()) return collectPostInDirectory(filePath, fileSlug)
+        if ((await stat(filePath)).isDirectory()) return collectPostInDirectory(filePath, fileSlug)
         if (/\.mdx?$/.test(fileName)) return fileSlug
         return
     }))
@@ -70,7 +69,9 @@ export const getPosts = async () => (await readPosts(await getPostSlugs())).sort
 const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPost))
 
 async function readPost (slug: string) {
-    const file = await promisify(readFile)(postSlugToPath(slug))
+    const path = postSlugToPath(slug)
+    try {await stat(path)} catch (error) {notFound()}
+    const file = await readFile(postSlugToPath(slug))
 
     const {content, data: {
         title,
@@ -107,13 +108,13 @@ export async function editCover (post: IPostMeta) {
     const {src} = post.cover
     if (!src) return post
 
-    const {base64, img} = await getPlaiceholder(decodeURI(src))
+    const {blurDataURL, width, height} = await plaiceholder(src)
 
     post.cover = {
         ...post.cover,
-        width: img.width,
-        height: img.height,
-        blurDataURL: base64,
+        width,
+        height,
+        blurDataURL,
         placeholder: 'blur',
     }
 
@@ -161,6 +162,12 @@ export async function serializePost (slug: string) {
     }) as Promise<MDXRemoteSerializeResult<IPostMeta>>
 }
 
-export const searchMDXComponentInSource = (source: string, components: string[]) => Object.fromEntries(
-    components.map(component => [component, new RegExp(`_jsx\\(${component},`).test(source)])
+export const DYNAMIC_COMPONENT_NAMES = [
+    'NextJS',
+    'MDXIcon',
+    'IllustrationFlexWrapItems',
+] as const
+
+export const searchMDXComponentInSource = (source: string) => (
+    DYNAMIC_COMPONENT_NAMES.filter(component => new RegExp(`_jsx\\(${component},`).test(source))
 )

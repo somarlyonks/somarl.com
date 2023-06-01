@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 header + article,
 header + article > div {
   font-size: calc(14px + 0.33vw);

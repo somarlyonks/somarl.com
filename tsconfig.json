@@ -21,7 +21,6 @@
     "strict": true,
     "strictFunctionTypes": true,
     "sourceMap": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true
+    "strictNullChecks": true
   }
 }

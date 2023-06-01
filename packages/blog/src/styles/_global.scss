@@ -1,7 +1,7 @@
-@import "variables";
-@import "theme";
+@use "variables" as *;
+@use "theme";
 
-@import "components";
+@use "components";
 
 @font-face {
   font-family: DejaVu Sans;
@@ -34,15 +34,13 @@ body {
   color: var(--color-fg);
   overflow-x: hidden;
 
-  > #__next {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    > article {
-      flex: 1;
-      width: 100%;
-      text-shadow: 0 0 1ch var(--color-bg);
-    }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  > article {
+    flex: 1;
+    width: 100%;
+    text-shadow: 0 0 1ch var(--color-bg);
   }
 }
 
@@ -180,11 +178,3 @@ small {
   justify-content: center;
   align-items: center;
 }
-
-@import "i18n";
-
-@import "layout";
-@import "post";
-
-@import "mobile";
-@import "desktop";

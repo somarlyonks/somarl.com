@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
@@ -9,7 +11,7 @@ interface IProps {
 
 export default function PostTitle ({post}: IProps) {
     const $h1 = useInterSectionObserver(entry => {
-        const $nav = document.querySelector<HTMLElement>('#__next > header')
+        const $nav = document.querySelector<HTMLElement>('body > header')
         if ($nav) $nav.style.opacity = String(1 - entry.intersectionRatio)
     }, {
         threshold: Array.from(Array(10 + 1), (_, i) => i / 10),

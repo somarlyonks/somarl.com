@@ -26,14 +26,25 @@ type PostFigureNode = {
     }>
 }
 
+export async function plaiceholder (src: string) {
+    const buffer = await fetch(decodeURI(src)).then(async res => Buffer.from(await res.arrayBuffer()))
+    const {color, base64, metadata: {width, height}} = await getPlaiceholder(buffer)
+
+    return {
+        color,
+        width,
+        height,
+        blurDataURL: base64,
+    }
+}
+
 async function editImageNode (node: ImageNode): Promise<void> {
     try {
-        const {base64, img} = await getPlaiceholder(decodeURI(node.properties.src))
+        const {blurDataURL, width, height} = await plaiceholder(node.properties.src)
 
-        node.properties.width = img.width
-        node.properties.height = img.height
-
-        node.properties.blurDataURL = base64
+        node.properties.width = width
+        node.properties.height = height
+        node.properties.blurDataURL = blurDataURL
         node.properties.placeholder = 'blur'
     } catch (error) {
         /**
@@ -51,22 +62,22 @@ async function editPostFigureNode (node: PostFigureNode): Promise<void> {
 
     if (!srcAttribute) return
     try {
-        const {base64, img} = await getPlaiceholder(decodeURI(srcAttribute.value))
+        const {blurDataURL, width, height} = await plaiceholder(srcAttribute.value)
 
         node.attributes.push({
             type: 'mdxJsxAttribute',
             name: 'width',
-            value: img.width,
+            value: width,
         })
         node.attributes.push({
             type: 'mdxJsxAttribute',
             name: 'height',
-            value: img.height,
+            value: height,
         })
         node.attributes.push({
             type: 'mdxJsxAttribute',
             name: 'blurDataURL',
-            value: base64,
+            value: blurDataURL,
         })
         node.attributes.push({
             type: 'mdxJsxAttribute',

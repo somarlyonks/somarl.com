@@ -77,6 +77,7 @@ export const rehypeShiki: Plugin<[IOptions?]> = () => {
         visit(tree, 'raw', (node: ICodeNode, index, parent) => {
             const newNode = raw(node)
             for (const key in newNode) {
+                // @ts-ignore
                 node[key] = newNode[key]
             }
         })
