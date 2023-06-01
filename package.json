@@ -37,7 +37,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@somarlyonks/commitlint": "2.0.0",
+    "@somarlyonks/commitlint": "3.0.0",
     "@somarlyonks/tslint": "1.0.1",
     "@types/react": "17.0.15",
     "folans.d.ts": "2.0.0",
