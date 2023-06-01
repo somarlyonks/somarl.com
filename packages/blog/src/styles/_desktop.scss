@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables" as *;
 
 $desktopThreshold: 1420px;
 $asideWidth: calc(calc(100vw - 100%) / 2);

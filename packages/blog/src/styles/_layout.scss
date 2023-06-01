@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 $layoutWidth: 700px;
 $colorHairline: var(--color-bg-secondary);
 
@@ -26,7 +28,7 @@ $colorHairline: var(--color-bg-secondary);
   border-radius: 100%;
 }
 
-#__next {
+body {
   > header {
     display: flex;
     justify-content: flex-start;

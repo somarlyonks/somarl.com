@@ -160,6 +160,12 @@ export async function serializePost (slug: string) {
     }) as Promise<MDXRemoteSerializeResult<IPostMeta>>
 }
 
-export const searchMDXComponentInSource = (source: string, components: readonly string[]) => Object.fromEntries(
-    components.map(component => [component, new RegExp(`_jsx\\(${component},`).test(source)])
+export const DYNAMIC_COMPONENT_NAMES = [
+    'NextJS',
+    'MDXIcon',
+    'IllustrationFlexWrapItems',
+] as const
+
+export const searchMDXComponentInSource = (source: string) => (
+    DYNAMIC_COMPONENT_NAMES.filter(component => new RegExp(`_jsx\\(${component},`).test(source))
 )

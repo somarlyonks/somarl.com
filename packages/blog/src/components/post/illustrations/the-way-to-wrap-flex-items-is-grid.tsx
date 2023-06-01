@@ -1,3 +1,5 @@
+'use client'
+
 import {useState} from 'react'
 
 import styles from './the-way-to-wrap-flex-items-is-grid.module.scss'
