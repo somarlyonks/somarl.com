@@ -1,7 +1,6 @@
 import {readdir, readFile, stat} from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
-import {notFound} from 'next/navigation'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -69,8 +68,6 @@ export const getPosts = async () => (await readPosts(await getPostSlugs())).sort
 const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPost))
 
 async function readPost (slug: string) {
-    const path = postSlugToPath(slug)
-    try {await stat(path)} catch (error) {notFound()}
     const file = await readFile(postSlugToPath(slug))
 
     const {content, data: {
@@ -169,5 +166,5 @@ export const DYNAMIC_COMPONENT_NAMES = [
 ] as const
 
 export const searchMDXComponentInSource = (source: string) => (
-    DYNAMIC_COMPONENT_NAMES.filter(component => new RegExp(`_jsx\\(${component},`).test(source))
+    DYNAMIC_COMPONENT_NAMES.filter(component => new RegExp(`_jsx(DEV)?\\(${component},`).test(source))
 )

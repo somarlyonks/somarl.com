@@ -5,7 +5,6 @@ import PostUl from './PostUl'
 import PostFigure from './PostFigure'
 
 export {default as PostInfo} from './PostInfo'
-export {default as PostLayout} from './PostLayout'
 export {default as PostContent} from './PostContent'
 export {default as PostTitle} from './PostTitle'
 export {default as PostCollection} from './PostCollection'
