@@ -22,7 +22,7 @@ export async function generateMetadata ({params: {collection}}: {
 }
 
 export async function generateStaticParams () {
-    return Object.keys(await getCollectionMap())
+    return Object.keys(await getCollectionMap()).map(collection => ({collection}))
 }
 
 export default async function Collection ({params: {collection}}: {params: IParams}) {

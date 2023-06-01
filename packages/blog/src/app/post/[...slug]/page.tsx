@@ -8,7 +8,7 @@ const dynamicParams = false
 export {dynamicParams}
 
 export async function generateStaticParams () {
-    return (await getPostSlugs()).map(slug => slug.split('/'))
+    return (await getPostSlugs()).map(slug => ({slug: slug.split('/')}))
 }
 
 export default async function Page ({params: {slug}}: {params: IParams}) {
