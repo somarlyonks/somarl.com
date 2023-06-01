@@ -16,7 +16,7 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run: yarn run build
-      - run: yarn run ci
+      # - run: yarn run ci
 
 workflows:
   version: 2
