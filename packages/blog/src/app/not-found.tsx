@@ -6,6 +6,12 @@ import NavigateBack from '../components/NavigateBack'
 
 import styles from './not-found.module.scss'
 
+export async function generateMetadata () {
+    return {
+        title: 'Not Found | Yang',
+    }
+}
+
 
 export default function FOF () {
 
@@ -23,8 +29,6 @@ export default function FOF () {
         </Flex>
     )
 }
-
-
 
 function Quote ({
     inline = false,

@@ -1,7 +1,7 @@
-import {readdir, readFile, stat} from 'fs'
-import {promisify} from 'util'
+import {readdir, readFile, stat} from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
+import {notFound} from 'next/navigation'
 import {serialize} from 'next-mdx-remote/serialize'
 import remarkSlug from 'remark-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -17,12 +17,12 @@ import {remarkToc} from './toc'
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
 
 async function collectPostInDirectory (directoryPath: string, pathPrefix = ''): Promise<string[]> {
-    const fileNames = await promisify(readdir)(directoryPath)
+    const fileNames = await readdir(directoryPath)
     const stepChildren = await Promise.all(fileNames.map(async fileName => {
         const filePath = path.join(directoryPath, fileName)
         const fileSlug = path.join(pathPrefix, fileName)
 
-        if ((await promisify(stat)(filePath)).isDirectory()) return collectPostInDirectory(filePath, fileSlug)
+        if ((await stat(filePath)).isDirectory()) return collectPostInDirectory(filePath, fileSlug)
         if (/\.mdx?$/.test(fileName)) return fileSlug
         return
     }))
@@ -69,7 +69,9 @@ export const getPosts = async () => (await readPosts(await getPostSlugs())).sort
 const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPost))
 
 async function readPost (slug: string) {
-    const file = await promisify(readFile)(postSlugToPath(slug))
+    const path = postSlugToPath(slug)
+    try {await stat(path)} catch (error) {notFound()}
+    const file = await readFile(postSlugToPath(slug))
 
     const {content, data: {
         title,

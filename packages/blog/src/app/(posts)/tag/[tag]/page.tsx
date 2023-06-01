@@ -1,5 +1,6 @@
 
 import {Metadata} from 'next'
+import {notFound} from 'next/navigation'
 
 import {getTagMap} from '../../../../libs/mdx'
 import HashTag from '../../../../components/icons/HashTag'
@@ -25,6 +26,8 @@ export default async function Page ({params: {tag}}: {params: IParams}) {
     const tagMap = await getTagMap()
     const tagName = decodeURIComponent(tag)
     const posts = tagMap[tagName]
+
+    if (!posts) notFound()
 
     return (
         <>
