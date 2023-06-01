@@ -6,9 +6,13 @@ import {getTagMap} from '../../../../libs/mdx'
 import HashTag from '../../../../components/icons/HashTag'
 import PostList from '../../../../components/PostList'
 
+
 interface IParams {
     tag: string
 }
+
+const dynamicParams = false
+export {dynamicParams}
 
 export async function generateMetadata ({params: {tag}}: {
     params: IParams

@@ -10,6 +10,9 @@ interface IParams {
     collection: string
 }
 
+const dynamicParams = false
+export {dynamicParams}
+
 export async function generateMetadata ({params: {collection}}: {
     params: IParams
 }): Promise<Metadata> {

@@ -33,6 +33,12 @@ export default function PostContent ({
     useInteractiveToc(!!extraComponents.length)
 
     return (
-        <MDXRemote lazy={!!extraComponents.length} compiledSource={compiledSource} scope={scope} components={components} />
+        <MDXRemote
+            lazy={!!extraComponents.length}
+            compiledSource={compiledSource}
+            scope={scope}
+            frontmatter={{}}
+            components={components}
+        />
     )
 }
