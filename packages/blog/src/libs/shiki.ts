@@ -75,7 +75,7 @@ export const remarkShiki: Plugin<[IOptions?]> = options => {
 export const rehypeShiki: Plugin<[IOptions?]> = () => {
     return async tree => {
         visit(tree, 'raw', (node: ICodeNode, index, parent) => {
-            const newNode = raw(node)
+            const newNode = raw(node as ANY)
             for (const key in newNode) {
                 // @ts-ignore
                 node[key] = newNode[key]
