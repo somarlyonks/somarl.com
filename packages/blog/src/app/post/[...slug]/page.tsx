@@ -1,6 +1,6 @@
 
-import {PostInfo, PostTitle, PostCollection, PostContent} from '../../../components/post'
-import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '../../../libs/mdx'
+import {PostInfo, PostTitle, PostCollection, PostContent} from '@/components/post'
+import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '@/libs/mdx'
 import type {IParams} from './layout'
 
 

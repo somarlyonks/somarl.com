@@ -1,10 +1,10 @@
 
 import {Metadata} from 'next'
 
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import Zoom from '../../../components/post/scripts/Zoom'
-import {serializePost} from '../../../libs/mdx'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Zoom from '@/components/post/scripts/Zoom'
+import {serializePost} from '@/libs/mdx'
 
 
 export interface IParams {

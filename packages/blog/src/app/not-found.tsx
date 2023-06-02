@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import Button from '../components/Button'
-import Flex from '../components/Flex'
-import NavigateBack from '../components/NavigateBack'
+import Button from '@/components/Button'
+import Flex from '@/components/Flex'
+import NavigateBack from '@/components/NavigateBack'
 
 import styles from './not-found.module.scss'
 

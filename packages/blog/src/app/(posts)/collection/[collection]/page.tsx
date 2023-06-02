@@ -1,8 +1,8 @@
 import {notFound} from 'next/navigation'
-import PostList from '../../../../components/PostList'
-import Book from '../../../../components/icons/Book'
 
-import {getCollectionMap} from '../../../../libs/mdx'
+import PostList from '@/components/PostList'
+import Book from '@/components/icons/Book'
+import {getCollectionMap} from '@/libs/mdx'
 import type {ICollectionParams} from '../../metadata'
 export {generateMetadata} from '../../metadata'
 
