@@ -15,11 +15,18 @@ const fontMono = localFont({
 })
 
 export const metadata = {
+    metadataBase: new URL('https://blog.somarl.com'),
     title: 'Blogs | Yang',
     description: 'My life and thoughts.',
     robots: 'all',
     themeColor: '#00a1f1',
     manifest: '/site.webmanifest',
+    openGraph: {
+        title: 'Blogs | Yang',
+        description: 'My life and thoughts.',
+        url: 'https://blog.somarl.com',
+        siteName: 'Yang',
+    },
 }
 
 export default function RootLayout ({
