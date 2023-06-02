@@ -14,11 +14,28 @@ export interface IParams {
 export async function generateMetadata ({params: {slug}}: {
     params: IParams
 }): Promise<Metadata> {
-    const {scope} = await serializePost(decodeURIComponent(slug.join('/')))
+    const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
+    const title = `${scope.title} | Yang`
+    const description = scope.abstract
+    const images = scope.cover && [{
+        url: scope.cover.src,
+        width: scope.cover.width,
+        height: scope.cover.height,
+    }]
 
     return {
-        title: `${scope.title} | Yang`,
-        description: scope.abstract,
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `/blog/${slug.join('/')}`,
+            siteName: 'Yang',
+            type: 'article',
+            publishedTime: scope.published,
+            authors: 'Yang Sheng',
+            images,
+        }
     }
 }
 
@@ -29,7 +46,7 @@ export default async function Layout ({
     children: React.ReactNode
     params: IParams
 }) {
-    const {scope} = await serializePost(decodeURIComponent(slug.join('/')))
+    const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
 
     return (
         <>

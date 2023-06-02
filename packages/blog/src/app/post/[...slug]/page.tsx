@@ -8,7 +8,7 @@ const dynamicParams = false
 export {dynamicParams}
 
 export async function generateStaticParams () {
-    return (await getPostSlugs()).map(slug => ({slug: slug.split('/')}))
+    return (await getPostSlugs()).map(slug => ({slug: slug.split('/').map(encodeURIComponent)}))
 }
 
 export default async function Page ({params: {slug}}: {params: IParams}) {
@@ -30,7 +30,7 @@ export default async function Page ({params: {slug}}: {params: IParams}) {
 }
 
 const getStaticProps = async (slug: string[]) => {
-    const {compiledSource, scope} = await serializePost(decodeURIComponent(slug.join('/')))
+    const {compiledSource, scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
     const extraComponents = searchMDXComponentInSource(compiledSource)
     const collectionMap = await getCollectionMap()
     const collection = collectionMap[scope.collection] || null
