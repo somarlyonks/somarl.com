@@ -98,7 +98,7 @@ header + article > div {
   }
   pre,
   code {
-    font-family: CamingoCode, monospace;
+    font-family: var(--font-mono), monospace;
   }
 
   ul,
