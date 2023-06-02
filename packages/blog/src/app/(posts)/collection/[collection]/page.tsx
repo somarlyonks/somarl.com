@@ -16,7 +16,7 @@ export async function generateStaticParams () {
 
 export default async function Collection ({params: {collection}}: {params: ICollectionParams}) {
     const collectionMap = await getCollectionMap()
-    const collectionName = decodeURIComponent(collection)
+    const collectionName = decodeURIComponent(decodeURIComponent(collection))
     const posts = collectionMap[collectionName]
 
     if (!posts) notFound()

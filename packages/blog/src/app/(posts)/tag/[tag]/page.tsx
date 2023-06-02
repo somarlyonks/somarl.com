@@ -17,7 +17,7 @@ export async function generateStaticParams () {
 
 export default async function Page ({params: {tag}}: {params: ITagParams}) {
     const tagMap = await getTagMap()
-    const tagName = decodeURIComponent(tag)
+    const tagName = decodeURIComponent(decodeURIComponent(tag))
     const posts = tagMap[tagName]
 
     if (!posts) notFound()
