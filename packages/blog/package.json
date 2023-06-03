@@ -6,8 +6,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "prebuild": "npm run build-rss",
-    "build-rss": "node scripts/rss.js",
     "start": "next start",
     "lint": "tslint --fix -p tsconfig.json",
     "test": "next build",
@@ -24,6 +22,7 @@
   },
   "devDependencies": {
     "@plaiceholder/next": "3.0.0",
+    "@types/rss": "0.0.30",
     "gray-matter": "4.0.3",
     "hast-util-raw": "8.0.0",
     "mdast-util-toc": "6.1.1",
