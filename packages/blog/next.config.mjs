@@ -7,4 +7,13 @@ export default withPlaiceholder({
         deviceSizes: [1001, 10000],
         imageSizes: [1000, 2000],
     },
+    async redirects () {
+        return [
+            {
+                source: '/dashboard',
+                destination: '/',
+                permanent: true,
+            }
+        ]
+    }
 })
