@@ -1,7 +1,7 @@
-import Footer from '../components/Footer'
-import PostList from '../components/PostList'
+import Footer from '@/components/Footer'
+import PostList from '@/components/PostList'
 
-import {getPosts} from '../libs/mdx'
+import {getPosts} from '@/libs/mdx'
 
 
 export default async function Page () {

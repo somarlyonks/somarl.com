@@ -2,7 +2,6 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es2019",
@@ -21,10 +20,5 @@
     "scripts",
     "build",
     "test"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
   ]
 }

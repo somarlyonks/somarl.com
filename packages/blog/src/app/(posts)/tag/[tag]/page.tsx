@@ -1,9 +1,9 @@
 
 import {notFound} from 'next/navigation'
 
-import {getTagMap} from '../../../../libs/mdx'
-import HashTag from '../../../../components/icons/HashTag'
-import PostList from '../../../../components/PostList'
+import {getTagMap} from '@/libs/mdx'
+import HashTag from '@/components/icons/HashTag'
+import PostList from '@/components/PostList'
 import type {ITagParams} from '../../metadata'
 export {generateMetadata} from '../../metadata'
 
