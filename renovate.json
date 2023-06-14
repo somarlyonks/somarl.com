@@ -6,7 +6,6 @@
     "@types/react",
     "@types/react-dom",
     "typescript",
-    "remark-toc",
     "remark-unwrap-images",
     "aws-sdk"
   ]
