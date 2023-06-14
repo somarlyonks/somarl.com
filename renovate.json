@@ -4,6 +4,7 @@
   ],
   "ignoreDeps": [
     "@types/react",
+    "@types/react-dom",
     "typescript",
     "remark-slug",
     "remark-toc",
