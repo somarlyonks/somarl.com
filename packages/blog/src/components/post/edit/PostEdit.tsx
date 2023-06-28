@@ -25,7 +25,7 @@ export default function PostEdit ({content: propContent = ''}: IProps) {
     }
 
     function submit () {
-        'use server'
+        // 'use server'
 
         fetch('/api/post', {
             method: 'POST',
