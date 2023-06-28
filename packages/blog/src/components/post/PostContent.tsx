@@ -3,9 +3,9 @@
 import {MDXRemote} from 'next-mdx-remote'
 import dynamic from 'next/dynamic'
 
-import useInteractiveToc from '../../libs/useInteractiveToc'
+import useInteractiveToc from '@/libs/useInteractiveToc'
 import {postComponents} from '.'
-import type {DYNAMIC_COMPONENT_NAMES} from '../../libs/mdx'
+import type {DYNAMIC_COMPONENT_NAMES} from '@/libs/mdx'
 
 
 const dynamicComponents: Record<C<typeof DYNAMIC_COMPONENT_NAMES>, ANY> = {
