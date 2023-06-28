@@ -60,7 +60,7 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
       float: left;
       width: $asideWidth;
       max-width: 24em;
-      top: calc(1.5 * #{$navHeight});
+      top: 1.5 * $navHeight;
       margin-left: 100%;
       margin-bottom: 0;
 
@@ -94,7 +94,6 @@ $asideWidth: calc(calc(100vw - 100%) / 2);
         }
         li.visible a {
           opacity: 0.9;
-          transform: translate(0.25ch);
         }
       }
     }

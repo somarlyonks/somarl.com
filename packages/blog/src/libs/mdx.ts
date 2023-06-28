@@ -2,7 +2,7 @@ import {readdir, readFile, stat} from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
-import remarkSlug from 'remark-slug'
+import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
@@ -135,7 +135,6 @@ export async function serializePost (slug: string) {
     return serialize(content, {
         mdxOptions: {
             remarkPlugins: [
-                remarkSlug,
                 remarkToc,
                 remarkUnwrapImages,
                 remarkSectionize,
@@ -143,6 +142,7 @@ export async function serializePost (slug: string) {
                 [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
+                rehypeSlug,
                 rehypeShiki,
                 rehypePlaiceholder,
                 [rehypeAutolinkHeadings, {

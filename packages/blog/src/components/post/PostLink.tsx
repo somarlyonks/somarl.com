@@ -10,9 +10,7 @@ interface IProps {
 
 export default function PostLink (props: IProps) {
     const {href = ''} = props
-    const name = href.startsWith('#') && encodeURIComponent(href.slice(1)) !== href.slice(1)
-        ? encodeURIComponent(href.slice(1))
-        : undefined
+
     const handleFaviconError = (e: React.InvalidEvent<HTMLImageElement>) => {
         e.target.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
     }
@@ -22,8 +20,10 @@ export default function PostLink (props: IProps) {
     )) {
         const url = new URL(href)
         const favicon = `https://unavatar.io/${url.hostname}`
-        return <><img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} /><Link name={name} {...props} href={props.href} /></>
+        return <><img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} /><a {...props} href={props.href} /></>
     }
 
-    return <Link name={name} {...props} href={props.href} />
+    if (href.startsWith('/')) return <Link {...props} href={props.href} />
+
+    return <a {...props} href={props.href} />
 }

@@ -52,7 +52,7 @@ header + article > div {
   }
   [id],
   a[name] {
-    scroll-margin-top: calc(1.5 * #{$navHeight});
+    scroll-margin-top: 1.5 * $navHeight;
   }
 
   p,
