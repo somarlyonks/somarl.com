@@ -1,5 +1,6 @@
+'use client'
 
-import Head from 'next/head'
+import {useEffect} from 'react'
 
 
 interface IProps {
@@ -7,9 +8,14 @@ interface IProps {
 }
 
 export default function PostStyle ({styles}: IProps) {
-    return (
-        <Head>
-            <style>{styles.map(style => `header + article ${style}`)}</style>
-        </Head>
-    )
+    useEffect(() => {
+        const style = document.createElement('style')
+        style.innerHTML = styles.map(style => `header + article ${style}`).join('\n')
+        document.head.appendChild(style)
+        return () => {
+            document.head.removeChild(style)
+        }
+    }, [])
+
+    return null
 }
