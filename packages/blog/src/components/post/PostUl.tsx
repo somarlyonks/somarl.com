@@ -1,9 +1,8 @@
-import {ReactNode} from 'react'
+import {PropsWithChildren} from 'react'
 
 
-interface IProps {
+interface IProps extends PropsWithChildren {
     className?: string
-    children: ReactNode
 }
 
 export default function PostUl ({className, children}: IProps) {

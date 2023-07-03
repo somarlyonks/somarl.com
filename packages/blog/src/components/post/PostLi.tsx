@@ -1,9 +1,8 @@
-import {ReactNode, isValidElement} from 'react'
+import {PropsWithChildren, isValidElement} from 'react'
 
 
-interface IProps {
+interface IProps extends PropsWithChildren {
     id?: string
-    children: ReactNode
 }
 
 export default function PostLi ({id, children}: IProps) {

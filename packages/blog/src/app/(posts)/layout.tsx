@@ -1,12 +1,10 @@
-
+import {PropsWithChildren} from 'react'
 import Footer from '@/components/Footer'
 
 
 export default function Layout ({
     children,
-}: {
-    children: React.ReactNode
-}) {
+}: PropsWithChildren) {
     return (
         <>
             <article>{children}</article>

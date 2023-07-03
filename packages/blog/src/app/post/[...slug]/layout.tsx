@@ -1,4 +1,5 @@
 
+import {PropsWithChildren} from 'react'
 import {Metadata} from 'next'
 
 import Header from '@/components/Header'
@@ -42,10 +43,9 @@ export async function generateMetadata ({params: {slug}}: {
 export default async function Layout ({
     children,
     params: {slug},
-}: {
-    children: React.ReactNode
+}:  PropsWithChildren<{
     params: IParams
-}) {
+}>) {
     const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
 
     return (
