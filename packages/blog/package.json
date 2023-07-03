@@ -17,7 +17,7 @@
     "@csszen/icons.octiconrss": "1.1.0",
     "@prisma/client": "4.16.2",
     "@userfront/react": "0.3.3",
-    "next": "13.4.7",
+    "next": "13.4.8",
     "next-mdx-remote": "4.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
