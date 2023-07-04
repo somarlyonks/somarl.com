@@ -25,18 +25,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
     })
 
-    if (!accesskey || !file || Array.isArray(file)) return res.status(HTTPStatusCodes.BAD_REQUEST).end()
+    const formAccesskey = Array.isArray(accesskey) ? accesskey[0] : accesskey
+    const formFile = Array.isArray(file) ? file[0] : file
 
-    const path = `${CONFIG.S3_BUCKET}/${uuid()}/${file.originalFilename}`
+    if (!formAccesskey || !formFile) return res.status(HTTPStatusCodes.BAD_REQUEST).end()
+
+    const path = `${CONFIG.S3_BUCKET}/${uuid()}/${formFile.originalFilename}`
     const region = CONFIG.S3_REGION
 
     tinify.key = CONFIG.TINIFY_API_KEY
 
     try {
-        const r = tinify.fromFile(file.filepath).store({
+        const r = tinify.fromFile(formFile.filepath).store({
             service: 's3',
             aws_access_key_id: CONFIG.S3_ACCESS_KEY_ID,
-            aws_secret_access_key: accesskey,
+            aws_secret_access_key: formAccesskey,
             region,
             path,
         })

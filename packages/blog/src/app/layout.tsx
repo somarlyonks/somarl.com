@@ -1,5 +1,8 @@
-import 'src/styles/index.scss'
+
+import {PropsWithChildren} from 'react'
 import localFont from 'next/font/local'
+
+import 'src/styles/index.scss'
 
 
 const fontSans = localFont({
@@ -31,9 +34,7 @@ export const metadata = {
 
 export default function RootLayout ({
     children,
-}: {
-    children: React.ReactNode
-}) {
+}: PropsWithChildren) {
     return (
         <html lang="en" className={`${fontSans.className} ${fontMono.variable}`}>
             <body>{children}</body>
