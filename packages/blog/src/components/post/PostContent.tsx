@@ -12,6 +12,7 @@ const dynamicComponents: Record<C<typeof DYNAMIC_COMPONENT_NAMES>, ANY> = {
     NextJS: dynamic(() => import(`../icons/NextJS`)),
     MDXIcon: dynamic(() => import(`../icons/MDXIcon`)),
     IllustrationFlexWrapItems: dynamic(() => import(`./illustrations/the-way-to-wrap-flex-items-is-grid`)),
+    MyBikeTimeline: dynamic(() => import('./illustrations/my-bike'))
 }
 
 interface IProps {

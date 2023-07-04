@@ -163,6 +163,7 @@ export const DYNAMIC_COMPONENT_NAMES = [
     'NextJS',
     'MDXIcon',
     'IllustrationFlexWrapItems',
+    'MyBikeTimeline',
 ] as const
 
 export const searchMDXComponentInSource = (source: string) => (
