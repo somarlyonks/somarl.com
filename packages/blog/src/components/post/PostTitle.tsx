@@ -45,7 +45,7 @@ export default function PostTitle ({post}: IProps) {
                         title={post.title}
                         {...post.cover}
                         src={post.cover.src}
-                        placeholder="blur"
+                        placeholder="empty"
                         onLoad={moveInfoSection}
                         onLoadingComplete={moveInfoSection}
                     />

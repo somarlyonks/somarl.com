@@ -1,4 +1,4 @@
-import {getPlaiceholder} from 'plaiceholder'
+import jimp from 'jimp'
 import type {Node} from 'unist'
 import type {Plugin} from 'unified'
 import {visit} from 'unist-util-visit'
@@ -28,24 +28,24 @@ type PostFigureNode = {
 
 export async function plaiceholder (src: string) {
     const buffer = await fetch(decodeURI(src)).then(async res => Buffer.from(await res.arrayBuffer()))
-    const {color, base64, metadata: {width, height}} = await getPlaiceholder(buffer)
+    const image = await jimp.read(buffer)
+    const width = image.getWidth()
+    const height = image.getHeight()
+    // const blurDataURL = await image.blur(30).getBase64Async(jimp.AUTO)
 
     return {
-        color,
         width,
         height,
-        blurDataURL: base64,
     }
 }
 
 async function editImageNode (node: ImageNode): Promise<void> {
     try {
-        const {blurDataURL, width, height} = await plaiceholder(node.properties.src)
+        const {width, height} = await plaiceholder(node.properties.src)
 
         node.properties.width = width
         node.properties.height = height
-        node.properties.blurDataURL = blurDataURL
-        node.properties.placeholder = 'blur'
+        node.properties.placeholder = 'empty'
     } catch (error) {
         /**
          * some expected errors are thrown here, so we just ignore them
@@ -62,7 +62,7 @@ async function editPostFigureNode (node: PostFigureNode): Promise<void> {
 
     if (!srcAttribute) return
     try {
-        const {blurDataURL, width, height} = await plaiceholder(srcAttribute.value)
+        const {width, height} = await plaiceholder(srcAttribute.value)
 
         node.attributes.push({
             type: 'mdxJsxAttribute',
@@ -76,13 +76,8 @@ async function editPostFigureNode (node: PostFigureNode): Promise<void> {
         })
         node.attributes.push({
             type: 'mdxJsxAttribute',
-            name: 'blurDataURL',
-            value: blurDataURL,
-        })
-        node.attributes.push({
-            type: 'mdxJsxAttribute',
             name: 'placeholder',
-            value: 'blur',
+            value: 'empty',
         })
     } catch (error) {
         console.error(error)
