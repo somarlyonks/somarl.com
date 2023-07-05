@@ -8,7 +8,7 @@ import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-import {rehypePlaiceholder, plaiceholder} from './plaiceholder'
+import {plaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
 import {remarkToc} from './toc'
 
@@ -105,14 +105,13 @@ export async function editCover (post: IPostMeta) {
     const {src} = post.cover
     if (!src) return post
 
-    const {blurDataURL, width, height} = await plaiceholder(src)
+    const {width, height} = await plaiceholder(src)
 
     post.cover = {
         ...post.cover,
         width,
         height,
-        blurDataURL,
-        placeholder: 'blur',
+        placeholder: 'empty',
     }
 
     return post
@@ -144,7 +143,6 @@ export async function serializePost (slug: string) {
             rehypePlugins: [
                 rehypeSlug,
                 rehypeShiki,
-                rehypePlaiceholder,
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
                     properties: {

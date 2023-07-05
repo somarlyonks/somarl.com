@@ -1,7 +1,5 @@
-import withPlaiceholder from "@plaiceholder/next"
 
-
-export default withPlaiceholder({
+export default {
     images: {
         domains: ['s3.us-east-2.amazonaws.com', 'picsum.photos'],
         deviceSizes: [1001, 10000],
@@ -16,4 +14,4 @@ export default withPlaiceholder({
             }
         ]
     }
-})
+}
