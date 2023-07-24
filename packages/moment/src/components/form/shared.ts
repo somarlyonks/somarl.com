@@ -7,7 +7,7 @@ export interface IFieldProps<T = HTMLInputElement> {
     value?: string
     required?: boolean
     disabled?: boolean
-    onInput?: FormEventHandler<T>
+    onChange?: FormEventHandler<T>
 }
 
 export type IFieldValidator = F1<S, S | P<S>>

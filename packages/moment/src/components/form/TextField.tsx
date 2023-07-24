@@ -14,20 +14,20 @@ export default field('text', context => forwardRef<HTMLInputElement, IProps>(({
     type = 'text',
     name,
     placeholder,
-    onInput: propOnInput,
+    onChange,
     required = false,
     disabled = false,
     maxLength,
 }, $input) => {
     const {value, errMsg, setState} = useContext(context)
 
-    const onInput: FormEventHandler<HTMLInputElement> = event => {
+    const handleInput: FormEventHandler<HTMLInputElement> = event => {
         const target = event.currentTarget
         const newValue = target.value
         setState(prev => ({...prev, value: newValue}))
 
         target.setCustomValidity('')
-        if (propOnInput) propOnInput.call(target, event)
+        if (onChange) onChange.call(target, event)
     }
 
     return (
@@ -38,7 +38,7 @@ export default field('text', context => forwardRef<HTMLInputElement, IProps>(({
             name={name}
             value={value}
             placeholder={placeholder}
-            onInput={onInput}
+            onInput={handleInput}
             disabled={disabled}
             required={required}
             maxLength={maxLength}
