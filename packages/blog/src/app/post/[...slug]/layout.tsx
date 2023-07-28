@@ -20,8 +20,6 @@ export async function generateMetadata ({params: {slug}}: {
     const description = scope.abstract
     const images = scope.cover && [{
         url: scope.cover.src,
-        width: scope.cover.width,
-        height: scope.cover.height,
     }]
 
     return {
@@ -43,7 +41,7 @@ export async function generateMetadata ({params: {slug}}: {
 export default async function Layout ({
     children,
     params: {slug},
-}:  PropsWithChildren<{
+}: PropsWithChildren<{
     params: IParams
 }>) {
     const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
