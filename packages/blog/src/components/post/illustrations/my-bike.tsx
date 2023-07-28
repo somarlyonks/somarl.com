@@ -28,7 +28,7 @@ export default function MyBikeTimeline ({items}: IProps) {
             <section>
                 <h2>时间线</h2>
                 <Timeline>
-                    {[...items].reverse().map(({date, item, description, images}) => <TimelineItem
+                    {items.map(({date, item, description, images}) => <TimelineItem
                         key={date}
                         date={date}
                         title={item}

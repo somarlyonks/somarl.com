@@ -8,7 +8,6 @@ import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-import {plaiceholder} from './plaiceholder'
 import {remarkShiki, rehypeShiki} from './shiki'
 import {remarkToc} from './toc'
 
@@ -82,7 +81,7 @@ async function readPost (slug: string) {
 
     if (!title) throw new Error('Broken post')
 
-    const scope = await editCover({
+    const scope: IPostMeta = {
         url: `/post/${slug}`,
         title,
         published,
@@ -91,30 +90,12 @@ async function readPost (slug: string) {
         tags,
         collection,
         cover: (cover && !cover.src) ? {src: cover} : cover,
-    })
+    }
 
     return {
         content,
         scope,
     }
-}
-
-export async function editCover (post: IPostMeta) {
-    if (!post.cover) return post
-
-    const {src} = post.cover
-    if (!src) return post
-
-    const {width, height} = await plaiceholder(src)
-
-    post.cover = {
-        ...post.cover,
-        width,
-        height,
-        placeholder: 'empty',
-    }
-
-    return post
 }
 
 export const getTagMap = async () => getPosts().then(posts => posts.reduce((r, post) =>
