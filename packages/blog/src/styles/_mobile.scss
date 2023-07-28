@@ -46,18 +46,24 @@ $mobileThreshold: 767px;
       margin: 0;
       padding: 0.5em 0;
       figure {
+        position: relative;
         border-radius: 1em;
         background-color: var(--color-bg-tertiary);
+        overflow: hidden;
 
         img {
           height: 55vw;
           width: 100%;
-          border-top-left-radius: 1em;
-          border-top-right-radius: 1em;
+          border-radius: 1em;
+          filter: blur(2px) brightness(95%) opacity(0.8);
         }
 
         figcaption {
           padding: 1em;
+
+          a {
+            box-shadow: none;
+          }
         }
       }
     }

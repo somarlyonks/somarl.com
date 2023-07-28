@@ -17,7 +17,11 @@ export default function PostList ({posts}: IProps) {
                             <Image
                                 priority={postIndex < 5}
                                 {...post.cover}
-                                src={post.cover.src} alt="cover" title={post.title}
+                                fill
+                                placeholder="empty"
+                                src={post.cover.src}
+                                alt="cover"
+                                title={post.title}
                             />
                         )}
                         <figcaption>

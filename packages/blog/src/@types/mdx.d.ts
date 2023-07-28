@@ -22,9 +22,6 @@ interface IPostMeta extends Record<string, unknown> {
         material: string
         /** @optional */
         blurDataURL: string
-        placeholder?: 'blur' | 'empty'
-        width?: number
-        height?: number
     }
 
     /** @generated */
