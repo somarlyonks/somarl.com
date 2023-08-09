@@ -26,7 +26,7 @@
     "@types/rss": "0.0.30",
     "gray-matter": "4.0.3",
     "hast-util-raw": "9.0.0",
-    "mdast-util-toc": "6.1.1",
+    "mdast-util-toc": "7.0.0",
     "prisma": "5.1.1",
     "rehype-autolink-headings": "6.1.1",
     "rehype-slug": "5.1.0",
