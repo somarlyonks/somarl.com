@@ -506,10 +506,10 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.1.tgz"
   integrity sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==
 
-"@types/formidable@3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@types/formidable/-/formidable-3.4.1.tgz#2edaa6c42ad3d606f55f4dd494f4d415cba0a7f9"
-  integrity sha512-8G2MI302B0yinarziM10Jx9Y43sPwo4LH059FB1ihA3jf7HSamhC6alLRzB2XDGwrpCxbcd6xaFXeDh+rcE3xQ==
+"@types/formidable@3.4.2":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/@types/formidable/-/formidable-3.4.2.tgz#cb3facb9a09d8798cd625ceedcb614825f1d78d3"
+  integrity sha512-9mQAaTvlEBlBtJKpsfOw5uGEIgEUFxRqqkvzP/6wxDSK9LSHrTu06nFeBM5gphm/ZExuliTgnp9nHVG+KYwXNA==
   dependencies:
     "@types/node" "*"
 
