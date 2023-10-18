@@ -23,7 +23,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/rss": "0.0.30",
+    "@types/rss": "0.0.31",
     "gray-matter": "4.0.3",
     "hast-util-raw": "9.0.1",
     "mdast-util-toc": "7.0.0",
