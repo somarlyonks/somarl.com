@@ -10,6 +10,7 @@ export {default as PostTitle} from './PostTitle'
 export {default as PostCollection} from './PostCollection'
 
 import ImgShadow from './styles/ImgShadow'
+import TableLayoutAuto from './styles/TableLayoutAuto'
 
 import IconAngry from '../icons/Angry'
 
@@ -20,5 +21,6 @@ export const postComponents = {
     ul: PostUl,
     PostFigure,
     ImgShadow,
+    TableLayoutAuto,
     IconAngry,
 }
