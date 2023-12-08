@@ -3899,10 +3899,10 @@ shell-quote@^1.6.1:
   resolved "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.1.tgz"
   integrity sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==
 
-shiki@0.14.5:
-  version "0.14.5"
-  resolved "https://registry.yarnpkg.com/shiki/-/shiki-0.14.5.tgz#375dd214e57eccb04f0daf35a32aa615861deb93"
-  integrity sha512-1gCAYOcmCFONmErGTrS1fjzJLA7MGZmKzrBNX7apqSwhyITJg2O102uFzXUeBxNnEkDA9vHIKLyeKq0V083vIw==
+shiki@0.14.6:
+  version "0.14.6"
+  resolved "https://registry.yarnpkg.com/shiki/-/shiki-0.14.6.tgz#908a9cd5439f7e87279c6623e7c60a3b0a2df85c"
+  integrity sha512-R4koBBlQP33cC8cpzX0hAoOURBHJILp4Aaduh2eYi+Vj8ZBqtK/5SWNEHBS3qwUMu8dqOtI/ftno3ESfNeVW9g==
   dependencies:
     ansi-sequence-parser "^1.1.0"
     jsonc-parser "^3.2.0"
