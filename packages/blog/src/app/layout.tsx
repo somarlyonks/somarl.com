@@ -1,5 +1,6 @@
 
 import {PropsWithChildren} from 'react'
+import {Viewport} from 'next'
 import localFont from 'next/font/local'
 
 import 'src/styles/index.scss'
@@ -22,7 +23,6 @@ export const metadata = {
     title: 'Blogs | Yang',
     description: 'My life and thoughts.',
     robots: 'all',
-    themeColor: '#00a1f1',
     manifest: '/site.webmanifest',
     openGraph: {
         title: 'Blogs | Yang',
@@ -30,6 +30,13 @@ export const metadata = {
         url: 'https://blog.somarl.com',
         siteName: 'Yang',
     },
+}
+
+export const viewport: Viewport = {
+    themeColor: '#00a1f1',
+    colorScheme: 'light dark',
+    width: 'device-width',
+    initialScale: 1,
 }
 
 export default function RootLayout ({
