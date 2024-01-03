@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from 'react'
+import {useState, ChangeEvent} from 'react'
 
 import styles from './the-way-to-wrap-flex-items-is-grid.module.scss'
 
@@ -12,7 +12,7 @@ export default function Items ({className = '', defaultItemCount}: {
     const minCount = 5
     const maxCount = 100
     const [itemCount, setItemCount] = useState(defaultItemCount || minCount)
-    const handleCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCountChange = (event: ChangeEvent<HTMLInputElement>) => {
         setItemCount(Number(event.target.value))
     }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect, useState} from 'react'
+import {useEffect, useState, ChangeEvent} from 'react'
 // import {redirect} from 'next/navigation'
 
 import Userfront from '@/libs/userfront'
@@ -20,7 +20,7 @@ export default function PostEdit ({content: propContent = ''}: IProps) {
         console.info(Userfront.user, Userfront.user.hasRole('admin')) // TODELETE
     }, [])
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setContent(event.target.value)
     }
 
