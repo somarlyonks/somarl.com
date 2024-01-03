@@ -1,10 +1,9 @@
-import {ReactNode} from 'react'
+import {PropsWithChildren} from 'react'
 import {useBem} from '@csszen/hooks.usebem'
 
 
-interface IFlexProps {
+interface IFlexProps extends PropsWithChildren {
     className?: string
-    children?: ReactNode
     full?: boolean
     central?: boolean
     verticle?: boolean

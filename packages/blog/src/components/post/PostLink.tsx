@@ -1,4 +1,4 @@
-import {ReactNode, isValidElement} from 'react'
+import {ReactNode, isValidElement, InvalidEvent} from 'react'
 import Link from 'next/link'
 
 
@@ -11,7 +11,7 @@ interface IProps {
 export default function PostLink (props: IProps) {
     const {href = ''} = props
 
-    const handleFaviconError = (e: React.InvalidEvent<HTMLImageElement>) => {
+    const handleFaviconError = (e: InvalidEvent<HTMLImageElement>) => {
         e.target.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
     }
 
