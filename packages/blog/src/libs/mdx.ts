@@ -4,11 +4,11 @@ import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeShiki from '@shikijs/rehype'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-import {remarkShiki, rehypeShiki} from './shiki'
 import {remarkToc} from './toc'
 
 
@@ -119,11 +119,15 @@ export async function serializePost (slug: string) {
                 remarkUnwrapImages,
                 remarkSectionize,
                 remarkGFM,
-                [remarkShiki, {darkTheme: 'github-dark', lightTheme: 'github-light'}],
             ],
             rehypePlugins: [
                 rehypeSlug,
-                rehypeShiki,
+                [rehypeShiki as ANY, {
+                    themes: {
+                        light: 'github-light',
+                        dark: 'github-dark',
+                    }
+                }],
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
                     properties: {
