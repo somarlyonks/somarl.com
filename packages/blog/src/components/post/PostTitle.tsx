@@ -47,7 +47,6 @@ export default function PostTitle ({post}: IProps) {
                         src={post.cover.src}
                         placeholder="empty"
                         onLoad={moveInfoSection}
-                        onLoadingComplete={moveInfoSection}
                     />
                     {post.cover.work && (
                         <figcaption>
