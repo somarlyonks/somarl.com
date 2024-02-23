@@ -2,4 +2,4 @@
 
 ## LICENSE
 
-Copyright (c) 2018-2023 Sy.
+Copyright (c) 2018-2024 Sy.

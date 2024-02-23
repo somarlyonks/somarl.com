@@ -23,6 +23,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@shikijs/rehype": "1.1.6",
     "@types/rss": "0.0.32",
     "gray-matter": "4.0.3",
     "hast-util-raw": "9.0.2",
@@ -34,7 +35,7 @@
     "remark-sectionize": "2.0.0",
     "remark-unwrap-images": "4.0.0",
     "rss": "1.2.2",
-    "shiki": "0.14.7",
+    "shiki": "1.1.6",
     "unist-util-visit": "5.0.0"
   }
 }

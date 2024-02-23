@@ -339,3 +339,7 @@ header + article > div {
     z-index: $zLightBox;
   }
 }
+
+.shiki {
+  background-color: var(--color-bg-tertiary) !important;
+}

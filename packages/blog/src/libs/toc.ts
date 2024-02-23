@@ -23,13 +23,30 @@ export const remarkToc: Plugin<void[], Root> = () => {
 
         node.children = [
             {
-                type: 'html',
-                value: '<svg id="tocanchor">',
+                type: 'text',
+                value: '',
+                data: {
+                    hName: 'svg',
+                    hProperties: {id: 'tocanchor'},
+                },
             },
             ...node.children.slice(0, result.index),
             {
-                type: 'html',
-                value: '<svg id="tocmark" xmlns="http://www.w3.org/2000/svg"><path /></svg>',
+                type: 'text',
+                value: '',
+                data: {
+                    hName: 'svg',
+                    hProperties: {
+                        id: 'tocmark',
+                        xmlns: 'http://www.w3.org/2000/svg',
+                    },
+                    hChildren: [{
+                        type: 'element',
+                        tagName: 'path',
+                        properties: {},
+                        children: [],
+                    }],
+                },
             },
             result.map,
             ...node.children.slice(result.endIndex),
