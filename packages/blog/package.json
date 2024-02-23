@@ -35,7 +35,7 @@
     "remark-sectionize": "2.0.0",
     "remark-unwrap-images": "4.0.0",
     "rss": "1.2.2",
-    "shiki": "1.1.6",
+    "shiki": "1.1.7",
     "unist-util-visit": "5.0.0"
   }
 }
