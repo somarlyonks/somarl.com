@@ -1,0 +1,257 @@
+---
+title: The Scaring Table
+abstract: Being semantic matters.
+published: '2023-12-28T18:06:47.857Z'
+cover: /images/covers/the-scaring-table.jpg
+language: en
+tags:
+  - CSS
+  - Workbook
+---
+
+<PostStyle styles={[
+    `table {
+        table-layout: auto;
+        font-size: small;
+        border-collapse: initial;
+        border-radius: 8px;
+        border: 1px solid #D7D7E4;
+        font-family: 'Noto Sans', sans-serif;
+        background: white;
+
+        & thead tr,
+        & tbody tr:nth-child(odd),
+        & tbody tr:nth-child(even) {
+            background-color: unset;
+            position: unset;
+        }
+
+        & th {
+            font-size: smaller;
+        }
+
+        & th, td {
+            padding: 8px;
+            line-height: 20px;
+        }
+
+        & th {
+            border-bottom: 1px solid #B0B0CD;
+        }
+
+        & td {
+            border-bottom: 1px solid #D7D7E4;
+        }
+
+        &:nth-of-type(2) {
+            border-collapse: collapse;
+        }
+    }`,
+    `table {
+        & th, td:last-child {
+            text-transform: capitalize;
+        }
+
+        & tbody tr td:last-child > span {
+            display: inline-block;
+            padding: 4px;
+            font-weight: bold;
+            line-height: 1;
+            border-radius: 2px;
+        }
+
+        & tbody tr:nth-child(1) td:last-child > span {
+            background: #CCCCFF;
+            color: #1717AB;
+        }
+        & tbody tr:nth-child(2) td:last-child > span {
+            background: #AAEFB9;
+            color: #007018;
+        }
+        & tbody tr:nth-child(3) td:last-child > span {
+            background: #FFECA9;
+            color: #967500;
+        }
+        & tbody tr:nth-child(4) td:last-child > span,
+        & tbody tr:nth-child(5) td:last-child > span {
+            background: #FEB9BA;
+            color: #AA0608;
+        }
+    }`,
+    `#outline-as-border ~ table,
+    #caveats ~ table {
+        border-collapse: collapse;
+        outline: 1px solid #D7D7E4;
+        border: hidden;
+        border-radius: 8px;
+    }`,
+    `#caveats ~ table {
+        & thead tr {
+            background-color: #e0f5ff;
+        }
+
+        &:nth-of-type(2) {
+            & thead tr th:first-child {
+                border-top-left-radius: 8px;
+            }
+            & thead tr th:last-child {
+                border-top-right-radius: 8px;
+            }
+        }
+    }`,
+]} />
+
+## The Scaring Table
+
+Imaging that you have a figma design like the poster of this article. How do you implement it? As a fundamentalism, I insist it does have to be the semantic `<table>` tag. So the problem is, how do we draw a table like this with `table` element?
+
+I have always been afraid of the `table` element. The `display: table;` is a black box to me <IconAngry />, but it turns out that in most circumstances,
+
+It "works".
+
+## What is This Table Like
+
+First of all, let's conclude our specifications:
+
+- The table has border and rounded corners.
+- The table has a header with border darker than the data rows.
+
+That's all, looks easy-peasy.
+
+## `border-collapse` Comes to Rescue
+
+This is what our first sketch looks like with styles
+
+```css
+table {
+    border: 1px solid #D7D7E4;
+    border-radius: 8px;
+    & th {
+        border-bottom: 1px solid #B0B0CD;
+    }
+    & td {
+        border-bottom: 1px solid #D7D7E4;
+    }
+}
+```
+
+| Date time           | User              | Event  |
+|:--------------------|:------------------|:-------|
+| 22th May at 8AM     | Winter Whitehurst | <span>added</span> the Quizz component |
+| 30th April at 1PM   | Miguel Steele     | <span>published</span> “Name” (Subsection) |
+| 1st Febuary at 8AM  | Winter Whitehurst | <span>edited</span> the Tick a new “country” |
+| 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
+| 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
+
+It almost works, except an obvious problem: the border of the last row is overlapping with the border of the table.
+
+The direct solution is to remove the border of the last row by changing the selector from `& td` to `& tr:not(:last-child) td`. But it's a workaround instead of a solution because it's too specific and ugly.
+
+Something interesting is that you may notice that even in the Figma design, the careless designer forgot to remove the "redundant" border of the last row. It's quiet a common issue, when an issue comes common enough, the standard is supposed to have corresponding solutions.
+
+And the answer is `border-collapse`. According to [border-collapse - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse)
+
+> The `border-collapse` CSS property sets whether cells inside a `<table>` have shared or separate borders.
+
+And this looks like what we need:
+
+```css
+table {
+    border-collapse: collapse;
+}
+```
+
+| Date time           | User              | Event  |
+|:--------------------|:------------------|:-------|
+| 22th May at 8AM     | Winter Whitehurst | <span>added</span> the Quizz component |
+| 30th April at 1PM   | Miguel Steele     | <span>published</span> “Name” (Subsection) |
+| 1st Febuary at 8AM  | Winter Whitehurst | <span>edited</span> the Tick a new “country” |
+| 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
+| 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
+
+Ahh, it resolves the problem of the last row, but a new problem arises: the rounded corners are gone. It's because the `border-collapse` property is not compatible with `border-radius`.
+
+But we are not going back, `border-collapse: collapse;` looks reasonable. We will found another way to make the corners work.
+
+## `outline` as Border
+
+Since the border is not working, another way to draw the border is to use `outline`. According to [CSS Basic User Interface Module Level 4](https://drafts.csswg.org/css-ui/#outline)
+
+> The outline created with the outline properties is drawn "over" a box, i.e., the outline is always on top and doesn’t influence the position or size of the box, or of any other boxes. Therefore, displaying or suppressing outlines does not cause reflow.
+>
+> ...
+>
+> User agents should use an algorithm for determining the outline that encloses a region appropriate for conveying the concept of focus to the user.
+
+In short, `outline` is a border that doesn't affect the layout of the element. Since table have no specific interactive behavior, it's safe to use `outline` as a border.
+
+At the same time, we will make our border `hidden` to make the collapsed border invisible. And finally we got the solution:
+
+```css
+table {
+    border: hidden;
+    border-radius: 8px;
+    border-collapse: collapse;
+    outline: 1px solid #D7D7E4;
+
+    & th {
+        border-bottom: 1px solid #B0B0CD;
+    }
+    & td {
+        border-bottom: 1px solid #D7D7E4;
+    }
+}
+```
+
+| Date time           | User              | Event  |
+|:--------------------|:------------------|:-------|
+| 22th May at 8AM     | Winter Whitehurst | <span>added</span> the Quizz component |
+| 30th April at 1PM   | Miguel Steele     | <span>published</span> “Name” (Subsection) |
+| 1st Febuary at 8AM  | Winter Whitehurst | <span>edited</span> the Tick a new “country” |
+| 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
+| 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
+
+## Caveats
+
+It looks good to me now. But actually, there is a problem under the hood. What if we want the header to have a different background color?
+
+```css
+tabel thead tr {
+    background-color: #e0f5ff;
+}
+```
+
+| Date time           | User              | Event  |
+|:--------------------|:------------------|:-------|
+| 22th May at 8AM     | Winter Whitehurst | <span>added</span> the Quizz component |
+| 30th April at 1PM   | Miguel Steele     | <span>published</span> “Name” (Subsection) |
+| 1st Febuary at 8AM  | Winter Whitehurst | <span>edited</span> the Tick a new “country” |
+| 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
+| 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
+
+It won't take too much effect to notice the background overflowed to the border. It originates from the incompatible of `border-collapse` and `border-radius`. (Which means `outline` is indeed a workaround, not a solution.)
+
+And this time, I come out with no other ways but a workaround:
+
+```css
+tabel thead tr {
+    & th:first-child {
+        border-top-left-radius: 8px;
+    }
+    & th:last-child {
+        border-top-right-radius: 8px;
+    }
+}
+```
+
+| Date time           | User              | Event  |
+|:--------------------|:------------------|:-------|
+| 22th May at 8AM     | Winter Whitehurst | <span>added</span> the Quizz component |
+| 30th April at 1PM   | Miguel Steele     | <span>published</span> “Name” (Subsection) |
+| 1st Febuary at 8AM  | Winter Whitehurst | <span>edited</span> the Tick a new “country” |
+| 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
+| 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
+
+A "good" new is that even had we chosen the workaround to hide the border of the last row, we will still come into this problem and even the same workaround.
+
+That's why I hate workarounds, <IconAngry /> it always brings more workarounds.
