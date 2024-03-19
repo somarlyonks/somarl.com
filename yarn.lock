@@ -467,6 +467,11 @@
   resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.1.7.tgz#560de8d503ace894e36934f1e680762ed51ea394"
   integrity sha512-gTYLUIuD1UbZp/11qozD3fWpUTuMqPSf3svDMMrL0UmlGU7D9dPw/V1FonwAorCUJBltaaESxq90jrSjQyGixg==
 
+"@shikijs/core@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.2.0.tgz#c19d1a4d4807d31aa02e9d822aa13da873e6f2e7"
+  integrity sha512-OlFvx+nyr5C8zpcMBnSGir0YPD6K11uYhouqhNmm1qLiis4GA7SsGtu07r9gKS9omks8RtQqHrJL4S+lqWK01A==
+
 "@shikijs/rehype@1.1.7":
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/@shikijs/rehype/-/rehype-1.1.7.tgz#8b29dde1113b0effbcc8bca5a916c68a517e812f"
@@ -3944,6 +3949,13 @@ shiki@1.1.7:
   integrity sha512-9kUTMjZtcPH3i7vHunA6EraTPpPOITYTdA5uMrvsJRexktqP0s7P3s9HVK80b4pP42FRVe03D7fT3NmJv2yYhw==
   dependencies:
     "@shikijs/core" "1.1.7"
+
+shiki@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/shiki/-/shiki-1.2.0.tgz#7f1b6917cbb10daa1ac3ae62fa29b40c494e2812"
+  integrity sha512-xLhiTMOIUXCv5DqJ4I70GgQCtdlzsTqFLZWcMHHG3TAieBUbvEGthdrlPDlX4mL/Wszx9C6rEcxU6kMlg4YlxA==
+  dependencies:
+    "@shikijs/core" "1.2.0"
 
 side-channel@^1.0.4:
   version "1.0.4"
