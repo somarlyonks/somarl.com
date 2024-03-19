@@ -5,6 +5,7 @@
   "ignoreDeps": [
     "@types/react",
     "@types/react-dom",
+    "actions/labeler",
     "typescript",
     "aws-sdk"
   ]
