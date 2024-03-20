@@ -9,6 +9,7 @@ export {default as PostContent} from './PostContent'
 export {default as PostTitle} from './PostTitle'
 export {default as PostCollection} from './PostCollection'
 
+import PostStyle from './styles/PostStyle'
 import ImgShadow from './styles/ImgShadow'
 import TableLayoutAuto from './styles/TableLayoutAuto'
 
@@ -19,6 +20,7 @@ export const postComponents = {
     img: PostImage,
     li: PostLi,
     ul: PostUl,
+    PostStyle,
     PostFigure,
     ImgShadow,
     TableLayoutAuto,
