@@ -90,6 +90,19 @@ tags:
             background-color: #e0f5ff;
         }
 
+        &:nth-of-type(1) ~ section {
+            overflow: hidden;
+            margin-bottom: 1em;
+
+            & table {
+                transform: scale(4);
+                transform-origin: top left;
+                & thead tr {
+                    background-color: #e0f5ff;
+                }
+            }
+        }
+
         &:nth-of-type(2) {
             & thead tr th:first-child {
                 border-top-left-radius: 8px;
@@ -109,7 +122,7 @@ I have always been afraid of the `table` element. The `display: table;` is a bla
 
 It "works".
 
-## What is This Table Like
+## What is this Table Like
 
 First of all, let's conclude our specifications:
 
@@ -169,7 +182,7 @@ table {
 | 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
 | 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
 
-Ahh, it resolves the problem of the last row, but a new problem arises: the rounded corners are gone. It's because the `border-collapse` property is not compatible with `border-radius`.
+Ahh, it resolves the problem of the last row, but a new problem arises: the rounded corners are gone. Because the `border-collapse` property is incompatible with `border-radius`.
 
 But we are not going back, `border-collapse: collapse;` looks reasonable. We will found another way to make the corners work.
 
@@ -229,7 +242,19 @@ tabel thead tr {
 | 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
 | 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
 
-It won't take too much effect to notice the background overflowed to the border. It originates from the incompatible of `border-collapse` and `border-radius`. (Which means `outline` is indeed a workaround, not a solution.)
+It won't take too much effort to notice the background overflowed to the border.
+
+<section>
+| Date time           | User              | Event  |
+|:--------------------|:------------------|:-------|
+| 22th May at 8AM     | Winter Whitehurst | <span>added</span> the Quizz component |
+| 30th April at 1PM   | Miguel Steele     | <span>published</span> “Name” (Subsection) |
+| 1st Febuary at 8AM  | Winter Whitehurst | <span>edited</span> the Tick a new “country” |
+| 9th January at 3PM  | Caleb Jensen      | <span>deleted</span> “Username” to the course team |
+| 5th January at 10AM | Winter Whitehurst | <span>deleted</span> “badge name” to “sub-section name” |
+</section>
+
+It originates from the incompatibility between `border-collapse` and `border-radius`. (Which somehow means `outline` is indeed a workaround instead of a solution.)
 
 And this time, I come out with no other ways but a workaround:
 
