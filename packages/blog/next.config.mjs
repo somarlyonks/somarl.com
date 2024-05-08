@@ -1,5 +1,6 @@
 
 export default {
+    transpilePackages: ["next-mdx-remote"],
     images: {
         domains: ['s3.us-east-2.amazonaws.com', 'picsum.photos'],
         deviceSizes: [1001, 10000],
