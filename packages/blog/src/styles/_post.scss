@@ -337,6 +337,8 @@ header + article > div {
   .medium-zoom-image--opened,
   .medium-zoom-overlay {
     z-index: $zLightBox;
+    max-width: unset;
+    max-height: unset;
   }
 }
 

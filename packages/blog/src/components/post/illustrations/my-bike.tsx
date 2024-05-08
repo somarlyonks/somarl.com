@@ -113,7 +113,7 @@ function TimelineImages ({images}: {images: string[]}) {
     return (
         <ul className={styles['timeline__item-images']}>
             {images.map(image => (
-                <li><PostFigure key={image} src={image} alt="" /></li>
+                <li key={image}><PostFigure src={image} alt="" /></li>
             ))}
         </ul>
     )
