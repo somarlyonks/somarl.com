@@ -462,29 +462,29 @@
   dependencies:
     "@prisma/debug" "5.14.0"
 
-"@shikijs/core@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.4.0.tgz#268de16828ff8a8c8c66f570d54e8203f0521b7c"
-  integrity sha512-CxpKLntAi64h3j+TwWqVIQObPTED0FyXLHTTh3MKXtqiQNn2JGcMQQ362LftDbc9kYbDtrksNMNoVmVXzKFYUQ==
+"@shikijs/core@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.5.2.tgz#e3917551ffadf6acbdae495c08065c3d3fd9e381"
+  integrity sha512-wSAOgaz48GmhILFElMCeQypSZmj6Ru6DttOOtl3KNkdJ17ApQuGNCfzpk4cClasVrnIu45++2DBwG4LNMQAfaA==
 
-"@shikijs/rehype@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@shikijs/rehype/-/rehype-1.4.0.tgz#8a67d9436b616c90f1853670fb7878e04e71202f"
-  integrity sha512-Ba6QHYx+EIEvmqyNy/B49KAz3rXsTfAqYRY3KTZjPWonytokGOiJ1q/FV9l13D/ad6Qv+eWKhkAz6ITxx6ziFA==
+"@shikijs/rehype@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@shikijs/rehype/-/rehype-1.5.2.tgz#ff96df1155d06292a1d288fcabe53a7f17bf3a92"
+  integrity sha512-MlpLBEyLcV399AgV5ai7wD0F7E/5qTlfF3487bx5MkGZb+DMAvpF279OI0UYKXVrqKrTS1zJfZXyIJlFQ3JeTA==
   dependencies:
-    "@shikijs/transformers" "1.4.0"
+    "@shikijs/transformers" "1.5.2"
     "@types/hast" "^3.0.4"
     hast-util-to-string "^3.0.0"
-    shiki "1.4.0"
+    shiki "1.5.2"
     unified "^11.0.4"
     unist-util-visit "^5.0.0"
 
-"@shikijs/transformers@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@shikijs/transformers/-/transformers-1.4.0.tgz#098ba08233c0ea53cd4deab4b13a1d92a0dc70db"
-  integrity sha512-kzvlWmWYYSeaLKRce/kgmFFORUtBtFahfXRKndor0b60ocYiXufBQM6d6w1PlMuUkdk55aor9xLvy9wy7hTEJg==
+"@shikijs/transformers@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@shikijs/transformers/-/transformers-1.5.2.tgz#0e9b46026827d67b4237e17e738d39ab2536f327"
+  integrity sha512-/Sh64rKOFGMQLCvtHeL1Y7EExdq8LLxcdVkvoGx2aMHsYMOn8DckYl2gYKMHRBu/YUt1C38/Amd1Jdh48tWHgw==
   dependencies:
-    shiki "1.4.0"
+    shiki "1.5.2"
 
 "@somarlyonks/bem@1.0.1":
   version "1.0.1"
@@ -3944,12 +3944,12 @@ shell-quote@^1.6.1:
   resolved "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.1.tgz"
   integrity sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==
 
-shiki@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/shiki/-/shiki-1.4.0.tgz#477ea3d760ea6889b523ed0da772a9031cb27644"
-  integrity sha512-5WIn0OL8PWm7JhnTwRWXniy6eEDY234mRrERVlFa646V2ErQqwIFd2UML7e0Pq9eqSKLoMa3Ke+xbsF+DAuy+Q==
+shiki@1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/shiki/-/shiki-1.5.2.tgz#dfaad38dfdc2c0200986e372a63f0ac58be5b1e8"
+  integrity sha512-fpPbuSaatinmdGijE7VYUD3hxLozR3ZZ+iAx8Iy2X6REmJGyF5hQl94SgmiUNTospq346nXUVZx0035dyGvIVw==
   dependencies:
-    "@shikijs/core" "1.4.0"
+    "@shikijs/core" "1.5.2"
 
 side-channel@^1.0.4:
   version "1.0.4"
