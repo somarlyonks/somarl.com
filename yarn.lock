@@ -1841,10 +1841,10 @@ hast-util-parse-selector@^4.0.0:
   dependencies:
     "@types/hast" "^3.0.0"
 
-hast-util-raw@9.0.3:
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/hast-util-raw/-/hast-util-raw-9.0.3.tgz#87ad66bdd7b1ceb166452bdab7dfb3e9ba640419"
-  integrity sha512-ICWvVOF2fq4+7CMmtCPD5CM4QKjPbHpPotE6+8tDooV0ZuyJVUzHsrNX+O5NaRbieTf0F7FfeBOMAwi6Td0+yQ==
+hast-util-raw@9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/hast-util-raw/-/hast-util-raw-9.0.4.tgz#2da03e37c46eb1a6f1391f02f9b84ae65818f7ed"
+  integrity sha512-LHE65TD2YiNsHD3YuXcKPHXPLuYh/gjp12mOfU8jxSrm1f/yJpsb0F/KKljS6U9LJoP0Ux+tCe8iJ2AsPzTdgA==
   dependencies:
     "@types/hast" "^3.0.0"
     "@types/unist" "^3.0.0"
