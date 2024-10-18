@@ -23,7 +23,7 @@
   "devDependencies": {
     "@types/formidable": "3.4.5",
     "aws-sdk": "2.1432.0",
-    "formidable": "3.5.1",
+    "formidable": "3.5.2",
     "mongo": "0.1.0",
     "tinify": "1.7.1"
   }
