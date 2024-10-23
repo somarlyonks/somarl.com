@@ -3892,10 +3892,10 @@ remark-sectionize@2.0.0:
     unist-util-find-after "^4.0.1"
     unist-util-visit "^4.1.2"
 
-remark-unwrap-images@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/remark-unwrap-images/-/remark-unwrap-images-4.0.0.tgz#ea22d91c06daccdc7fad6cb2449ea77b10421b05"
-  integrity sha512-Ilr5ZhrhZSvnjemy1rRuxlTC0I/39YyWDRiE9d5vF079APcwdYYzwcZL8RGehlCtQCiik8hWMyo4Xhz2Fq0JhA==
+remark-unwrap-images@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/remark-unwrap-images/-/remark-unwrap-images-4.0.1.tgz#55c1aa535bc86be011be036237da54aa25b01b9e"
+  integrity sha512-J9HibCHx0/X7ovgqaFe0otizCHpbb1s6Jh3IeiD5ibQm2Oz/OhCDXSKMEW5T54iBw5CxuqRL6BrYp+jLLdqBOw==
   dependencies:
     "@types/mdast" "^4.0.0"
     hast-util-whitespace "^3.0.0"
