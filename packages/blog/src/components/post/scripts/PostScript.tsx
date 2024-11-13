@@ -1,12 +1,11 @@
 import Script from 'next/script'
+import {PropsWithChildren} from 'react'
 
 
-interface IProps {
-    script: string
-}
-
-export default function PostScript ({script}: IProps) {
+export default function PostScript ({id, children}: PropsWithChildren<{id?: string}>) {
     return (
-        <Script type="module" strategy="lazyOnload" dangerouslySetInnerHTML={{__html: script}} />
+        <Script id={id} type="module" strategy="lazyOnload">
+            {children}
+        </Script>
     )
 }
