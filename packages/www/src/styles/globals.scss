@@ -1,16 +1,28 @@
-@import "variables";
+@use "variables";
 
 @font-face {
   font-family: DejaVu Sans;
-  src: url(../../public/fonts/DejaVuSans.woff2) format("woff2"), url(../../public/fonts/DejaVuSans.woff) format("woff");
+  src:
+    url(../../public/fonts/DejaVuSans.woff2) format("woff2"),
+    url(../../public/fonts/DejaVuSans.woff) format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: fallback;
 }
 
 body {
-  font-family: DejaVu Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    DejaVu Sans,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-size: calc(10px + 0.33vw);
   -webkit-font-smoothing: antialiased;
   padding: $PagePadding;
@@ -45,7 +57,6 @@ p {
     vertical-align: middle;
     width: 1em;
     height: 1em;
-    margin-right: 0.5ch;
   }
 }
 
@@ -73,8 +84,23 @@ button {
   border: none;
   background: none;
   outline: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Noto Sans,
-    Droid Sans, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Noto Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
 }
 
 span {
@@ -162,5 +188,5 @@ aside {
   }
 }
 
-@import "mobile";
-@import "desktop";
+@use "mobile";
+@use "desktop";
