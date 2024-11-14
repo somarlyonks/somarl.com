@@ -6,6 +6,7 @@
     "@types/react",
     "@types/react-dom",
     "actions/labeler",
+    "actions/checkout",
     "npm-run-all",
     "typescript",
     "aws-sdk"
