@@ -26,7 +26,7 @@
     "@shikijs/rehype": "1.22.2",
     "@types/rss": "0.0.32",
     "gray-matter": "4.0.3",
-    "hast-util-raw": "9.0.4",
+    "hast-util-raw": "9.1.0",
     "mdast-util-toc": "7.1.0",
     "prisma": "5.22.0",
     "rehype-autolink-headings": "7.1.0",
