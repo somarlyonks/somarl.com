@@ -1,5 +1,8 @@
 @use "variables";
 
+@use "mobile";
+@use "desktop";
+
 @font-face {
   font-family: DejaVu Sans;
   src:
@@ -187,6 +190,3 @@ aside {
     transform: rotate(0deg);
   }
 }
-
-@use "mobile";
-@use "desktop";
