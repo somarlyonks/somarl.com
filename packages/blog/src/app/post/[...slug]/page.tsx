@@ -1,17 +1,17 @@
 
 import {PostInfo, PostTitle, PostCollection, PostContent} from '@/components/post'
 import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '@/libs/mdx'
-import type {IParams} from './layout'
+import type {IProps} from './layout'
 
 
-const dynamicParams = false
-export {dynamicParams}
+export const dynamicParams = false
 
 export async function generateStaticParams () {
     return (await getPostSlugs()).map(slug => ({slug: slug.split('/').map(encodeURIComponent)}))
 }
 
-export default async function Page ({params: {slug}}: {params: IParams}) {
+export default async function Page ({params}: IProps) {
+    const {slug} = await params
     const {
         compiledSource,
         scope,

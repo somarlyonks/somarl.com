@@ -8,13 +8,14 @@ import Zoom from '@/components/post/scripts/Zoom'
 import {serializePost} from '@/libs/mdx'
 
 
-export interface IParams {
-    slug: string[]
+export interface IProps {
+    params: Promise<{
+        slug: string[]
+    }>
 }
 
-export async function generateMetadata ({params: {slug}}: {
-    params: IParams
-}): Promise<Metadata> {
+export async function generateMetadata ({params}: IProps): Promise<Metadata> {
+    const {slug} = await params
     const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
     const title = `${scope.title} | Yang`
     const description = scope.abstract
@@ -40,10 +41,9 @@ export async function generateMetadata ({params: {slug}}: {
 
 export default async function Layout ({
     children,
-    params: {slug},
-}: PropsWithChildren<{
-    params: IParams
-}>) {
+    params,
+}: PropsWithChildren<IProps>) {
+    const {slug} = await params
     const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
 
     return (
