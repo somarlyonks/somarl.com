@@ -1,6 +1,14 @@
 @use "variables";
 @use "theme";
 
+@use "layout";
+@use "post";
+
+@use "mobile";
+@use "desktop";
+
+@use "components";
+
 @font-face {
   font-family: DejaVu Sans;
   src:
@@ -163,11 +171,3 @@ small {
   font-size: smaller;
   opacity: 0.5;
 }
-
-@use "layout";
-@use "post";
-
-@use "mobile";
-@use "desktop";
-
-@use "components";
