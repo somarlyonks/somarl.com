@@ -103,10 +103,12 @@ img {
     aspect-ratio: unset !important;
   }
   &[role="favicon"] {
-    vertical-align: middle;
-    margin: 0 0.2em 0 0;
-    width: 1em;
-    height: 1em;
+    vertical-align: baseline;
+    margin: 0 0.2ch 0 0;
+    width: 1.35ex;
+    width: 1cap;
+    height: 1.35ex;
+    height: 1cap;
   }
 }
 

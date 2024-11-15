@@ -1,6 +1,6 @@
 import {toc} from 'mdast-util-toc'
 import type {Plugin} from 'unified'
-import type {Root} from 'mdast-util-toc/node_modules/@types/mdast'
+import type {Root} from 'mdast'
 
 
 export const remarkToc: Plugin<void[], Root> = () => {
