@@ -12,9 +12,10 @@ export interface ICollectionParams {
 
 const isTagParams = (params: ITagParams | ICollectionParams): params is ITagParams => params.hasOwnProperty('tag')
 
-export async function generateMetadata ({params}: {
-    params: ITagParams | ICollectionParams
+export async function generateMetadata ({params: pParams}: {
+    params: Promise<ITagParams | ICollectionParams>
 }): Promise<Metadata> {
+    const params = await pParams
     const title = `${decodeURIComponent(isTagParams(params) ? params.tag : params.collection)} | Yang`
     const url = isTagParams(params)
         ? `/tag/${params.tag}`

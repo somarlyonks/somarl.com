@@ -7,14 +7,14 @@ import type {ICollectionParams} from '../../metadata'
 export {generateMetadata} from '../../metadata'
 
 
-const dynamicParams = false
-export {dynamicParams}
+export const dynamicParams = false
 
 export async function generateStaticParams () {
     return Object.keys(await getCollectionMap()).map(collection => ({collection: encodeURIComponent(collection)}))
 }
 
-export default async function Collection ({params: {collection}}: {params: ICollectionParams}) {
+export default async function Collection ({params}: {params: Promise<ICollectionParams>}) {
+    const {collection} = await params
     const collectionMap = await getCollectionMap()
     const collectionName = decodeURIComponent(decodeURIComponent(collection))
     const posts = collectionMap[collectionName]

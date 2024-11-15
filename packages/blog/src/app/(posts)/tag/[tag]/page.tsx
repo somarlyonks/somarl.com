@@ -8,14 +8,14 @@ import type {ITagParams} from '../../metadata'
 export {generateMetadata} from '../../metadata'
 
 
-const dynamicParams = false
-export {dynamicParams}
+export const dynamicParams = false
 
 export async function generateStaticParams () {
     return Object.keys(await getTagMap()).map(tag => ({tag: encodeURIComponent(tag)}))
 }
 
-export default async function Page ({params: {tag}}: {params: ITagParams}) {
+export default async function Page ({params}: {params: Promise<ITagParams>}) {
+    const {tag} = await params
     const tagMap = await getTagMap()
     const tagName = decodeURIComponent(decodeURIComponent(tag))
     const posts = tagMap[tagName]
