@@ -18,7 +18,7 @@
     "@prisma/client": "5.22.0",
     "@userfront/react": "0.3.4",
     "next": "15.0.3",
-    "next-mdx-remote": "4.4.1",
+    "next-mdx-remote": "5.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
