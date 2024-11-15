@@ -1,7 +1,6 @@
 import {cookies} from 'next/headers'
 import {redirect, notFound} from 'next/navigation'
 
-import Userfront from '@/libs/userfront'
 import {fetchPrisma} from '@/libs/prisma'
 import PostEdit from '@/components/post/edit/PostEdit'
 
@@ -13,7 +12,7 @@ interface IProps {
 export default async function Page ({searchParams}: {searchParams: Promise<IProps>}) {
     const {id} = await searchParams
     const cookieStore = await cookies()
-    const isLoggedIn = !!cookieStore.get(Userfront.tokens.accessTokenName)
+    const isLoggedIn = !!cookieStore.get('tokens.accessTokenName')
     if (!isLoggedIn) redirect('/login?redirect=/post')
 
     if (id) {
