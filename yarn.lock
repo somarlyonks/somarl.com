@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@anymod/core@^0.1.51":
-  version "0.1.51"
-  resolved "https://registry.npmjs.org/@anymod/core/-/core-0.1.51.tgz"
-  integrity sha512-4hyrYhnL9VDamXI9YX8YkR3eeuhuyNoyL/LxSBHvyc2D9GE9CKcplTXOjlWPglScEmmnVatHS+Mxd/NX2zIdSw==
-
 "@babel/code-frame@^7.0.0":
   version "7.21.4"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.21.4.tgz"
@@ -944,21 +939,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@userfront/core@^0.6.5":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@userfront/core/-/core-0.6.6.tgz#77d67f58419eeb3df5a806af9ae32045f0230606"
-  integrity sha512-j/qRAwkmXshysmeHklsIyYwsjhH0SxuR2sVwAwlQuH147BHHsN5aHWcweCyoPyzLua6ZlNc5rhR5ye6WHXYkDA==
-  dependencies:
-    axios "^0.21.1"
-    js-cookie "^2.2.1"
-
-"@userfront/react@0.3.4":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@userfront/react/-/react-0.3.4.tgz#c0e732161250958f84f062a8a0f4402a38940095"
-  integrity sha512-LjcSHfEC+6Mkzoppv6/8zY4JKnGEgQGQol5oM1ZAfiA4USGVvw19RY9JhWWEIXcXU5/8oE+jWqI+qjqBNjmp+w==
-  dependencies:
-    "@anymod/core" "^0.1.51"
-    "@userfront/core" "^0.6.5"
+"@userfront/react@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@userfront/react/-/react-2.0.0.tgz#774cfa1e6131c95405327695dad8ae9b071ceced"
+  integrity sha512-7Efm9ASLx1TPx+uGu53Fgx6TLeqnzjkqk6rho81TXcXW8PLp7PAw99WSMt7N6FehEQUsxW/ym0QCA3+rSnK+jQ==
 
 JSONStream@^1.0.4:
   version "1.3.5"
@@ -1103,13 +1087,6 @@ aws-sdk@2.1432.0:
     util "^0.12.4"
     uuid "8.0.0"
     xml2js "0.5.0"
-
-axios@^0.21.1:
-  version "0.21.4"
-  resolved "https://registry.npmjs.org/axios/-/axios-0.21.4.tgz"
-  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
-  dependencies:
-    follow-redirects "^1.14.0"
 
 bail@^2.0.0:
   version "2.0.2"
@@ -1785,11 +1762,6 @@ folans.d.ts@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/folans.d.ts/-/folans.d.ts-2.0.0.tgz"
   integrity sha512-IZ3WZ+1fkW7E6F2g4TDadfeDb88UC/dW03vb7AX7mZUc4nmZdvE407D1LToFhtdYD0+whJHqYtYU6Lmro03G4Q==
-
-follow-redirects@^1.14.0:
-  version "1.15.6"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
-  integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
 
 for-each@^0.3.3:
   version "0.3.3"
@@ -2534,11 +2506,6 @@ jmespath@0.16.0:
   version "0.16.0"
   resolved "https://registry.npmjs.org/jmespath/-/jmespath-0.16.0.tgz"
   integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
-
-js-cookie@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/js-cookie/-/js-cookie-2.2.1.tgz"
-  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
