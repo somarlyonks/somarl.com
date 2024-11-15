@@ -3,7 +3,6 @@
 import {useEffect, useState, ChangeEvent} from 'react'
 // import {redirect} from 'next/navigation'
 
-import Userfront from '@/libs/userfront'
 import PostEditActionGroup from './PostEditActionGroup'
 
 
@@ -12,12 +11,9 @@ interface IProps {
 }
 
 export default function PostEdit ({content: propContent = ''}: IProps) {
-    // if (!Userfront.user.hasRole('admin')) redirect('/')
-
     const [content, setContent] = useState(propContent)
 
     useEffect(() => {
-        console.info(Userfront.user, Userfront.user.hasRole('admin')) // TODELETE
     }, [])
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
