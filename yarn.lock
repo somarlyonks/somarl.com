@@ -2052,12 +2052,27 @@ hast-util-from-parse5@^8.0.0:
     vfile-location "^5.0.0"
     web-namespaces "^2.0.0"
 
+hast-util-has-property@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/hast-util-has-property/-/hast-util-has-property-3.0.0.tgz#4e595e3cddb8ce530ea92f6fc4111a818d8e7f93"
+  integrity sha512-MNilsvEKLFpV604hwfhVStK0usFY/QmM5zX16bo7EjnAEGofr5YyI37kzopBlZJkHD4t887i+q/C8/tr5Q94cA==
+  dependencies:
+    "@types/hast" "^3.0.0"
+
 hast-util-heading-rank@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/hast-util-heading-rank/-/hast-util-heading-rank-3.0.0.tgz#2d5c6f2807a7af5c45f74e623498dd6054d2aba8"
   integrity sha512-EJKb8oMUXVHcWZTDepnr+WNbfnXKFNf9duMesmr4S8SXTJBJ9M4Yok08pu9vxdJwdlGRhVumk9mEhkEvKGifwA==
   dependencies:
     "@types/hast" "^3.0.0"
+
+hast-util-interactive@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/hast-util-interactive/-/hast-util-interactive-3.0.0.tgz#f5d42eb52320bc42214c3210b30fe8d21eb17b04"
+  integrity sha512-9VFa3kP6AT40BNYcPmn3jpsG+1KPDF0rUFCrFVQDUsuUXZ3YLODm8UGV0tmYzFpcOIQXTAOi2ccS3ywlj2dQTA==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    hast-util-has-property "^3.0.0"
 
 hast-util-is-element@^3.0.0:
   version "3.0.0"
@@ -3987,6 +4002,16 @@ rehype-slug@6.0.0:
     hast-util-to-string "^3.0.0"
     unist-util-visit "^5.0.0"
 
+rehype-unwrap-images@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/rehype-unwrap-images/-/rehype-unwrap-images-1.0.0.tgz#7e6ae5bddffdf7ad439cc2e4ca1820e85a031a79"
+  integrity sha512-wzW5Mk9IlVF2UwXC5NtIZsx1aHYbV8+bLWjJnlZaaamz5QU52RppWtq1uEZJqGo8d9Y4RuDqidB6r9RFpKugIg==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    hast-util-interactive "^3.0.0"
+    hast-util-whitespace "^3.0.0"
+    unist-util-visit "^5.0.0"
+
 remark-gfm@3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/remark-gfm/-/remark-gfm-3.0.1.tgz"
@@ -4031,15 +4056,6 @@ remark-sectionize@2.0.0:
   dependencies:
     unist-util-find-after "^4.0.1"
     unist-util-visit "^4.1.2"
-
-remark-unwrap-images@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/remark-unwrap-images/-/remark-unwrap-images-4.0.1.tgz#55c1aa535bc86be011be036237da54aa25b01b9e"
-  integrity sha512-J9HibCHx0/X7ovgqaFe0otizCHpbb1s6Jh3IeiD5ibQm2Oz/OhCDXSKMEW5T54iBw5CxuqRL6BrYp+jLLdqBOw==
-  dependencies:
-    "@types/mdast" "^4.0.0"
-    hast-util-whitespace "^3.0.0"
-    unist-util-visit "^5.0.0"
 
 require-directory@^2.1.1:
   version "2.1.1"

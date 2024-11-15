@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeShiki from '@shikijs/rehype'
 import remarkGFM from 'remark-gfm'
 import remarkSectionize from 'remark-sectionize'
-import remarkUnwrapImages from 'remark-unwrap-images'
+import rehypeUnwrapImages from 'rehype-unwrap-images'
 
 import {remarkToc} from './toc'
 
@@ -116,12 +116,12 @@ export async function serializePost (slug: string) {
         mdxOptions: {
             remarkPlugins: [
                 remarkToc,
-                remarkUnwrapImages,
                 remarkSectionize,
                 remarkGFM,
             ],
             rehypePlugins: [
                 rehypeSlug,
+                rehypeUnwrapImages,
                 [rehypeShiki as ANY, {
                     themes: {
                         light: 'github-light',
