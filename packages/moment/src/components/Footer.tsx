@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import OcticonGithub from '@csszen/icons.github'
+import OcticonGithub from '@somarl.com/icons/Github'
 
 import Flex from './Flex'
 import Vercel from './icons/Vercel'
@@ -14,10 +14,7 @@ export default function Footer ({slug}: {slug?: string}) {
                         <li><Link href="https://www.somarl.com">About</Link></li>
                         <li><Link href="https://blog.somarl.com">Blogs</Link></li>
                         <li><Link href="/">Moments</Link></li>
-                        {slug
-                            ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`} role="button" target="_blank"><OcticonGithub /></Link></li>
-                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/moment" role="button" target="_blank"><OcticonGithub /></Link></li>
-                        }
+                        <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/moment" role="button" target="_blank"><OcticonGithub /></Link></li>
                     </ul>
                 </nav>
                 <Flex grow />

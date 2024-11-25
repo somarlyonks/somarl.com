@@ -1,5 +1,5 @@
 import {PropsWithChildren} from 'react'
-import {useBem} from '@csszen/hooks.usebem'
+import {useBem} from '../libs/useBem'
 
 
 interface IFlexProps extends PropsWithChildren {

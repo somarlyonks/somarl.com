@@ -1,5 +1,5 @@
 import {ReactNode} from 'react'
-import {useBem} from '@csszen/hooks.usebem'
+import {useBem} from '../libs/useBem'
 
 
 interface IFlexProps {

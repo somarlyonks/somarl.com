@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 import Flex from './Flex'
 import Vercel from './icons/Vercel'
-import OcticonGithub from '@csszen/icons.github'
-import OcticonRSS from '@csszen/icons.octiconrss'
+import OcticonGithub from '@somarl.com/icons/Github'
+import OcticonRSS from './icons/RSS'
 
 
 export default function Footer ({slug}: {slug?: string}) {
