@@ -1,0 +1,9 @@
+{
+  "name": "@somarl.com/icons",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react": "18.3.1"
+  }
+}

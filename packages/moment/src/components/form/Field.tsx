@@ -1,5 +1,5 @@
 import {useState, useEffect, forwardRef, createContext, ForwardRefExoticComponent} from 'react'
-import {useBem} from '@csszen/hooks.usebem'
+import {useBem} from '../../libs/useBem'
 import {isPromise} from '../../libs/is'
 import {IFieldProps, IFieldValidator, IFieldState, IFieldContextStore, IFieldContext} from './shared'
 

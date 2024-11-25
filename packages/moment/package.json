@@ -12,9 +12,6 @@
     "ci": "next build"
   },
   "dependencies": {
-    "@csszen/components.copy": "0.2.0",
-    "@csszen/hooks.usebem": "0.2.0",
-    "@csszen/icons.github": "1.1.0",
     "livephotoskit": "1.5.6",
     "next": "15.0.3",
     "react": "18.3.1",

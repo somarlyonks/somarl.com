@@ -2,7 +2,7 @@
 
 import {forwardRef} from 'react'
 import Flex from './Flex'
-import {useBem} from '@csszen/hooks.usebem'
+import {useBem} from '../libs/useBem'
 
 
 interface IProps {
