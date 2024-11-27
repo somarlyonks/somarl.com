@@ -25,9 +25,7 @@
   "search.exclude": {
     "yarn.lock": true,
   },
-  "files.associations": {
-    "tslint.json": "jsonc"
-  },
+  "files.associations": {},
   "editor.unicodeHighlight.allowedLocales": {
     "zh-hans": true,
     "zh-hant": true

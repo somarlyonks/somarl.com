@@ -6,14 +6,9 @@ import Flex from '../Flex'
 import Copy from '../Copy'
 import Upload, {IProps as IUploadProps} from '../Upload'
 
-
-interface IProps extends IFieldProps<HTMLSelectElement> {
-}
-
-export default field('upload', context => forwardRef<HTMLInputElement, IProps & Partial<IUploadProps>>(({
+export default field('upload', (/* context */) => forwardRef<HTMLInputElement, IFieldProps<HTMLSelectElement> & Partial<IUploadProps>>(({
     onUpload,
     onStart,
-    // tslint:disable-next-line: trailing-comma
     ...props
 }, ref) => {
     const [src, setSrc] = useState('')
