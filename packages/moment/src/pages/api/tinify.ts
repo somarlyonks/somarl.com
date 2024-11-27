@@ -6,7 +6,6 @@ import CONFIG from '../../libs/config'
 import uuid from '../../libs/uuid'
 import HTTPStatusCodes from '../../libs/statusCode'
 
-
 export const config = {
     api: {
         bodyParser: false,

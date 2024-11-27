@@ -1,7 +1,6 @@
 import {S3} from 'aws-sdk'
 import CONFIG from './config'
 
-
 export async function createPresignedPost (Fields?: Record<string, string>, accessKey?: string) {
     const secretAccessKey = CONFIG.S3_SECRET_ACCESS_KEY || accessKey
     if (!secretAccessKey) return
@@ -19,7 +18,6 @@ export async function createPresignedPost (Fields?: Record<string, string>, acce
         Fields,
         Expires: 60,
         Conditions: [
-            // tslint:disable-next-line: no-magic-numbers
             ['content-length-range', 1, 50 << 20], // 1B ~50MB
         ],
     })

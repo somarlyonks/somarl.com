@@ -1,6 +1,5 @@
 import Image from 'next/image'
 
-
 interface IProps {
     src: string
     work?: string

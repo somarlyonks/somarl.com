@@ -1,6 +1,4 @@
-
 import {Metadata} from 'next'
-
 
 export interface ITagParams {
     tag: string
@@ -10,7 +8,7 @@ export interface ICollectionParams {
     collection: string
 }
 
-const isTagParams = (params: ITagParams | ICollectionParams): params is ITagParams => params.hasOwnProperty('tag')
+const isTagParams = (params: ITagParams | ICollectionParams): params is ITagParams => Object.prototype.hasOwnProperty.call(params, 'tag')
 
 export async function generateMetadata ({params: pParams}: {
     params: Promise<ITagParams | ICollectionParams>

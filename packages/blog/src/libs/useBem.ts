@@ -1,4 +1,3 @@
-
 import {useMemo} from 'react'
 
 type IModifier = string | undefined | false
@@ -19,7 +18,7 @@ export function bem (block: string, element?: string, modifiers: IModifiers = []
         }
 
         return [prefix].concat(
-            _modifiers.filter(m => m).map(modifier => `${prefix}--${modifier}`)
+            _modifiers.filter(m => m).map(modifier => `${prefix}--${modifier}`),
         ).join(' ')
     }
     if (arguments.length === 1) return elementBuilder
@@ -30,7 +29,7 @@ export function useBem (
     block: string,
     element: string,
     modifiers: IModifiers = [],
-    inputs: React.DependencyList = []
+    inputs: React.DependencyList = [],
 ) {
     if (arguments.length === 3) {
         inputs = Array.isArray(modifiers) ? [] : Object.values(modifiers)
@@ -44,7 +43,7 @@ export function moduledBem (styles: {readonly [key: string]: string}) {
         block: string,
         element: string,
         modifiers: IModifiers = [],
-        inputs: React.DependencyList = []
+        inputs: React.DependencyList = [],
     ) {
         if (arguments.length === 3) {
             inputs = Array.isArray(modifiers) ? [] : Object.values(modifiers)

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import formatNth from '../../libs/formatNth'
 import formatPlural from '../../libs/formatPlural'
 
-
 interface IProps {
     post: IPostMeta
     collection: IPostMeta[]
@@ -15,7 +14,16 @@ export default function PostCollection ({post, collection}: IProps) {
     return (
         <div className="post-collection">
             <p>
-                <small>The {formatNth(postIndex + 1)} of {formatPlural(collection.length, 'post')} in collection </small>
+                <small>
+                    The
+                    {formatNth(postIndex + 1)}
+                    {' '}
+                    of
+                    {formatPlural(collection.length, 'post')}
+                    {' '}
+                    in collection
+                    {' '}
+                </small>
                 <Link href={`/collection/${post.collection}`}><strong>{post.collection}</strong></Link>
             </p>
             <ul>

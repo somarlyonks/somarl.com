@@ -2,12 +2,11 @@ import RSS from 'rss'
 
 import {getPosts} from '@/libs/mdx'
 
-
 export async function GET () {
     const SITE_URL = 'https://blog.somarl.com'
 
     const feed = new RSS({
-        title: "Yang's Blogs",
+        title: 'Yang\'s Blogs',
         feed_url: `${SITE_URL}/rss.xml`,
         site_url: SITE_URL,
         image_url: `${SITE_URL}/192.png`,

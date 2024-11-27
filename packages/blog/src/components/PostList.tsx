@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PostInfo from './post/PostInfo'
 
-
 interface IProps {
     posts: IPostMeta[]
 }

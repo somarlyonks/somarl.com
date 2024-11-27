@@ -4,10 +4,9 @@ import {useState, ChangeEvent} from 'react'
 
 import styles from './the-way-to-wrap-flex-items-is-grid.module.scss'
 
-
 export default function Items ({className = '', defaultItemCount}: {
-    className?: string,
-    defaultItemCount?: number,
+    className?: string
+    defaultItemCount?: number
 }) {
     const minCount = 5
     const maxCount = 100

@@ -1,6 +1,5 @@
 import {formatDatetime} from '../../libs/i18n'
 
-
 interface IProps {
     post: IPostMeta
 }

@@ -1,6 +1,5 @@
 import {PropsWithChildren, isValidElement, DetailedHTMLProps, InputHTMLAttributes} from 'react'
 
-
 interface IProps extends PropsWithChildren {
     id?: string
 }

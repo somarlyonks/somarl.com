@@ -1,7 +1,6 @@
 import {ReactNode, isValidElement, InvalidEvent} from 'react'
 import Link from 'next/link'
 
-
 interface IProps {
     href: string
     name?: string
@@ -20,7 +19,12 @@ export default function PostLink (props: IProps) {
     )) {
         const url = new URL(href)
         const favicon = `https://unavatar.io/${url.hostname}`
-        return <><img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} /><a {...props} href={props.href} /></>
+        return (
+            <>
+                <img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} />
+                <a {...props} href={props.href} />
+            </>
+        )
     }
 
     if (href.startsWith('/')) return <Link {...props} href={props.href} />

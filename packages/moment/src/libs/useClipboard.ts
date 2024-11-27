@@ -1,6 +1,5 @@
 import {useState, useEffect, useCallback} from 'react'
 
-
 const isClipboardApiAvailable = () => !!navigator?.clipboard
 
 const setElementStyle = ($el: HTMLElement, style: Record<string, string>) => {
@@ -12,19 +11,19 @@ const createTextArea = () => {
     textArea.setAttribute('cols', '0')
     textArea.setAttribute('rows', '0')
     setElementStyle(textArea, {
-        border: 'none',
-        outline: 'none',
-        margin: '0',
-        padding: '0',
-        bottom: '0',
-        left: '0',
+        'border': 'none',
+        'outline': 'none',
+        'margin': '0',
+        'padding': '0',
+        'bottom': '0',
+        'left': '0',
         'margin-bottom': '-1px',
         'margin-left': '-1px',
-        height: '1px',
+        'height': '1px',
         'max-height': '1px',
         'min-height': '1px',
-        position: 'absolute',
-        width: '1px',
+        'position': 'absolute',
+        'width': '1px',
         'min-width': '1px',
         'max-width': '1px',
     })
@@ -63,7 +62,7 @@ export default function useClipboard (): [string, (clipboard: string) => void] {
             if (isClipboardApiAvailable()) {
                 const textArea = createTextArea()
                 textArea.focus()
-                navigator.clipboard.readText().then(text => {
+                navigator.clipboard.readText().then((text) => {
                     if (clipboard !== text) setClipboard(text)
                 }).catch(console.warn).finally(() => textArea.remove())
             } else {
@@ -82,7 +81,7 @@ export default function useClipboard (): [string, (clipboard: string) => void] {
                 } catch (error) {console.warn(error)}
             }
             if (isClipboardApiAvailable()) {
-                navigator.clipboard.readText().then(text => {
+                navigator.clipboard.readText().then((text) => {
                     if (clipboard !== text) setClipboard(text)
                 }).catch(fallback)
             } else fallback()

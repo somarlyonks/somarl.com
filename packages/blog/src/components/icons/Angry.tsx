@@ -1,4 +1,3 @@
-
 export default function Angry () {
     return (
         <svg viewBox="20 10 135 150" xmlns="http://www.w3.org/2000/svg" style={{height: '1em'}}>

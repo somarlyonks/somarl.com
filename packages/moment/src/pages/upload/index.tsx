@@ -4,7 +4,6 @@ import styles from './index.module.scss'
 
 import {TextField, SelectField, UploadField} from '../../components/form'
 
-
 const MOMENT_TYPES = ['quote', 'picture', 'video']
 
 export default function Upload () {

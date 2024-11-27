@@ -1,3 +1,3 @@
 export default {
-    transpilePackages: ["next-mdx-remote"],
+    transpilePackages: ['@somarl.com/icons'],
 }

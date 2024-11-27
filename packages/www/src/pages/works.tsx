@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Head from '../components/head'
 import styles from './works.module.scss'
 
-
 interface IProps {
     works: Array<{
         name: string
@@ -37,8 +36,7 @@ export default function Works ({works}: InferGetStaticPropsType<typeof getStatic
     )
 }
 
-
-export const getStaticProps: GetStaticProps<IProps, {}> = async () => {
+export const getStaticProps: GetStaticProps<IProps> = async () => {
     const works = [
         {name: 'Nippon Colors', url: 'https://qotes.github.io/Colors/', description: '🌸 A set of Japanese traditional colors.'},
         {name: 'CSS ZEN garden', url: 'https://czg.vercel.app', description: '💅 A CSS theming template.'},

@@ -3,7 +3,6 @@ import {useContext, FormEventHandler, forwardRef} from 'react'
 import {IFieldProps} from './shared'
 import field from './Field'
 
-
 interface IProps extends IFieldProps<HTMLSelectElement> {
     placeholder?: S
     options: Array<{
@@ -22,7 +21,7 @@ export default field('select', context => forwardRef<HTMLSelectElement, IProps>(
 }, $input) => {
     const {value, errMsg, setState} = useContext(context)
 
-    const handleInput: FormEventHandler<HTMLSelectElement> = event => {
+    const handleInput: FormEventHandler<HTMLSelectElement> = (event) => {
         const target = event.currentTarget
         const newValue = target.value
         setState(prev => ({...prev, value: newValue}))
@@ -46,5 +45,5 @@ export default field('select', context => forwardRef<HTMLSelectElement, IProps>(
             {options.map(({key, name}) => <option key={key} value={key}>{name}</option>)}
         </select>
     )
-}
+},
 ))

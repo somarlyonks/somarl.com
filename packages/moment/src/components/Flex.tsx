@@ -1,7 +1,6 @@
 import {ReactNode} from 'react'
 import {useBem} from '../libs/useBem'
 
-
 interface IFlexProps {
     className?: string
     children?: ReactNode

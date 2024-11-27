@@ -1,6 +1,8 @@
-
 export default {
-    transpilePackages: ["next-mdx-remote"],
+    transpilePackages: [
+        'next-mdx-remote',
+        '@somarl.com/icons',
+    ],
     images: {
         remotePatterns: [
             {
@@ -25,7 +27,7 @@ export default {
                 source: '/dashboard',
                 destination: '/',
                 permanent: true,
-            }
+            },
         ]
-    }
+    },
 }

@@ -1,4 +1,3 @@
-
 import {PropsWithChildren} from 'react'
 import {Metadata} from 'next'
 
@@ -6,7 +5,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Zoom from '@/components/post/scripts/Zoom'
 import {serializePost} from '@/libs/mdx'
-
 
 export interface IProps {
     params: Promise<{
@@ -35,7 +33,7 @@ export async function generateMetadata ({params}: IProps): Promise<Metadata> {
             publishedTime: scope.published,
             authors: 'Yang Sheng',
             images,
-        }
+        },
     }
 }
 

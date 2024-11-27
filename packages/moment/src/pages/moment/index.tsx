@@ -3,7 +3,6 @@ import {useEffect} from 'react'
 import Head from '../../components/Head'
 import Footer from '../../components/Footer'
 
-
 export default function Home () {
     useEffect(() => {
         //

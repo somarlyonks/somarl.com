@@ -2,11 +2,7 @@
 
 import Button from '@/components/Button'
 
-
-interface IProps {
-}
-
-export default function PostEditActionGroup ({}: IProps) {
+export default function PostEditActionGroup () {
     return (
         <div className="action-group">
             <Button type="submit" label="Save" />

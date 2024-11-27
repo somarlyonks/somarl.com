@@ -3,7 +3,6 @@ import {useBem} from '../../libs/useBem'
 import {isPromise} from '../../libs/is'
 import {IFieldProps, IFieldValidator, IFieldState, IFieldContextStore, IFieldContext} from './shared'
 
-
 export interface IProps extends IFieldProps {
     forwardedRef: ANY
     validate?: IFieldValidator
@@ -13,12 +12,12 @@ export interface IProps extends IFieldProps {
 
 export default function field<TFieldProps> (
     type: string,
-    ComponentFactory: (context: IFieldContext) => ForwardRefExoticComponent<TFieldProps>
+    ComponentFactory: (context: IFieldContext) => ForwardRefExoticComponent<TFieldProps>,
 ) {
     const FieldContext = createContext<IFieldContextStore>({
         value: '',
         errMsg: '',
-        setState (v) {},
+        setState () {},
     })
 
     const Component = ComponentFactory(FieldContext)
@@ -30,7 +29,6 @@ export default function field<TFieldProps> (
         validate: propValidate,
         description,
         className = '',
-        // tslint:disable-next-line: trailing-comma
         ...props
     }: TFieldProps & IProps) {
         const {
@@ -44,13 +42,13 @@ export default function field<TFieldProps> (
         })
 
         const validateValue = (newValue: S) => {
-            const defaultValidator: IFieldValidator = msg => {
+            const defaultValidator: IFieldValidator = (newValue: S) => {
                 if (required && newValue === '') return 'Required!'
                 return ''
             }
             const validatedMsg = (propValidate! || defaultValidator)(newValue)
 
-            const validate = (msg: S) => setState(prev => {
+            const validate = (msg: S) => setState((prev) => {
                 const isResolvingStale = prev.value !== newValue
                 if (isResolvingStale) return prev
                 if (forwardedRef && forwardedRef.validity.valid && msg) {

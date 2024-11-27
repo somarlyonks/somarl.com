@@ -28,7 +28,6 @@ interface IPostMeta extends Record<string, unknown> {
     url: string
 }
 
-
 declare module '*.mdx' {
     export const meta: IPostMeta
 }
