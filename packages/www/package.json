@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tslint --fix -p tsconfig.json",
+    "lint": "eslint --fix",
     "test": "echo 0",
     "ci": "echo 0"
   },

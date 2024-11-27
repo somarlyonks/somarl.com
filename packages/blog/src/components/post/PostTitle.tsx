@@ -4,13 +4,12 @@ import Image from 'next/image'
 
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
 
-
 interface IProps {
     post: IPostMeta
 }
 
 export default function PostTitle ({post}: IProps) {
-    const $h1 = useInterSectionObserver(entry => {
+    const $h1 = useInterSectionObserver((entry) => {
         const $nav = document.querySelector<HTMLElement>('body > header')
         if ($nav) $nav.style.opacity = String(1 - entry.intersectionRatio)
     }, {
@@ -19,9 +18,9 @@ export default function PostTitle ({post}: IProps) {
     })
 
     const moveInfoSection = () => requestIdleCallback(() => {
-        const $alignSection = document.querySelector('article > section:nth-of-type(2)') ||
-            document.querySelector('article > div > #tocanchor + section:nth-of-type(2)') ||
-            document.querySelector('article > div > section:nth-of-type(1)')
+        const $alignSection = document.querySelector('article > section:nth-of-type(2)')
+            || document.querySelector('article > div > #tocanchor + section:nth-of-type(2)')
+            || document.querySelector('article > div > section:nth-of-type(1)')
         if (!$alignSection) return
 
         document.querySelectorAll<HTMLElement>('div[role="contentinfo"] > section').forEach(($contentInfoSection, i) => {
@@ -38,7 +37,8 @@ export default function PostTitle ({post}: IProps) {
             <p>{post.abstract}</p>
             {!!post.cover && (
                 <figure role="img">
-                    <Image priority
+                    <Image
+                        priority
                         width="1000"
                         height="1000"
                         alt="cover"

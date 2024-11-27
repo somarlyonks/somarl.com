@@ -1,8 +1,6 @@
-
 import PostStyle from './PostStyle'
 
-
-export default function Component ({}) {
+export default function Component () {
     return (
         <PostStyle styles={[
             `table {
@@ -11,6 +9,7 @@ export default function Component ({}) {
             `> div table {
                 table-layout: auto;
             }`,
-        ]} />
+        ]}
+        />
     )
 }

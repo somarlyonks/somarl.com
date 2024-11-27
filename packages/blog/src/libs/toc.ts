@@ -2,24 +2,16 @@ import {toc} from 'mdast-util-toc'
 import type {Plugin} from 'unified'
 import type {Root} from 'mdast'
 
-
 export const remarkToc: Plugin<void[], Root> = () => {
-    return node => {
+    return (node) => {
         const result = toc(
             node,
             Object.assign({}, {
                 heading: 'toc|table[ -]of[ -]contents?',
-            })
+            }),
         )
 
-        if (
-            result.endIndex === null ||
-            result.index === null ||
-            result.index === -1 ||
-            !result.map
-        ) {
-            return
-        }
+        if (result.endIndex ?? result.index ?? (result.index === -1 || !result.map)) return
 
         node.children = [
             {

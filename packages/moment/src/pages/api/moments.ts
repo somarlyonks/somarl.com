@@ -2,7 +2,6 @@ import type {NextApiRequest, NextApiResponse} from 'next'
 import HTTPStatusCodes from '../../libs/statusCode'
 import {client} from '../../libs/mongo'
 
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const {limit = '10'} = req.query
 

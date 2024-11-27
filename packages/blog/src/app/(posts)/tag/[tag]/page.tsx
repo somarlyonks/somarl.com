@@ -1,4 +1,3 @@
-
 import {notFound} from 'next/navigation'
 
 import {getTagMap} from '@/libs/mdx'
@@ -6,7 +5,6 @@ import HashTag from '@/components/icons/HashTag'
 import PostList from '@/components/PostList'
 import type {ITagParams} from '../../metadata'
 export {generateMetadata} from '../../metadata'
-
 
 export const dynamicParams = false
 
@@ -24,8 +22,19 @@ export default async function Page ({params}: {params: Promise<ITagParams>}) {
 
     return (
         <>
-            <h1><HashTag />{tagName}</h1>
-            <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} tagged as <cite>{tagName}</cite></p>
+            <h1>
+                <HashTag />
+                {tagName}
+            </h1>
+            <p>
+                {posts.length}
+                {' '}
+                {posts.length > 1 ? 'posts' : 'post'}
+                {' '}
+                tagged as
+                {' '}
+                <cite>{tagName}</cite>
+            </p>
             <PostList posts={posts} />
         </>
     )

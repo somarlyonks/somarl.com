@@ -6,7 +6,6 @@ import {getCollectionMap} from '@/libs/mdx'
 import type {ICollectionParams} from '../../metadata'
 export {generateMetadata} from '../../metadata'
 
-
 export const dynamicParams = false
 
 export async function generateStaticParams () {
@@ -23,8 +22,19 @@ export default async function Collection ({params}: {params: Promise<ICollection
 
     return (
         <>
-            <h1><Book />{collectionName}</h1>
-            <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} in collection <cite>{collectionName}</cite></p>
+            <h1>
+                <Book />
+                {collectionName}
+            </h1>
+            <p>
+                {posts.length}
+                {' '}
+                {posts.length > 1 ? 'posts' : 'post'}
+                {' '}
+                in collection
+                {' '}
+                <cite>{collectionName}</cite>
+            </p>
             <PostList posts={posts} />
         </>
     )

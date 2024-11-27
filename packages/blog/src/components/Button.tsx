@@ -4,7 +4,6 @@ import {forwardRef} from 'react'
 import Flex from './Flex'
 import {useBem} from '../libs/useBem'
 
-
 interface IProps {
     type?: 'button' | 'submit' | 'reset'
     name?: string

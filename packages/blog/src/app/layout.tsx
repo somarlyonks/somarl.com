@@ -1,10 +1,8 @@
-
 import {PropsWithChildren} from 'react'
 import {Viewport} from 'next'
 import localFont from 'next/font/local'
 
 import 'src/styles/index.scss'
-
 
 const fontSans = localFont({
     src: '../../public/fonts/DejaVuSans.woff2',

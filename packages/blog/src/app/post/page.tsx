@@ -4,7 +4,6 @@ import {redirect, notFound} from 'next/navigation'
 import {fetchPrisma} from '@/libs/prisma'
 import PostEdit from '@/components/post/edit/PostEdit'
 
-
 interface IProps {
     id?: string
 }

@@ -1,7 +1,6 @@
 import {PropsWithChildren} from 'react'
 import {useBem} from '../libs/useBem'
 
-
 interface IFlexProps extends PropsWithChildren {
     className?: string
     full?: boolean

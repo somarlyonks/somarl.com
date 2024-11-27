@@ -1,3 +1,3 @@
 export default {
-    transpilePackages: ["@somarl.com/icons"],
+    transpilePackages: ['@somarl.com/icons'],
 }

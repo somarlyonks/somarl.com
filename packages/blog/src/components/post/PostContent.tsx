@@ -7,12 +7,11 @@ import useInteractiveToc from '@/libs/useInteractiveToc'
 import {postComponents} from '.'
 import type {DYNAMIC_COMPONENT_NAMES} from '@/libs/mdx'
 
-
 const dynamicComponents: Record<C<typeof DYNAMIC_COMPONENT_NAMES>, ANY> = {
     NextJS: dynamic(() => import(`../icons/NextJS`)),
     MDXIcon: dynamic(() => import(`../icons/MDXIcon`)),
     IllustrationFlexWrapItems: dynamic(() => import(`./illustrations/the-way-to-wrap-flex-items-is-grid`)),
-    MyBikeTimeline: dynamic(() => import('./illustrations/my-bike'))
+    MyBikeTimeline: dynamic(() => import('./illustrations/my-bike')),
 }
 
 interface IProps {
@@ -28,7 +27,7 @@ export default function PostContent ({
 }: IProps) {
     const components: ANY = Object.assign({},
         postComponents,
-        Object.fromEntries(extraComponents.map(name => [name, dynamicComponents[name]]))
+        Object.fromEntries(extraComponents.map(name => [name, dynamicComponents[name]])),
     )
 
     useInteractiveToc(!!extraComponents.length)

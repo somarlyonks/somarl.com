@@ -3,7 +3,6 @@ import {useContext, FormEventHandler, forwardRef} from 'react'
 import {IFieldProps} from './shared'
 import field from './Field'
 
-
 interface IProps extends IFieldProps {
     type?: 'text' | 'password'
     placeholder?: S
@@ -21,7 +20,7 @@ export default field('text', context => forwardRef<HTMLInputElement, IProps>(({
 }, $input) => {
     const {value, errMsg, setState} = useContext(context)
 
-    const handleInput: FormEventHandler<HTMLInputElement> = event => {
+    const handleInput: FormEventHandler<HTMLInputElement> = (event) => {
         const target = event.currentTarget
         const newValue = target.value
         setState(prev => ({...prev, value: newValue}))

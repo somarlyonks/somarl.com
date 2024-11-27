@@ -5,12 +5,10 @@ import OcticonCheck from '@somarl.com/icons/Check'
 
 import useClipboard from '../libs/useClipboard'
 
-
 export interface IProps {
     content: string
     className?: string
 }
-
 
 export default function Copy ({content, className}: IProps) {
     const [, setClipboard] = useClipboard()

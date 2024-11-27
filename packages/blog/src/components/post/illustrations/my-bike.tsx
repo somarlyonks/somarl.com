@@ -6,13 +6,12 @@ import Dot from '@/components/icons/Dot'
 import PostFigure from '../PostFigure'
 import styles from './my-bike.module.scss'
 
-
 interface IProps {
     items: Array<{
-        date: string,
-        item: string,
+        date: string
+        item: string
         images: string[]
-        description: string,
+        description: string
         equipments: Record<string, string>
     }>
 }
@@ -28,13 +27,15 @@ export default function MyBikeTimeline ({items}: IProps) {
             <section>
                 <h2>时间线</h2>
                 <Timeline>
-                    {items.map(({date, item, description, images}) => <TimelineItem
-                        key={date}
-                        date={date}
-                        title={item}
-                        content={description}
-                        images={images}
-                    />)}
+                    {items.map(({date, item, description, images}) => (
+                        <TimelineItem
+                            key={date}
+                            date={date}
+                            title={item}
+                            content={description}
+                            images={images}
+                        />
+                    ))}
                 </Timeline>
             </section>
         </>

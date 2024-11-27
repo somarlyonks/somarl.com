@@ -1,4 +1,3 @@
-
 enum HTTPStatusCodes {
     CONTINUE = 100,
     SWITCHING_PROTOCOLS = 101,

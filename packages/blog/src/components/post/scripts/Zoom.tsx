@@ -1,6 +1,5 @@
 import PostScript from './PostScript'
 
-
 export default function Zoom () {
     return (
         <PostScript id="medium-zoom-module">

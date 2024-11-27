@@ -3,7 +3,6 @@
 import {useCallback} from 'react'
 import Button from './Button'
 
-
 export default function NavigateBack () {
     const handleClick = useCallback(() => {
         if (history.length) return history.back()

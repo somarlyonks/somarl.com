@@ -1,8 +1,6 @@
-
 import {PostInfo, PostTitle, PostCollection, PostContent} from '@/components/post'
 import {getPostSlugs, serializePost, searchMDXComponentInSource, getCollectionMap} from '@/libs/mdx'
 import type {IProps} from './layout'
-
 
 export const dynamicParams = false
 
@@ -33,7 +31,7 @@ const getStaticProps = async (slug: string[]) => {
     const {compiledSource, scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
     const extraComponents = searchMDXComponentInSource(compiledSource)
     const collectionMap = await getCollectionMap()
-    const collection = collectionMap[scope.collection] || null
+    const collection = collectionMap[scope.collection] || undefined
 
     return {
         compiledSource,

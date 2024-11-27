@@ -17,4 +17,5 @@ type Resolved<TSource> = TSource extends P<infer RSource>
  * @description explicit type of any
  * @deprecated avoid using it anyway
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ANY = any

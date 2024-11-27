@@ -5,7 +5,6 @@ import {useEffect, useState, ChangeEvent} from 'react'
 
 import PostEditActionGroup from './PostEditActionGroup'
 
-
 interface IProps {
     content?: string
 }

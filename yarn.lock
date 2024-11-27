@@ -771,10 +771,10 @@
     "@commitlint/config-conventional" "17.6.5"
     "@commitlint/config-lerna-scopes" "17.6.3"
 
-"@somarlyonks/eslint@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@somarlyonks/eslint/-/eslint-1.0.0.tgz#94229a639a9a68706057539f072330c05f45efae"
-  integrity sha512-CjpCQ4A0+fJbd1+YGLudegcEtUugPwfWRAI5Pgo67iC5PSsM8RoZHXmkfsIi7oNH3RXzp6G7b1n6VAGJ22wbWg==
+"@somarlyonks/eslint@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@somarlyonks/eslint/-/eslint-1.1.1.tgz#4b55cc5102d3d4732d10c0bb3ac09fa5e193ffa3"
+  integrity sha512-DuBsaxlrDBr1nJcV27ykp8DFUn9U6rn+DK6BAhnT3lD98FgrgBsEXvFDpGD4cMpwXjegceStBX84rreHg1R8wQ==
   dependencies:
     "@eslint/js" "9.15.0"
     "@stylistic/eslint-plugin" "2.11.0"

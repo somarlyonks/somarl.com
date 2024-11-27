@@ -13,9 +13,9 @@ type Resolved<TSource> = TSource extends P<infer RSource>
     ? RSource
     : {[K in keyof TSource]: Resolved<TSource[K]>}
 
-
 /**
  * @description explicit type of any
  * @deprecated avoid using it anyway
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ANY = any

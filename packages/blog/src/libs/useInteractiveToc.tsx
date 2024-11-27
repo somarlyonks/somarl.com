@@ -2,7 +2,6 @@
 
 import {useEffect, useState} from 'react'
 
-
 export default function useInteractiveToc (lazy: boolean) {
     const [ready, setReady] = useState(false)
     useEffect(() => {
@@ -23,7 +22,7 @@ export default function useInteractiveToc (lazy: boolean) {
             const $svgPath = $svg?.querySelector<SVGPathElement>('path')
             if (!$svg || !$svgPath) return
 
-            const navItems = [...$tocTree.querySelectorAll('li')].map($li => {
+            const navItems = [...$tocTree.querySelectorAll('li')].map(($li) => {
                 const $anchor = $li.querySelector('a')!
                 const targetID = ($anchor.getAttribute('href') || '#').match(/#(.*)/)?.[1] || ''
 
@@ -75,7 +74,7 @@ export default function useInteractiveToc (lazy: boolean) {
                     thisElIsVisible(item.listItem)
                         ? [Math.min(item.pathStart, start), Math.max(item.pathEnd, end)]
                         : [start, end]
-                    , [pathLength, 0]
+                , [pathLength, 0],
                 )
 
                 if (someElsAreVisible() && pathStart < pathEnd) {
@@ -93,7 +92,7 @@ export default function useInteractiveToc (lazy: boolean) {
                 return parent.parentElement
             }
 
-            const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+            const observer = new IntersectionObserver(entries => entries.forEach((entry) => {
                 const id = entry.target.querySelector('[id]')?.getAttribute('id')
                 const $anchor = document.querySelector(`li a[href$="#${encodeURIComponent(String(id))}"]`)
 
@@ -119,12 +118,12 @@ export default function useInteractiveToc (lazy: boolean) {
 }
 
 function waitForElm (selector: string) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         if (document.querySelector(selector)) {
             return resolve(document.querySelector(selector))
         }
 
-        const observer = new MutationObserver(mutations => {
+        const observer = new MutationObserver(() => {
             if (document.querySelector(selector)) {
                 observer.disconnect()
                 resolve(document.querySelector(selector))
@@ -133,7 +132,7 @@ function waitForElm (selector: string) {
 
         observer.observe(document.body, {
             childList: true,
-            subtree: true
+            subtree: true,
         })
     })
 }

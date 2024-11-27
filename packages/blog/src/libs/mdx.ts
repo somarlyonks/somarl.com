@@ -11,12 +11,11 @@ import rehypeUnwrapImages from 'rehype-unwrap-images'
 
 import {remarkToc} from './toc'
 
-
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
 
 async function collectPostInDirectory (directoryPath: string, pathPrefix = ''): Promise<string[]> {
     const fileNames = await readdir(directoryPath)
-    const stepChildren = await Promise.all(fileNames.map(async fileName => {
+    const stepChildren = await Promise.all(fileNames.map(async (fileName) => {
         const filePath = path.join(directoryPath, fileName)
         const fileSlug = path.join(pathPrefix, fileName)
 
@@ -61,7 +60,7 @@ type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
 }
 
 export const getPosts = async () => (await readPosts(await getPostSlugs())).sort(
-    (l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf())
+    (l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()),
 )
 
 const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPost))
@@ -100,7 +99,7 @@ async function readPost (slug: string) {
 
 export const getTagMap = async () => getPosts().then(posts => posts.reduce((r, post) =>
     Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
-    {} as Record<string, IPostMeta[]>
+{} as Record<string, IPostMeta[]>,
 ))
 
 export const getCollectionMap = async () => getPosts().then(posts => posts.reduce((r, post) => {
@@ -126,7 +125,7 @@ export async function serializePost (slug: string) {
                     themes: {
                         light: 'github-light',
                         dark: 'github-dark',
-                    }
+                    },
                 }],
                 [rehypeAutolinkHeadings, {
                     content: HastLinkIcon,
