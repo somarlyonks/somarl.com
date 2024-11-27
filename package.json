@@ -37,7 +37,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@somarlyonks/commitlint": "3.0.0",
+    "@somarlyonks/commitlint": "4.0.1",
     "@somarlyonks/eslint": "1.1.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
