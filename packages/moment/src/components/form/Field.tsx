@@ -30,7 +30,7 @@ export default function field<TFieldProps> (
         description,
         className = '',
         ...props
-    }: TFieldProps & IProps) {
+    }: IProps) {
         const {
             name,
             required = false,

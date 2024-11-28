@@ -832,20 +832,28 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
-"@types/react-dom@18.2.5":
-  version "18.2.5"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.2.5.tgz#5c5f13548bda23cd98f50ca4a59107238bfe18f3"
-  integrity sha512-sRQsOS/sCLnpQhR4DSKGTtWFE3FZjpQa86KPVbhUqdYMRZ9FEFcfAytKhR/vUG2rH1oFbOOej6cuD7MFSobDRQ==
+"@types/react-dom@18.3.1":
+  version "18.3.1"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.1.tgz#1e4654c08a9cdcfb6594c780ac59b55aad42fe07"
+  integrity sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.2.12":
+"@types/react@*":
   version "18.2.12"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.12.tgz#95d584338610b78bb9ba0415e3180fb03debdf97"
   integrity sha512-ndmBMLCgn38v3SntMeoJaIrO6tGHYKMEBohCUmw8HoLLQdRMOIGXfeYaBTLe2lsFaSB3MOK1VXscYFnmLtTSmw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@18.3.12":
+  version "18.3.12"
+  resolved "https://registry.npmjs.org/@types/react/-/react-18.3.12.tgz#99419f182ccd69151813b7ee24b792fe08774f60"
+  integrity sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==
+  dependencies:
+    "@types/prop-types" "*"
     csstype "^3.0.2"
 
 "@types/rss@0.0.32":
@@ -1084,10 +1092,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@2.1432.0:
-  version "2.1432.0"
-  resolved "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.1432.0.tgz#f33981d7299b55cc79421901634aeb8d2ce16820"
-  integrity sha512-bnPilJ0YkFOHGL2yYSnpd/oMnsDicGQKmE479vDn/AVcKhRswcg893DTqxrkkuuylEIcIIPPHBqX+IlwNv1zqw==
+aws-sdk@2.1692.0:
+  version "2.1692.0"
+  resolved "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.1692.0.tgz#9dac5f7bfcc5ab45825cc8591b12753aa7d2902c"
+  integrity sha512-x511uiJ/57FIsbgUe5csJ13k3uzu25uWQE+XqfBis/sB0SFoiElJWXRkgEAUh0U6n40eT3ay5Ue4oPkRMu1LYw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -1098,7 +1106,7 @@ aws-sdk@2.1432.0:
     url "0.10.3"
     util "^0.12.4"
     uuid "8.0.0"
-    xml2js "0.5.0"
+    xml2js "0.6.2"
 
 bail@^2.0.0:
   version "2.0.2"
@@ -4394,10 +4402,10 @@ typescript-eslint@8.16.0:
     "@typescript-eslint/parser" "8.16.0"
     "@typescript-eslint/utils" "8.16.0"
 
-typescript@5.0.4:
-  version "5.0.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.4.tgz"
-  integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==
+typescript@5.7.2:
+  version "5.7.2"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.7.2.tgz#3169cf8c4c8a828cde53ba9ecb3d2b1d5dd67be6"
+  integrity sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
@@ -4698,10 +4706,10 @@ wrappy@1:
   resolved "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
 
-xml2js@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/xml2js/-/xml2js-0.5.0.tgz"
-  integrity sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==
+xml2js@0.6.2:
+  version "0.6.2"
+  resolved "https://registry.npmjs.org/xml2js/-/xml2js-0.6.2.tgz#dd0b630083aa09c161e25a4d0901e2b2a929b499"
+  integrity sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~11.0.0"
