@@ -21,7 +21,8 @@ export default function Index () {
                 </h1>
                 <p>
                     I'm Yang. Or
-                    <ruby>
+                    {' '}
+                    <ruby lang="zh-CN">
                         盛
                         <rp>(</rp>
                         <rt>shèng</rt>
@@ -35,30 +36,39 @@ export default function Index () {
                 </p>
                 <p>
                     I'm a Web developer
+                    {' '}
                     <a href="https://foundever.com" target="_blank">@Foundever</a>
                     {' '}
                     based in Shanghai.
                 </p>
                 <p>
                     I speak
-                    <AH text="🀄️ " />
+                    {' '}
+                    <AH text="🀄️" />
                     Chinese,
-                    <AH text="🔤 " />
+                    {' '}
+                    <AH text="🔤" />
                     English,
-                    <AH text="🌸 " />
+                    {' '}
+                    <AH text="🌸" />
                     Japanese,
-                    <AH text="🐍 " />
+                    {' '}
+                    <AH text="🐍" />
                     Python,
+                    {' '}
                     <Javascript />
                     Javascript,
+                    {' '}
                     <AH text="🦀 " />
                     Rust...
                 </p>
                 <p>
                     I compose
-                    <AH text="💻 " />
+                    {' '}
+                    <AH text="💻" />
                     programs and
-                    <AH text="🎹 " />
+                    {' '}
+                    <AH text="🎹" />
                     music and have been teaching myself computer science and playing paino for years.
                 </p>
             </article>
