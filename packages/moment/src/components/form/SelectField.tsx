@@ -13,7 +13,6 @@ interface IProps extends IFieldProps<HTMLSelectElement> {
 
 export default field('select', context => forwardRef<HTMLSelectElement, IProps>(({
     name,
-    placeholder,
     onChange,
     required = false,
     disabled = false,
@@ -36,7 +35,6 @@ export default field('select', context => forwardRef<HTMLSelectElement, IProps>(
             ref={$input}
             name={name}
             value={value}
-            placeholder={placeholder}
             onInput={handleInput}
             disabled={disabled}
             required={required}
