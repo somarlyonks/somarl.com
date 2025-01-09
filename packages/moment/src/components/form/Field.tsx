@@ -30,7 +30,7 @@ export default function field<TFieldProps> (
         description,
         className = '',
         ...props
-    }: TFieldProps & IProps) {
+    }: PropsWithoutRef<TFieldProps & Omit<IProps, 'forwardedRef'>> & Pick<IProps, 'forwardedRef'>) {
         const {
             name,
             required = false,
@@ -81,3 +81,5 @@ export default function field<TFieldProps> (
 
     return forwardRef<unknown, TFieldProps & Omit<IProps, 'forwardedRef'>>((props, ref) => <Field {...props} forwardedRef={ref} />)
 }
+
+type PropsWithoutRef<P> = P extends ANY ? ('ref' extends keyof P ? Omit<P, 'ref'> : P) : P
