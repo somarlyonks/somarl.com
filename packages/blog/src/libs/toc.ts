@@ -11,7 +11,8 @@ export const remarkToc: Plugin<void[], Root> = () => {
             }),
         )
 
-        if (result.endIndex ?? result.index ?? (result.index === -1 || !result.map)) return
+        // eslint-disable-next-line eslint-plugin-no-null/no-null
+        if (result.endIndex === null || result.index === null || result.index === -1 || !result.map) return
 
         node.children = [
             {
