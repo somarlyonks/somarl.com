@@ -7,11 +7,6 @@ export interface IConfig {
     seconds: number
 }
 
-export const ConfigContext = createContext<{
-    config: IConfig
-    setConfig: Dispatch<SetStateAction<IConfig>>
-}>(null as ANY)
-
 export function useConfig () {
     return useContext(ConfigContext)
 }
@@ -28,6 +23,11 @@ const configPresets: Record<string, IConfig> = {
         seconds: 4,
     },
 }
+
+export const ConfigContext = createContext<{
+    config: IConfig
+    setConfig: Dispatch<SetStateAction<IConfig>>
+}>({config: configPresets.desktop, setConfig: () => {}} as ANY)
 
 export function ConfigProvider ({children}: PropsWithChildren) {
     const [config, setConfig] = useState<IConfig>(configPresets.desktop)

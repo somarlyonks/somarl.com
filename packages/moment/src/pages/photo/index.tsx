@@ -3,8 +3,8 @@ import type {ChangeEventHandler, MouseEventHandler} from 'react'
 
 import Head from '../../components/Head'
 import Footer from '../../components/Footer'
-import Satori, {getFileID} from './Satori'
-import {ConfigProvider, ConfigField} from './Config'
+import Satori, {getFileID} from '../../components/Satori'
+import {ConfigProvider, ConfigField} from '../../components/Config'
 import styles from './photo.module.scss'
 
 export default function Home () {

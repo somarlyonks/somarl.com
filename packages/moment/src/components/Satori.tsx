@@ -3,10 +3,10 @@ import exifr from 'exifr'
 import satori, {Font} from 'satori'
 import {fetchFile} from '@ffmpeg/util'
 
-import uuid from '../../libs/uuid'
-import useFFmpeg from '../../libs/ffmpeg'
+import uuid from '../libs/uuid'
+import useFFmpeg from '../libs/ffmpeg'
 import {useConfig, IConfig} from './Config'
-import styles from './photo.module.scss'
+import styles from '../pages/photo/photo.module.scss'
 
 interface IExif {
     ImageHeight: number
@@ -26,7 +26,7 @@ export const getFileID = (file: File) => `p-${file.lastModified}-${file.name}`
 function initResvgWorker () {
     if (typeof window === 'undefined') return
 
-    const worker = new Worker(new URL('../../libs/resvg.worker.ts', import.meta.url))
+    const worker = new Worker(new URL('../libs/resvg.worker.ts', import.meta.url))
 
     const pending = new Map()
     worker.onmessage = (e) => {
@@ -169,7 +169,7 @@ export function useExif (files: File[]) {
 function useFonts () {
     const [fonts, setFonts] = useState<Font[]>()
     useEffect(() => {
-        fetch(new URL('../../../public/fonts/DejaVuSans.woff', import.meta.url)).then(res =>
+        fetch(new URL('../../public/fonts/DejaVuSans.woff', import.meta.url)).then(res =>
             res.arrayBuffer().then(data => setFonts([{name: 'DejaVuSans', data}])),
         )
     }, [])
