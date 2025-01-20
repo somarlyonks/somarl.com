@@ -5,6 +5,7 @@ import {toBlobURL} from '@ffmpeg/util'
 export default function useFFmpeg () {
     const [loaded, setLoaded] = useState(false)
     const ffmpegRef = useRef<FFmpeg>()
+    // eslint-disable-next-line eslint-plugin-no-null/no-null
     const messageRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
