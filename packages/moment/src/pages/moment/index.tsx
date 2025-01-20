@@ -1,4 +1,5 @@
 import {useEffect} from 'react'
+import Script from 'next/script'
 
 import Head from '../../components/Head'
 import Footer from '../../components/Footer'
@@ -10,9 +11,8 @@ export default function Home () {
 
     return (
         <>
-            <Head title="Moments | Yang" description="I'm a Web developer based in Shanghai.">
-                <script src="https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js" />
-            </Head>
+            <Head title="Moments | Yang" description="I'm a Web developer based in Shanghai." />
+            <Script id="livephotoskit" strategy="lazyOnload" src="https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js" />
 
             <article>
                 <h1>Moments</h1>
