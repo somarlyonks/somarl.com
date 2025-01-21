@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback} from 'react'
+import {useEffect, useState, useCallback, useRef} from 'react'
 import exifr from 'exifr'
 import satori, {Font} from 'satori'
 import {fetchFile} from '@ffmpeg/util'
@@ -58,20 +58,19 @@ export default function Satori ({files}: {
     const fonts = useFonts()
     const {config} = useConfig()
 
-    const [processing, setProcessing] = useState(false)
+    const processing = useRef(false)
+    const initialized = useRef(false)
     const [results, setResults] = useState<Record<string, string>>({})
 
-    useEffect(() => {
+    const process = useCallback(async (state: {cancelled: boolean, refresh?: boolean}) => {
         if (!fonts || !renderPNG) return
-        if (processing) return
-        setProcessing(true)
+        if (processing.current) return
+        processing.current = true
 
-        let cancelled = false
-
-        void Promise.all(files.map(async (file) => {
-            if (cancelled) return []
+        return Promise.all(files.map(async (file) => {
+            if (state.cancelled) return []
             const fileID = getFileID(file)
-            if (results[fileID]) return [fileID, results[fileID]]
+            if (!state.refresh && results[fileID]) return [fileID, results[fileID]]
 
             const src = URL.createObjectURL(file)
             const exif = await exifr.parse(file)
@@ -83,20 +82,43 @@ export default function Satori ({files}: {
                 ...config,
                 fonts,
             })
-            if (cancelled) return []
+            if (state.cancelled) return []
             const png = await renderPNG({svg, width: config.width})
             return [fileID, png]
         })).then((entries) => {
             setResults(Object.fromEntries(entries.filter(entry => entry.length)))
         }).catch(console.error).finally(() => {
-            setProcessing(false)
+            processing.current = false
         })
+    }, [fonts, files, config])
+
+    useEffect(() => {
+        if (!fonts || !renderPNG) return
+
+        const state = {cancelled: false}
+        void process(state)
 
         return () => {
-            cancelled = true
-            setProcessing(false)
+            state.cancelled = true
         }
-    }, [fonts, files, config])
+    }, [fonts, files])
+
+    useEffect(() => {
+        if (!initialized.current) return
+        if (!fonts || !renderPNG) return
+
+        const state = {cancelled: false, refresh: true}
+        setResults({})
+        void process(state)
+
+        return () => {
+            state.cancelled = true
+        }
+    }, [config])
+
+    useEffect(() => {
+        initialized.current = true
+    }, [])
 
     const [ffmpegRef, messageRef, loaded] = useFFmpeg()
     const [videoUrl, setVideoUrl] = useState<string>()
@@ -135,7 +157,7 @@ export default function Satori ({files}: {
 
             {loaded && (
                 <>
-                    <button disabled={processing} onClick={handleTranscode}>
+                    <button disabled={processing.current} onClick={handleTranscode}>
                         generate video
                     </button>
 
@@ -217,7 +239,7 @@ function Photo ({exif, src, config}: {
             <path fill="#FF6900" d="M258.626-146.231c-48.304-48.118-117.759-53.496-202.634-53.496     c-84.982,0-154.542,5.44-202.826,53.688c-48.277,48.228-53.174,117.676-53.174,202.561c0,84.899,4.897,154.368,53.194,202.613     c48.281,48.255,117.833,53.139,202.806,53.139c84.974,0,154.514-4.884,202.795-53.139     c48.294-48.254,53.205-117.714,53.205-202.613C311.992-28.472,307.028-97.995,258.626-146.231L258.626-146.231z" />
             <path fill="#FFFFFF" d="M204.546-41.122c1.759,0,3.223,1.417,3.223,3.161v189.386     c0,1.715-1.464,3.139-3.223,3.139H163.05c-1.781,0-3.228-1.424-3.228-3.139V-37.961c0-1.743,1.446-3.161,3.228-3.161H204.546z      M24.468-41.122c31.303,0,64.033,1.435,80.176,17.589c15.871,15.897,17.59,47.549,17.656,78.286v96.671     c0,1.715-1.446,3.139-3.219,3.139h-41.49c-1.777,0-3.229-1.424-3.229-3.139V53.09c-0.044-17.167-1.031-34.81-9.884-43.692     c-7.62-7.641-21.839-9.391-36.625-9.754h-75.21c-1.764,0-3.208,1.419-3.208,3.136v148.645c0,1.715-1.462,3.139-3.237,3.139     h-41.516c-1.774,0-3.201-1.424-3.201-3.139V-37.961c0-1.743,1.426-3.161,3.201-3.161H24.468z M33.755,34.305     c1.766,0,3.201,1.413,3.201,3.143v113.977c0,1.715-1.436,3.139-3.201,3.139H-9.829c-1.792,0-3.228-1.424-3.228-3.139V37.448     c0-1.73,1.436-3.143,3.228-3.143H33.755z" />
         </svg>
-    ) : exif.Make.toLowerCase() === 'pentax' ? (
+    ) : exif.Make.toLowerCase() === 'pentax' || (exif.Make.toLowerCase().includes('ricoh') && exif.Model && exif.Model.toLowerCase().includes('pentax')) ? (
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height={logoSize} viewBox="0 0 2560 513">
             <path fill="#ff0013" opacity="1.00" d=" M 11.94 8.26 C 92.62 8.28 173.31 8.26 253.99 8.27 C 278.70 7.97 303.83 9.06 327.57 16.49 C 343.10 21.32 357.90 29.04 369.87 40.14 C 382.24 51.49 391.27 66.15 397.11 81.82 C 405.92 105.45 408.42 130.90 408.54 155.96 C 408.57 181.30 408.54 206.65 408.55 231.99 C 408.44 246.68 409.04 261.42 407.36 276.05 C 405.52 292.71 401.25 309.30 393.12 324.04 C 386.12 336.83 376.12 347.95 364.12 356.24 C 344.41 369.94 320.59 376.24 297.01 378.97 C 278.41 381.19 259.66 380.67 240.97 380.73 C 212.30 380.74 183.63 380.73 154.95 380.74 C 154.95 420.80 154.96 460.87 154.95 500.93 C 107.27 500.93 59.58 500.94 11.90 500.93 C 11.92 336.71 11.85 172.48 11.94 8.26 M 155.40 97.33 C 155.36 159.20 155.47 221.08 155.35 282.95 C 173.54 283.24 191.75 282.98 209.95 283.08 C 221.50 283.14 233.47 281.44 243.60 275.58 C 252.57 270.51 259.25 261.83 262.41 252.08 C 265.34 243.69 265.53 234.71 265.38 225.93 C 265.34 197.62 265.35 169.30 265.29 140.99 C 265.31 129.56 261.74 117.66 253.44 109.50 C 245.01 100.99 232.77 97.34 221.01 97.34 C 199.14 97.32 177.27 97.33 155.40 97.33 Z" />
             <path fill="#ff0013" opacity="1.00" d=" M 454.97 8.33 C 568.63 8.46 682.30 8.39 795.96 8.36 C 796.12 38.98 795.99 69.60 796.03 100.21 C 728.69 100.22 661.35 100.21 594.01 100.21 C 594.02 134.31 593.99 168.40 594.02 202.50 C 651.13 202.54 708.23 202.35 765.33 202.59 C 765.08 233.37 765.29 264.15 765.22 294.93 C 708.15 294.95 651.08 294.93 594.02 294.94 C 594.01 333.23 594.01 371.52 594.01 409.80 C 661.24 409.83 728.47 409.76 795.70 409.83 C 795.70 440.21 795.65 470.58 795.72 500.96 C 682.10 501.15 568.47 500.98 454.84 501.04 C 454.84 391.35 454.84 281.66 454.84 171.97 C 454.93 117.42 454.67 62.87 454.97 8.33 Z" />
