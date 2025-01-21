@@ -322,7 +322,7 @@ function Photo ({exif, src, config}: {
                     }}
                     >
                         {!!(exif.FocalLengthIn35mmFormat || exif.FocalLength) && <span>{exif.FocalLengthIn35mmFormat || exif.FocalLength}mm</span>}
-                        {!!exif.FNumber && <span>F/{exif.FNumber.toFixed(2) === String(exif.FNumber) ? exif.FNumber : exif.FNumber.toFixed(2)}</span>}
+                        {!!exif.FNumber && <span>F/{parseFloat(exif.FNumber.toFixed(2)) === exif.FNumber ? exif.FNumber : exif.FNumber.toFixed(2)}</span>}
                         {!!exif.ExposureTime && <span>{exif.ExposureTime < 1 ? `1/${Math.floor(1 / exif.ExposureTime)}` : Math.floor(exif.ExposureTime)}s</span>}
                         {!!exif.ISO && <span>ISO{exif.ISO}</span>}
                     </p>
