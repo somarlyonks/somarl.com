@@ -203,7 +203,7 @@ function Photo ({exif, src, config}: {
     const containerHeight = containerWidth / ratio
     const width = isRightAngle ? containerHeight : containerWidth
     const height = isRightAngle ? containerWidth : containerHeight
-    const transform = isRightAngle ? `rotate(${rotateDegrees}deg) translate(${(containerHeight - containerWidth) / 2}px, ${(containerHeight - containerWidth) / 2}px)` : 'scale(1)'
+    const transform = isRightAngle ? `rotate(${rotateDegrees}deg) translate(${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px, ${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px)` : 'scale(1)'
 
     const backgroundWidth = isRightAngle ? outputHeight * ratio > outputWidth ? outputHeight : outputWidth / ratio : outputHeight * ratio > outputWidth ? outputHeight * ratio : outputWidth
     const backgroundHeight = isRightAngle ? outputHeight * ratio > outputWidth ? outputHeight * ratio : outputWidth : outputHeight * ratio > outputWidth ? outputHeight : outputWidth / ratio
