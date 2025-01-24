@@ -12,14 +12,24 @@ export function useConfig () {
 }
 
 const configPresets: Record<string, IConfig> = {
-    desktop: {
+    'desktop': {
         width: 1920,
         height: 1080,
         seconds: 4,
     },
-    mobile: {
+    'desktop 4K': {
+        width: 3840,
+        height: 2160,
+        seconds: 4,
+    },
+    'mobile': {
         width: 1080,
         height: 1920,
+        seconds: 4,
+    },
+    'mobile 4K': {
+        width: 2160,
+        height: 3840,
         seconds: 4,
     },
 }
@@ -64,8 +74,9 @@ export function ConfigField () {
             <label>
                 <span>presets</span>
                 <select value={preset} onChange={handleSelectPreset}>
-                    <option value="desktop">desktop</option>
-                    <option value="mobile">mobile</option>
+                    {Object.keys(configPresets).map(key => (
+                        <option key={key} value={key}>{key}</option>
+                    ))}
                 </select>
             </label>
             <label>
