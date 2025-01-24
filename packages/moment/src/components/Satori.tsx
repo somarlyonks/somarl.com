@@ -206,7 +206,7 @@ function Photo ({exif, src, config}: {
 }) {
     const {width: outputWidth, height: outputHeight} = config
     const {ImageWidth: inputWidth, ImageHeight: inputHeight} = exif
-    const rotateDegrees = parseInt((Array.from((exif.Orientation || '').matchAll(/Rotate\s(\d+)\sCW/g))[0] || [])[1]) || 0
+    const rotateDegrees = parseInt((Array.from((exif.Orientation || '').matchAll(/Rotate\s(\d+)/g))[0] || [])[1]) || 0
     const isRightAngle = rotateDegrees === 90 || rotateDegrees === 270
     const ratio = isRightAngle ? inputHeight / inputWidth : inputWidth / inputHeight
 
@@ -225,7 +225,7 @@ function Photo ({exif, src, config}: {
     const containerHeight = containerWidth / ratio
     const width = isRightAngle ? containerHeight : containerWidth
     const height = isRightAngle ? containerWidth : containerHeight
-    const transform = isRightAngle ? `rotate(${rotateDegrees}deg) translate(${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px, ${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px)` : 'scale(1)'
+    const transform = `rotate(${rotateDegrees}deg)` + (isRightAngle ? ` translate(${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px, ${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px)` : '')
 
     const backgroundWidth = isRightAngle ? outputHeight * ratio > outputWidth ? outputHeight : outputWidth / ratio : outputHeight * ratio > outputWidth ? outputHeight * ratio : outputWidth
     const backgroundHeight = isRightAngle ? outputHeight * ratio > outputWidth ? outputHeight * ratio : outputWidth : outputHeight * ratio > outputWidth ? outputHeight : outputWidth / ratio
