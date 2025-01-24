@@ -74,8 +74,9 @@ export function ConfigField () {
             <label>
                 <span>presets</span>
                 <select value={preset} onChange={handleSelectPreset}>
-                    <option value="desktop">desktop</option>
-                    <option value="mobile">mobile</option>
+                    {Object.keys(configPresets).map(key => (
+                        <option key={key} value={key}>{key}</option>
+                    ))}
                 </select>
             </label>
             <label>
