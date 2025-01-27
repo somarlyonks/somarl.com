@@ -1,4 +1,3 @@
-/* eslint-disable @stylistic/jsx-one-expression-per-line */
 import Link from 'next/link'
 import Image from 'next/image'
 

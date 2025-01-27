@@ -26,15 +26,7 @@ export default async function Collection ({params}: {params: Promise<ICollection
                 <Book />
                 {collectionName}
             </h1>
-            <p>
-                {posts.length}
-                {' '}
-                {posts.length > 1 ? 'posts' : 'post'}
-                {' '}
-                in collection
-                {' '}
-                <cite>{collectionName}</cite>
-            </p>
+            <p>{posts.length} {posts.length > 1 ? 'posts' : 'post'} in collection <cite>{collectionName}</cite></p>
             <PostList posts={posts} />
         </>
     )
