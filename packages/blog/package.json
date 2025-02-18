@@ -19,7 +19,7 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@shikijs/rehype": "2.3.2",
+    "@shikijs/rehype": "2.5.0",
     "@types/rss": "0.0.32",
     "gray-matter": "4.0.3",
     "hast-util-raw": "9.1.0",
