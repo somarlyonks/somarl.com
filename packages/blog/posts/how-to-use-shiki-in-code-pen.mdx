@@ -1,0 +1,90 @@
+---
+title: How to Use Shiki in Code Pen
+abstract: ESM makes life easier.
+published: '2024-10-24T11:19:02.009'
+language: zh
+tags:
+  - JavaScript
+  - Workbook
+---
+
+## Shiki
+
+I mentioned before that I was using [Shiki](https://shiki.matsu.io/) to highlight code snippets in my blog. It's a great tool that uses [TextMate grammars and themes](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#textmate-grammars), which powers VS Code.
+
+But the problem is that it's <abbr title="ahead of time">AOT</abbr> in this case, it renders code snippets on Node.js before it runs in browser. And that's also one of the biggest differences between Shiki and other libraries like PrismJS. It produces pure HTML out-of-box without any JavaScript as runtime. It suits best for static sites, that's why I chose it.
+
+But now I want to use it in browser, more specifically, in Code Pen. I was using a Code Pen to show same example and code snippets for some components, but recently I noticed that the code snippets were not highlighted.
+
+## The Code Pen
+
+The code to highlight is simple, it's inside a `pre` tag rendered by React.
+
+```jsx
+<pre>{`<ds-dropdown placeholder="Language">
+    <span data-value="en">English</span>
+    <span data-value="fr">French</span>
+</ds-dropdown>`}</pre>
+```
+
+In my blog, I wrote [mdx plugins](https://github.com/somarlyonks/somarl.com/blob/55c058f3bef0732d1480e7615a7bb59bec28465f/packages/blog/src/libs/shiki.ts) to highlight code snippets. But as you can see in PR [somarlyonks/somarl.com#1508](https://github.com/somarlyonks/somarl.com/pull/1508), thanks for contributions from the Nuxt.js community, official `@shikijs/rehype` was available since then. Aside from that, **Full ESM support** was also added.
+
+Which means the only thing I need to do in my Code Pen is just to import the module with `import {codeToHtml} from 'https://esm.sh/shiki'`. But unfortunately, the function `codeToHtml` is asynchronous, it's impossible to use it directly in a `pre` tag like
+
+```diff
+- <pre>{`<ds-dropdown placeholder="Language">
++ <pre>{codeToHtml(`<ds-dropdown placeholder="Language">
+      <span data-value="en">English</span>
+      <span data-value="fr">French</span>
+- </ds-dropdown>`}</pre>
++ </ds-dropdown>`)}</pre>
+```
+
+We may wrap it with a React component with the help of [`Suspense`](https://react.dev/reference/react/Suspense).
+
+```javascript
+function Shiki ({children, lang = 'html', theme='github-light'}) {
+  return (
+    <Suspense fallback={<pre><code>{children}</code></pre>}>
+      <CodeToHtml lang={lang} theme={theme}>{children}</CodeToHtml>
+    </Suspense>
+  )
+}
+
+async function CodeToHtml ({children, lang, theme}) {
+  const html = await codeToHtml(children, {
+    lang,
+    theme,
+  })
+
+  return <div dangerouslySetInnerHTML={{__html: html}} />
+}
+```
+
+And all we need to do is to replace the `pre` tag with `Shiki` component. The `Suspense` helps show the original code snippet before the highlighted one is ready.
+
+```diff
+- <pre>{`<ds-dropdown placeholder="Language">
++ <Shiki>{`<ds-dropdown placeholder="Language">
+      <span data-value="en">English</span>
+      <span data-value="fr">French</span>
+- </ds-dropdown>`}</pre>
++ </ds-dropdown>`}</Shiki>
+```
+
+A bad news is that this snippet is only works with `react@canary` currently, but we could `useState` to achieve similar effect.
+
+```javascript
+function Shiki ({children, lang = 'html', theme='github-light'}) {
+    const [html, setHtml] = useState('')
+    void codeToHtml(children, {
+        lang,
+        theme,
+    }).then(setHtml)
+
+    if (!html) return <pre><code>{children}</code></pre>
+    return <div dangerouslySetInnerHTML={{__html: html}} />
+}
+```
+
+And actually Shiki supports [synchronous usage](https://shiki.matsu.io/guide/sync-usage) since v1.16. But that's too verbose and off the topic here. It just turns out that the necessity of `Suspense` is doubtful in similar cases.
