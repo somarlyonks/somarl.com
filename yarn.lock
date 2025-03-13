@@ -1178,6 +1178,11 @@ acorn@^8.14.0:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
   integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
 
+agent-base@^7.1.2:
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-7.1.3.tgz#29435eb821bc4194633a5b89e5bc4703bafc25a1"
+  integrity sha512-jRR5wdylq8CkOe6hei19GGZnxM6rBGwFl3Bg0YItGDimvjGtAvdZk4Pu6Cl4u4Igsws4a1fd1Vq3ezrhn4KmFw==
+
 ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.npmjs.org/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
@@ -1599,6 +1604,13 @@ dargs@^8.0.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/dargs/-/dargs-8.1.0.tgz#a34859ea509cbce45485e5aa356fef70bfcc7272"
   integrity sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==
+
+debug@4:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.4.0.tgz#2b3f2aea2ffeb776477460267377dc8710faba8a"
+  integrity sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==
+  dependencies:
+    ms "^2.1.3"
 
 debug@^4.0.0:
   version "4.3.4"
@@ -2515,6 +2527,14 @@ html-void-elements@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/html-void-elements/-/html-void-elements-3.0.0.tgz#fc9dbd84af9e747249034d4d62602def6517f1d7"
   integrity sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==
+
+https-proxy-agent@^7.0.6:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz#da8dfeac7da130b05c2ba4b59c9b6cd66611a6b9"
+  integrity sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==
+  dependencies:
+    agent-base "^7.1.2"
+    debug "4"
 
 husky@9.1.7:
   version "9.1.7"
@@ -4008,11 +4028,6 @@ property-information@^7.0.0:
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-7.0.0.tgz#3508a6d6b0b8eb3ca6eb2c6623b164d2ed2ab112"
   integrity sha512-7D/qOz/+Y4X/rzSB6jKxKUsQnphO046ei8qxG59mtM3RG3DHgTK81HrxrmoDVINJb8NKT5ZsRbwHvQ6B68Iyhg==
 
-"proxying-agent@>= 2.1":
-  version "2.4.0"
-  resolved "https://registry.npmjs.org/proxying-agent/-/proxying-agent-2.4.0.tgz"
-  integrity sha512-b9vDqIcViJZVsWPpQlp9Py74u+Wqd0a+kMkkg7zX58mwNtrNbOChNlRTM7lUrlpiwNzyJCV8+5D8rnZYLDFh7Q==
-
 punycode@1.3.2:
   version "1.3.2"
   resolved "https://registry.npmjs.org/punycode/-/punycode-1.3.2.tgz"
@@ -4664,13 +4679,13 @@ text-extensions@^2.0.0:
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
-tinify@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.npmjs.org/tinify/-/tinify-1.7.1.tgz"
-  integrity sha512-IbZwiVG0iN/BwZB0XTA45uNyv3DxDByL9TK0jI++hyWtnV68BgNKl0r+iNLsIEDasN3IntHaeaQbiVfaQVnLdQ==
+tinify@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/tinify/-/tinify-1.8.0.tgz#3dd29636fe959092c7e5296e001a8652c353c10f"
+  integrity sha512-WE9mYj2queard9UEybA4bJ3PqjzqeU4/KdibxHGfzB3dqnZp2EimLyxOCEeVpdjkk6HrtJN9pkr344sxiRCfxA==
   dependencies:
+    https-proxy-agent "^7.0.6"
     promise-nodeify ">= 0.1"
-    proxying-agent ">= 2.1"
 
 tiny-inflate@^1.0.0:
   version "1.0.3"
