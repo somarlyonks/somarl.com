@@ -4156,10 +4156,10 @@ sass@1.89.0:
   optionalDependencies:
     "@parcel/watcher" "^2.4.1"
 
-satori@0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/satori/-/satori-0.13.2.tgz#0484b24e9a3763edf924c1a323d7f9cbbadbb556"
-  integrity sha512-BPoExgKlkZPY1j4I2vSovo9OJALOw5siU37cm1aNcq/XWCojpFM3FHXHxby9tQ2R5ajV2fRQgouWoonQ83z+Hg==
+satori@0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/satori/-/satori-0.14.0.tgz#96aa6097de71ffd4e0df24777518c43bf625d5f0"
+  integrity sha512-s9tfkzlvZr9+KGfU17oPCrgz2rN5/juYi12xrMFKOC+ulxnlyUHnU8z3Yy9sR29bfHagz5skyNcbNI3xD+yotA==
   dependencies:
     "@shuding/opentype.js" "1.4.0-beta.0"
     css-background-parser "^0.1.0"
