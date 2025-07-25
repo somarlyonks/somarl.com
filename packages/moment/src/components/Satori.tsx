@@ -74,9 +74,18 @@ export default function Satori ({files}: {
 
             const src = URL.createObjectURL(file)
             const exif = await exifr.parse(file)
+            if (!exif) {
+                console.error('invalid exif')
+                return []
+            }
             exif.Make = exif.Make || ''
             exif.ImageWidth = exif.ImageWidth || exif.ExifImageWidth
             exif.ImageHeight = exif.ImageHeight || exif.ExifImageHeight
+            if (!exif.ImageWidth || !exif.ImageHeight) {
+                const {width, height} = await readImageSize(src)
+                exif.ImageWidth = width
+                exif.ImageHeight = height
+            }
             console.info(exif)
             const svg = await satori(<Photo src={src} config={config} exif={exif} />, {
                 ...config,
@@ -174,6 +183,25 @@ export default function Satori ({files}: {
     )
 }
 
+async function readImageSize (url: string): Promise<{
+    width: number
+    height: number
+}> {
+    const $img = document.createElement('img')
+
+    return new Promise((resolve, reject) => {
+        $img.onload = () => {
+            resolve({
+                width: $img.naturalWidth,
+                height: $img.naturalHeight,
+            })
+            $img.remove()
+        }
+        $img.onerror = reject
+        $img.src = url
+    })
+}
+
 export function useExif (files: File[]) {
     const [exifs, setExifs] = useState<IExif[]>()
     useEffect(() => {
@@ -227,8 +255,8 @@ function Photo ({exif, src, config}: {
     const height = isRightAngle ? containerWidth : containerHeight
     const transform = `rotate(${rotateDegrees}deg)` + (isRightAngle ? ` translate(${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px, ${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px)` : '')
 
-    const backgroundWidth = isRightAngle ? outputHeight * ratio > outputWidth ? outputHeight : outputWidth / ratio : outputHeight * ratio > outputWidth ? outputHeight * ratio : outputWidth
-    const backgroundHeight = isRightAngle ? outputHeight * ratio > outputWidth ? outputHeight * ratio : outputWidth : outputHeight * ratio > outputWidth ? outputHeight : outputWidth / ratio
+    const backgroundWidth = isRightAngle ? Math.max(outputHeight, outputWidth / ratio) : Math.max(outputHeight * ratio, outputWidth)
+    const backgroundHeight = isRightAngle ? Math.max(outputHeight * ratio, outputWidth) : Math.max(outputHeight, outputWidth / ratio)
 
     const makeIcon = exif.Make.toLowerCase() === 'apple' ? (
         <svg xmlns="http://www.w3.org/2000/svg" height={logoSize} viewBox="0 0 20 20">

@@ -9,7 +9,7 @@ const MOMENT_TYPES = ['quote', 'picture', 'video']
 export default function Upload () {
     return (
         <>
-            <Head title="Upload | Yang" description="I'm a Web developer based in Shanghai." />
+            <Head title="Upload | Yang" />
             <article className={styles.article}>
                 <h1>Upload</h1>
 
