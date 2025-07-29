@@ -2,12 +2,12 @@
 
 import {useRef, useEffect} from 'react'
 
-export default function useInterSectionObserver (
+export default function useInterSectionObserver<T extends HTMLElement> (
     cb: (entry: IntersectionObserverEntry) => void,
     options?: IntersectionObserverInit,
 ) {
     // eslint-disable-next-line eslint-plugin-no-null/no-null
-    const $el = useRef<HTMLHeadingElement>(null)
+    const $el = useRef<T>(null)
 
     useEffect(() => {
         if (!window.IntersectionObserver) return

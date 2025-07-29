@@ -9,9 +9,11 @@ interface IProps {
 }
 
 export default function PostTitle ({post}: IProps) {
-    const $h1 = useInterSectionObserver((entry) => {
+    const $h1 = useInterSectionObserver<HTMLHeadingElement>((entry) => {
         const $nav = document.querySelector<HTMLElement>('body > header')
-        if ($nav) $nav.style.opacity = String(1 - entry.intersectionRatio)
+        if ($nav) {
+            $nav.style.opacity = String(1 - entry.intersectionRatio)
+        }
     }, {
         threshold: Array.from(Array(10 + 1), (_, i) => i / 10),
         rootMargin: '80px',
