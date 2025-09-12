@@ -1,0 +1,42 @@
+.filters {
+  select {
+    font: inherit;
+    border-radius: 0.2lh;
+    border-color: var(--color-fg);
+    outline: none;
+  }
+}
+
+.list {
+  padding-inline-start: 0;
+
+  li {
+    display: block;
+  }
+
+  table {
+    font-family: var(--font-mono), monospace;
+
+    tbody tr:nth-child(2n) {
+      background-color: var(--color-bg);
+    }
+  }
+}
+
+.table {
+  font-family: var(--font-mono), monospace;
+
+  tbody tr:nth-child(2n) {
+    background-color: var(--color-bg);
+  }
+
+  td {
+    white-space: normal;
+    vertical-align: top;
+    text-align: center;
+
+    &[colspan="4"] {
+      background-color: var(--color-bg-secondary);
+    }
+  }
+}

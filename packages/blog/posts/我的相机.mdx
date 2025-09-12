@@ -1,0 +1,328 @@
+---
+title: 我的相机
+published: '2025-09-09T17:40:00.000Z'
+language: zh
+cover: /images/covers/k32.jpg
+tags:
+  - Life
+  - Photography
+---
+
+<TableLayoutAuto />
+
+<MyCamera camera={{
+  model: 'PENTAX K-3 II',
+  make: 'RICOH IMAGING COMPANY, LTD.',
+  url: 'https://www.ricoh-imaging.co.jp/english/products/k-3-2/',
+  year: 2015,
+  sensor: {
+    format: 'APS-C',
+    type: 'CMOS',
+    bitDepth: 14,
+    resolution: [4000, 6016],
+    megapixels: 24.35,
+    iso: {
+        min: 100,
+        max: 51200,
+    }
+  },
+  shutter: {
+    speed: [1/8000, 30],
+    fps: 8.3,
+  },
+  meter: {
+    sensor: 86000,
+    range: [-3, 20],
+    pattern: ['Multi-Segment', 'Center Weighted', 'Spot'],
+  }
+}} lenses={[
+    // Samyang 20mm F1.8 ED AS UMC
+    {
+        model: 'Samyang 20mm F1.8 ED AS UMC',
+        make: 'LK SAMYANG CO., LTD.',
+        url: 'https://www.lksamyang.com/en/product/product-view.php?seq=182',
+        year: 2016,
+        format: 'Full-frame',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: 70.3,
+                horizontal: 60.7,
+            },
+            'Full-frame': {
+                diagnoal: 94.8,
+                horizontal: 84,
+            },
+        },
+        weight: 493,
+        focus: {
+            min: 20,
+            focalLength: 20,
+            magnification: 0.13,
+            method: 'manual',
+        },
+        aperture: {
+            max: 1.8,
+            min: 22,
+            blades: 7,
+            ring: 'auto',
+        },
+        optics: {
+            elements: 13,
+            groups: 12,
+            aspherical: 2,
+            coating: 'multi-coated',
+        },
+        size: {
+            filter: 77,
+            length: 87,
+            diameter: 83,
+        },
+        weather: {
+            sealing: false,
+            temperature: [-10, 40],
+            humidity: [0, 85],
+        },
+    },
+    // HD PENTAX-DA 20-40mmF2.8-4ED Limited DC WR
+    {
+        model: 'HD PENTAX-DA 20-40mmF2.8-4ED Limited DC WR',
+        make: 'RICOH IMAGING COMPANY, LTD.',
+        url: 'https://www.ricoh-imaging.co.jp/english/products/lens/k/standard/hdpentax-da-20-40/',
+        year: 2013,
+        format: 'APS-C',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: [70, 39],
+                horizontal: [62, 33],
+            },
+        },
+        weight: 283,
+        focus: {
+            min: 28,
+            focalLength: [20, 40],
+            magnification: 0.2,
+            method: 'AF(in-lens motor) DC',
+        },
+        aperture: {
+            max: [2.8, 4],
+            min: [22, 32],
+            blades: 9,
+            ring: false,
+        },
+        optics: {
+            elements: 9,
+            groups: 8,
+            aspherical: 1,
+            coating: ['HD', 'SP'],
+        },
+        size: {
+            filter: 55,
+            length: 68.5,
+            diameter: 71,
+        },
+        weather: {
+            sealing: true,
+            temperature: [-10, 40],
+            humidity: [0, 85],
+        },
+        accessories: {
+            hood: 'MH-RA55',
+            cap: 'O-LW65A',
+            case: 'P70-150',
+        },
+    },
+    // HD PENTAX-FA 43mmF1.9 Limited
+    {
+        model: 'HD PENTAX-FA 43mmF1.9 Limited',
+        make: 'RICOH IMAGING COMPANY, LTD.',
+        url: 'https://www.ricoh-imaging.co.jp/english/products/lens/k/standard/hdpentax-fa-43/',
+        year: 2021,
+        format: 'Full-frame',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: 36.5,
+                horizontal: 31,
+            },
+            'Full-frame': {
+                diagnoal: 53,
+                horizontal: 45,
+            },
+        },
+        weight: 155,
+        focus: {
+            min: 45,
+            focalLength: 43,
+            magnification: 0.12,
+            method: 'AF(screwdrive)',
+        },
+        aperture: {
+            max: 1.9,
+            min: 22,
+            blades: 8,
+            ring: 'auto',
+        },
+        optics: {
+            elements: 7,
+            groups: 6,
+            coating: ['Ghostless', 'HD', 'SP'],
+        },
+        size: {
+            filter: 49,
+            length: 27,
+            diameter: 64,
+        },
+        weather: {
+            sealing: false,
+            temperature: [-10, 40],
+            humidity: [0, 85],
+        },
+        accessories: {
+            hood: 'MH-RG49',
+            cap: 'O-LW54A',
+            case: 'P60-120',
+        },
+    },
+    // smc PENTAX-M 50mm F1.7
+    {
+        model: 'smc PENTAX-M 50mm F1.7',
+        make: 'ASAHI OPT. CO., JAPAN',
+        url: 'https://www.pentaxforums.com/lensreviews/SMC-Pentax-M-50mm-F1.7-Lens.html',
+        year: 1977,
+        format: 'Full-frame',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: 32,
+                horizontal: 27,
+            },
+            'Full-frame': {
+                diagnoal: 47,
+                horizontal: 40,
+            },
+        },
+        weight: 185,
+        focus: {
+            min: 45,
+            focalLength: 50,
+            magnification: 0.15,
+            method: 'manual',
+        },
+        aperture: {
+            max: 1.7,
+            min: 22,
+            blades: 6,
+            ring: true,
+        },
+        optics: {
+            elements: 6,
+            groups: 5,
+            coating: 'SMC',
+        },
+        size: {
+            filter: 49,
+            length: 31,
+            diameter: 63,
+        },
+        weather: {
+            sealing: false,
+        },
+    },
+    // smc PENTAX-D FA MACRO 100mmF2.8 WR
+    {
+        model: 'smc PENTAX-D FA MACRO 100mmF2.8 WR',
+        make: 'RICOH IMAGING COMPANY, LTD.',
+        url: 'https://www.ricoh-imaging.co.jp/english/products/lens/k/macro/smcpentax-dfa-macro-100/',
+        year: 2009,
+        format: 'Full-frame',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: 16,
+                horizontal: 14,
+            },
+            'Full-frame': {
+                diagnoal: 24,
+                horizontal: 20,
+            },
+        },
+        weight: 340,
+        focus: {
+            min: 30,
+            focalLength: 100,
+            magnification: 1,
+            method: 'AF(screwdrive)',
+        },
+        aperture: {
+            max: 2.8,
+            min: 32,
+            blades: 8,
+            ring: false,
+        },
+        optics: {
+            elements: 9,
+            groups: 8,
+            coating: ['SMC', 'SP'],
+        },
+        size: {
+            filter: 49,
+            length: 80.5,
+            diameter: 65,
+        },
+        weather: {
+            sealing: true,
+        },
+        accessories: {
+            hood: 'PH-RBE49',
+            cap: 'O-LC49',
+            case: 'P60-120',
+        },
+    },
+    // Tamron AF Di LD Macro A17 70-300mm F4-5.6
+    {
+        model: 'Tamron AF Di LD Macro A17 70-300mm F4-5.6',
+        make: 'Tamron Co., Ltd.',
+        url: 'https://www.pentaxforums.com/userreviews/tamron-70-300mm-f4-5-6-af-di-ld-macro.html',
+        year: 2006,
+        format: 'Full-frame',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: [23, 5.5],
+                horizontal: [19.5, 4.6],
+            },
+            'Full-frame': {
+                diagnoal: [34, 8],
+                horizontal: [29, 7],
+            },
+        },
+        weight: 435,
+        focus: {
+            min: 95,
+            focalLength: [70, 300],
+            magnification: 0.5,
+            method: 'AF(screwdrive)',
+        },
+        aperture: {
+            max: [4, 5.6],
+            min: [32, 45],
+            blades: 9,
+            ring: 'auto',
+        },
+        optics: {
+            elements: 13,
+            groups: 9,
+            coating: 'Multi-coated',
+        },
+        size: {
+            filter: 62,
+            length: 117,
+            diameter: 76.6,
+        },
+        weather: {
+            sealing: false,
+        },
+    },
+]} />

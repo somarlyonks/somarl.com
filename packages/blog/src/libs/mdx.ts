@@ -97,9 +97,9 @@ async function readPost (slug: string) {
     }
 }
 
-export const getTagMap = async () => getPosts().then(posts => posts.reduce((r, post) =>
-    Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
-{} as Record<string, IPostMeta[]>,
+export const getTagMap = async () => getPosts().then(posts => posts.reduce(
+    (r, post) => Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
+    {} as Record<string, IPostMeta[]>,
 ))
 
 export const getCollectionMap = async () => getPosts().then(posts => posts.reduce((r, post) => {
@@ -146,6 +146,7 @@ export const DYNAMIC_COMPONENT_NAMES = [
     'MDXIcon',
     'IllustrationFlexWrapItems',
     'MyBikeTimeline',
+    'MyCamera',
 ] as const
 
 export const searchMDXComponentInSource = (source: string) => (

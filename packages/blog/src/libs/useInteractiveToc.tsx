@@ -70,11 +70,11 @@ export default function useInteractiveToc (lazy: boolean) {
                 const thisElIsVisible = ($li: HTMLLIElement) => $li.classList.contains(visibleClass)
                 const pathLength = $svgPath.getTotalLength()
 
-                const [pathStart, pathEnd] = navItems.reduce(([start, end], item) =>
-                    thisElIsVisible(item.listItem)
+                const [pathStart, pathEnd] = navItems.reduce(
+                    ([start, end], item) => thisElIsVisible(item.listItem)
                         ? [Math.min(item.pathStart, start), Math.max(item.pathEnd, end)]
-                        : [start, end]
-                , [pathLength, 0],
+                        : [start, end],
+                    [pathLength, 0],
                 )
 
                 if (someElsAreVisible() && pathStart < pathEnd) {
