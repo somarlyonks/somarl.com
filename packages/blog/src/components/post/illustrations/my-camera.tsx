@@ -3,7 +3,6 @@
 import {useState, ChangeEventHandler} from 'react'
 import styles from './my-camera.module.scss'
 
-
 type ILenseFormat = 'APS-C' | 'Full-frame'
 type IValueOrRange<T> = T | [T, T]
 type INumberOrRange = IValueOrRange<number>
@@ -29,41 +28,41 @@ interface ILenseData {
             diagnoal: INumberOrRange
             horizontal: INumberOrRange
         }
-    },
+    }
     weight: number
     focus: {
         min: number
         focalLength: INumberOrRange
         magnification: number
         method: string
-    },
+    }
     aperture: {
         max: INumberOrRange
         min: INumberOrRange
         blades: number
         ring: boolean | 'auto'
-    },
+    }
     optics: {
         elements: number
         groups: number
         aspherical?: number
         coating: string | string[]
-    },
+    }
     size: {
         filter: number
         length: number
         diameter: number
-    },
+    }
     weather: {
         sealing: boolean
         temperature?: [number, number]
         humidity?: [number, number]
-    },
+    }
     accessories?: {
         hood?: string
         cap?: string
         case?: string
-    },
+    }
 }
 
 export default function MyCamera ({camera, lenses}: {
@@ -90,7 +89,7 @@ function CameraDataTable ({item}: {item: ICameraData}) {
             <tbody>
                 <tr>
                     <td colSpan={4}>
-                        <b>Pentax K-3 II</b>
+                        <b>{item.model}</b>
                         <br />
                         © www.pentaxforums.com, sharable with attribution
                     </td>
@@ -136,7 +135,8 @@ function CameraDataTable ({item}: {item: ICameraData}) {
                 <tr>
                     <td><b>Auto bracketing</b><br />Exposure (2, 3 or 5 frames), one-push EV bracketing, AA filter (3 frames)</td>
                     <td><b>Expanded dynamic range</b><br />Highlight (auto, on, off),
-                        Shadow (auto, high, medium, low, off)</td>
+                        Shadow (auto, high, medium, low, off)
+                    </td>
                     <td><b>Exposure lock</b><br />Yes</td>
                     <td><b>Self timer</b><br />2 s with mirror lock-up, 12 s</td>
                 </tr>
