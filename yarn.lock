@@ -4505,10 +4505,10 @@ text-extensions@^2.0.0:
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
-tinify@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/tinify/-/tinify-1.8.1.tgz#6bdd05fafa9bf49a472e9d9c61966ffd840c8a0f"
-  integrity sha512-d/s/609VTJo9QuBqfye0B7vGfTAGOk+k2vfcN5yDQ6xEIkmQ0j9A+EyctSwyTWnznhSWC1v3qYD4/e0yyGzPyQ==
+tinify@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/tinify/-/tinify-1.8.2.tgz#532b924659704cf72d8d90ce7266267f9813c90c"
+  integrity sha512-wkXLOj3/D2MdgWLI7TOXSbeD9xRu3GVxqt89ZWfrOyr8c4Ajd6gdowHY5ak7ASqMUu54+icHO/0BIiBg8pFIvg==
   dependencies:
     https-proxy-agent "^7.0.6"
     promise-nodeify ">= 0.1"
