@@ -1,5 +1,6 @@
 'use client'
 
+import type {ComponentProps} from 'react'
 import {MDXRemote} from 'next-mdx-remote'
 import dynamic from 'next/dynamic'
 
@@ -26,16 +27,17 @@ export default function PostContent ({
     extraComponents,
     scope,
 }: IProps) {
-    const components: ANY = Object.assign({},
+    const components: ComponentProps<typeof MDXRemote>['components'] = Object.assign({},
         postComponents,
         Object.fromEntries(extraComponents.map(name => [name, dynamicComponents[name]])),
     )
 
-    useInteractiveToc(!!extraComponents.length)
+    const isLazy = !!extraComponents.length
+    useInteractiveToc(isLazy)
 
     return (
         <MDXRemote
-            lazy={!!extraComponents.length}
+            lazy={isLazy}
             compiledSource={compiledSource}
             scope={scope}
             frontmatter={{}}
