@@ -4,6 +4,9 @@
   "[json]": {
     "editor.tabSize": 2
   },
+  "[jsonc]": {
+    "editor.tabSize": 2
+  },
   "[scss]": {
     "editor.tabSize": 2
   },
@@ -29,5 +32,5 @@
   "editor.unicodeHighlight.allowedLocales": {
     "zh-hans": true,
     "zh-hant": true
-  }
+  },
 }
