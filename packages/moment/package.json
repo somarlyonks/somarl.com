@@ -23,7 +23,7 @@
     "satori": "0.18.3"
   },
   "devDependencies": {
-    "@types/formidable": "3.4.5",
+    "@types/formidable": "3.4.6",
     "aws-sdk": "2.1692.0",
     "formidable": "3.5.4",
     "mongo": "0.1.0",
