@@ -2,7 +2,7 @@ import {ReactNode, isValidElement, InvalidEvent} from 'react'
 import Link from 'next/link'
 
 interface IProps {
-    href: string
+    href?: string
     name?: string
     children?: ReactNode
 }
@@ -27,7 +27,7 @@ export default function PostLink (props: IProps) {
         )
     }
 
-    if (href.startsWith('/')) return <Link {...props} href={props.href} />
+    if (href.startsWith('/')) return <Link {...props} href={props.href!} />
 
     return <a {...props} href={props.href} />
 }

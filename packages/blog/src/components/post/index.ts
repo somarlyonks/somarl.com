@@ -1,3 +1,5 @@
+import type {MDXComponents} from 'mdx/types'
+
 import PostImage from './PostImage'
 import PostLi from './PostLi'
 import PostLink from './PostLink'
@@ -15,7 +17,7 @@ import TableLayoutAuto from './styles/TableLayoutAuto'
 
 import IconAngry from '../icons/Angry'
 
-export const postComponents = {
+export const postComponents: MDXComponents = {
     a: PostLink,
     img: PostImage,
     li: PostLi,

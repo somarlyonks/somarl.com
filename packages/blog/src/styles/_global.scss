@@ -3,6 +3,17 @@
 
 @use "components";
 
+@supports (text-autospace: normal) {
+  :root {
+    text-autospace: normal;
+
+    pre,
+    code {
+      text-autospace: initial;
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
