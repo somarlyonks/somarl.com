@@ -21,9 +21,6 @@ export default {
         api: 'modern',
         silenceDeprecations: ['legacy-js-api'],
     },
-    eslint: {
-        ignoreDuringBuilds: true,
-    },
     async redirects () {
         return [
             {
