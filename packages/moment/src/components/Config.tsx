@@ -87,10 +87,14 @@ export function ConfigField () {
                 <span>height</span>
                 <input type="number" step={1} min={0} value={config.height} onChange={handleChangeHeight} />
             </label>
-            <label>
-                <span>seconds</span>
-                <input type="number" step={1} min={0} value={config.seconds} onChange={handleChangeSeconds} />
-            </label>
+            <fieldset>
+                <legend>Video</legend>
+
+                <label>
+                    <span>seconds</span>
+                    <input type="number" step={1} min={0} value={config.seconds} onChange={handleChangeSeconds} />
+                </label>
+            </fieldset>
 
             <pre>{JSON.stringify(config, null, 2)}</pre>
         </fieldset>
