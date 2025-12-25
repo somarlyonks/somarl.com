@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react'
+import {useCallback, useState, useRef} from 'react'
 import type {ChangeEventHandler, MouseEventHandler} from 'react'
 
 import Head from '../../components/Head'
@@ -8,6 +8,7 @@ import {ConfigProvider, ConfigField} from '../../components/Config'
 import styles from './photo.module.scss'
 
 export default function Home () {
+    const $fileInputRef = useRef<HTMLInputElement>(null)
     const [files, setFiles] = useState<File[]>([])
 
     const handleUpload: ChangeEventHandler<HTMLInputElement> = useCallback(async (event) => {
@@ -17,6 +18,9 @@ export default function Home () {
     const handleFileClick: MouseEventHandler<HTMLLIElement> = useCallback((e) => {
         const {key} = e.currentTarget.dataset
         setFiles(prev => prev.filter(file => getFileID(file) !== key))
+        if ($fileInputRef.current) {
+            $fileInputRef.current.value = ''
+        }
     }, [])
 
     return (
@@ -39,7 +43,7 @@ export default function Home () {
                         ))}
 
                         <label role="input">
-                            <input hidden type="file" accept="image/*" multiple onInput={handleUpload} />
+                            <input ref={$fileInputRef} hidden type="file" accept="image/*" multiple onInput={handleUpload} />
                             <span>select files</span>
                         </label>
                     </ul>
