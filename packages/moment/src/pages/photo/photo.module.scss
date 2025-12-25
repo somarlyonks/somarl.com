@@ -101,5 +101,43 @@ $border: 1px solid gray;
     img {
       aspect-ratio: unset;
     }
+
+    &[data-status="error"] {
+      --border-thickness: 3px;
+      --b: var(--border-thickness);
+      --corner-size: 0.45em;
+      --s: var(--corner-size);
+      --line-color: #f22f31;
+
+      transition:
+        0.3s linear,
+        color 0s,
+        background-color 0s;
+      outline: var(--b) solid #0000;
+      border: 0;
+      padding: 1em;
+      animation: moving-outline 3s linear infinite;
+    }
+  }
+}
+
+@keyframes moving-outline {
+  0% {
+    background: conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--line-color) 0) var(--s) var(--s) /
+      calc(100% - var(--b) - 2 * var(--s)) calc(100% - var(--b) - 2 * var(--s));
+    outline-color: #0000;
+    outline-offset: 0.4em;
+  }
+  50% {
+    background: conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--line-color) 0) 0px 0px /
+      calc(100% - var(--b) - 2 * 0px) calc(100% - var(--b) - 2 * 0px);
+    outline-color: var(--line-color);
+    outline-offset: 0.04em;
+  }
+  100% {
+    background: conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--line-color) 0) var(--s) var(--s) /
+      calc(100% - var(--b) - 2 * var(--s)) calc(100% - var(--b) - 2 * var(--s));
+    outline-color: #0000;
+    outline-offset: 0.4em;
   }
 }
