@@ -45,7 +45,10 @@ interface IResultMapSnapshot {
 
 export default function Satori ({files}: {files: File[]}) {
     const {config} = useConfig()
-    const cacheRef = useRef<IResultMapSnapshot>({})
+    const cacheRef = useRef<IResultMapSnapshot>({
+        resultPromiseMap: {},
+        configSnapshot: config,
+    })
 
     const resultPromiseMap = useMemo(() => {
         const resultMap: Record<string, Promise<IResult>> = Object.fromEntries(files.map(file => ([
