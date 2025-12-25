@@ -1,6 +1,7 @@
-import {useEffect, useState, useCallback, useRef} from 'react'
+import {useState, Suspense, use, useRef, useMemo} from 'react'
 import exifr from 'exifr'
 import satori, {Font} from 'satori'
+import JSZip from 'jszip'
 import {fetchFile} from '@ffmpeg/util'
 
 import uuid from '../libs/uuid'
@@ -21,7 +22,212 @@ interface IExif {
     Orientation?: string
 }
 
+type IResultState = 'success' | 'error' | 'processing'
+
+interface IResult {
+    fileID: string
+    status: IResultState
+    url: string
+    error?: string
+}
+
 export const getFileID = (file: File) => `p-${file.lastModified}-${file.name}`
+
+const renderPNG = initResvgWorker()
+const fonts: Promise<Font[]> = fetch(new URL('../../public/fonts/DejaVuSans.woff', import.meta.url)).then(res =>
+    res.arrayBuffer().then(data => [{name: 'DejaVuSans', data}]),
+)
+
+interface IResultMapSnapshot {
+    resultPromiseMap: Record<string, Promise<IResult>>
+    configSnapshot: IConfig
+}
+
+export default function Satori ({files}: {files: File[]}) {
+    const {config} = useConfig()
+    const cacheRef = useRef<IResultMapSnapshot>({})
+
+    const resultPromiseMap = useMemo(() => {
+        const resultMap: Record<string, Promise<IResult>> = Object.fromEntries(files.map(file => ([
+            getFileID(file),
+            cacheRef.current.configSnapshot === config
+                ? cacheRef.current.resultPromiseMap[getFileID(file)] || processImage(file, {config, fonts, renderPNG})
+                : processImage(file, {config, fonts, renderPNG}),
+        ])))
+
+        cacheRef.current = {resultPromiseMap: resultMap, configSnapshot: config}
+        return resultMap
+    }, [files, config])
+
+    const resultMapPromise = new Promise(resolve => Promise.all(Object.entries(resultPromiseMap).map(([fileID, result]) => result.then(res => [fileID, res]))).then(entries => resolve(Object.fromEntries(entries)))) satisfies Promise<Record<string, IResult>>
+
+    return (
+        <>
+            <Results resultPromiseMap={resultPromiseMap} />
+            <Suspense fallback={null}>
+                <Actions resultMapPromise={resultMapPromise} config={config} />
+            </Suspense>
+        </>
+    )
+}
+
+function Results ({resultPromiseMap}: {resultPromiseMap: Record<string, Promise<IResult>>}) {
+    return (
+        <ul className={styles.outputs}>
+            {Object.entries(resultPromiseMap).map(([fileID, result]) => (
+                <Suspense key={fileID} fallback={<ProcessingResult />}>
+                    <Result result={result} />
+                </Suspense>
+            ))}
+        </ul>
+    )
+}
+
+function Actions ({config, resultMapPromise}: {config: IConfig, resultMapPromise: Promise<Record<string, IResult>>}) {
+    const [ffmpegRef, messageRef, loaded] = useFFmpeg()
+    const [videoUrl, setVideoUrl] = useState<string>()
+    const resultMap = use(resultMapPromise)
+
+    const handleTranscode = async () => {
+        setVideoUrl(undefined)
+        const ffmpeg = ffmpegRef.current!
+        await Promise.all(Object.values(resultMap).map(async ({url}, i) => {
+            ffmpeg.writeFile(
+                `${i + 1}.png`.padStart(7, '0'),
+                await fetchFile(url),
+            )
+        }))
+        await ffmpeg.exec([
+            '-framerate', `1/${config.seconds}`,
+            '-i', '%03d.png',
+            '-c:v', 'libx264',
+            '-r', '30',
+            '-pix_fmt', 'yuv420p',
+            'output.mp4',
+        ])
+        const data = (await ffmpeg.readFile('output.mp4')) as ANY
+        setVideoUrl(URL.createObjectURL(new Blob([data.buffer], {type: 'video/mp4'})))
+    }
+
+    const handleDownload = async () => {
+        const results = Object.values(resultMap || {}).filter(({status}) => status === 'success')
+        if (!results.length) return
+
+        const a = document.createElement('a')
+        a.download = getDownloadName()
+        a.href = await createDownloadLink()
+        a.click()
+
+        function getDownloadName () {
+            if (results.length === 1) return results[0].fileID.replace(/^p-/, '')
+            return 'gallery.zip'
+        }
+
+        async function createDownloadLink () {
+            if (results.length === 1) return results[0].url
+
+            const zip = new JSZip()
+            results.forEach(({fileID, url}, i) => {
+                zip.file(`${fileID.replace(/^p-/, `${i + 1}`.padStart(3, '0'))}.png`, fetchFile(url))
+            })
+            const blob = await zip.generateAsync({type: 'blob'})
+
+            return URL.createObjectURL(blob)
+        }
+    }
+
+    const successfulOutputCount = Object.values(resultMap || {}).filter(({status}) => status === 'success').length
+
+    return (
+        <>
+            {!!loaded && (
+                <button onClick={handleTranscode}>
+                    generate video
+                </button>
+            )}
+
+            {!!successfulOutputCount && (
+                <button onClick={handleDownload}>
+                    download{successfulOutputCount > 1 ? '(zip)' : ''}
+                </button>
+            )}
+
+            {videoUrl ? (
+                <li>
+                    <video controls src={videoUrl} style={{maxWidth: '100%'}} />
+                </li>
+            ) : (
+                <div className="ffmpeg-message" ref={messageRef}></div>
+            )}
+        </>
+    )
+}
+
+interface IProcessImageConfig {
+    fonts: Promise<Font[]>
+    config: IConfig
+    renderPNG: ReturnType<typeof initResvgWorker>
+}
+
+async function processImage (file: File, {config, fonts, renderPNG}: IProcessImageConfig): Promise<IResult> {
+    const fileID = getFileID(file)
+    const src = URL.createObjectURL(file)
+    const exif = await exifr.parse(file)
+    const result: IResult = {fileID, status: 'processing', url: ''}
+    if (!exif) {
+        console.error('invalid exif')
+        result.status = 'error'
+        result.error = 'invalid exif'
+        return result
+    }
+    exif.Make = exif.Make || ''
+    exif.ImageWidth = exif.ImageWidth || exif.ExifImageWidth
+    exif.ImageHeight = exif.ImageHeight || exif.ExifImageHeight
+    if (!exif.ImageWidth || !exif.ImageHeight) {
+        const {width, height} = await readImageSize(src)
+        exif.ImageWidth = width
+        exif.ImageHeight = height
+    }
+    console.info(exif)
+    const svg = await satori(<Photo src={src} config={config} exif={exif} />, {
+        ...config,
+        fonts: await fonts,
+    })
+    result.url = await renderPNG!({svg, width: config.width})
+    result.status = 'success'
+
+    return result
+}
+
+function Result ({result}: {result: Promise<IResult>}) {
+    const {url, error} = use(result)
+
+    if (error) return <li data-status="error">{error}</li>
+    return <li><img src={url} /></li>
+}
+
+function ProcessingResult () {
+    return <li>processing...</li>
+}
+
+async function readImageSize (url: string): Promise<{
+    width: number
+    height: number
+}> {
+    const $img = document.createElement('img')
+
+    return new Promise((resolve, reject) => {
+        $img.onload = () => {
+            resolve({
+                width: $img.naturalWidth,
+                height: $img.naturalHeight,
+            })
+            $img.remove()
+        }
+        $img.onerror = reject
+        $img.src = url
+    })
+}
 
 function initResvgWorker () {
     if (typeof window === 'undefined') return
@@ -48,183 +254,6 @@ function initResvgWorker () {
             pending.set(_id, resolve)
         })
     }
-}
-
-const renderPNG = initResvgWorker()
-
-export default function Satori ({files}: {
-    files: File[]
-}) {
-    const fonts = useFonts()
-    const {config} = useConfig()
-
-    const processing = useRef(false)
-    const initialized = useRef(false)
-    const [results, setResults] = useState<Record<string, string>>({})
-
-    const process = useCallback(async (state: {cancelled: boolean, refresh?: boolean}) => {
-        if (!fonts || !renderPNG) return
-        if (processing.current) return
-        processing.current = true
-
-        return Promise.all(files.map(async (file) => {
-            if (state.cancelled) return []
-            const fileID = getFileID(file)
-            if (!state.refresh && results[fileID]) return [fileID, results[fileID]]
-
-            const src = URL.createObjectURL(file)
-            const exif = await exifr.parse(file)
-            if (!exif) {
-                console.error('invalid exif')
-                return []
-            }
-            exif.Make = exif.Make || ''
-            exif.ImageWidth = exif.ImageWidth || exif.ExifImageWidth
-            exif.ImageHeight = exif.ImageHeight || exif.ExifImageHeight
-            if (!exif.ImageWidth || !exif.ImageHeight) {
-                const {width, height} = await readImageSize(src)
-                exif.ImageWidth = width
-                exif.ImageHeight = height
-            }
-            console.info(exif)
-            const svg = await satori(<Photo src={src} config={config} exif={exif} />, {
-                ...config,
-                fonts,
-            })
-            if (state.cancelled) return []
-            const png = await renderPNG({svg, width: config.width})
-            return [fileID, png]
-        })).then((entries) => {
-            setResults(Object.fromEntries(entries.filter(entry => entry.length)))
-        }).catch(console.error).finally(() => {
-            processing.current = false
-        })
-    }, [fonts, files, config])
-
-    useEffect(() => {
-        if (!fonts || !renderPNG) return
-
-        const state = {cancelled: false}
-        void process(state)
-
-        return () => {
-            state.cancelled = true
-        }
-    }, [fonts, files])
-
-    useEffect(() => {
-        if (!initialized.current) return
-        if (!fonts || !renderPNG) return
-
-        const state = {cancelled: false, refresh: true}
-        setResults({})
-        void process(state)
-
-        return () => {
-            state.cancelled = true
-        }
-    }, [config])
-
-    useEffect(() => {
-        initialized.current = true
-    }, [])
-
-    const [ffmpegRef, messageRef, loaded] = useFFmpeg()
-    const [videoUrl, setVideoUrl] = useState<string>()
-
-    const handleTranscode = useCallback(async () => {
-        if (!results) return
-
-        setVideoUrl(undefined)
-        const ffmpeg = ffmpegRef.current!
-        // u can use 'https://ffmpegwasm.netlify.app/video/video-15s.avi' to download the video to public folder for testing
-        await Promise.all(Object.entries(results).map(async ([, url], i) => {
-            ffmpeg.writeFile(
-                `${i + 1}.png`.padStart(7, '0'),
-                await fetchFile(url),
-            )
-        }))
-        await ffmpeg.exec([
-            '-framerate', `1/${config.seconds}`,
-            '-i', '%03d.png',
-            '-c:v', 'libx264',
-            '-r', '30',
-            '-pix_fmt', 'yuv420p',
-            'output.mp4',
-        ])
-        const data = (await ffmpeg.readFile('output.mp4')) as ANY
-        setVideoUrl(URL.createObjectURL(new Blob([data.buffer], {type: 'video/mp4'})))
-    }, [results])
-
-    return (
-        <ul className={styles.outputs}>
-            {files.map(file => (
-                <li key={getFileID(file)}>
-                    {results[getFileID(file)] ? <img src={results[getFileID(file)]} /> : 'processing...'}
-                </li>
-            ))}
-
-            {loaded && (
-                <>
-                    <button disabled={processing.current} onClick={handleTranscode}>
-                        generate video
-                    </button>
-
-                    {videoUrl ? (
-                        <li>
-                            <video controls src={videoUrl} style={{maxWidth: '100%'}} />
-                        </li>
-                    ) : (
-                        <div className="ffmpeg-message" ref={messageRef}></div>
-                    )}
-                </>
-            )}
-        </ul>
-    )
-}
-
-async function readImageSize (url: string): Promise<{
-    width: number
-    height: number
-}> {
-    const $img = document.createElement('img')
-
-    return new Promise((resolve, reject) => {
-        $img.onload = () => {
-            resolve({
-                width: $img.naturalWidth,
-                height: $img.naturalHeight,
-            })
-            $img.remove()
-        }
-        $img.onerror = reject
-        $img.src = url
-    })
-}
-
-export function useExif (files: File[]) {
-    const [exifs, setExifs] = useState<IExif[]>()
-    useEffect(() => {
-        Promise.all(files.map(file => exifr.parse(file))).then((exifs) => {
-            exifs.forEach((exif) => {
-                exif.Make = exif.Make || ''
-            })
-            setExifs(exifs)
-        })
-    }, [files])
-
-    return exifs
-}
-
-function useFonts () {
-    const [fonts, setFonts] = useState<Font[]>()
-    useEffect(() => {
-        fetch(new URL('../../public/fonts/DejaVuSans.woff', import.meta.url)).then(res =>
-            res.arrayBuffer().then(data => setFonts([{name: 'DejaVuSans', data}])),
-        )
-    }, [])
-
-    return fonts
 }
 
 function Photo ({exif, src, config}: {
@@ -357,6 +386,5 @@ function Photo ({exif, src, config}: {
                 </figcaption>
             </figure>
         </div>
-
     )
 }
