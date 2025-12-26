@@ -33,4 +33,7 @@
     "zh-hans": true,
     "zh-hant": true
   },
+  "yaml.schemas": {
+    "https://www.schemastore.org/pull-request-labeler-5.json": ".github/labeler.yml"
+  }
 }

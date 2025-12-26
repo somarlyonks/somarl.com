@@ -1,19 +1,31 @@
 www:
-  - packages/www/src/**/*
-  - packages/www/public/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/www/src/**/*
+          - packages/www/public/**/*
 
 blog:
-  - packages/blog/src/**/*
-  - packages/blog/public/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/blog/src/**/*
+          - packages/blog/public/**/*
 
-post: packages/blog/posts/**/*
+post:
+  - changed-files:
+      - any-glob-to-any-file: packages/blog/posts/**/*
 
-moment: packages/moment/src/**/*
+moment:
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/moment/src/**/*
+          - packages/moment/public/**/*
 
 chore:
-  - "!packages/**/src/**/*"
-  - "./**/*"
+  - all:
+      - changed-files:
+          - any-glob-to-any-file: "**"
+          - all-globs-to-all-files: "!packages/**/src/**/*"
 
 docs:
-  - "docs/*"
-  - "docs/**/*"
+  - changed-files:
+      - any-glob-to-any-file: "docs/**"
