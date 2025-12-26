@@ -70,3 +70,4 @@ scripts/frp/frpc
 scripts/frp/frps
 
 **/.next
+**/next-env.d.ts
