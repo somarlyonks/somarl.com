@@ -1,7 +1,6 @@
 import * as resvg from '@resvg/resvg-wasm'
 
-const wasmPath = new URL('@resvg/resvg-wasm/index_bg.wasm', import.meta.url)
-fetch(wasmPath).then(res => resvg.initWasm(res))
+fetch(new URL('https://esm.sh/@resvg/resvg-wasm/index_bg.wasm')).then(res => resvg.initWasm(res))
 
 self.onmessage = (e) => {
     const {svg, width, _id} = e.data
