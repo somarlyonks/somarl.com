@@ -184,8 +184,6 @@ async function processImage (file: File, {config, fonts, renderPNG}: IProcessIma
         return result
     }
     exif.Make = exif.Make || ''
-    exif.ImageWidth = exif.ImageWidth || exif.ExifImageWidth
-    exif.ImageHeight = exif.ImageHeight || exif.ExifImageHeight
     if (!exif.ImageWidth || !exif.ImageHeight) {
         const {width, height} = await readImageSize(src)
         exif.ImageWidth = width
