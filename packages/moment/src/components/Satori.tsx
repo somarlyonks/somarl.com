@@ -210,7 +210,7 @@ function Result ({result}: {result: Promise<IResult>}) {
 }
 
 function ProcessingResult () {
-    return <li>processing...</li>
+    return <li data-status="processing">processing...</li>
 }
 
 async function readImageSize (url: string): Promise<{
