@@ -1,6 +1,7 @@
 'use client'
 
 import {forwardRef} from 'react'
+import type {JSX} from 'react'
 import Flex from './Flex'
 import {useBem} from '../libs/useBem'
 

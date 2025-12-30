@@ -1,25 +1,11 @@
 version: 2.1
-jobs:
-  build-page:
-    docker:
-      - image: cimg/node:24.12.0
-    steps:
-      - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile
-      - save_cache:
-          name: Cache Yarn Package
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - run: yarn run build
-      # - run: yarn run ci
+orbs:
+  node: circleci/node@7.2.1
 
 workflows:
-  version: 2
-  build_and_test:
+  run-npm-command:
     jobs:
-      - build-page
+      - node/run:
+          pnpm-run: build
+          executor:
+            name: node/default

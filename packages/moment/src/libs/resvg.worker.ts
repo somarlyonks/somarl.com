@@ -12,7 +12,7 @@ self.onmessage = (e) => {
         },
     })
     const image = renderer.render()
-    const pngBuffer = image.asPng()
+    const pngBuffer = image.asPng() as unknown as ArrayBuffer
     const url = URL.createObjectURL(new Blob([pngBuffer], {type: 'image/png'}))
     self.postMessage({_id, url})
 }
