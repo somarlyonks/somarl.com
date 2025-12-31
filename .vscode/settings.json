@@ -26,7 +26,7 @@
     // "packages/www": true,
   },
   "search.exclude": {
-    "yarn.lock": true,
+    "pnpm-lock.yaml": true,
   },
   "files.associations": {},
   "editor.unicodeHighlight.allowedLocales": {

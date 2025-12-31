@@ -95,6 +95,11 @@ $border: 1px solid gray;
 
 .outputs {
   li {
+    --border-thickness: 3px;
+    --b: var(--border-thickness);
+    --corner-size: 0.45em;
+    --s: var(--corner-size);
+
     border: none;
     flex-basis: 100%;
 
@@ -103,10 +108,6 @@ $border: 1px solid gray;
     }
 
     &[data-status="error"] {
-      --border-thickness: 3px;
-      --b: var(--border-thickness);
-      --corner-size: 0.45em;
-      --s: var(--corner-size);
       --line-color: #f22f31;
 
       transition:
@@ -114,10 +115,23 @@ $border: 1px solid gray;
         color 0s,
         background-color 0s;
       outline: var(--b) solid #0000;
-      border: 0;
       padding: 1em;
       animation: moving-outline 3s linear infinite;
+      will-change: background-color, outline-color, outline-offset;
     }
+
+    &[data-status="processing"] {
+      --line-color: var(--theme);
+      padding: 1em;
+      outline: var(--b) solid var(--line-color);
+      outline-offset: calc(-1 * var(--b));
+    }
+  }
+}
+
+.ffmpeg-message {
+  &:empty {
+    display: none;
   }
 }
 

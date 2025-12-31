@@ -1,25 +1,25 @@
 version: 2.1
 jobs:
-  build-page:
+  build:
     docker:
       - image: cimg/node:24.12.0
     steps:
       - checkout
+      - run: corepack prepare pnpm@latest-10 --activate
       - restore_cache:
-          name: Restore Yarn Package Cache
+          name: Restore pnpm Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+      - run: pnpm install --frozen-lockfile
       - save_cache:
-          name: Cache Yarn Package
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          name: Cache pnpm Package
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - ~/.cache/yarn
-      - run: yarn run build
-      # - run: yarn run ci
+            - ~/.pnpm-store
+      - run: pnpm run build
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build-page
+      - build
