@@ -1,11 +1,25 @@
 version: 2.1
-orbs:
-  node: circleci/node@7.2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/node:24.12.0
+    steps:
+      - checkout
+      - run: corepack prepare pnpm@latest-10 --activate
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+      - run: pnpm install --frozen-lockfile
+      - save_cache:
+          name: Cache pnpm Package
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - ~/.pnpm-store
+      - run: pnpm run build
 
 workflows:
-  run-npm-command:
+  version: 2
+  build_and_test:
     jobs:
-      - node/run:
-          pnpm-run: build
-          executor:
-            name: node/default
+      - build
