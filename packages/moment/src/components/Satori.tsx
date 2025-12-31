@@ -1,6 +1,8 @@
 import {useState, Suspense, use, useRef, useMemo} from 'react'
+import {createRoot} from 'react-dom/client'
+import type {RefObject} from 'react'
 import exifr from 'exifr'
-import satori, {Font} from 'satori'
+import {snapdom} from '@zumer/snapdom'
 import JSZip from 'jszip'
 import {fetchFile} from '@ffmpeg/util'
 
@@ -34,9 +36,6 @@ interface IResult {
 export const getFileID = (file: File) => `p-${file.lastModified}-${file.name}`
 
 const renderPNG = initResvgWorker()
-const fonts: Promise<Font[]> = fetch(new URL('../../public/fonts/DejaVuSans.woff', import.meta.url)).then(res =>
-    res.arrayBuffer().then(data => [{name: 'DejaVuSans', data}]),
-)
 
 interface IResultMapSnapshot {
     resultPromiseMap: Record<string, Promise<IResult>>
@@ -54,8 +53,8 @@ export default function Satori ({files}: {files: File[]}) {
         const resultMap: Record<string, Promise<IResult>> = Object.fromEntries(files.map(file => ([
             getFileID(file),
             cacheRef.current.configSnapshot === config
-                ? cacheRef.current.resultPromiseMap[getFileID(file)] || processImage(file, {config, fonts, renderPNG})
-                : processImage(file, {config, fonts, renderPNG}),
+                ? cacheRef.current.resultPromiseMap[getFileID(file)] || processImage(file, {config, renderPNG})
+                : processImage(file, {config, renderPNG}),
         ])))
 
         cacheRef.current = {resultPromiseMap: resultMap, configSnapshot: config}
@@ -160,19 +159,18 @@ function Actions ({config, resultMapPromise}: {config: IConfig, resultMapPromise
                     <video controls src={videoUrl} style={{maxWidth: '100%'}} />
                 </li>
             ) : (
-                <div className="ffmpeg-message" ref={messageRef}></div>
+                <div className={styles['ffmpeg-message']} ref={messageRef}></div>
             )}
         </>
     )
 }
 
 interface IProcessImageConfig {
-    fonts: Promise<Font[]>
     config: IConfig
     renderPNG: ReturnType<typeof initResvgWorker>
 }
 
-async function processImage (file: File, {config, fonts, renderPNG}: IProcessImageConfig): Promise<IResult> {
+async function processImage (file: File, {config}: IProcessImageConfig): Promise<IResult> {
     const fileID = getFileID(file)
     const src = URL.createObjectURL(file)
     const exif = await exifr.parse(file)
@@ -190,14 +188,39 @@ async function processImage (file: File, {config, fonts, renderPNG}: IProcessIma
         exif.ImageHeight = height
     }
     console.info(exif)
-    const svg = await satori(<Photo src={src} config={config} exif={exif} />, {
-        ...config,
-        fonts: await fonts,
-    })
-    result.url = await renderPNG!({svg, width: config.width})
+
+    result.url = await render(src)
     result.status = 'success'
 
     return result
+
+    async function render (inputUrl: string) {
+        const $div = document.createElement('div')
+        $div.style.display = 'none'
+        document.body.appendChild($div)
+        createRoot($div).render(<Photo src={inputUrl} config={config} exif={exif} />)
+
+        const rendered = await new Promise(resolve => {
+            const observer = new MutationObserver((mutations => {
+                for (const mutation of mutations) {
+                    console.log('mutation', mutation)
+                    if (mutation.type === 'childList') {
+                        if (mutation.addedNodes.length) {
+                            observer.disconnect()
+                            resolve(mutation.addedNodes[0])
+                        }
+                    }
+                }
+            }))
+            observer.observe($div, {childList: true})
+        })
+
+        const snap = await snapdom(rendered as HTMLElement)
+        const {src} = await snap.toJpeg()
+        $div.remove()
+
+        return src
+    }
 }
 
 function Result ({result}: {result: Promise<IResult>}) {
@@ -257,22 +280,22 @@ function initResvgWorker () {
     }
 }
 
-function Photo ({exif, src, config}: {
+function Photo ({exif, src, config, ref}: {
     exif: IExif
     src: string
     config: IConfig
+    ref?: RefObject<HTMLDivElement | null>
 }) {
     const {width: outputWidth, height: outputHeight} = config
     const {ImageWidth: inputWidth, ImageHeight: inputHeight} = exif
-    const rotateDegrees = parseInt((Array.from((exif.Orientation || '').matchAll(/Rotate\s(\d+)/g))[0] || [])[1]) || 0
-    const isRightAngle = rotateDegrees === 90 || rotateDegrees === 270
-    const ratio = isRightAngle ? inputHeight / inputWidth : inputWidth / inputHeight
+    const ratio = inputWidth / inputHeight
 
     const fontSize = 1.5 * Math.max(outputWidth, outputHeight) / 100
     const span = Math.min(2 * fontSize, 4 / 100 * outputWidth, 4 / 100 * outputHeight)
     const logoSize = 1.5 * fontSize
     const captionGap = 0.5 * fontSize
-    const blurSize = 5 * Math.max(outputWidth, outputHeight) / 100
+    const blurPercent = 0.025
+    const blurSize = blurPercent * Math.max(outputWidth, outputHeight)
     const shadowSize = span
 
     const captionHeight = logoSize + captionGap + fontSize
@@ -281,16 +304,15 @@ function Photo ({exif, src, config}: {
         (outputHeight - 2 * span - (fontSize + captionHeight)) * ratio,
     )
     const containerHeight = containerWidth / ratio
-    const width = isRightAngle ? containerHeight : containerWidth
-    const height = isRightAngle ? containerWidth : containerHeight
-    const transform = `rotate(${rotateDegrees}deg)` + (isRightAngle ? ` translate(${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px, ${(containerHeight - containerWidth) * (rotateDegrees === 90 ? 1 : -1) / 2}px)` : '')
+    const width = containerWidth
+    const height = containerHeight
 
-    const backgroundWidth = isRightAngle ? Math.max(outputHeight, outputWidth / ratio) : Math.max(outputHeight * ratio, outputWidth)
-    const backgroundHeight = isRightAngle ? Math.max(outputHeight * ratio, outputWidth) : Math.max(outputHeight, outputWidth / ratio)
+    const backgroundWidth = Math.max(outputHeight * ratio, outputWidth)
+    const backgroundHeight = Math.max(outputHeight, outputWidth / ratio)
 
     const makeIcon = exif.Make.toLowerCase() === 'apple' ? (
         <svg xmlns="http://www.w3.org/2000/svg" height={logoSize} viewBox="0 0 20 20">
-            <path fill="#000000" fill-rule="evenodd" d="M14.122 4.682c1.35 0 2.781.743 3.8 2.028c-3.34 1.851-2.797 6.674.578 7.963c-.465 1.04-.687 1.505-1.285 2.426c-.835 1.284-2.01 2.884-3.469 2.898c-1.295.012-1.628-.853-3.386-.843s-2.125.858-3.42.846c-1.458-.014-2.573-1.458-3.408-2.743C1.198 13.665.954 9.45 2.394 7.21C3.417 5.616 5.03 4.683 6.548 4.683c1.545 0 2.516.857 3.794.857c1.24 0 1.994-.858 3.78-.858M13.73 0c.18 1.215-.314 2.405-.963 3.247c-.695.902-1.892 1.601-3.05 1.565c-.21-1.163.332-2.36.99-3.167C11.43.755 12.67.074 13.73 0" />
+            <path fill="#000000" fillRule="evenodd" d="M14.122 4.682c1.35 0 2.781.743 3.8 2.028c-3.34 1.851-2.797 6.674.578 7.963c-.465 1.04-.687 1.505-1.285 2.426c-.835 1.284-2.01 2.884-3.469 2.898c-1.295.012-1.628-.853-3.386-.843s-2.125.858-3.42.846c-1.458-.014-2.573-1.458-3.408-2.743C1.198 13.665.954 9.45 2.394 7.21C3.417 5.616 5.03 4.683 6.548 4.683c1.545 0 2.516.857 3.794.857c1.24 0 1.994-.858 3.78-.858M13.73 0c.18 1.215-.314 2.405-.963 3.247c-.695.902-1.892 1.601-3.05 1.565c-.21-1.163.332-2.36.99-3.167C11.43.755 12.67.074 13.73 0" />
         </svg>
     ) : exif.Make.toLowerCase() === 'xiaomi' ? (
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height={logoSize} viewBox="-200.008 -199.727 512 512" enable-background="new -200.008 -199.727 512 512">
@@ -311,25 +333,30 @@ function Photo ({exif, src, config}: {
     return (
         <div
             style={{
-                height: '100%',
-                width: '100%',
+                width: outputWidth,
+                height: outputHeight,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 background: '#000',
+                position: 'relative',
+                overflow: 'clip',
             }}
+            ref={ref}
         >
             <img
                 src={src}
                 style={{
                     width: backgroundWidth,
                     height: backgroundHeight,
+                    maxWidth: backgroundWidth,
+                    maxHeight: backgroundHeight,
                     filter: `blur(${blurSize}px)`,
                     position: 'absolute',
                     top: (backgroundHeight - outputHeight) / -2,
                     left: (backgroundWidth - outputWidth) / -2,
-                    transform: `rotate(${rotateDegrees}deg)`,
+                    transform: `scale(${1 + blurPercent * 1.5})`
                 }}
             />
 
@@ -348,6 +375,7 @@ function Photo ({exif, src, config}: {
                     borderRadius: span / 2,
                     overflow: 'hidden',
                     boxShadow: `0 0 ${shadowSize}px black`,
+                    zIndex: 1,
                 }}
                 >
                     <img
@@ -355,7 +383,6 @@ function Photo ({exif, src, config}: {
                         style={{
                             width,
                             height,
-                            transform,
                         }}
                     />
                 </div>
@@ -365,6 +392,7 @@ function Photo ({exif, src, config}: {
                     flexDirection: 'column',
                     alignItems: 'center',
                     gap: captionGap,
+                    zIndex: 1,
                 }}
                 >
                     {makeIcon}
@@ -373,12 +401,12 @@ function Photo ({exif, src, config}: {
                         margin: 0,
                         lineHeight: 1,
                         color: 'white',
-                        fontWeight: 600,
+                        fontWeight: 500,
                         display: 'flex',
                         gap: fontSize,
                         fontSize,
-                    }}
-                    >
+                        fontFamily: 'DejaVu Sans, sans-serif',
+                    }}>
                         {!!(exif.FocalLengthIn35mmFormat || exif.FocalLength) && <span>{exif.FocalLengthIn35mmFormat || exif.FocalLength}mm</span>}
                         {!!exif.FNumber && <span>f/{parseFloat(exif.FNumber.toFixed(2)) === exif.FNumber ? exif.FNumber : exif.FNumber.toFixed(2)}</span>}
                         {!!exif.ExposureTime && <span>{exif.ExposureTime < 1 ? `1/${Math.floor(1 / exif.ExposureTime)}` : Math.floor(exif.ExposureTime)}s</span>}
