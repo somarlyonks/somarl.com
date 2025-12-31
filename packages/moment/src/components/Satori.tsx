@@ -22,16 +22,30 @@ interface IExif {
     ExposureTime: number
     FNumber: number
     Orientation?: string
+    DateTimeOriginal?: Date
 }
 
 type IResultState = 'success' | 'error' | 'processing'
 
-interface IResult {
+interface ISuccessResult {
     fileID: string
     status: IResultState
+    exif: IExif
     url: string
-    error?: string
 }
+
+interface IErrorResult {
+    fileID: string
+    status: IResultState
+    error: string
+}
+
+interface IProcessingResult {
+    fileID: string
+    status: IResultState
+}
+
+type IResult = ISuccessResult | IErrorResult | IProcessingResult
 
 export const getFileID = (file: File) => `p-${file.lastModified}-${file.name}`
 
@@ -93,7 +107,7 @@ function Actions ({config, resultMapPromise}: {config: IConfig, resultMapPromise
     const handleTranscode = async () => {
         setVideoUrl(undefined)
         const ffmpeg = ffmpegRef.current!
-        await Promise.all(Object.values(resultMap).map(async ({url}, i) => {
+        await Promise.all(Object.values(resultMap).filter(isSuccessResult).map(async ({url}, i) => {
             ffmpeg.writeFile(
                 `${i + 1}.png`.padStart(7, '0'),
                 await fetchFile(url),
@@ -112,7 +126,7 @@ function Actions ({config, resultMapPromise}: {config: IConfig, resultMapPromise
     }
 
     const handleDownload = async () => {
-        const results = Object.values(resultMap || {}).filter(({status}) => status === 'success')
+        const results = Object.values(resultMap || {}).filter(isSuccessResult)
         if (!results.length) return
 
         const a = document.createElement('a')
@@ -121,7 +135,7 @@ function Actions ({config, resultMapPromise}: {config: IConfig, resultMapPromise
         a.click()
 
         function getDownloadName () {
-            if (results.length === 1) return results[0].fileID.replace(/^p-/, '')
+            if (results.length === 1) return 'result.jpg'
             return 'gallery.zip'
         }
 
@@ -129,8 +143,8 @@ function Actions ({config, resultMapPromise}: {config: IConfig, resultMapPromise
             if (results.length === 1) return results[0].url
 
             const zip = new JSZip()
-            results.forEach(({fileID, url}, i) => {
-                zip.file(`${fileID.replace(/^p-/, `${i + 1}`.padStart(3, '0'))}.png`, fetchFile(url))
+            results.forEach(({exif, url}, i) => {
+                zip.file(`${exif.DateTimeOriginal ? +exif.DateTimeOriginal : ''}-${`${i + 1}`.padStart(3, '0')}.jpg`, fetchFile(url))
             })
             const blob = await zip.generateAsync({type: 'blob'})
 
@@ -174,13 +188,13 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
     const fileID = getFileID(file)
     const src = URL.createObjectURL(file)
     const exif = await exifr.parse(file)
-    const result: IResult = {fileID, status: 'processing', url: ''}
-    if (!exif) {
-        console.error('invalid exif')
-        result.status = 'error'
-        result.error = 'invalid exif'
-        return result
+
+    if (!exif) return {
+        fileID,
+        status: 'error',
+        error: 'invalid exif'
     }
+
     exif.Make = exif.Make || ''
     if (!exif.ImageWidth || !exif.ImageHeight) {
         const {width, height} = await readImageSize(src)
@@ -189,10 +203,21 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
     }
     console.info(exif)
 
-    result.url = await render(src)
-    result.status = 'success'
-
-    return result
+    try {
+        const url = await render(src)
+        return {
+            fileID,
+            status: 'success',
+            exif,
+            url,
+        }
+    } catch (error) {
+        return {
+            fileID,
+            status: 'error',
+            error: String(error),
+        }
+    }
 
     async function render (inputUrl: string) {
         const $div = document.createElement('div')
@@ -203,7 +228,6 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
         const rendered = await new Promise(resolve => {
             const observer = new MutationObserver((mutations => {
                 for (const mutation of mutations) {
-                    console.log('mutation', mutation)
                     if (mutation.type === 'childList') {
                         if (mutation.addedNodes.length) {
                             observer.disconnect()
@@ -224,10 +248,16 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
 }
 
 function Result ({result}: {result: Promise<IResult>}) {
-    const {url, error} = use(result)
+    const resolvedResult = use(result)
 
-    if (error) return <li data-status="error">{error}</li>
-    return <li><img src={url} /></li>
+    return (
+        <li data-status={resolvedResult.status}>
+            {isSuccessResult(resolvedResult)
+                ? <img src={resolvedResult.url} />
+                : isErrorResult(resolvedResult) ? resolvedResult.error : null
+            }
+        </li>
+    )
 }
 
 function ProcessingResult () {
@@ -251,6 +281,14 @@ async function readImageSize (url: string): Promise<{
         $img.onerror = reject
         $img.src = url
     })
+}
+
+function isSuccessResult (result: IResult): result is ISuccessResult {
+    return result.status === 'success'
+}
+
+function isErrorResult (result: IResult): result is IErrorResult {
+    return result.status === 'error'
 }
 
 function initResvgWorker () {
