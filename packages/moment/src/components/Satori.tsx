@@ -192,7 +192,7 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
     if (!exif) return {
         fileID,
         status: 'error',
-        error: 'invalid exif'
+        error: 'invalid exif',
     }
 
     exif.Make = exif.Make || ''
@@ -225,8 +225,8 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
         document.body.appendChild($div)
         createRoot($div).render(<Photo src={inputUrl} config={config} exif={exif} />)
 
-        const rendered = await new Promise(resolve => {
-            const observer = new MutationObserver((mutations => {
+        const rendered = await new Promise((resolve) => {
+            const observer = new MutationObserver((mutations) => {
                 for (const mutation of mutations) {
                     if (mutation.type === 'childList') {
                         if (mutation.addedNodes.length) {
@@ -235,7 +235,7 @@ async function processImage (file: File, {config}: IProcessImageConfig): Promise
                         }
                     }
                 }
-            }))
+            })
             observer.observe($div, {childList: true})
         })
 
@@ -254,8 +254,7 @@ function Result ({result}: {result: Promise<IResult>}) {
         <li data-status={resolvedResult.status}>
             {isSuccessResult(resolvedResult)
                 ? <img src={resolvedResult.url} />
-                : isErrorResult(resolvedResult) ? resolvedResult.error : null
-            }
+                : isErrorResult(resolvedResult) ? resolvedResult.error : null}
         </li>
     )
 }
@@ -394,7 +393,7 @@ function Photo ({exif, src, config, ref}: {
                     position: 'absolute',
                     top: (backgroundHeight - outputHeight) / -2,
                     left: (backgroundWidth - outputWidth) / -2,
-                    transform: `scale(${1 + blurPercent * 1.5})`
+                    transform: `scale(${1 + blurPercent * 1.5})`,
                 }}
             />
 
@@ -444,7 +443,8 @@ function Photo ({exif, src, config, ref}: {
                         gap: fontSize,
                         fontSize,
                         fontFamily: 'DejaVu Sans, sans-serif',
-                    }}>
+                    }}
+                    >
                         {!!(exif.FocalLengthIn35mmFormat || exif.FocalLength) && <span>{exif.FocalLengthIn35mmFormat || exif.FocalLength}mm</span>}
                         {!!exif.FNumber && <span>f/{parseFloat(exif.FNumber.toFixed(2)) === exif.FNumber ? exif.FNumber : exif.FNumber.toFixed(2)}</span>}
                         {!!exif.ExposureTime && <span>{exif.ExposureTime < 1 ? `1/${Math.floor(1 / exif.ExposureTime)}` : Math.floor(exif.ExposureTime)}s</span>}

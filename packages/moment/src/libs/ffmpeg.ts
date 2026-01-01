@@ -4,9 +4,9 @@ import {toBlobURL} from '@ffmpeg/util'
 
 export default function useFFmpeg () {
     const [loaded, setLoaded] = useState(false)
-    const ffmpegRef = useRef<FFmpeg>(null)
+    const ffmpegRef = useRef<FFmpeg>(undefined)
     // eslint-disable-next-line eslint-plugin-no-null/no-null
-    const messageRef = useRef<HTMLDivElement | null>(null)
+    const messageRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (!ffmpegRef.current) {
@@ -17,8 +17,6 @@ export default function useFFmpeg () {
         ffmpeg.on('log', ({message}) => {
             if (messageRef.current) messageRef.current.innerHTML = message
         })
-        // toBlobURL is used to bypass CORS issue, urls with the same
-        // domain can be used directly.
         Promise.all([
             toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
             toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
@@ -28,13 +26,6 @@ export default function useFFmpeg () {
         })).then(() => {
             setLoaded(true)
         })
-        // toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript").then(coreURL =>
-        //     toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm").then(wasmURL =>
-        //         ffmpeg.load({coreURL, wasmURL}).then(() => {
-        //             setLoaded(true)
-        //         })
-        //     )
-        // )
     }, [])
 
     return [ffmpegRef, messageRef, loaded] as const
