@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@shikijs/rehype": "3.20.0",
-    "@types/mdx": "2.0.0",
+    "@types/mdx": "2.0.13",
     "@types/mdast": "4.0.4",
     "@types/rss": "0.0.32",
     "gray-matter": "4.0.3",
