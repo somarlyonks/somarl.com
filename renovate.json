@@ -3,10 +3,12 @@
     "config:recommended"
   ],
   "ignoreDeps": [
+    "@commitlint/cli",
     "@types/react",
     "@types/react-dom",
     "actions/labeler",
     "actions/checkout",
+    "eslint",
     "npm-run-all",
     "typescript",
     "aws-sdk"

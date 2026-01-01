@@ -34,7 +34,7 @@ export default function Footer (
                     <Link href="https://www.somarl.com">
                         <img role="button" src="/images/pangurban.jpg" />
                     </Link>
-                    <Flex shrink>© 2024 Yang</Flex>
+                    <Flex shrink>© 2026 Yang</Flex>
                     <Flex shrink>
                         <span>Hosted with</span>
                         <span style={{color: '#e25555'}}>&hearts;</span>

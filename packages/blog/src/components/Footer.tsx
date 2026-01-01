@@ -15,25 +15,14 @@ export default function Footer ({slug}: {slug?: string}) {
                         <li><Link href="/">Blogs</Link></li>
                         <li><Link href="https://moment.somarl.com">Moments</Link></li>
                         {slug
-                            ? (
-                                <li>
-                                    <span>Edit this post</span>
-                                    <Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`} role="button" target="_blank"><OcticonGithub /></Link>
-                                </li>
-                            )
-                            : (
-                                <li>
-                                    <span>Source</span>
-                                    <Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/blog" role="button" target="_blank"><OcticonGithub /></Link>
-                                    <Link href="/rss.xml" role="button" target="_blank"><OcticonRSS /></Link>
-                                </li>
-                            )}
+                            ? <li><span>Edit this post</span><Link href={`https://github.com/somarlyonks/somarl.com/edit/master/packages/blog/posts/${slug}.mdx`} role="button" target="_blank"><OcticonGithub /></Link></li>
+                            : <li><span>Source</span><Link href="https://github.com/somarlyonks/somarl.com/tree/master/packages/blog" role="button" target="_blank"><OcticonGithub /></Link><Link href="/rss.xml" role="button" target="_blank"><OcticonRSS /></Link></li>}
                     </ul>
                 </nav>
                 <Flex grow />
                 <aside>
                     <Link href="https://www.somarl.com"><img role="button" src="/images/pangurban.jpg" /></Link>
-                    <Flex shrink>© 2024 Yang</Flex>
+                    <Flex shrink>© 2026 Yang</Flex>
                     <Flex shrink>
                         <span>Hosted with</span>
                         <span style={{color: '#e25555'}}>&hearts;</span>
