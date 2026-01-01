@@ -38,7 +38,7 @@
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "20.2.0",
-    "@somarlyonks/commitlint": "4.0.1",
+    "@somarlyonks/commitlint": "5.0.0",
     "@somarlyonks/eslint": "1.2.0",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
