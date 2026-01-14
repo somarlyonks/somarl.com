@@ -130,6 +130,7 @@ header + article > div {
 
   figure[role="img"] {
     text-align: center;
+    line-height: 0;
     figcaption {
       font-size: smaller;
       opacity: 0.5;

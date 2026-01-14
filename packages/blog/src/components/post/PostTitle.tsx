@@ -1,5 +1,6 @@
 'use client'
 
+import type {ReactEventHandler} from 'react'
 import Image from 'next/image'
 
 import useInterSectionObserver from '../../libs/useInterSectionObserver'
@@ -19,15 +20,14 @@ export default function PostTitle ({post}: IProps) {
         rootMargin: '80px',
     })
 
-    const moveInfoSection = () => requestIdleCallback(() => {
-        const $alignSection = document.querySelector('article > section:nth-of-type(2)')
-            || document.querySelector('article > div > #tocanchor + section:nth-of-type(2)')
-            || document.querySelector('article > div > section:nth-of-type(1)')
-        if (!$alignSection) return
+    const moveInfoSection: ReactEventHandler = (event) => requestIdleCallback(() => {
+        const $image = event.target as HTMLImageElement
+        const $banner = document.querySelector('[role="banner"]')
+        if (!$image || !$banner) return
 
         document.querySelectorAll<HTMLElement>('div[role="contentinfo"] > section').forEach(($contentInfoSection, i) => {
             if (!i) {
-                $contentInfoSection.style.marginBottom = `calc(${$alignSection.getBoundingClientRect().top - $contentInfoSection.getBoundingClientRect().bottom}px)`
+                $contentInfoSection.style.marginBottom = `calc(${$image.getBoundingClientRect().bottom - $contentInfoSection.getBoundingClientRect().bottom + parseFloat(getComputedStyle($banner).marginBlockEnd)}px)`
             }
             $contentInfoSection.style.opacity = '1'
         })
