@@ -5,7 +5,7 @@ import type {IProps} from './layout'
 export const dynamicParams = false
 
 export async function generateStaticParams () {
-    return (await getPostSlugs()).map(slug => ({slug: slug.split('/').map(encodeURIComponent)}))
+    return (await getPostSlugs()).map(slug => ({slug: slug.split('/')}))
 }
 
 export default async function Page ({params}: IProps) {
@@ -28,7 +28,7 @@ export default async function Page ({params}: IProps) {
 }
 
 const getStaticProps = async (slug: string[]) => {
-    const {compiledSource, scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
+    const {compiledSource, scope} = await serializePost(decodeURIComponent(slug.join('/')))
     const extraComponents = searchMDXComponentInSource(compiledSource)
     const collectionMap = await getCollectionMap()
     const collection = collectionMap[scope.collection] || undefined
