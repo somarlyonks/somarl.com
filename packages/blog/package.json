@@ -19,7 +19,7 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@shikijs/rehype": "3.21.0",
+    "@shikijs/rehype": "3.22.0",
     "@types/mdx": "2.0.13",
     "@types/mdast": "4.0.4",
     "@types/rss": "0.0.32",
