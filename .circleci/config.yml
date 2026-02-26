@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/node:24.13.0
+      - image: cimg/node:24.13.1
     steps:
       - checkout
       - run: corepack prepare pnpm@latest-10 --activate
