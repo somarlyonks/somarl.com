@@ -1,15 +1,6 @@
 import {readdir, readFile, stat} from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
-import {serialize} from 'next-mdx-remote/serialize'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeShiki from '@shikijs/rehype'
-import remarkGFM from 'remark-gfm'
-import remarkSectionize from 'remark-sectionize'
-import rehypeUnwrapImages from 'rehype-unwrap-images'
-
-import {remarkToc} from './toc'
 
 const POSTS_ROOT = path.join(process.cwd(), 'posts')
 
@@ -33,42 +24,20 @@ export const getPostSlugs = async () => (await getPostFilenames()).map(filename 
 
 const postSlugToPath = (slug: string) => path.join(POSTS_ROOT, `${slug}.mdx`)
 
-export const HastLinkIcon = {
-    type: 'element',
-    tagName: 'svg',
-    properties: {
-        className: ['octicon', 'octicon-link'],
-        xmlns: 'http://www.w3.org/2000/svg',
-        viewBox: '0 0 16 16',
-        version: '1.1',
-        width: '16',
-        height: '16',
-    },
-    children: [{
-        type: 'element',
-        tagName: 'path',
-        properties: {
-            fillRule: 'evenodd',
-            d: 'M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z',
-        },
-    }],
-}
-
-type MDXRemoteSerializeResult<TScope = Record<string, unknown>> = {
-    compiledSource: string
-    scope: TScope
-}
-
 export const getPosts = async () => (await readPosts(await getPostSlugs())).sort(
-    (l, r) => (new Date(r.scope.published).valueOf() - new Date(l.scope.published).valueOf()),
+    (l, r) => (new Date(r.published).valueOf() - new Date(l.published).valueOf()),
 )
 
-const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPost))
+const readPosts = async (slugs: string[]) => Promise.all(slugs.map(readPostMatter))
 
-async function readPost (slug: string) {
+export async function readPostMatter (slug: string) {
     const file = await readFile(postSlugToPath(slug))
 
-    const {content, data: {
+    return bleachPostMatter(slug, matter(file).data)
+}
+
+export function bleachPostMatter (slug: string, matter: object): IPostMeta {
+    const {
         title,
         published,
         language,
@@ -76,11 +45,9 @@ async function readPost (slug: string) {
         tags = [],
         collection = '',
         cover = '',
-    }} = matter(file)
+    } = matter as ANY
 
-    if (!title) throw new Error('Broken post')
-
-    const scope: IPostMeta = {
+    return {
         url: `/post/${slug}`,
         title,
         published,
@@ -90,65 +57,15 @@ async function readPost (slug: string) {
         collection,
         cover: (cover && !cover.src) ? {src: cover} : cover,
     }
-
-    return {
-        content,
-        scope,
-    }
 }
 
 export const getTagMap = async () => getPosts().then(posts => posts.reduce(
-    (r, post) => Object.assign(r, Object.fromEntries(post.scope.tags.map(tag => [tag, (r[tag] || []).concat(post.scope)]))),
+    (r, post) => Object.assign(r, Object.fromEntries(post.tags.map(tag => [tag, (r[tag] || []).concat(post)]))),
     {} as Record<string, IPostMeta[]>,
 ))
 
 export const getCollectionMap = async () => getPosts().then(posts => posts.reduce((r, post) => {
-    const {collection} = post.scope
+    const {collection} = post
     if (!collection) return r
-    return Object.assign(r, {[collection]: [post.scope].concat(r[collection] || [])})
+    return Object.assign(r, {[collection]: [post].concat(r[collection] || [])})
 }, {} as Record<string, IPostMeta[]>))
-
-export async function serializePost (slug: string) {
-    const {content, scope} = await readPost(slug)
-
-    return serialize(content, {
-        mdxOptions: {
-            remarkPlugins: [
-                remarkToc,
-                remarkSectionize,
-                remarkGFM,
-            ],
-            rehypePlugins: [
-                rehypeSlug,
-                rehypeUnwrapImages,
-                [rehypeShiki as ANY, {
-                    themes: {
-                        light: 'github-light',
-                        dark: 'github-dark',
-                    },
-                }],
-                [rehypeAutolinkHeadings, {
-                    content: HastLinkIcon,
-                    properties: {
-                        ariaHidden: 'true',
-                        tabIndex: -1,
-                        role: 'button',
-                    },
-                }],
-            ],
-        },
-        scope,
-    }) as Promise<MDXRemoteSerializeResult<IPostMeta>>
-}
-
-export const DYNAMIC_COMPONENT_NAMES = [
-    'NextJS',
-    'MDXIcon',
-    'IllustrationFlexWrapItems',
-    'MyBikeTimeline',
-    'MyCamera',
-] as const
-
-export const searchMDXComponentInSource = (source: string) => (
-    DYNAMIC_COMPONENT_NAMES.filter(component => new RegExp(`_jsx(DEV)?\\(${component},`).test(source))
-)

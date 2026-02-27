@@ -4,17 +4,17 @@ import {Metadata} from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Zoom from '@/components/post/scripts/Zoom'
-import {serializePost} from '@/libs/mdx'
+import {readPostMatter} from '@/libs/mdx'
 
 export interface IProps {
     params: Promise<{
-        slug: string[]
+        slug: string
     }>
 }
 
 export async function generateMetadata ({params}: IProps): Promise<Metadata> {
     const {slug} = await params
-    const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
+    const scope = await readPostMatter(decodeURIComponent(slug))
     const title = `${scope.title} | Yang`
     const description = scope.abstract
     const images = scope.cover && [{
@@ -27,7 +27,7 @@ export async function generateMetadata ({params}: IProps): Promise<Metadata> {
         openGraph: {
             title,
             description,
-            url: `/blog/${slug.join('/')}`,
+            url: `/blog/${slug}`,
             siteName: 'Yang',
             type: 'article',
             publishedTime: scope.published,
@@ -42,14 +42,14 @@ export default async function Layout ({
     params,
 }: PropsWithChildren<IProps>) {
     const {slug} = await params
-    const {scope} = await serializePost(decodeURIComponent(decodeURIComponent(slug.join('/'))))
+    const scope = await readPostMatter(decodeURIComponent(slug))
 
     return (
         <>
             <Header title={scope.title} />
             <Zoom />
             {children}
-            <Footer slug={slug.join('/')} />
+            <Footer slug={slug} />
         </>
     )
 }
