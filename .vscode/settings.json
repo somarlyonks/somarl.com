@@ -18,6 +18,7 @@
     "**/node_modules": true,
     "**/coverage": true,
     "**/tsconfig.tsbuildinfo": true,
+    "**/next-env.d.ts": true,
     "**/*.log": true,
     "*.husky": true,
     "**/.next": true,

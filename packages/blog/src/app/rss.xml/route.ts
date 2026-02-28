@@ -17,7 +17,7 @@ export async function GET () {
 
     const posts = await getPosts()
 
-    posts.forEach(({scope: {title, abstract, url, tags, published}}) => feed.item({
+    posts.forEach(({title, abstract, url, tags, published}) => feed.item({
         title,
         description: abstract,
         url: `${SITE_URL}${url}`,

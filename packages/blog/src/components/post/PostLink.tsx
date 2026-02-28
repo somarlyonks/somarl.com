@@ -1,5 +1,6 @@
-import {ReactNode, isValidElement, InvalidEvent} from 'react'
+import {ReactNode, isValidElement} from 'react'
 import Link from 'next/link'
+import Favicon from './PostLinkFavicon'
 
 interface IProps {
     href?: string
@@ -10,10 +11,6 @@ interface IProps {
 export default function PostLink (props: IProps) {
     const {href = ''} = props
 
-    const handleFaviconError = (e: InvalidEvent<HTMLImageElement>) => {
-        e.target.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
-    }
-
     if (href.startsWith('http') && (
         typeof props.children === 'string' || (isValidElement(props.children) && props.children.type === 'em')
     )) {
@@ -21,7 +18,7 @@ export default function PostLink (props: IProps) {
         const favicon = `https://unavatar.io/${url.hostname}`
         return (
             <>
-                <img role="favicon" loading="lazy" src={favicon} alt="" aria-hidden onError={handleFaviconError} />
+                <Favicon src={favicon} />
                 <a {...props} href={props.href} />
             </>
         )

@@ -229,7 +229,7 @@ table {
 It looks good to me now. But actually, there is a problem under the hood. What if we want the header to have a different background color?
 
 ```css
-tabel thead tr {
+table thead tr {
     background-color: #e0f5ff;
 }
 ```
@@ -259,7 +259,7 @@ It originates from the incompatibility between `border-collapse` and `border-rad
 And this time, I come out with no other ways but a workaround:
 
 ```css
-tabel thead tr {
+table thead tr {
     & th:first-child {
         border-top-left-radius: 8px;
     }

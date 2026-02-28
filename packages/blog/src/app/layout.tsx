@@ -1,5 +1,5 @@
-import {PropsWithChildren} from 'react'
-import {Viewport} from 'next'
+import type {PropsWithChildren} from 'react'
+import type {Metadata, Viewport} from 'next'
 import localFont from 'next/font/local'
 
 import 'src/styles/index.scss'
@@ -16,7 +16,7 @@ const fontMono = localFont({
     adjustFontFallback: false,
 })
 
-export const metadata = {
+export const metadata: Metadata = {
     metadataBase: new URL('https://blog.somarl.com'),
     title: 'Blogs | Yang',
     description: 'My life and thoughts.',

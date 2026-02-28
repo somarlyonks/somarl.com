@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react'
 
-export default function useInteractiveToc (lazy: boolean) {
+export default function useInteractiveToc (lazy: boolean = false) {
     const [ready, setReady] = useState(false)
     useEffect(() => {
         if (!lazy) setReady(true)
