@@ -12,48 +12,46 @@ import MyCamera from '@/components/post/illustrations/my-camera'
 
 <TableLayoutAuto />
 
-<MyCamera camera={{
-  model: 'PENTAX K-3 II',
-  make: 'RICOH IMAGING COMPANY, LTD.',
-  url: 'https://www.ricoh-imaging.co.jp/english/products/k-3-2/',
-  year: 2015,
-  sensor: {
-    format: 'APS-C',
-    type: 'CMOS',
-    bitDepth: 14,
-    resolution: [4000, 6016],
-    megapixels: 24.35,
-    iso: {
-        min: 100,
-        max: 51200,
-    }
-  },
-  shutter: {
-    speed: [1/8000, 30],
-    fps: 8.3,
-  },
-  meter: {
-    sensor: 86000,
-    range: [-3, 20],
-    pattern: ['Multi-Segment', 'Center Weighted', 'Spot'],
-  }
-}} lenses={[
+<MyCamera
+    camera={{
+        model: 'PENTAX K-3 II',
+        make: 'RICOH IMAGING COMPANY, LTD.',
+        url: 'https://www.ricoh-imaging.co.jp/english/products/k-3-2/',
+        year: 2015,
+        sensor: {
+            format: 'APS-C',
+            type: 'CMOS',
+            bitDepth: 14,
+            resolution: [4000, 6016],
+            megapixels: 24.35,
+            iso: {
+                min: 100,
+                max: 51200,
+            }
+        },
+        shutter: {
+            speed: [1/8000, 30],
+            fps: 8.3,
+        },
+        meter: {
+            sensor: 86000,
+            range: [-3, 20],
+            pattern: ['Multi-Segment', 'Center Weighted', 'Spot'],
+        }
+    }}
+lenses={[
     // Samyang 20mm F1.8 ED AS UMC
     {
         model: 'Samyang 20mm F1.8 ED AS UMC',
         make: 'LK SAMYANG CO., LTD.',
         url: 'https://www.lksamyang.com/en/product/product-view.php?seq=182',
         year: 2016,
-        format: 'Full-frame',
+        format: 'APS-C',
         mount: 'Pentax K',
         fieldOfView: {
             'APS-C': {
                 diagnoal: 70.3,
                 horizontal: 60.7,
-            },
-            'Full-frame': {
-                diagnoal: 94.8,
-                horizontal: 84,
             },
         },
         weight: 493,
@@ -133,6 +131,52 @@ import MyCamera from '@/components/post/illustrations/my-camera'
             hood: 'MH-RA55',
             cap: 'O-LW65A',
             case: 'P70-150',
+        },
+    },
+    // HD PENTAX-DA 35mmF2.8 Macro Limited
+    {
+        model: 'HD PENTAX-DA 35mmF2.8 Macro Limited',
+        make: 'RICOH IMAGING COMPANY, LTD.',
+        url: 'https://www.ricoh-imaging.co.jp/japan/products/lens/k/macro/hdpentax-da-35/',
+        year: 2013,
+        format: 'APS-C',
+        mount: 'Pentax K',
+        fieldOfView: {
+            'APS-C': {
+                diagnoal: 45,
+                horizontal: 38,
+            },
+        },
+        weight: 215,
+        focus: {
+            min: 14,
+            focalLength: 35,
+            magnification: 1,
+            method: 'AF (screwdrive)',
+        },
+        aperture: {
+            max: 2.8,
+            min: 22,
+            blades: 9,
+            ring: false,
+        },
+        optics: {
+            elements: 9,
+            groups: 8,
+            coating: ['HD', 'SP'],
+        },
+        size: {
+            filter: 49,
+            length: 46.5,
+            diameter: 63,
+        },
+        weather: {
+            sealing: false,
+            temperature: [-10, 40],
+            humidity: [0, 85],
+        },
+        accessories: {
+            cap: 'O-LW65A',
         },
     },
     // HD PENTAX-FA 43mmF1.9 Limited
