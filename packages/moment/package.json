@@ -16,7 +16,7 @@
     "@ffmpeg/util": "^0.12.2",
     "@resvg/resvg-wasm": "2.6.2",
     "@somarl.com/icons": "workspace:*",
-    "@zumer/snapdom": "2.6.0",
+    "@zumer/snapdom": "2.7.0",
     "exifr": "7.1.3",
     "jszip": "3.10.1",
     "livephotoskit": "1.5.6",
