@@ -142,8 +142,8 @@ importers:
         specifier: workspace:*
         version: link:../icons
       '@zumer/snapdom':
-        specifier: 2.7.0
-        version: 2.7.0
+        specifier: 2.9.0
+        version: 2.9.0
       exifr:
         specifier: 7.1.3
         version: 7.1.3
@@ -847,8 +847,8 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@zumer/snapdom@2.7.0':
-    resolution: {integrity: sha512-ZiELKzDszeFOazPQ/ExXzgtdoW9jADVjDjInr5XDAlVdCx0RbNsFiG7RLyM48XnA7EyCA9yTvmXSc3ElDrTRqA==}
+  '@zumer/snapdom@2.9.0':
+    resolution: {integrity: sha512-ksDM5gXQmu1isBof/YumD2HeIHf4ImTMfba9xE4JyDbARhcZCWHFdjW8oZV3hSKdWpQILEspNq5MrAfwEfzpIw==}
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -3437,7 +3437,7 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@zumer/snapdom@2.7.0': {}
+  '@zumer/snapdom@2.9.0': {}
 
   JSONStream@1.3.5:
     dependencies:
