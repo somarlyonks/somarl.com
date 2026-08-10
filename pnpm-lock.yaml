@@ -170,8 +170,8 @@ importers:
         specifier: 7.5.0
         version: 7.5.0
       tinify:
-        specifier: 1.8.2
-        version: 1.8.2
+        specifier: 1.8.3
+        version: 1.8.3
 
   packages/www:
     dependencies:
@@ -2548,8 +2548,8 @@ packages:
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
-  tinify@1.8.2:
-    resolution: {integrity: sha512-wkXLOj3/D2MdgWLI7TOXSbeD9xRu3GVxqt89ZWfrOyr8c4Ajd6gdowHY5ak7ASqMUu54+icHO/0BIiBg8pFIvg==}
+  tinify@1.8.3:
+    resolution: {integrity: sha512-dwQXxUKjr4Hs0E9lVOFL6MPKc5hcB6imz4xJ3dhvF/gDF20vC+usDRNcGgG/5XY8iuLHhJoBCTZcbuY2XDlh1Q==}
     engines: {node: '>= 14.0'}
 
   tinyexec@1.0.2:
@@ -5653,7 +5653,7 @@ snapshots:
 
   through@2.3.8: {}
 
-  tinify@1.8.2:
+  tinify@1.8.3:
     dependencies:
       https-proxy-agent: 7.0.6
       promise-nodeify: 3.0.1

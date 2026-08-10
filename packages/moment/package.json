@@ -27,6 +27,6 @@
   "devDependencies": {
     "aws-sdk": "2.1692.0",
     "mongodb": "7.5.0",
-    "tinify": "1.8.2"
+    "tinify": "1.8.3"
   }
 }
