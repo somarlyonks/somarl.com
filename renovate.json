@@ -9,8 +9,10 @@
     "actions/labeler",
     "actions/checkout",
     "eslint",
+    "pnpm",
     "npm-run-all",
     "typescript",
-    "aws-sdk"
+    "@aws-sdk/client-s3",
+    "@aws-sdk/s3-presigned-post"
   ]
 }

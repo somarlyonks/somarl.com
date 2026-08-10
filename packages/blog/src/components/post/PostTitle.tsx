@@ -20,8 +20,8 @@ export default function PostTitle ({post}: IProps) {
         rootMargin: '80px',
     })
 
-    const moveInfoSection: ReactEventHandler = (event) => requestIdleCallback(() => {
-        const $image = event.target as HTMLImageElement
+    const moveInfoSection: ReactEventHandler<HTMLImageElement> = event => requestIdleCallback(() => {
+        const $image = event.currentTarget
         const $banner = document.querySelector('[role="banner"]')
         if (!$image || !$banner) return
 
