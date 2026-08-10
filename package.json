@@ -1,65 +1,65 @@
 {
-  "name": "somarl.com",
-  "homepage": "https://somarl.com",
-  "version": "0.1.0",
-  "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "-": "------------------------------------------------test--------------------------------",
-    "test": "npm-run-all --parallel test:www test:blog test:moment",
-    "ci": "npm-run-all --parallel test:www test:blog test:moment",
-    "test:www": "cd packages/www && npm run test",
-    "test:blog": "cd packages/blog && npm run test",
-    "test:moment": "cd packages/moment && npm run test",
-    "--": "------------------------------------------------------------dev--------------------",
-    "www": "cd packages/www && npm run dev",
-    "blog": "cd packages/blog && npm run dev",
-    "moment": "cd packages/moment && npm run dev",
-    "---": "-----------------------------------------------------------------------lint-------",
-    "lint": "npm-run-all --parallel lint:www lint:blog lint:moment",
-    "lint:www": "cd packages/www && npm run lint",
-    "lint:blog": "cd packages/blog && npm run lint",
-    "lint:moment": "cd packages/moment && npm run lint",
-    "----": "--------------------------------------------build--------------------------------",
-    "build": "npm-run-all --parallel build:www build:blog build:moment",
-    "build:www": "cd packages/www && npm run build",
-    "build:blog": "cd packages/blog && npm run build",
-    "build:moment": "cd packages/moment && npm run build",
-    "-----": "--------------------------------------------------------workflow----------------",
-    "commitlint": "commitlint",
-    "husky": "husky install",
-    "------": "-------------------------------------------------------------------other-------",
-    "frpc": "cd scripts/frp && sh frpc.sh && ./frpc -c frpc.ini",
-    "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@commitlint/cli": "20.2.0",
-    "@somarlyonks/commitlint": "5.0.0",
-    "@somarlyonks/eslint": "1.4.0",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
-    "eslint": "9.39.2",
-    "folans.d.ts": "2.0.0",
-    "husky": "9.1.7",
-    "npm-run-all": "4.1.5",
-    "sass": "1.102.0",
-    "typescript": "5.9.3"
-  },
-  "engines": {
-    "node": ">=12.8.0"
-  },
-  "commitlint": {
-    "extends": [
-      "@somarlyonks/commitlint"
-    ]
-  },
-  "browserslist": [
-    "last 2 Chrome versions",
-    "Firefox ESR"
-  ],
-  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
+    "name": "somarl.com",
+    "homepage": "https://somarl.com",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "-": "------------------------------------------------test--------------------------------",
+        "test": "npm-run-all --parallel test:www test:blog test:moment",
+        "ci": "npm-run-all --parallel test:www test:blog test:moment",
+        "test:www": "cd packages/www && npm run test",
+        "test:blog": "cd packages/blog && npm run test",
+        "test:moment": "cd packages/moment && npm run test",
+        "--": "------------------------------------------------------------dev--------------------",
+        "www": "cd packages/www && npm run dev",
+        "blog": "cd packages/blog && npm run dev",
+        "moment": "cd packages/moment && npm run dev",
+        "---": "-----------------------------------------------------------------------lint-------",
+        "lint": "npm-run-all --parallel lint:www lint:blog lint:moment",
+        "lint:www": "cd packages/www && npm run lint",
+        "lint:blog": "cd packages/blog && npm run lint",
+        "lint:moment": "cd packages/moment && npm run lint",
+        "----": "--------------------------------------------build--------------------------------",
+        "build": "npm-run-all --parallel build:www build:blog build:moment",
+        "build:www": "cd packages/www && npm run build",
+        "build:blog": "cd packages/blog && npm run build",
+        "build:moment": "cd packages/moment && npm run build",
+        "-----": "--------------------------------------------------------workflow----------------",
+        "commitlint": "commitlint",
+        "husky": "husky install",
+        "------": "-------------------------------------------------------------------other-------",
+        "frpc": "cd scripts/frp && sh frpc.sh && ./frpc -c frpc.ini",
+        "frps": "cd scripts/frp && sh frps.sh && ./frps -c frps.ini &"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@commitlint/cli": "20.2.0",
+        "@somarlyonks/commitlint": "5.0.0",
+        "@somarlyonks/eslint": "1.4.0",
+        "@types/react": "19.2.7",
+        "@types/react-dom": "19.2.3",
+        "eslint": "9.39.2",
+        "folans.d.ts": "2.0.0",
+        "husky": "9.1.7",
+        "npm-run-all": "4.1.5",
+        "sass": "1.102.0",
+        "typescript": "5.9.3"
+    },
+    "engines": {
+        "node": ">=12.8.0"
+    },
+    "commitlint": {
+        "extends": [
+            "@somarlyonks/commitlint"
+        ]
+    },
+    "browserslist": [
+        "last 2 Chrome versions",
+        "Firefox ESR"
+    ],
+    "packageManager": "pnpm@11.21.0"
 }
