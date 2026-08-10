@@ -24,7 +24,7 @@
     "@shikijs/rehype": "4.4.2",
     "@somarlyonks/remark-toc": "0.1.5",
     "@types/mdast": "4.0.4",
-    "@types/mdx": "2.0.13",
+    "@types/mdx": "2.0.14",
     "@types/rss": "0.0.32",
     "gray-matter": "4.0.3",
     "rehype-autolink-headings": "7.1.0",
