@@ -142,8 +142,8 @@ importers:
         specifier: workspace:*
         version: link:../icons
       '@zumer/snapdom':
-        specifier: 2.7.0
-        version: 2.7.0
+        specifier: 2.23.2
+        version: 2.23.2
       exifr:
         specifier: 7.1.3
         version: 7.1.3
@@ -851,9 +851,8 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
     deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
-  '@zumer/snapdom@2.7.0':
-    resolution: {integrity: sha512-ZiELKzDszeFOazPQ/ExXzgtdoW9jADVjDjInr5XDAlVdCx0RbNsFiG7RLyM48XnA7EyCA9yTvmXSc3ElDrTRqA==}
-    deprecated: Old versions have known fidelity bugs (text re-wrap, width freezing, KaTeX clipping). Upgrade to ^2.22 — drop-in for any 2.x. https://github.com/zumerlab/snapdom/releases
+  '@zumer/snapdom@2.23.2':
+    resolution: {integrity: sha512-pt/FYBYyDq1LXIjP2CI9qvR78o+hy9rdtTaFxEiDZTD8A3JhNkEj3CT6BQXAsa95UCZXbJKRxf1tEc89oVd7dA==}
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -3447,7 +3446,7 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@zumer/snapdom@2.7.0': {}
+  '@zumer/snapdom@2.23.2': {}
 
   JSONStream@1.3.5:
     dependencies:
