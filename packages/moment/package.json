@@ -28,6 +28,6 @@
         "@aws-sdk/client-s3": "3.1106.0",
         "@aws-sdk/s3-presigned-post": "3.1106.0",
         "mongodb": "7.1.0",
-        "tinify": "1.8.2"
+        "tinify": "1.8.3"
     }
 }
