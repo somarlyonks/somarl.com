@@ -76,8 +76,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1(@types/react@19.2.7)(react@19.3.1)
       '@next/mdx':
-        specifier: 16.3.5
-        version: 16.3.5(@mdx-js/loader@3.1.1(supports-color@7.2.0))(@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.3.1))
+        specifier: 16.4.2
+        version: 16.4.2(@mdx-js/loader@3.1.1(supports-color@7.2.0))(@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.3.1))
       '@shikijs/rehype':
         specifier: 4.4.3
         version: 4.4.3
@@ -620,8 +620,8 @@ packages:
   '@next/env@16.3.6':
     resolution: {integrity: sha512-x9Vblze1EbtltQYnNH38xCPWU3TVfBd1eXqA3+w9+BTpedkkdNpAaltXlGQ/nsc1+E0mVTNrtcbX3GoO09zeLQ==}
 
-  '@next/mdx@16.3.5':
-    resolution: {integrity: sha512-fBRelmCwqZR7TMeAIEI2mb6P1H88D9A4poIZOOhlcuiEbiF7jOTJTKQWfd7pCPW4CeZ9UG/6AgoHRREqqInlqQ==}
+  '@next/mdx@16.4.2':
+    resolution: {integrity: sha512-elDnhfH37V+dBiOTmhW8VFcAm6wrXU0LI+NYk5oGVBtrdfRk9FMLpAofTi9sgTazohoThiDVFJQpzKRgbB8SEg==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
@@ -3284,7 +3284,7 @@ snapshots:
 
   '@next/env@16.3.6': {}
 
-  '@next/mdx@16.3.5(@mdx-js/loader@3.1.1(supports-color@7.2.0))(@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.3.1))':
+  '@next/mdx@16.4.2(@mdx-js/loader@3.1.1(supports-color@7.2.0))(@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.3.1))':
     dependencies:
       source-map: 0.7.6
     optionalDependencies:
