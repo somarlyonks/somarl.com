@@ -5,7 +5,9 @@ jobs:
       - image: cimg/node:24.22.2
     steps:
       - checkout
-      - run: corepack prepare pnpm@latest-10 --activate
+      - run:
+          name: Install pnpm via Corepack
+          command: corepack install
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:

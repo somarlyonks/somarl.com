@@ -61,5 +61,5 @@
         "last 2 Chrome versions",
         "Firefox ESR"
     ],
-    "packageManager": "pnpm@11.21.0"
+    "packageManager": "pnpm@12.16.1"
 }
