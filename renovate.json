@@ -1,18 +1,20 @@
 {
-  "extends": [
-    "config:recommended"
-  ],
-  "ignoreDeps": [
-    "@commitlint/cli",
-    "@types/react",
-    "@types/react-dom",
-    "actions/labeler",
-    "actions/checkout",
-    "eslint",
-    "pnpm",
-    "npm-run-all",
-    "typescript",
-    "@aws-sdk/client-s3",
-    "@aws-sdk/s3-presigned-post"
-  ]
+    "extends": [
+        "config:recommended"
+    ],
+    "minimumReleaseAge": "1 day",
+    "minimumReleaseAgeBuffer": "1 hour",
+    "ignoreDeps": [
+        "@commitlint/cli",
+        "@types/react",
+        "@types/react-dom",
+        "actions/labeler",
+        "actions/checkout",
+        "eslint",
+        "pnpm",
+        "npm-run-all",
+        "typescript",
+        "@aws-sdk/client-s3",
+        "@aws-sdk/s3-presigned-post"
+    ]
 }
