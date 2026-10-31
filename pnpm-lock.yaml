@@ -300,8 +300,8 @@ importers:
         specifier: workspace:*
         version: link:../icons
       '@zumer/snapdom':
-        specifier: 3.3.4
-        version: 3.3.4
+        specifier: 3.7.0
+        version: 3.7.0
       exifr:
         specifier: 7.1.3
         version: 7.1.3
@@ -1052,8 +1052,8 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
     deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
-  '@zumer/snapdom@3.3.4':
-    resolution: {integrity: sha512-dICc6NpHXdeymOXeksZBWFRSG/qsHB0PvgtUQi6znkPoVT8F6pPjyP9vfXnGRr3MOL90cVEA6t5I2ZgM2p/41g==}
+  '@zumer/snapdom@3.7.0':
+    resolution: {integrity: sha512-YUbc4psiyjTktuOkvCkuDNWHjZiqwJZ/SPpnYmOUFoKWi6nyjY3CgW7+uQSwVTVR9ka2/Swz1UiRM739j07kmQ==}
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -3749,7 +3749,7 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@zumer/snapdom@3.3.4': {}
+  '@zumer/snapdom@3.7.0': {}
 
   JSONStream@1.3.5:
     dependencies:
