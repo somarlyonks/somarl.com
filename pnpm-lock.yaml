@@ -331,8 +331,8 @@ importers:
         specifier: 7.8.0
         version: 7.8.0
       tinify:
-        specifier: 1.8.3
-        version: 1.8.3(supports-color@7.2.0)
+        specifier: 1.9.0
+        version: 1.9.0(supports-color@7.2.0)
 
   packages/www:
     dependencies:
@@ -2706,8 +2706,8 @@ packages:
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
-  tinify@1.8.3:
-    resolution: {integrity: sha512-dwQXxUKjr4Hs0E9lVOFL6MPKc5hcB6imz4xJ3dhvF/gDF20vC+usDRNcGgG/5XY8iuLHhJoBCTZcbuY2XDlh1Q==}
+  tinify@1.9.0:
+    resolution: {integrity: sha512-qcf/TnjDV4iKOj0AWSxb+02bpI69ae9DS+XAs8YE1d2+IO1WRWdYMy/SUIUdQ2sKT++rcYXD4xGq5SHrTfHD0A==}
     engines: {node: '>= 14.0'}
 
   tinyexec@1.0.2:
@@ -5901,7 +5901,7 @@ snapshots:
 
   through@2.3.8: {}
 
-  tinify@1.8.3(supports-color@7.2.0):
+  tinify@1.9.0(supports-color@7.2.0):
     dependencies:
       https-proxy-agent: 7.0.6(supports-color@7.2.0)
       promise-nodeify: 3.0.1
