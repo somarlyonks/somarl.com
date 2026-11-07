@@ -206,8 +206,8 @@ importers:
         specifier: 4.1.5
         version: 4.1.5
       sass:
-        specifier: 1.107.1
-        version: 1.107.1
+        specifier: 1.108.0
+        version: 1.108.0
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -219,7 +219,7 @@ importers:
         version: link:../icons
       next:
         specifier: 'catalog:'
-        version: 16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.107.1)
+        version: 16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.0)
       react:
         specifier: 'catalog:'
         version: 19.3.1
@@ -313,7 +313,7 @@ importers:
         version: 1.5.6
       next:
         specifier: 'catalog:'
-        version: 16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.107.1)
+        version: 16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.0)
       react:
         specifier: 'catalog:'
         version: 19.3.1
@@ -338,7 +338,7 @@ importers:
     dependencies:
       next:
         specifier: 'catalog:'
-        version: 16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.107.1)
+        version: 16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.0)
       react:
         specifier: 'catalog:'
         version: 19.3.1
@@ -2500,8 +2500,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  sass@1.107.1:
-    resolution: {integrity: sha512-aJ1/LvxOOb04YhmiBjzZn3jVwdHKol+OVhoMV6fFl02fF9T3i+5Mg9l/CnzqtM+NX5Jn5o3lAbs/ZJivTCLHfQ==}
+  sass@1.108.0:
+    resolution: {integrity: sha512-9HwnefouIfwY+XuA1rS5xOhALH5vsoe3SzYICG3MEwpkMbE7tpuh5ytZFRXUKPYkxY7lKdIbqxl+DxQGo8jwQQ==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -5264,7 +5264,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.107.1):
+  next@16.3.8(@types/node@25.0.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.0):
     dependencies:
       '@next/env': 16.3.8
       '@swc/helpers': 0.5.23
@@ -5283,7 +5283,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.3.8
       '@next/swc-win32-arm64-msvc': 16.3.8
       '@next/swc-win32-x64-msvc': 16.3.8
-      sass: 1.107.1
+      sass: 1.108.0
       sharp: 0.35.4(@types/node@25.0.3)
     transitivePeerDependencies:
       - '@babel/core'
@@ -5656,7 +5656,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  sass@1.107.1:
+  sass@1.108.0:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.9
