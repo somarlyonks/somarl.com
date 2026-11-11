@@ -747,14 +747,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@isaacs/balanced-match@4.0.1':
-    resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
-    engines: {node: 20 || >=22}
-
-  '@isaacs/brace-expansion@5.0.0':
-    resolution: {integrity: sha512-ZT55BDLV0yv0RBm2czMiZ+SqCGO7AvmOM3G/w2xhVPH+te0aKgFjmBvGlL1dH+ql2tgGO3MVrbb3jCKyvpgnxA==}
-    engines: {node: 20 || >=22}
-
   '@mdx-js/loader@3.1.1':
     resolution: {integrity: sha512-0TTacJyZ9mDmY+VefuthVshaNIyCGZHJG2fMnGaDttCt8HmjUF7SizlHJpaCDoGnN635nK1wpzfpx/Xx5S4WnQ==}
     peerDependencies:
@@ -2153,16 +2145,12 @@ packages:
     resolution: {integrity: sha512-ryBDp1Z/6X90UvjUK3RksH0IBPM137T7cmg4OgD5wQBojlAiUwuok0QeELkim/72EtcYuNlmbkrcGuxj3Kl0YQ==}
     engines: {node: '>= 0.6'}
 
-  minimatch@10.1.1:
-    resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
-    engines: {node: 20 || >=22}
-
   minimatch@10.2.6:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
     engines: {node: 18 || 20 || >=22}
 
-  minimatch@3.1.2:
-    resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
+  minimatch@3.1.5:
+    resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
@@ -3228,7 +3216,7 @@ snapshots:
     dependencies:
       '@eslint/object-schema': 2.1.7
       debug: 4.4.3(supports-color@7.2.0)
-      minimatch: 3.1.2
+      minimatch: 3.1.5
     transitivePeerDependencies:
       - supports-color
 
@@ -3249,7 +3237,7 @@ snapshots:
       ignore: 5.3.2
       import-fresh: 3.3.1
       js-yaml: 4.1.1
-      minimatch: 3.1.2
+      minimatch: 3.1.5
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
@@ -3392,12 +3380,6 @@ snapshots:
 
   '@img/sharp-win32-x64@0.35.4':
     optional: true
-
-  '@isaacs/balanced-match@4.0.1': {}
-
-  '@isaacs/brace-expansion@5.0.0':
-    dependencies:
-      '@isaacs/balanced-match': 4.0.1
 
   '@mdx-js/loader@3.1.1(supports-color@7.2.0)':
     dependencies:
@@ -4189,7 +4171,7 @@ snapshots:
       is-glob: 4.0.3
       json-stable-stringify-without-jsonify: 1.0.1
       lodash.merge: 4.6.2
-      minimatch: 3.1.2
+      minimatch: 3.1.5
       natural-compare: 1.4.0
       optionator: 0.9.4
     optionalDependencies:
@@ -4363,7 +4345,7 @@ snapshots:
 
   glob@13.0.0:
     dependencies:
-      minimatch: 10.1.1
+      minimatch: 10.2.6
       minipass: 7.1.2
       path-scurry: 2.0.1
 
@@ -5237,15 +5219,11 @@ snapshots:
     dependencies:
       mime-db: 1.25.0
 
-  minimatch@10.1.1:
-    dependencies:
-      '@isaacs/brace-expansion': 5.0.0
-
   minimatch@10.2.6:
     dependencies:
       brace-expansion: 5.0.9
 
-  minimatch@3.1.2:
+  minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.12
 
@@ -5311,7 +5289,7 @@ snapshots:
       chalk: 2.4.2
       cross-spawn: 6.0.6
       memorystream: 0.3.1
-      minimatch: 3.1.2
+      minimatch: 3.1.5
       pidtree: 0.3.1
       read-pkg: 3.0.0
       shell-quote: 1.8.3
